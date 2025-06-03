@@ -1,0 +1,1319 @@
+{
+  "categories": {
+    "d3e9a532-284c-4a97-b17b-98fcf6aa873b": {
+      "name": "Bedroom",
+      "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800"
+    },
+    "ef675c5f-ecb4-47fd-b06e-16e2badd1b35": {
+      "name": "Living Room",
+      "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800"
+    },
+    "2e7e89e7-5257-4ef1-8822-60dceb9df63e": {
+      "name": "Dining Room",
+      "image": "https://images.unsplash.com/photo-1551298370-9c50423d7451?w=800"
+    },
+    "c87ec79a-f5a0-45af-9373-aed88ee1a331": {
+      "name": "Home Office",
+      "image": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800"
+    },
+    "3ae7ae06-42a6-4831-a2bb-79d7f2055a89": {
+      "name": "Outdoor",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
+    }
+  },
+  "roles": {
+    "admin": {
+      "name": "Admin"
+    },
+    "customer": {
+      "name": "Customer"
+    }
+  },
+  "users": {
+    "aaaf24b1-db18-49fe-b3bd-4f68fb441af2": {
+      "name": "Alice Admin",
+      "email": "alice@furniture.com",
+      "role": "admin",
+      "createdAt": "2025-06-03T07:44:43.661244"
+    },
+    "af9881f2-e59a-492d-8f1d-d5b2fb265596": {
+      "name": "Bob Buyer",
+      "email": "bob@example.com",
+      "role": "customer",
+      "shippingAddress": {
+        "street": "123 Elm Street",
+        "city": "Lagos",
+        "state": "LA",
+        "zip": "100001",
+        "country": "Nigeria"
+      },
+      "createdAt": "2025-06-03T07:44:43.661288"
+    }
+  },
+  "variants_colors": {
+    "cff60de0-023b-4432-a84a-3adaf300528d": {
+      "name": "Black",
+      "hex": "#000000"
+    },
+    "6ffc72cc-8e97-4b52-b416-28e4d5a72f16": {
+      "name": "White",
+      "hex": "#FFFFFF"
+    },
+    "60459b3a-82c7-45e6-b68b-59b6c771280b": {
+      "name": "Oak",
+      "hex": "#C3B091"
+    },
+    "6704014c-0ca7-4d02-9bc2-e1b68b184af1": {
+      "name": "Walnut",
+      "hex": "#5C3A21"
+    },
+    "7e038a7e-ccb4-44bb-a67f-671e024264d1": {
+      "name": "Grey",
+      "hex": "#808080"
+    },
+    "8f2a9b3c-1d4e-4f5a-8b9c-2e3f4g5h6i7j": {
+      "name": "Navy Blue",
+      "hex": "#1e3a8a"
+    },
+    "9a3b4c5d-2e5f-4g6h-9c0d-3f4g5h6i7j8k": {
+      "name": "Forest Green",
+      "hex": "#166534"
+    },
+    "0b4c5d6e-3f6g-4h7i-0d1e-4g5h6i7j8k9l": {
+      "name": "Burgundy",
+      "hex": "#7f1d1d"
+    },
+    "1c5d6e7f-4g7h-4i8j-1e2f-5h6i7j8k9l0m": {
+      "name": "Cream",
+      "hex": "#fef3c7"
+    },
+    "2d6e7f8g-5h8i-4j9k-2f3g-6i7j8k9l0m1n": {
+      "name": "Charcoal",
+      "hex": "#374151"
+    },
+    "3e7f8g9h-6i9j-4k0l-3g4h-7j8k9l0m1n2o": {
+      "name": "Espresso",
+      "hex": "#451a03"
+    },
+    "4f8g9h0i-7j0k-4l1m-4h5i-8k9l0m1n2o3p": {
+      "name": "Beige",
+      "hex": "#d6d3d1"
+    }
+  },
+  "variants_sizes": {
+    "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3": {
+      "name": "Small",
+      "dimensions": "80x60x40 cm"
+    },
+    "cdca5d17-9736-4db7-9c28-660f1c7f5033": {
+      "name": "Medium",
+      "dimensions": "120x80x60 cm"
+    },
+    "ffee2d28-1c0d-4246-8fa2-d46ee0136410": {
+      "name": "Large",
+      "dimensions": "180x100x80 cm"
+    },
+    "eb9d7abd-118b-4b8e-944d-ea111d6f0561": {
+      "name": "Extra Large",
+      "dimensions": "220x120x100 cm"
+    },
+    "5g9h0i1j-8k1l-4m2n-5i6j-9l0m1n2o3p4q": {
+      "name": "Compact",
+      "dimensions": "60x40x30 cm"
+    },
+    "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r": {
+      "name": "King Size",
+      "dimensions": "200x200x50 cm"
+    }
+  },
+  "materials": {
+    "mat-001": {
+      "name": "Solid Oak",
+      "type": "Wood",
+      "durability": "High"
+    },
+    "mat-002": {
+      "name": "Engineered Wood",
+      "type": "Composite",
+      "durability": "Medium"
+    },
+    "mat-003": {
+      "name": "Genuine Leather",
+      "type": "Leather",
+      "durability": "High"
+    },
+    "mat-004": {
+      "name": "Fabric Upholstery",
+      "type": "Textile",
+      "durability": "Medium"
+    },
+    "mat-005": {
+      "name": "Metal Frame",
+      "type": "Metal",
+      "durability": "High"
+    },
+    "mat-006": {
+      "name": "Tempered Glass",
+      "type": "Glass",
+      "durability": "Medium"
+    },
+    "mat-007": {
+      "name": "Memory Foam",
+      "type": "Foam",
+      "durability": "Medium"
+    },
+    "mat-008": {
+      "name": "Rattan",
+      "type": "Natural Fiber",
+      "durability": "Medium"
+    }
+  },
+  "products": {
+    "2739874d-7e6a-493d-927e-a9550ffc2f11": {
+      "name": "Modern Sectional Sofa",
+      "description": "Contemporary L-shaped sectional sofa with premium fabric upholstery and comfortable cushioning.",
+      "price": 1299.99,
+      "categoryId": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
+      "colors": [
+        "7e038a7e-ccb4-44bb-a67f-671e024264d1",
+        "2d6e7f8g-5h8i-4j9k-2f3g-6i7j8k9l0m1n"
+      ],
+      "sizes": [
+        "ffee2d28-1c0d-4246-8fa2-d46ee0136410"
+      ],
+      "materials": [
+        "mat-004",
+        "mat-007"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800"
+      ],
+      "createdAt": "2025-06-03T07:44:43.661816"
+    },
+    "54082246-039a-4256-bf03-6791ca5acd7c": {
+      "name": "Teak Outdoor Dining Set",
+      "description": "Weather-resistant teak dining set with table and 6 chairs, perfect for outdoor entertaining.",
+      "price": 2499.99,
+      "categoryId": "3ae7ae06-42a6-4831-a2bb-79d7f2055a89",
+      "colors": [
+        "60459b3a-82c7-45e6-b68b-59b6c771280b"
+      ],
+      "sizes": [
+        "eb9d7abd-118b-4b8e-944d-ea111d6f0561"
+      ],
+      "materials": [
+        "mat-001"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+        "https://images.unsplash.com/photo-1551298370-9c50423d7451?w=800"
+      ],
+      "createdAt": "2025-06-03T07:44:43.661848"
+    },
+    "82a81cc6-8b73-4de2-b9bb-bac494034b5e": {
+      "name": "Glass Top Dining Table",
+      "description": "Elegant glass-top dining table with chrome legs, seats up to 8 people comfortably.",
+      "price": 899.99,
+      "categoryId": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
+      "colors": [
+        "6ffc72cc-8e97-4b52-b416-28e4d5a72f16"
+      ],
+      "sizes": [
+        "ffee2d28-1c0d-4246-8fa2-d46ee0136410"
+      ],
+      "materials": [
+        "mat-006",
+        "mat-005"
+      ],
+      "inStock": false,
+      "images": [
+        "https://images.unsplash.com/photo-1551298370-9c50423d7451?w=800",
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800"
+      ],
+      "createdAt": "2025-06-03T07:44:43.661864"
+    },
+    "6c9e2da9-4701-4e73-84ce-d9732b17cb99": {
+      "name": "Leather Reclining Armchair",
+      "description": "Premium genuine leather reclining armchair with built-in footrest and lumbar support.",
+      "price": 1599.99,
+      "categoryId": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
+      "colors": [
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1",
+        "cff60de0-023b-4432-a84a-3adaf300528d"
+      ],
+      "sizes": [
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033"
+      ],
+      "materials": [
+        "mat-003",
+        "mat-007"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800",
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800"
+      ],
+      "createdAt": "2025-06-03T07:44:43.661884"
+    },
+    "cb96bccd-2d1f-45d8-98aa-953a0b0e0826": {
+      "name": "Platform Bed Frame",
+      "description": "Minimalist platform bed frame with built-in nightstands and LED accent lighting.",
+      "price": 1199.99,
+      "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+      "colors": [
+        "6ffc72cc-8e97-4b52-b416-28e4d5a72f16",
+        "2d6e7f8g-5h8i-4j9k-2f3g-6i7j8k9l0m1n"
+      ],
+      "sizes": [
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r"
+      ],
+      "materials": [
+        "mat-002",
+        "mat-005"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800",
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800"
+      ],
+      "createdAt": "2025-06-03T07:44:43.661920"
+    },
+    "prod-0006-efoz6sfio": {
+      "name": "Executive Office Desk",
+      "description": "Premium quality furniture crafted with attention to detail and modern design sensibilities.",
+      "price": 1804.59,
+      "categoryId": "3ae7ae06-42a6-4831-a2bb-79d7f2055a89",
+      "colors": [
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1"
+      ],
+      "sizes": [
+        "eb9d7abd-118b-4b8e-944d-ea111d6f0561"
+      ],
+      "materials": [
+        "mat-001"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555009118793?w=800",
+        "https://images.unsplash.com/photo-1555028326604?w=800"
+      ],
+      "createdAt": "2025-01-07T01:28:00.000Z"
+    },
+    "prod-0007-fxi5pxhig": {
+      "name": "Velvet Ottoman",
+      "description": "Premium quality furniture crafted with attention to detail and modern design sensibilities.",
+      "price": 912.07,
+      "categoryId": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
+      "colors": [
+        "2d6e7f8g-5h8i-4j9k-2f3g-6i7j8k9l0m1n"
+      ],
+      "sizes": [
+        "5g9h0i1j-8k1l-4m2n-5i6j-9l0m1n2o3p4q"
+      ],
+      "materials": [
+        "mat-003",
+        "mat-002"
+      ],
+      "inStock": false,
+      "images": [
+        "https://images.unsplash.com/photo-1555074280626?w=800",
+        "https://images.unsplash.com/photo-1555013874608?w=800"
+      ],
+      "createdAt": "2025-01-26T02:10:00.000Z"
+    },
+    "prod-0008-a7a3ik4nm": {
+      "name": "Bookshelf Unit",
+      "description": "Thoughtfully designed to enhance your living space with both form and function.",
+      "price": 1940.13,
+      "categoryId": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
+      "colors": [
+        "6ffc72cc-8e97-4b52-b416-28e4d5a72f16",
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1"
+      ],
+      "sizes": [
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3"
+      ],
+      "materials": [
+        "mat-002",
+        "mat-005"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555059166908?w=800",
+        "https://images.unsplash.com/photo-1555078995187?w=800"
+      ],
+      "createdAt": "2025-01-26T06:43:00.000Z"
+    },
+    "prod-0009-f8i8387vs": {
+      "name": "Coffee Table Set",
+      "description": "Durable construction meets elegant design in this versatile furniture piece.",
+      "price": 1715.08,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1",
+        "1c5d6e7f-4g7h-4i8j-1e2f-5h6i7j8k9l0m"
+      ],
+      "sizes": [
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r"
+      ],
+      "materials": [
+        "mat-003",
+        "mat-003"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555040964884?w=800",
+        "https://images.unsplash.com/photo-1555036183818?w=800"
+      ],
+      "createdAt": "2025-01-31T08:00:00.000Z"
+    },
+    "prod-0010-7715p5b8r": {
+      "name": "Wardrobe Cabinet",
+      "description": "Thoughtfully designed to enhance your living space with both form and function.",
+      "price": 1886.06,
+      "categoryId": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
+      "colors": [
+        "9a3b4c5d-2e5f-4g6h-9c0d-3f4g5h6i7j8k"
+      ],
+      "sizes": [
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r"
+      ],
+      "materials": [
+        "mat-006"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555040949464?w=800",
+        "https://images.unsplash.com/photo-1555040410403?w=800"
+      ],
+      "createdAt": "2025-01-17T14:34:00.000Z"
+    },
+    "prod-0011-wahcsuzdr": {
+      "name": "Accent Chair",
+      "description": "High-quality materials and expert craftsmanship create a lasting furniture solution.",
+      "price": 1182.1,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "7e038a7e-ccb4-44bb-a67f-671e024264d1",
+        "cff60de0-023b-4432-a84a-3adaf300528d"
+      ],
+      "sizes": [
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3"
+      ],
+      "materials": [
+        "mat-006"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555049564163?w=800",
+        "https://images.unsplash.com/photo-1555034568950?w=800"
+      ],
+      "createdAt": "2025-01-29T01:04:00.000Z"
+    },
+    "prod-0012-tsm81qapf": {
+      "name": "Bar Stool Set",
+      "description": "Thoughtfully designed to enhance your living space with both form and function.",
+      "price": 1000.66,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "4f8g9h0i-7j0k-4l1m-4h5i-8k9l0m1n2o3p"
+      ],
+      "sizes": [
+        "eb9d7abd-118b-4b8e-944d-ea111d6f0561"
+      ],
+      "materials": [
+        "mat-007",
+        "mat-002"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555094937967?w=800",
+        "https://images.unsplash.com/photo-1555043118639?w=800"
+      ],
+      "createdAt": "2025-01-08T09:03:00.000Z"
+    },
+    "prod-0013-6g4gd4rwb": {
+      "name": "Nightstand Pair",
+      "description": "High-quality materials and expert craftsmanship create a lasting furniture solution.",
+      "price": 597.84,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "6ffc72cc-8e97-4b52-b416-28e4d5a72f16",
+        "cff60de0-023b-4432-a84a-3adaf300528d"
+      ],
+      "sizes": [
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033"
+      ],
+      "materials": [
+        "mat-003"
+      ],
+      "inStock": false,
+      "images": [
+        "https://images.unsplash.com/photo-1555008992316?w=800",
+        "https://images.unsplash.com/photo-1555090699886?w=800"
+      ],
+      "createdAt": "2025-01-05T14:33:00.000Z"
+    },
+    "prod-0014-ipvmcr1db": {
+      "name": "TV Entertainment Unit",
+      "description": "Thoughtfully designed to enhance your living space with both form and function.",
+      "price": 1803.53,
+      "categoryId": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
+      "colors": [
+        "4f8g9h0i-7j0k-4l1m-4h5i-8k9l0m1n2o3p",
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1"
+      ],
+      "sizes": [
+        "5g9h0i1j-8k1l-4m2n-5i6j-9l0m1n2o3p4q"
+      ],
+      "materials": [
+        "mat-005",
+        "mat-007"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555037345570?w=800",
+        "https://images.unsplash.com/photo-1555029132126?w=800"
+      ],
+      "createdAt": "2025-01-04T07:55:00.000Z"
+    },
+    "prod-0015-uh5rfjpzk": {
+      "name": "Dining Chair Set",
+      "description": "Durable construction meets elegant design in this versatile furniture piece.",
+      "price": 677.42,
+      "categoryId": "3ae7ae06-42a6-4831-a2bb-79d7f2055a89",
+      "colors": [
+        "2d6e7f8g-5h8i-4j9k-2f3g-6i7j8k9l0m1n"
+      ],
+      "sizes": [
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r",
+        "5g9h0i1j-8k1l-4m2n-5i6j-9l0m1n2o3p4q"
+      ],
+      "materials": [
+        "mat-007"
+      ],
+      "inStock": false,
+      "images": [
+        "https://images.unsplash.com/photo-1555051432763?w=800",
+        "https://images.unsplash.com/photo-1555024636538?w=800"
+      ],
+      "createdAt": "2025-01-27T21:22:00.000Z"
+    },
+    "prod-0016-hyiweoxu3": {
+      "name": "Storage Bench",
+      "description": "Thoughtfully designed to enhance your living space with both form and function.",
+      "price": 1900.64,
+      "categoryId": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
+      "colors": [
+        "2d6e7f8g-5h8i-4j9k-2f3g-6i7j8k9l0m1n"
+      ],
+      "sizes": [
+        "eb9d7abd-118b-4b8e-944d-ea111d6f0561"
+      ],
+      "materials": [
+        "mat-002",
+        "mat-004"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555082508487?w=800",
+        "https://images.unsplash.com/photo-1555008822797?w=800"
+      ],
+      "createdAt": "2025-01-03T05:04:00.000Z"
+    },
+    "prod-0017-e37ctz9y5": {
+      "name": "Dressing Table",
+      "description": "Thoughtfully designed to enhance your living space with both form and function.",
+      "price": 997.56,
+      "categoryId": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
+      "colors": [
+        "0b4c5d6e-3f6g-4h7i-0d1e-4g5h6i7j8k9l",
+        "1c5d6e7f-4g7h-4i8j-1e2f-5h6i7j8k9l0m"
+      ],
+      "sizes": [
+        "5g9h0i1j-8k1l-4m2n-5i6j-9l0m1n2o3p4q",
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r"
+      ],
+      "materials": [
+        "mat-001"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555078758132?w=800",
+        "https://images.unsplash.com/photo-1555042324686?w=800"
+      ],
+      "createdAt": "2025-01-17T06:54:00.000Z"
+    },
+    "prod-0018-h583l5bq0": {
+      "name": "Corner Sofa",
+      "description": "Premium quality furniture crafted with attention to detail and modern design sensibilities.",
+      "price": 996.78,
+      "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+      "colors": [
+        "0b4c5d6e-3f6g-4h7i-0d1e-4g5h6i7j8k9l",
+        "3e7f8g9h-6i9j-4k0l-3g4h-7j8k9l0m1n2o"
+      ],
+      "sizes": [
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3"
+      ],
+      "materials": [
+        "mat-001",
+        "mat-005"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555071630898?w=800",
+        "https://images.unsplash.com/photo-1555093315949?w=800"
+      ],
+      "createdAt": "2025-01-23T18:20:00.000Z"
+    },
+    "prod-0019-fe0m0holg": {
+      "name": "Office Swivel Chair",
+      "description": "High-quality materials and expert craftsmanship create a lasting furniture solution.",
+      "price": 592.43,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "8f2a9b3c-1d4e-4f5a-8b9c-2e3f4g5h6i7j",
+        "7e038a7e-ccb4-44bb-a67f-671e024264d1"
+      ],
+      "sizes": [
+        "5g9h0i1j-8k1l-4m2n-5i6j-9l0m1n2o3p4q"
+      ],
+      "materials": [
+        "mat-005"
+      ],
+      "inStock": false,
+      "images": [
+        "https://images.unsplash.com/photo-1555000601642?w=800",
+        "https://images.unsplash.com/photo-1555024645103?w=800"
+      ],
+      "createdAt": "2025-01-15T10:06:00.000Z"
+    },
+    "prod-0020-9xbbbwcha": {
+      "name": "Garden Lounge Set",
+      "description": "Premium quality furniture crafted with attention to detail and modern design sensibilities.",
+      "price": 1871.66,
+      "categoryId": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
+      "colors": [
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1"
+      ],
+      "sizes": [
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033",
+        "5g9h0i1j-8k1l-4m2n-5i6j-9l0m1n2o3p4q"
+      ],
+      "materials": [
+        "mat-005"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555008820340?w=800",
+        "https://images.unsplash.com/photo-1555068548302?w=800"
+      ],
+      "createdAt": "2025-01-20T23:20:00.000Z"
+    },
+    "prod-0021-xqdv1ks79": {
+      "name": "Kids Study Desk",
+      "description": "Durable construction meets elegant design in this versatile furniture piece.",
+      "price": 1119.84,
+      "categoryId": "3ae7ae06-42a6-4831-a2bb-79d7f2055a89",
+      "colors": [
+        "6ffc72cc-8e97-4b52-b416-28e4d5a72f16",
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1"
+      ],
+      "sizes": [
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r",
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r"
+      ],
+      "materials": [
+        "mat-001"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555090053025?w=800",
+        "https://images.unsplash.com/photo-1555080995794?w=800"
+      ],
+      "createdAt": "2025-01-23T04:51:00.000Z"
+    },
+    "prod-0022-iqhk75e4h": {
+      "name": "Floating Shelves",
+      "description": "High-quality materials and expert craftsmanship create a lasting furniture solution.",
+      "price": 570.86,
+      "categoryId": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
+      "colors": [
+        "cff60de0-023b-4432-a84a-3adaf300528d",
+        "6ffc72cc-8e97-4b52-b416-28e4d5a72f16"
+      ],
+      "sizes": [
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3",
+        "5g9h0i1j-8k1l-4m2n-5i6j-9l0m1n2o3p4q"
+      ],
+      "materials": [
+        "mat-006"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555035134933?w=800",
+        "https://images.unsplash.com/photo-1555083657459?w=800"
+      ],
+      "createdAt": "2025-01-04T04:44:00.000Z"
+    },
+    "prod-0023-tdcnttehn": {
+      "name": "Bed Side Table",
+      "description": "High-quality materials and expert craftsmanship create a lasting furniture solution.",
+      "price": 220.09,
+      "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+      "colors": [
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1",
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1"
+      ],
+      "sizes": [
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3"
+      ],
+      "materials": [
+        "mat-008",
+        "mat-007"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555029736288?w=800",
+        "https://images.unsplash.com/photo-1555029880573?w=800"
+      ],
+      "createdAt": "2025-01-26T09:45:00.000Z"
+    },
+    "prod-0024-mpmccoccs": {
+      "name": "Leather Sofa Bed",
+      "description": "Thoughtfully designed to enhance your living space with both form and function.",
+      "price": 1330.25,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "2d6e7f8g-5h8i-4j9k-2f3g-6i7j8k9l0m1n"
+      ],
+      "sizes": [
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3",
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r"
+      ],
+      "materials": [
+        "mat-003",
+        "mat-007"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555098302012?w=800",
+        "https://images.unsplash.com/photo-1555030819223?w=800"
+      ],
+      "createdAt": "2025-01-07T20:01:00.000Z"
+    },
+    "prod-0025-x845zw0eq": {
+      "name": "Kitchen Island Cart",
+      "description": "Thoughtfully designed to enhance your living space with both form and function.",
+      "price": 1845.17,
+      "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+      "colors": [
+        "0b4c5d6e-3f6g-4h7i-0d1e-4g5h6i7j8k9l",
+        "6ffc72cc-8e97-4b52-b416-28e4d5a72f16"
+      ],
+      "sizes": [
+        "5g9h0i1j-8k1l-4m2n-5i6j-9l0m1n2o3p4q",
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033"
+      ],
+      "materials": [
+        "mat-002"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555053650016?w=800",
+        "https://images.unsplash.com/photo-1555003936085?w=800"
+      ],
+      "createdAt": "2025-01-12T09:41:00.000Z"
+    },
+    "prod-0026-64blftvmy": {
+      "name": "Rocking Chair",
+      "description": "Premium quality furniture crafted with attention to detail and modern design sensibilities.",
+      "price": 1963.71,
+      "categoryId": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
+      "colors": [
+        "2d6e7f8g-5h8i-4j9k-2f3g-6i7j8k9l0m1n",
+        "cff60de0-023b-4432-a84a-3adaf300528d"
+      ],
+      "sizes": [
+        "ffee2d28-1c0d-4246-8fa2-d46ee0136410"
+      ],
+      "materials": [
+        "mat-004"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555055245882?w=800",
+        "https://images.unsplash.com/photo-1555076158035?w=800"
+      ],
+      "createdAt": "2025-01-24T02:25:00.000Z"
+    },
+    "prod-0027-for9clju1": {
+      "name": "File Cabinet",
+      "description": "High-quality materials and expert craftsmanship create a lasting furniture solution.",
+      "price": 1115.11,
+      "categoryId": "3ae7ae06-42a6-4831-a2bb-79d7f2055a89",
+      "colors": [
+        "2d6e7f8g-5h8i-4j9k-2f3g-6i7j8k9l0m1n",
+        "cff60de0-023b-4432-a84a-3adaf300528d"
+      ],
+      "sizes": [
+        "ffee2d28-1c0d-4246-8fa2-d46ee0136410",
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033"
+      ],
+      "materials": [
+        "mat-007"
+      ],
+      "inStock": false,
+      "images": [
+        "https://images.unsplash.com/photo-1555049620012?w=800",
+        "https://images.unsplash.com/photo-1555070932387?w=800"
+      ],
+      "createdAt": "2025-01-09T03:25:00.000Z"
+    },
+    "prod-0028-pmtoiajej": {
+      "name": "Chest of Drawers",
+      "description": "Stylish and functional piece that combines comfort with contemporary aesthetics.",
+      "price": 1208.56,
+      "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+      "colors": [
+        "0b4c5d6e-3f6g-4h7i-0d1e-4g5h6i7j8k9l",
+        "4f8g9h0i-7j0k-4l1m-4h5i-8k9l0m1n2o3p"
+      ],
+      "sizes": [
+        "5g9h0i1j-8k1l-4m2n-5i6j-9l0m1n2o3p4q"
+      ],
+      "materials": [
+        "mat-002"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555094378533?w=800",
+        "https://images.unsplash.com/photo-1555017821579?w=800"
+      ],
+      "createdAt": "2025-01-08T09:15:00.000Z"
+    },
+    "prod-0029-bce8mzh0m": {
+      "name": "Patio Umbrella",
+      "description": "High-quality materials and expert craftsmanship create a lasting furniture solution.",
+      "price": 1527.41,
+      "categoryId": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
+      "colors": [
+        "2d6e7f8g-5h8i-4j9k-2f3g-6i7j8k9l0m1n"
+      ],
+      "sizes": [
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033"
+      ],
+      "materials": [
+        "mat-002"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555036688964?w=800",
+        "https://images.unsplash.com/photo-1555016988668?w=800"
+      ],
+      "createdAt": "2025-01-20T22:38:00.000Z"
+    },
+    "prod-0030-qdlqfxg95": {
+      "name": "Massage Chair",
+      "description": "Durable construction meets elegant design in this versatile furniture piece.",
+      "price": 412.93,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "7e038a7e-ccb4-44bb-a67f-671e024264d1"
+      ],
+      "sizes": [
+        "5g9h0i1j-8k1l-4m2n-5i6j-9l0m1n2o3p4q"
+      ],
+      "materials": [
+        "mat-007"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555030810222?w=800",
+        "https://images.unsplash.com/photo-1555068813122?w=800"
+      ],
+      "createdAt": "2025-01-04T13:02:00.000Z"
+    },
+    "prod-0031-jnzmb2lfk": {
+      "name": "Standing Desk",
+      "description": "Premium quality furniture crafted with attention to detail and modern design sensibilities.",
+      "price": 407.47,
+      "categoryId": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
+      "colors": [
+        "0b4c5d6e-3f6g-4h7i-0d1e-4g5h6i7j8k9l"
+      ],
+      "sizes": [
+        "eb9d7abd-118b-4b8e-944d-ea111d6f0561",
+        "ffee2d28-1c0d-4246-8fa2-d46ee0136410"
+      ],
+      "materials": [
+        "mat-007"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555090214957?w=800",
+        "https://images.unsplash.com/photo-1555016881526?w=800"
+      ],
+      "createdAt": "2025-01-28T20:59:00.000Z"
+    },
+    "prod-0032-f7pviea94": {
+      "name": "Shoe Rack",
+      "description": "Stylish and functional piece that combines comfort with contemporary aesthetics.",
+      "price": 943.09,
+      "categoryId": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
+      "colors": [
+        "cff60de0-023b-4432-a84a-3adaf300528d",
+        "cff60de0-023b-4432-a84a-3adaf300528d"
+      ],
+      "sizes": [
+        "ffee2d28-1c0d-4246-8fa2-d46ee0136410"
+      ],
+      "materials": [
+        "mat-001"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555039933205?w=800",
+        "https://images.unsplash.com/photo-1555057333511?w=800"
+      ],
+      "createdAt": "2025-01-19T07:53:00.000Z"
+    },
+    "prod-0033-736k45u5l": {
+      "name": "Mirror with Frame",
+      "description": "High-quality materials and expert craftsmanship create a lasting furniture solution.",
+      "price": 361.82,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "60459b3a-82c7-45e6-b68b-59b6c771280b"
+      ],
+      "sizes": [
+        "eb9d7abd-118b-4b8e-944d-ea111d6f0561"
+      ],
+      "materials": [
+        "mat-001",
+        "mat-002"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555000686153?w=800",
+        "https://images.unsplash.com/photo-1555031344208?w=800"
+      ],
+      "createdAt": "2025-01-21T05:11:00.000Z"
+    },
+    "prod-0034-33m5fff8j": {
+      "name": "Folding Dining Table",
+      "description": "Premium quality furniture crafted with attention to detail and modern design sensibilities.",
+      "price": 1672.78,
+      "categoryId": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
+      "colors": [
+        "1c5d6e7f-4g7h-4i8j-1e2f-5h6i7j8k9l0m"
+      ],
+      "sizes": [
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r",
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3"
+      ],
+      "materials": [
+        "mat-002"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555010285723?w=800",
+        "https://images.unsplash.com/photo-1555023114625?w=800"
+      ],
+      "createdAt": "2025-01-11T09:40:00.000Z"
+    },
+    "prod-0035-nhd1kdsrj": {
+      "name": "Bean Bag Chair",
+      "description": "Stylish and functional piece that combines comfort with contemporary aesthetics.",
+      "price": 473.05,
+      "categoryId": "3ae7ae06-42a6-4831-a2bb-79d7f2055a89",
+      "colors": [
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1"
+      ],
+      "sizes": [
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r",
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033"
+      ],
+      "materials": [
+        "mat-004"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555065314816?w=800",
+        "https://images.unsplash.com/photo-1555053545677?w=800"
+      ],
+      "createdAt": "2025-01-09T11:10:00.000Z"
+    },
+    "prod-0036-vrqrp476d": {
+      "name": "Wine Storage Rack",
+      "description": "Premium quality furniture crafted with attention to detail and modern design sensibilities.",
+      "price": 295.14,
+      "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+      "colors": [
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1",
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1"
+      ],
+      "sizes": [
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3"
+      ],
+      "materials": [
+        "mat-007"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555013178861?w=800",
+        "https://images.unsplash.com/photo-1555016861697?w=800"
+      ],
+      "createdAt": "2025-01-14T11:24:00.000Z"
+    },
+    "prod-0037-23pz2aqof": {
+      "name": "Computer Gaming Desk",
+      "description": "Thoughtfully designed to enhance your living space with both form and function.",
+      "price": 354.21,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "9a3b4c5d-2e5f-4g6h-9c0d-3f4g5h6i7j8k",
+        "7e038a7e-ccb4-44bb-a67f-671e024264d1"
+      ],
+      "sizes": [
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033",
+        "ffee2d28-1c0d-4246-8fa2-d46ee0136410"
+      ],
+      "materials": [
+        "mat-006"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555025161155?w=800",
+        "https://images.unsplash.com/photo-1555003077461?w=800"
+      ],
+      "createdAt": "2025-01-17T02:47:00.000Z"
+    },
+    "prod-0038-fjrg4cm7d": {
+      "name": "Outdoor Swing",
+      "description": "Stylish and functional piece that combines comfort with contemporary aesthetics.",
+      "price": 615.37,
+      "categoryId": "3ae7ae06-42a6-4831-a2bb-79d7f2055a89",
+      "colors": [
+        "6ffc72cc-8e97-4b52-b416-28e4d5a72f16"
+      ],
+      "sizes": [
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3"
+      ],
+      "materials": [
+        "mat-004"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555043925708?w=800",
+        "https://images.unsplash.com/photo-1555095605248?w=800"
+      ],
+      "createdAt": "2025-01-28T23:05:00.000Z"
+    },
+    "prod-0039-tditd5zki": {
+      "name": "Vanity Stool",
+      "description": "Stylish and functional piece that combines comfort with contemporary aesthetics.",
+      "price": 1179.5,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "0b4c5d6e-3f6g-4h7i-0d1e-4g5h6i7j8k9l"
+      ],
+      "sizes": [
+        "ffee2d28-1c0d-4246-8fa2-d46ee0136410",
+        "eb9d7abd-118b-4b8e-944d-ea111d6f0561"
+      ],
+      "materials": [
+        "mat-005"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555088707014?w=800",
+        "https://images.unsplash.com/photo-1555014532053?w=800"
+      ],
+      "createdAt": "2025-01-31T01:13:00.000Z"
+    },
+    "prod-0040-cfodhawsg": {
+      "name": "Wall Mount TV Stand",
+      "description": "Durable construction meets elegant design in this versatile furniture piece.",
+      "price": 440.9,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "60459b3a-82c7-45e6-b68b-59b6c771280b",
+        "9a3b4c5d-2e5f-4g6h-9c0d-3f4g5h6i7j8k"
+      ],
+      "sizes": [
+        "eb9d7abd-118b-4b8e-944d-ea111d6f0561",
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033"
+      ],
+      "materials": [
+        "mat-003",
+        "mat-004"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555008151615?w=800",
+        "https://images.unsplash.com/photo-1555062656055?w=800"
+      ],
+      "createdAt": "2025-01-28T11:31:00.000Z"
+    },
+    "prod-0041-4566nzw4w": {
+      "name": "Reading Nook Chair",
+      "description": "Durable construction meets elegant design in this versatile furniture piece.",
+      "price": 803.69,
+      "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+      "colors": [
+        "cff60de0-023b-4432-a84a-3adaf300528d"
+      ],
+      "sizes": [
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3",
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033"
+      ],
+      "materials": [
+        "mat-005"
+      ],
+      "inStock": false,
+      "images": [
+        "https://images.unsplash.com/photo-1555057079382?w=800",
+        "https://images.unsplash.com/photo-1555063433137?w=800"
+      ],
+      "createdAt": "2025-01-15T09:46:00.000Z"
+    },
+    "prod-0042-9e9wnhdi0": {
+      "name": "Storage Ottoman",
+      "description": "High-quality materials and expert craftsmanship create a lasting furniture solution.",
+      "price": 2145.55,
+      "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+      "colors": [
+        "1c5d6e7f-4g7h-4i8j-1e2f-5h6i7j8k9l0m",
+        "4f8g9h0i-7j0k-4l1m-4h5i-8k9l0m1n2o3p"
+      ],
+      "sizes": [
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033"
+      ],
+      "materials": [
+        "mat-001",
+        "mat-008"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555037676180?w=800",
+        "https://images.unsplash.com/photo-1555053384070?w=800"
+      ],
+      "createdAt": "2025-01-22T13:35:00.000Z"
+    },
+    "prod-0043-un6kq7os1": {
+      "name": "Modular Shelving",
+      "description": "Stylish and functional piece that combines comfort with contemporary aesthetics.",
+      "price": 647.62,
+      "categoryId": "3ae7ae06-42a6-4831-a2bb-79d7f2055a89",
+      "colors": [
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1",
+        "2d6e7f8g-5h8i-4j9k-2f3g-6i7j8k9l0m1n"
+      ],
+      "sizes": [
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033",
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3"
+      ],
+      "materials": [
+        "mat-007"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555035324701?w=800",
+        "https://images.unsplash.com/photo-1555086379969?w=800"
+      ],
+      "createdAt": "2025-01-06T05:19:00.000Z"
+    },
+    "prod-0044-0qo073x0f": {
+      "name": "Breakfast Nook Set",
+      "description": "Thoughtfully designed to enhance your living space with both form and function.",
+      "price": 1824.17,
+      "categoryId": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
+      "colors": [
+        "7e038a7e-ccb4-44bb-a67f-671e024264d1",
+        "cff60de0-023b-4432-a84a-3adaf300528d"
+      ],
+      "sizes": [
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r",
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3"
+      ],
+      "materials": [
+        "mat-003"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555032406565?w=800",
+        "https://images.unsplash.com/photo-1555024359654?w=800"
+      ],
+      "createdAt": "2025-01-31T19:37:00.000Z"
+    },
+    "prod-0045-kk9zo26zh": {
+      "name": "Ergonomic Office Chair",
+      "description": "Stylish and functional piece that combines comfort with contemporary aesthetics.",
+      "price": 240.4,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "9a3b4c5d-2e5f-4g6h-9c0d-3f4g5h6i7j8k"
+      ],
+      "sizes": [
+        "ba09deb9-5c6a-4d4f-befe-75fdc9e6aac3"
+      ],
+      "materials": [
+        "mat-006",
+        "mat-007"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555077086972?w=800",
+        "https://images.unsplash.com/photo-1555000302317?w=800"
+      ],
+      "createdAt": "2025-01-29T02:42:00.000Z"
+    },
+    "prod-0046-9x8nctc8c": {
+      "name": "Garden Bench",
+      "description": "Premium quality furniture crafted with attention to detail and modern design sensibilities.",
+      "price": 1451.9,
+      "categoryId": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
+      "colors": [
+        "1c5d6e7f-4g7h-4i8j-1e2f-5h6i7j8k9l0m",
+        "4f8g9h0i-7j0k-4l1m-4h5i-8k9l0m1n2o3p"
+      ],
+      "sizes": [
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033"
+      ],
+      "materials": [
+        "mat-006",
+        "mat-005"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555059353204?w=800",
+        "https://images.unsplash.com/photo-1555008481217?w=800"
+      ],
+      "createdAt": "2025-01-30T02:56:00.000Z"
+    },
+    "prod-0047-2y1g5yj09": {
+      "name": "Hall Tree Stand",
+      "description": "Premium quality furniture crafted with attention to detail and modern design sensibilities.",
+      "price": 1065.51,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "6704014c-0ca7-4d02-9bc2-e1b68b184af1",
+        "8f2a9b3c-1d4e-4f5a-8b9c-2e3f4g5h6i7j"
+      ],
+      "sizes": [
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r"
+      ],
+      "materials": [
+        "mat-005",
+        "mat-008"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555056408357?w=800",
+        "https://images.unsplash.com/photo-1555007345414?w=800"
+      ],
+      "createdAt": "2025-01-16T01:22:00.000Z"
+    },
+    "prod-0048-xsko0djrq": {
+      "name": "Loft Bed Frame",
+      "description": "Premium quality furniture crafted with attention to detail and modern design sensibilities.",
+      "price": 1788.92,
+      "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+      "colors": [
+        "1c5d6e7f-4g7h-4i8j-1e2f-5h6i7j8k9l0m"
+      ],
+      "sizes": [
+        "5g9h0i1j-8k1l-4m2n-5i6j-9l0m1n2o3p4q",
+        "ffee2d28-1c0d-4246-8fa2-d46ee0136410"
+      ],
+      "materials": [
+        "mat-002"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555086742080?w=800",
+        "https://images.unsplash.com/photo-1555003610758?w=800"
+      ],
+      "createdAt": "2025-01-01T06:31:00.000Z"
+    },
+    "prod-0049-z5u6yaa8z": {
+      "name": "Sideboard Cabinet",
+      "description": "Thoughtfully designed to enhance your living space with both form and function.",
+      "price": 856.07,
+      "categoryId": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
+      "colors": [
+        "2d6e7f8g-5h8i-4j9k-2f3g-6i7j8k9l0m1n"
+      ],
+      "sizes": [
+        "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r"
+      ],
+      "materials": [
+        "mat-003"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555001070797?w=800",
+        "https://images.unsplash.com/photo-1555038401316?w=800"
+      ],
+      "createdAt": "2025-01-28T00:11:00.000Z"
+    },
+    "prod-0050-des36txjj": {
+      "name": "Accent Table Lamp",
+      "description": "Premium quality furniture crafted with attention to detail and modern design sensibilities.",
+      "price": 2117.75,
+      "categoryId": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
+      "colors": [
+        "8f2a9b3c-1d4e-4f5a-8b9c-2e3f4g5h6i7j"
+      ],
+      "sizes": [
+        "cdca5d17-9736-4db7-9c28-660f1c7f5033"
+      ],
+      "materials": [
+        "mat-003"
+      ],
+      "inStock": true,
+      "images": [
+        "https://images.unsplash.com/photo-1555059655300?w=800",
+        "https://images.unsplash.com/photo-1555009283016?w=800"
+      ],
+      "createdAt": "2025-01-19T09:33:00.000Z"
+    }
+  },
+  "reviews": {
+    "b04e585a-dcd8-4230-9c81-0c3dd90b4bfc": {
+      "productId": "6c9e2da9-4701-4e73-84ce-d9732b17cb99",
+      "userId": "aaaf24b1-db18-49fe-b3bd-4f68fb441af2",
+      "rating": 5,
+      "comment": "Absolutely love this leather recliner! Super comfortable and well-made.",
+      "createdAt": "2025-06-03T07:44:43.662053"
+    }
+  },
+  "orders": {
+    "c1538aa5-cbc2-4661-82f3-00fd520016de": {
+      "userId": "aaaf24b1-db18-49fe-b3bd-4f68fb441af2",
+      "products": [
+        {
+          "productId": "cb96bccd-2d1f-45d8-98aa-953a0b0e0826",
+          "quantity": 1,
+          "selectedColor": "6ffc72cc-8e97-4b52-b416-28e4d5a72f16",
+          "selectedSize": "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r"
+        }
+      ],
+      "status": "processing",
+      "totalAmount": 1199.99,
+      "shippingAddress": {
+        "street": "123 Elm Street",
+        "city": "Lagos",
+        "state": "LA",
+        "zip": "100001",
+        "country": "Nigeria"
+      },
+      "createdAt": "2025-06-03T07:44:43.662168"
+    }
+  }
+}
