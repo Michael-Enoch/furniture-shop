@@ -3,6 +3,8 @@ import './App.css'
 import { AuthProvider } from './context/AuthContext'
 import Register from './pages/RegisterForm'
 import Navbar from './components/Navbar'
+import Login from './pages/Login'
+import Homepage from './pages/Homepage'
 
 function App() {
 
@@ -12,7 +14,9 @@ function App() {
     <AuthProvider>
     <Toaster position='top-right' reverseOrder={false}/>
     <Navbar/>
-      <Register/>
+    <Homepage/>
+      {/* <Register/>
+      <Login/> */}
     </AuthProvider>
     </>
   )

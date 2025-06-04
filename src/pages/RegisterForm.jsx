@@ -1,19 +1,28 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const Register = () => {
   // import the custom hook
   const { register: signUp } = useAuth();
   const { register, handleSubmit } = useForm();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
+    setLoading(true);
     try {
-      await signUp(data.email, data.password, data.role);
+      const userData = {
+        ...data,
+      };
+
+      await signUp(userData.email, userData.password, userData.role);
       toast.success("Registration successful!");
     } catch (error) {
       console.error(error);
       toast.error(error.message || "Registration Failed!");
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -38,13 +47,20 @@ const Register = () => {
           placeholder="Password"
           className="w-full border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
+          minLength={6}
         />
-        <select {...register("role")} className="w-full border border-gray-300 p-3 rounded-md" required>
-          <option value="customer">Customer</option>
-          <option value="customer">Admin</option>
-        </select>
 
-        <button type="submit" className="w-full bg-gray-950 text-white py-3 rounded-md hover:bg-black transition duration-300ms">Register</button>
+        <button
+          type="submit"
+          disabled={loading}
+          className={`w-full text-white py-3 rounded-md transition duration-300 ${
+            loading
+              ? "bg-gray-500 cursor-not-allowed"
+              : "bg-gray-950 hover:bg-black"
+          }`}
+        >
+          {loading ? "Registering..." : "Register"}
+        </button>
       </form>
     </div>
   );
