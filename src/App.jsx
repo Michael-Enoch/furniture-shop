@@ -18,6 +18,8 @@ function App() {
       {/* <Register/>
       <Login/> */}
     </AuthProvider>
+    
+      
     </>
   )
 }
