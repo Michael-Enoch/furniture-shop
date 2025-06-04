@@ -1,19 +1,12 @@
 import { getDatabase, onValue, ref, runTransaction } from "firebase/database";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import app from "../../Firebase/firebase";
 
-
 const Navbar = () => {
-    const [visitorCount, setVisitorCount] = useState(null);
-
-   useEffect(() => {
-  let hasRun = false;
-
-  if (!hasRun) {
-    hasRun = true;
-
+  const [visitorCount, setVisitorCount] = useState(0);
+  useEffect(() => {
     const db = getDatabase(app);
-    const countRef = ref(db, 'visitorCount');
+    const countRef = ref(db, "visitorCount");
 
     runTransaction(countRef, (current) => (current || 0) + 1)
       .then(() => console.log("Visitor count incremented"))
@@ -24,13 +17,11 @@ const Navbar = () => {
     });
 
     return () => unsubscribe();
-  }
-}, []);
+  }, []);
 
-useEffect(() => {
-  console.log("Navbar mounted"); // should log only once
-}, []);
-
+  useEffect(() => {
+    console.log("Navbar mounted"); // should log only once
+  }, []);
 
   return (
     <div className="w-full bg-white p-4 shadow-md flex flex-row items-center justify-between">
@@ -38,10 +29,10 @@ useEffect(() => {
         <h1>Hudson Furniture</h1>
       </div>
       <div className="ml-auto text-sm text-gray-500">
-        Visitors: {visitorCount != null ? visitorCount : "Loading...."}
+        Visitors: {visitorCount != 0 ? visitorCount : "Loading...."}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
