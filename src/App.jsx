@@ -5,7 +5,7 @@ import Register from './pages/RegisterForm'
 import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import Homepage from './pages/Homepage'
-
+import { gsap } from "gsap";
 function App() {
 
 
