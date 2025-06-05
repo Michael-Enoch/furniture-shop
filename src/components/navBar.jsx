@@ -173,12 +173,12 @@ const Navbar = () => {
           <span className='absolute left-0 top-11.5  h-0.5 rounded hidden
           text-xs text-white bg-black w-full group-hover: block'></span>
         </a>
-        <a href='' className='text-sm font-medium py-3.5'>BEDROOM</a>
-        <a href='' className='text-sm font-medium py-3.5'>LIVING ROOM</a>
-        <a href='' className='text-sm font-medium py-3.5'>DINING</a>
-        <a href='' className='text-sm font-medium py-3.5'>HOME OFFICE</a>
-        <a href='' className='text-sm font-medium py-3.5'>OUTDOOR</a>
-        <a href='' className='text-sm font-medium py-3.5'>MORE</a>
+        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>BEDROOM</a>
+        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>LIVING ROOM</a>
+        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>DINING</a>
+        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>HOME OFFICE</a>
+        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>OUTDOOR</a>
+        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>MORE</a>
       </div>
     </div>
   );
