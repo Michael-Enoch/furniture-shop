@@ -1,186 +1,580 @@
+/* eslint-disable no-unused-vars */
+import { useEffect, useRef, useState } from "react";
 import { getDatabase, onValue, ref, runTransaction } from "firebase/database";
-import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Logo from "../assets/images/hudson.png";
+import {
+  ShoppingCart,
+  Search,
+  Heart,
+  Menu,
+  X,
+  Users,
+  ChevronDown,
+  Bed,
+  Sofa,
+  UtensilsCrossed,
+  Briefcase,
+  TreePine,
+  LogIn,
+  UserPlus,
+  Facebook,
+  Twitter,
+  Instagram,
+} from "lucide-react";
 import app from "../../Firebase/firebase";
-import logo from '../assets/images/logo.jpg'
+import theme from "../context/Theme";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [visitorCount, setVisitorCount] = useState(0);
+  // Desktop dropdown state
+  const [shopOpen, setShopOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+
+  // Mobile sidebar state
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileShopOpen, setMobileShopOpen] = useState(false);
+  const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 50);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+
+  const shopRef = useRef(null);
+
+  useEffect(() => {
+    function handleOutsideClick(event) {
+      if (shopRef.current && !shopRef.current.contains(event.target)) {
+        setShopOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
+
+  const toggleShopDropdown = () => setShopOpen((prev) => !prev);
+  const toggleMoreDropdown = () => setMoreOpen((prev) => !prev);
+  const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
+  const toggleMobileShop = () => setMobileShopOpen((prev) => !prev);
+  const toggleMobileMore = () => setMobileMoreOpen((prev) => !prev);
+
+  // Close the desktop "More" dropdown if clicked outside
+  const moreRef = useRef(null);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (moreRef.current && !moreRef.current.contains(event.target)) {
+        setMoreOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   useEffect(() => {
     const db = getDatabase(app);
     const countRef = ref(db, "visitorCount");
-
-    runTransaction(countRef, (current) => (current || 0) + 1)
-      .then(() => console.log("Visitor count incremented"))
-      .catch((err) => console.error("Transaction failed:", err));
-
+    runTransaction(countRef, (current) => (current || 0) + 1).catch((err) =>
+      console.error("Transaction failed:", err)
+    );
     const unsubscribe = onValue(countRef, (snapshot) => {
       setVisitorCount(snapshot.val());
     });
-
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    console.log("Navbar mounted"); // should log only once
-  }, []);
+  const navLinks = [
+    "Home",
+    "Bedroom",
+    "Living Room",
+    "Dining",
+    "Office",
+    "Outdoor",
+  ];
+
+  const shopCategories = [
+    { name: "Bedroom", icon: Bed },
+    { name: "Living Room", icon: Sofa },
+    { name: "Dining", icon: UtensilsCrossed },
+    { name: "Office", icon: Briefcase },
+    { name: "Outdoor", icon: TreePine },
+  ];
+
+  const moreLinks = ["Deals", "Contact", "About Us"];
 
   return (
-    <div className="w-full bg-white shadow-md flex flex-col ">
-      <div className='w-full flex items-center justify-between py-5.5 px-15  '>
-        <div className='searchBar flex gap-1 bg-gray-100 py-2.25 px-4.5 rounded-full'>
-            <input className='bg-gray-100 focus:outline-0' 
-            type='text' placeholder='Search products here...'/>
-            <button className=''>
-                <span>
-                    <svg id="Layer_1" class="icon icon-header-search" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill='black' height='20' viewBox="0 0 980.04 981.7">
-                <g id="_3_3" data-name="3_3"><path d="M979.3,928.4,718.5,667.2a399.9,399.9,0,0,0,92.8-256.7C811.3,188.9,631.9,9.2,410.7,9.2S10,188.9,10
-                ,410.5,189.4,811.8,410.7,811.8A398.56,398.56,0,0,0,667,718.9L927.8,980.2a36.52,36.52,0,1,0,51.5-51.8ZM410.7,738.7C230,738.7,83,591.4,83,
-                410.5S230,82.3,410.7,82.3,738.4,229.5,738.4,410.5,591.3,738.7,410.7,738.7Z" transform="translate(-10 -9.2)"></path></g></svg>
-                </span>
-            </button>
+    <>
+      <div
+        className="w-full ext-xs sm:text-sm max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between py-4 gap-2 sm:gap-0 text-center sm:text-left"
+        style={{
+          backgroundColor: theme.colors.primary.DEFAULT,
+          color: theme.colors.primary.contrast,
+        }}
+      >
+        <p className="font-semibold animate-pulse text-sm">
+          🎉 <span className="text-[#A65A2E]">Limited Time: Free Shipping</span>{" "}
+          <span className="text-white font-semibold">on Orders Over $99</span> –{" "}
+          <span className="text-red-600 italic">Don’t Miss Out!</span>
+        </p>
+
+        <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
+          <Users size={14} color={theme.colors.accent.DEFAULT} />
+          <span>
+            {visitorCount ? `${visitorCount} Visitors` : "Loading..."}
+          </span>
         </div>
-        
-        <div className='flex gap-4 items-center'>
-            <a href=''><img className='h-15' src={logo} alt=''/></a>
-        
-            <div className='flex flex-row gap-1 items-center'>
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
-                  <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
-                </svg>
-              </span>
-              <span>
-                {visitorCount != 0 ? visitorCount + ' ' : "Loading...." + ' '}
-                Visitors
-              </span>
+      </div>
+
+      <motion.div
+      animate={{
+    paddingTop: isScrolled ? "0.5rem" : "1rem",
+    paddingBottom: isScrolled ? "0.5rem" : "1rem",
+  }}
+  className={`w-full max-w-7xl sticky top-0 left-0 mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 z-50 ${
+    isScrolled ? "shadow-md" : "border-t border-b"
+  }`}
+  style={{
+    backgroundColor: theme.colors.primary.DEFAULT,
+    borderColor: isScrolled ? "transparent" : theme.colors.ui.border,
+  }}
+>
+        <div className="flex justify-between items-center w-full">
+          <div
+            className="flex-shrink-0 cursor-pointer select-none flex items-center"
+            tabIndex={0}
+            aria-label="Homepage"
+            style={{ color: theme.colors.primary.contrast }}
+          >
+            {/* Logo image */}
+            <img
+              src={Logo}
+              alt="Hudson Logo"
+              className="w-6 h-6 sm:w-8 rounded-full sm:h-8 mr-2"
+            />
+
+            {/* Logo text */}
+            <span
+              className="text-lg sm:text-xl font-extrabold tracking-wide"
+              style={{ color: theme.colors.accent.DEFAULT }}
+            >
+              Hudson
+            </span>
+            <span
+              className="ml-1.5 text-sm sm:text-base font-semibold italic tracking-normal"
+              style={{ color: theme.colors.primary.contrast }}
+            >
+              Furniture
+            </span>
+          </div>
+
+          <div className="hidden items-center justify-center h-full md:flex gap-6 xl:gap-8">
+            <motion.div
+              className="relative flex items-center justify-center gap-1 cursor-pointer select-none"
+              whileHover="hover"
+              initial="rest"
+              animate="rest"
+              variants={{
+                rest: { color: theme.colors.primary.contrast },
+                hover: { color: theme.colors.accent.hover },
+              }}
+            >
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive
+                    ? `text-[${theme.colors.accent.hover}] font-medium text-sm`
+                    : `text-[${theme.colors.primary.contrast}] hover:text-[${theme.colors.accent.hover}] font-medium text-sm`
+                }
+              >
+                Home
+              </NavLink>
+              <motion.span
+                className="absolute left-0 bottom-[-20px] h-0.5 rounded-full"
+                style={{ backgroundColor: theme.colors.accent.hover }}
+                variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
+                transition={{ duration: 0.3, delay: 0.15 }}
+              />
+            </motion.div>
+            <div
+              ref={shopRef}
+              className="relative inline-block"
+              onClick={toggleShopDropdown}
+            >
+              <div className="relative flex items-center justify-center gap-1 cursor-pointer select-none">
+                <motion.div
+                  whileHover="hover"
+                  initial="rest"
+                  animate="rest"
+                  className="relative"
+                >
+                  <NavLink
+                    to="/register"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#BF6E3D] font-medium text-sm"
+                        : "text-[#F8F5F2] hover:text-[#BF6E3D] font-medium text-sm"
+                    }
+                  >
+                    Shop
+                  </NavLink>
+                  <motion.span
+                    className="absolute left-0 bottom-[-18px] h-0.5 rounded-full"
+                    style={{ backgroundColor: theme.colors.accent.hover }}
+                    variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
+                    transition={{ duration: 0.3, delay: 0.15 }}
+                  />
+                </motion.div>
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-200 ${
+                    shopOpen ? "rotate-180" : ""
+                  } relative top-0.5`}
+                  style={{ color: theme.colors.primary.contrast }}
+                />
+              </div>
+
+              <AnimatePresence>
+                {shopOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 top-9 mt-2 p-4 grid grid-cols-2 gap-4 shadow-lg overflow-hidden z-50 w-64"
+                    style={{ backgroundColor: theme.colors.background.muted }}
+                  >
+                    {shopCategories.map(({ name, icon: Icon }) => (
+                      <a
+                        key={name}
+                        href="#"
+                        className="flex items-center font-medium gap-2 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm"
+                      >
+                        <Icon size={16} />
+                        {name}
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-        </div>
-        
-        <div className='flex gap-6 items-center'>
-            <a href='' className='relative'>
-                <span>
-                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" height='22' xml:space="preserve">
-<g>
-	<g>
-		<path d="M256,288.389c-153.837,0-238.56,72.776-238.56,204.925c0,10.321,8.365,18.686,18.686,18.686h439.747
-			c10.321,0,18.686-8.365,18.686-18.686C494.56,361.172,409.837,288.389,256,288.389z M55.492,474.628
-			c7.35-98.806,74.713-148.866,200.508-148.866s193.159,50.06,200.515,148.866H55.492z"></path>
-	</g>
-</g>
-<g>
-	<g>
-		<path d="M256,0c-70.665,0-123.951,54.358-123.951,126.437c0,74.19,55.604,134.54,123.951,134.54s123.951-60.35,123.951-134.534
-			C379.951,54.358,326.665,0,256,0z M256,223.611c-47.743,0-86.579-43.589-86.579-97.168c0-51.611,36.413-89.071,86.579-89.071
-			c49.363,0,86.579,38.288,86.579,89.071C342.579,180.022,303.743,223.611,256,223.611z"></path>
-	</g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-</svg>
-                </span>
-            </a>
-            <a href=''className='relative'>
-                <div className='h-4 w-4 p-2 text-white text-xs flex items-center justify-center -top-1.5 left-3 rounded-full bg-teal-500 absolute'>0</div>
 
-              <span>
-                <svg class="icon icon-whishlist" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" height='22' xml:space="preserve">
-<g>
-	<g>
-		<path d="M474.644,74.27C449.391,45.616,414.358,29.836,376,29.836c-53.948,0-88.103,32.22-107.255,59.25    c-4.969,7.014-9.196,14.047-12.745,20.665c-3.549-6.618-7.775-13.651-12.745-20.665c-19.152-27.03-53.307-59.25-107.255-59.25    c-38.358,0-73.391,15.781-98.645,44.435C13.267,101.605,0,138.213,0,177.351c0,42.603,16.633,82.228,52.345,124.7    c31.917,37.96,77.834,77.088,131.005,122.397c19.813,16.884,40.302,34.344,62.115,53.429l0.655,0.574    c2.828,2.476,6.354,3.713,9.88,3.713s7.052-1.238,9.88-3.713l0.655-0.574c21.813-19.085,42.302-36.544,62.118-53.431    c53.168-45.306,99.085-84.434,131.002-122.395C495.367,259.578,512,219.954,512,177.351    C512,138.213,498.733,101.605,474.644,74.27z M309.193,401.614c-17.08,14.554-34.658,29.533-53.193,45.646    c-18.534-16.111-36.113-31.091-53.196-45.648C98.745,312.939,30,254.358,30,177.351c0-31.83,10.605-61.394,29.862-83.245    C79.34,72.007,106.379,59.836,136,59.836c41.129,0,67.716,25.338,82.776,46.594c13.509,19.064,20.558,38.282,22.962,45.659    c2.011,6.175,7.768,10.354,14.262,10.354c6.494,0,12.251-4.179,14.262-10.354c2.404-7.377,9.453-26.595,22.962-45.66    c15.06-21.255,41.647-46.593,82.776-46.593c29.621,0,56.66,12.171,76.137,34.27C471.395,115.957,482,145.521,482,177.351    C482,254.358,413.255,312.939,309.193,401.614z"></path>
-	</g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-</svg>
-              </span>
-            </a>
-            <a href='' className='relative'>
-                <div className='h-4 w-4 p-2 text-white text-xs flex items-center justify-center -top-1.5 left-3 rounded-full bg-teal-500 absolute'>0</div>
-              <span>
-                <svg  version="1.1" id="Capa_1" class="icon icon-bubble" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height='22' viewBox="0 0 250 271"  xml:space="preserve">
-<path style={{stroke: 'black', fill: 'black'}} d="M125.294,137.831c33.359,0,60.5-27.14,60.5-60.499V51.839c0-5.522-4.477-10-10-10c-5.523,0-10,4.478-10,10v25.492
-	c0,22.331-18.168,40.498-40.499,40.498S84.795,99.662,84.795,77.331V51.839c0-5.522-4.477-10-10-10s-10,4.478-10,10v25.492
-	C64.794,110.691,91.934,137.831,125.294,137.831z"></path>
-<g>
-	<path style={{ fill: 'none', stroke: 'black', strokeWidth:'20', strokeMiterLimit:'10'}} d="M238.065,252.088c0,4.4-3.6,8-8,8H19.935
-		c-4.4,0-8-3.6-8-8V18.912c0-4.4,3.6-8,8-8h210.131c4.4,0,8,3.6,8,8V252.088z"></path>
-</g>
-</svg>
-              </span>
-            </a>
-        </div>
+            {/* Static Nav Items */}
+            {["New Arrivals", "Blog"].map((label) => (
+              <motion.a
+                key={label}
+                href="#"
+                className="relative font-medium text-sm transition-colors focus:outline-none"
+                whileHover="hover"
+                initial="rest"
+                animate="rest"
+                variants={{
+                  rest: { color: theme.colors.primary.contrast },
+                  hover: { color: theme.colors.accent.hover },
+                }}
+              >
+                {label}
+                <motion.span
+                  className="absolute left-0 bottom-[-20px] h-0.5 rounded-full"
+                  style={{ backgroundColor: theme.colors.accent.hover }}
+                  variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
+                  transition={{ duration: 0.3, delay: 0.15 }}
+                />
+              </motion.a>
+            ))}
 
-      </div>
-      <div className="flex w-full justify-center items-center gap-12">
-        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>
-          HOME
-          <span className='absolute left-0 top-11.5  h-0.5 rounded hidden
-          text-xs text-white bg-black w-full group-hover: block'></span>
-        </a>
-        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>BEDROOM</a>
-        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>LIVING ROOM</a>
-        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>DINING</a>
-        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>HOME OFFICE</a>
-        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>OUTDOOR</a>
-        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>MORE</a>
-      </div>
-    </div>
+            <div
+              ref={moreRef}
+              className="relative"
+              onClick={toggleMoreDropdown}
+            >
+              <div className="relative flex items-center justify-center gap-1 cursor-pointer select-none">
+                <motion.div
+                  whileHover="hover"
+                  initial="rest"
+                  animate="rest"
+                  className="relative"
+                >
+                  <span className="text-[#F8F5F2] hover:text-[#BF6E3D] font-medium text-sm">
+                    More
+                  </span>
+
+                  <motion.span
+                    className="absolute left-0 bottom-[-20px] h-0.5 rounded-full"
+                    style={{ backgroundColor: theme.colors.accent.hover }}
+                    variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
+                    transition={{ duration: 0.3, delay: 0.15 }}
+                  />
+                </motion.div>
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-200 ${
+                    moreOpen ? "rotate-180" : ""
+                  } relative top-0.5`}
+                  style={{ color: theme.colors.primary.contrast }}
+                />
+              </div>
+
+              {/* Dropdown Menu (desktop) */}
+              <AnimatePresence>
+                {moreOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 top-9 mt-2 w-40 shadow-lg overflow-hidden z-60"
+                  >
+                    {moreLinks.map((label) => (
+                      <a
+                        key={label}
+                        href="#"
+                        className="block px-4 py-2 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium"
+                        style={{
+                          backgroundColor: theme.colors.background.muted,
+                        }}
+                      >
+                        {label}
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Right Icons + Mobile Toggle */}
+          <div
+            className="md:flex hidden items-center gap-2 sm:gap-3 md:gap-4 relative"
+            style={{ color: theme.colors.primary.contrast }}
+          >
+            <Search className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+
+            <Heart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+            <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+            <a href="/login" aria-label="Login">
+              <LogIn className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+            </a>
+
+            {/* Sign Up */}
+            <NavLink to="/register" aria-label="Sign Up">
+              <UserPlus className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+            </NavLink>
+          </div>
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={toggleMobileMenu}
+            className="block md:hidden rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A65A2E]"
+            style={{ color: theme.colors.primary.contrast }}
+            aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? (
+              <X className="w-4 h-4 sm:w-5 sm:h-5 " />
+            ) : (
+              <Menu className="w-4 h-4 sm:w-5 sm:h-5 " />
+            )}
+          </button>
+        </div>
+      </motion.div>
+
+      {/* Mobile Sidebar */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              onClick={toggleMobileMenu}
+              className="fixed inset-0 bg-black z-40"
+              aria-hidden="true"
+            />
+
+            <motion.nav
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+              className="fixed top-0 left-0 h-full w-4/5 max-w-xs z-60 bg-white shadow-xl"
+              style={{
+                backgroundColor: theme.colors.primary.DEFAULT,
+                color: theme.colors.primary.contrast,
+                borderRight: `1px solid ${theme.colors.ui.border}`,
+              }}
+              aria-label="Mobile Navigation Sidebar"
+            >
+              {/* Sidebar Header */}
+              <div className="flex justify-between items-center p-4 border-b">
+                <div
+                  className="flex items-baseline cursor-pointer"
+                  tabIndex={0}
+                  aria-label="Homepage"
+                  onClick={toggleMobileMenu}
+                >
+                  <span
+                    className="text-lg font-extrabold"
+                    style={{ color: theme.colors.accent.DEFAULT }}
+                  >
+                    Hudson
+                  </span>
+                  <span
+                    className="ml-1.5 text-sm italic font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                  >
+                    Furnishings
+                  </span>
+                </div>
+                <button
+                  onClick={toggleMobileMenu}
+                  aria-label="Close Menu"
+                  className="p-1 rounded focus:outline-none focus:ring-2 focus:ring-[#A65A2E]"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Sidebar Links */}
+              <nav className="flex flex-col px-4 py-6 gap-4 overflow-y-auto">
+                <div className="flex items-center gap-2 border rounded-md px-3 py-2">
+                  <Search size={16} />
+                  <input
+                    type="text"
+                    placeholder="Search products..."
+                    className="w-full bg-transparent outline-none text-sm"
+                  />
+                </div>
+
+                {/* Login / Register */}
+                <div className="flex flex-col gap-2">
+                  <NavLink
+                    to="/login"
+                    className="flex items-center gap-2 text-base font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                  >
+                    <ShoppingCart size={18} /> Cart
+                  </NavLink>
+                  <NavLink
+                    to="/login"
+                    className="flex items-center gap-2 text-base font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                  >
+                    <Heart size={18} /> Wishlist
+                  </NavLink>
+                  <NavLink
+                    to="/login"
+                    className="flex items-center gap-2 text-base font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                  >
+                    <LogIn size={18} /> Login
+                  </NavLink>
+                  <NavLink
+                    to="/register"
+                    className="flex items-center gap-2 text-base font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                  >
+                    <UserPlus size={18} /> Register
+                  </NavLink>
+                </div>
+                <div>
+                  <button
+                    onClick={toggleMobileShop}
+                    className="w-full flex justify-between items-center text-base font-medium focus:outline-none"
+                    style={{ color: theme.colors.primary.contrast }}
+                  >
+                    <span className="flex items-center gap-2">
+                      <Sofa size={18} />
+                      Shop Categories
+                    </span>
+                    <ChevronDown
+                      className={`transition-transform duration-300 ${
+                        mobileShopOpen ? "rotate-180" : ""
+                      }`}
+                      size={16}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {mobileShopOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="ml-4 mt-2 flex flex-col gap-2"
+                      >
+                        {shopCategories.map(({ name, icon: Icon }) => (
+                          <NavLink
+                            key={name}
+                            to={`/${name.toLowerCase().replace(/\s+/g, "-")}`}
+                            className="flex items-center gap-2 text-sm font-normal"
+                            style={{ color: theme.colors.primary.contrast }}
+                            onClick={toggleMobileMenu} // optionally close sidebar on selection
+                          >
+                            <Icon size={16} />
+                            {name}
+                          </NavLink>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <div>
+                  <button
+                    onClick={toggleMobileMore}
+                    className="w-full flex justify-between items-center text-base font-medium focus:outline-none"
+                    style={{ color: theme.colors.primary.contrast }}
+                    aria-expanded={mobileMoreOpen}
+                  >
+                    <span>More</span>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform ${
+                        mobileMoreOpen ? "rotate-180" : ""
+                      }`}
+                      style={{ color: theme.colors.primary.contrast }}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {mobileMoreOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="ml-4 mt-2 flex flex-col gap-2"
+                      >
+                        {moreLinks.map((label) => (
+                          <a
+                            key={label}
+                            href="#"
+                            className="text-base font-normal transition-colors focus:outline-none"
+                            style={{ color: theme.colors.primary.contrast }}
+                            onClick={() => {
+                              setMobileMoreOpen(false);
+                              setMobileMenuOpen(false);
+                            }}
+                          >
+                            {label}
+                          </a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </nav>
+            </motion.nav>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
