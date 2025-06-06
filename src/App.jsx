@@ -1,27 +1,27 @@
-import { Toaster } from 'react-hot-toast'
-import './App.css'
-import { AuthProvider } from './context/AuthContext'
-import Register from './pages/RegisterForm'
-import Navbar from './components/Navbar'
-import Login from './pages/Login'
-import Homepage from './pages/Homepage'
+import { Toaster } from 'react-hot-toast';
+import './App.css';
+import { AuthProvider } from './context/AuthContext';
+import Register from './pages/RegisterForm';
+import Login from './pages/Login';
+import Homepage from './pages/Homepage';
+import Navbar from './components/Navbar';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-
-
   return (
-    <>
     <AuthProvider>
-    <Toaster position='top-right' reverseOrder={false}/>
-    <Navbar/>
-    <Homepage/>
-      {/* <Register/>
-      <Login/> */}
+      <Router>
+        <Toaster position="top-right" reverseOrder={false} />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
     </AuthProvider>
-    
-      
-    </>
-  )
+  );
 }
 
-export default App
+export default App;

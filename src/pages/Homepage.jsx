@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Homepage = () => {
-  const BASE_URL = "../../public/furniture_database_50_products.json"; // replace with actual endpoint
+  const BASE_URL = "/furniture_database_50_products.json";
 
   // Fetch categories and products
   const fetchCategoriesAndProducts = async () => {
