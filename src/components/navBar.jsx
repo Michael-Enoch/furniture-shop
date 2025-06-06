@@ -1,29 +1,119 @@
+/* eslint-disable no-unused-vars */
+import { useEffect, useRef, useState } from "react";
 import { getDatabase, onValue, ref, runTransaction } from "firebase/database";
-import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Logo from "../assets/images/hudson.png";
+import {
+  ShoppingCart,
+  Search,
+  Heart,
+  Menu,
+  X,
+  Users,
+  ChevronDown,
+  Bed,
+  Sofa,
+  UtensilsCrossed,
+  Briefcase,
+  TreePine,
+  LogIn,
+  UserPlus,
+  Facebook,
+  Twitter,
+  Instagram,
+} from "lucide-react";
 import app from "../../Firebase/firebase";
+<<<<<<< HEAD
+=======
+import theme from "../context/Theme";
+import { NavLink } from "react-router-dom";
+>>>>>>> 204969fb06a2e3dd1a329a75b44cb237a50de2d3
 
 const Navbar = () => {
   const [visitorCount, setVisitorCount] = useState(0);
+  // Desktop dropdown state
+  const [shopOpen, setShopOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+
+  // Mobile sidebar state
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileShopOpen, setMobileShopOpen] = useState(false);
+  const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 50);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+
+  const shopRef = useRef(null);
+
+  useEffect(() => {
+    function handleOutsideClick(event) {
+      if (shopRef.current && !shopRef.current.contains(event.target)) {
+        setShopOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
+
+  const toggleShopDropdown = () => setShopOpen((prev) => !prev);
+  const toggleMoreDropdown = () => setMoreOpen((prev) => !prev);
+  const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
+  const toggleMobileShop = () => setMobileShopOpen((prev) => !prev);
+  const toggleMobileMore = () => setMobileMoreOpen((prev) => !prev);
+
+  // Close the desktop "More" dropdown if clicked outside
+  const moreRef = useRef(null);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (moreRef.current && !moreRef.current.contains(event.target)) {
+        setMoreOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   useEffect(() => {
     const db = getDatabase(app);
     const countRef = ref(db, "visitorCount");
-
-    runTransaction(countRef, (current) => (current || 0) + 1)
-      .then(() => console.log("Visitor count incremented"))
-      .catch((err) => console.error("Transaction failed:", err));
-
+    runTransaction(countRef, (current) => (current || 0) + 1).catch((err) =>
+      console.error("Transaction failed:", err)
+    );
     const unsubscribe = onValue(countRef, (snapshot) => {
       setVisitorCount(snapshot.val());
     });
-
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    console.log("Navbar mounted"); // should log only once
-  }, []);
+  const navLinks = [
+    "Home",
+    "Bedroom",
+    "Living Room",
+    "Dining",
+    "Office",
+    "Outdoor",
+  ];
+
+  const shopCategories = [
+    { name: "Bedroom", icon: Bed },
+    { name: "Living Room", icon: Sofa },
+    { name: "Dining", icon: UtensilsCrossed },
+    { name: "Office", icon: Briefcase },
+    { name: "Outdoor", icon: TreePine },
+  ];
+
+  const moreLinks = ["Deals", "Contact", "About Us"];
 
   return (
+<<<<<<< HEAD
     <div className="w-full bg-white p-4 shadow-md flex flex-row items-center justify-between">
       <div>
         <h1>Hudson Furniture</h1>
@@ -32,6 +122,473 @@ const Navbar = () => {
         Visitors: {visitorCount != 0 ? visitorCount : "Loading...."}
       </div>
     </div>
+=======
+    <>
+      <div
+        className="w-full ext-xs sm:text-sm max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between py-4 gap-2 sm:gap-0 text-center sm:text-left"
+        style={{
+          backgroundColor: theme.colors.primary.DEFAULT,
+          color: theme.colors.primary.contrast,
+        }}
+      >
+        <p className="font-semibold animate-pulse text-sm">
+          🎉 <span className="text-[#A65A2E]">Limited Time: Free Shipping</span>{" "}
+          <span className="text-white font-semibold">on Orders Over $99</span> –{" "}
+          <span className="text-red-600 italic">Don’t Miss Out!</span>
+        </p>
+
+        <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
+          <Users size={14} color={theme.colors.accent.DEFAULT} />
+          <span>
+            {visitorCount ? `${visitorCount} Visitors` : "Loading..."}
+          </span>
+        </div>
+      </div>
+
+      <motion.div
+      animate={{
+    paddingTop: isScrolled ? "0.5rem" : "1rem",
+    paddingBottom: isScrolled ? "0.5rem" : "1rem",
+  }}
+  className={`w-full max-w-7xl sticky top-0 left-0 mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 z-50 ${
+    isScrolled ? "shadow-md" : "border-t border-b"
+  }`}
+  style={{
+    backgroundColor: theme.colors.primary.DEFAULT,
+    borderColor: isScrolled ? "transparent" : theme.colors.ui.border,
+  }}
+>
+        <div className="flex justify-between items-center w-full">
+          <div
+            className="flex-shrink-0 cursor-pointer select-none flex items-center"
+            tabIndex={0}
+            aria-label="Homepage"
+            style={{ color: theme.colors.primary.contrast }}
+          >
+            {/* Logo image */}
+            <img
+              src={Logo}
+              alt="Hudson Logo"
+              className="w-6 h-6 sm:w-8 rounded-full sm:h-8 mr-2"
+            />
+
+            {/* Logo text */}
+            <span
+              className="text-lg sm:text-xl font-extrabold tracking-wide"
+              style={{ color: theme.colors.accent.DEFAULT }}
+            >
+              Hudson
+            </span>
+            <span
+              className="ml-1.5 text-sm sm:text-base font-semibold italic tracking-normal"
+              style={{ color: theme.colors.primary.contrast }}
+            >
+              Furniture
+            </span>
+          </div>
+
+          <div className="hidden items-center justify-center h-full md:flex gap-6 xl:gap-8">
+            <motion.div
+              className="relative flex items-center justify-center gap-1 cursor-pointer select-none"
+              whileHover="hover"
+              initial="rest"
+              animate="rest"
+              variants={{
+                rest: { color: theme.colors.primary.contrast },
+                hover: { color: theme.colors.accent.hover },
+              }}
+            >
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive
+                    ? `text-[${theme.colors.accent.hover}] font-medium text-sm`
+                    : `text-[${theme.colors.primary.contrast}] hover:text-[${theme.colors.accent.hover}] font-medium text-sm`
+                }
+              >
+                Home
+              </NavLink>
+              <motion.span
+                className="absolute left-0 bottom-[-20px] h-0.5 rounded-full"
+                style={{ backgroundColor: theme.colors.accent.hover }}
+                variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
+                transition={{ duration: 0.3, delay: 0.15 }}
+              />
+            </motion.div>
+            <div
+              ref={shopRef}
+              className="relative inline-block"
+              onClick={toggleShopDropdown}
+            >
+              <div className="relative flex items-center justify-center gap-1 cursor-pointer select-none">
+                <motion.div
+                  whileHover="hover"
+                  initial="rest"
+                  animate="rest"
+                  className="relative"
+                >
+                  <NavLink
+                    to="/register"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#BF6E3D] font-medium text-sm"
+                        : "text-[#F8F5F2] hover:text-[#BF6E3D] font-medium text-sm"
+                    }
+                  >
+                    Shop
+                  </NavLink>
+                  <motion.span
+                    className="absolute left-0 bottom-[-18px] h-0.5 rounded-full"
+                    style={{ backgroundColor: theme.colors.accent.hover }}
+                    variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
+                    transition={{ duration: 0.3, delay: 0.15 }}
+                  />
+                </motion.div>
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-200 ${
+                    shopOpen ? "rotate-180" : ""
+                  } relative top-0.5`}
+                  style={{ color: theme.colors.primary.contrast }}
+                />
+              </div>
+
+              <AnimatePresence>
+                {shopOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 top-9 mt-2 p-4 grid grid-cols-2 gap-4 shadow-lg overflow-hidden z-50 w-64"
+                    style={{ backgroundColor: theme.colors.background.muted }}
+                  >
+                    {shopCategories.map(({ name, icon: Icon }) => (
+                      <a
+                        key={name}
+                        href="#"
+                        className="flex items-center font-medium gap-2 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm"
+                      >
+                        <Icon size={16} />
+                        {name}
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Static Nav Items */}
+            {["New Arrivals", "Blog"].map((label) => (
+              <motion.a
+                key={label}
+                href="#"
+                className="relative font-medium text-sm transition-colors focus:outline-none"
+                whileHover="hover"
+                initial="rest"
+                animate="rest"
+                variants={{
+                  rest: { color: theme.colors.primary.contrast },
+                  hover: { color: theme.colors.accent.hover },
+                }}
+              >
+                {label}
+                <motion.span
+                  className="absolute left-0 bottom-[-20px] h-0.5 rounded-full"
+                  style={{ backgroundColor: theme.colors.accent.hover }}
+                  variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
+                  transition={{ duration: 0.3, delay: 0.15 }}
+                />
+              </motion.a>
+            ))}
+
+            <div
+              ref={moreRef}
+              className="relative"
+              onClick={toggleMoreDropdown}
+            >
+              <div className="relative flex items-center justify-center gap-1 cursor-pointer select-none">
+                <motion.div
+                  whileHover="hover"
+                  initial="rest"
+                  animate="rest"
+                  className="relative"
+                >
+                  <span className="text-[#F8F5F2] hover:text-[#BF6E3D] font-medium text-sm">
+                    More
+                  </span>
+
+                  <motion.span
+                    className="absolute left-0 bottom-[-20px] h-0.5 rounded-full"
+                    style={{ backgroundColor: theme.colors.accent.hover }}
+                    variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
+                    transition={{ duration: 0.3, delay: 0.15 }}
+                  />
+                </motion.div>
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-200 ${
+                    moreOpen ? "rotate-180" : ""
+                  } relative top-0.5`}
+                  style={{ color: theme.colors.primary.contrast }}
+                />
+              </div>
+
+              {/* Dropdown Menu (desktop) */}
+              <AnimatePresence>
+                {moreOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 top-9 mt-2 w-40 shadow-lg overflow-hidden z-60"
+                  >
+                    {moreLinks.map((label) => (
+                      <a
+                        key={label}
+                        href="#"
+                        className="block px-4 py-2 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium"
+                        style={{
+                          backgroundColor: theme.colors.background.muted,
+                        }}
+                      >
+                        {label}
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Right Icons + Mobile Toggle */}
+          <div
+            className="md:flex hidden items-center gap-2 sm:gap-3 md:gap-4 relative"
+            style={{ color: theme.colors.primary.contrast }}
+          >
+            <Search className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+
+            <Heart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+            <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+            <a href="/login" aria-label="Login">
+              <LogIn className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+            </a>
+
+            {/* Sign Up */}
+            <NavLink to="/register" aria-label="Sign Up">
+              <UserPlus className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+            </NavLink>
+          </div>
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={toggleMobileMenu}
+            className="block md:hidden rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A65A2E]"
+            style={{ color: theme.colors.primary.contrast }}
+            aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? (
+              <X className="w-4 h-4 sm:w-5 sm:h-5 " />
+            ) : (
+              <Menu className="w-4 h-4 sm:w-5 sm:h-5 " />
+            )}
+          </button>
+        </div>
+      </motion.div>
+
+      {/* Mobile Sidebar */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              onClick={toggleMobileMenu}
+              className="fixed inset-0 bg-black z-40"
+              aria-hidden="true"
+            />
+
+            <motion.nav
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+              className="fixed top-0 left-0 h-full w-4/5 max-w-xs z-60 bg-white shadow-xl"
+              style={{
+                backgroundColor: theme.colors.primary.DEFAULT,
+                color: theme.colors.primary.contrast,
+                borderRight: `1px solid ${theme.colors.ui.border}`,
+              }}
+              aria-label="Mobile Navigation Sidebar"
+            >
+              {/* Sidebar Header */}
+              <div className="flex justify-between items-center p-4 border-b">
+                <div
+                  className="flex items-baseline cursor-pointer"
+                  tabIndex={0}
+                  aria-label="Homepage"
+                  onClick={toggleMobileMenu}
+                >
+                  <span
+                    className="text-lg font-extrabold"
+                    style={{ color: theme.colors.accent.DEFAULT }}
+                  >
+                    Hudson
+                  </span>
+                  <span
+                    className="ml-1.5 text-sm italic font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                  >
+                    Furnishings
+                  </span>
+                </div>
+                <button
+                  onClick={toggleMobileMenu}
+                  aria-label="Close Menu"
+                  className="p-1 rounded focus:outline-none focus:ring-2 focus:ring-[#A65A2E]"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Sidebar Links */}
+              <nav className="flex flex-col px-4 py-6 gap-4 overflow-y-auto">
+                <div className="flex items-center gap-2 border rounded-md px-3 py-2">
+                  <Search size={16} />
+                  <input
+                    type="text"
+                    placeholder="Search products..."
+                    className="w-full bg-transparent outline-none text-sm"
+                  />
+                </div>
+
+                {/* Login / Register */}
+                <div className="flex flex-col gap-2">
+                  <NavLink
+                    to="/login"
+                    className="flex items-center gap-2 text-base font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                  >
+                    <ShoppingCart size={18} /> Cart
+                  </NavLink>
+                  <NavLink
+                    to="/login"
+                    className="flex items-center gap-2 text-base font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                  >
+                    <Heart size={18} /> Wishlist
+                  </NavLink>
+                  <NavLink
+                    to="/login"
+                    className="flex items-center gap-2 text-base font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                  >
+                    <LogIn size={18} /> Login
+                  </NavLink>
+                  <NavLink
+                    to="/register"
+                    className="flex items-center gap-2 text-base font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                  >
+                    <UserPlus size={18} /> Register
+                  </NavLink>
+                </div>
+                <div>
+                  <button
+                    onClick={toggleMobileShop}
+                    className="w-full flex justify-between items-center text-base font-medium focus:outline-none"
+                    style={{ color: theme.colors.primary.contrast }}
+                  >
+                    <span className="flex items-center gap-2">
+                      <Sofa size={18} />
+                      Shop Categories
+                    </span>
+                    <ChevronDown
+                      className={`transition-transform duration-300 ${
+                        mobileShopOpen ? "rotate-180" : ""
+                      }`}
+                      size={16}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {mobileShopOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="ml-4 mt-2 flex flex-col gap-2"
+                      >
+                        {shopCategories.map(({ name, icon: Icon }) => (
+                          <NavLink
+                            key={name}
+                            to={`/${name.toLowerCase().replace(/\s+/g, "-")}`}
+                            className="flex items-center gap-2 text-sm font-normal"
+                            style={{ color: theme.colors.primary.contrast }}
+                            onClick={toggleMobileMenu} // optionally close sidebar on selection
+                          >
+                            <Icon size={16} />
+                            {name}
+                          </NavLink>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <div>
+                  <button
+                    onClick={toggleMobileMore}
+                    className="w-full flex justify-between items-center text-base font-medium focus:outline-none"
+                    style={{ color: theme.colors.primary.contrast }}
+                    aria-expanded={mobileMoreOpen}
+                  >
+                    <span>More</span>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform ${
+                        mobileMoreOpen ? "rotate-180" : ""
+                      }`}
+                      style={{ color: theme.colors.primary.contrast }}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {mobileMoreOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="ml-4 mt-2 flex flex-col gap-2"
+                      >
+                        {moreLinks.map((label) => (
+                          <a
+                            key={label}
+                            href="#"
+                            className="text-base font-normal transition-colors focus:outline-none"
+                            style={{ color: theme.colors.primary.contrast }}
+                            onClick={() => {
+                              setMobileMoreOpen(false);
+                              setMobileMenuOpen(false);
+                            }}
+                          >
+                            {label}
+                          </a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </nav>
+            </motion.nav>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+>>>>>>> 204969fb06a2e3dd1a329a75b44cb237a50de2d3
   );
 };
 
