@@ -2,6 +2,7 @@ import { getDatabase, onValue, ref, runTransaction } from "firebase/database";
 import { useEffect, useState } from "react";
 import app from "../../Firebase/firebase";
 import logo from '../assets/images/logo.jpg'
+import './nav.css'
 
 const Navbar = () => {
   const [visitorCount, setVisitorCount] = useState(0);
@@ -167,11 +168,11 @@ const Navbar = () => {
         </div>
 
       </div>
-      <div className="flex w-full justify-center items-center gap-12">
-        <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>
+      <div className=" flex w-full justify-center items-center gap-12">
+        <a  href='' className='link text-sm font-medium py-3.5 relative hover:text-teal-500 duration-300 ease-in-out'>
           HOME
-          <span className='absolute left-0 top-11.5  h-0.5 rounded hidden
-          text-xs text-white bg-black w-full group-hover: block'></span>
+          <span className='absolute left-0 top-11.5  h-0.5 rounded
+          text-xs text-white bg-black'></span>
         </a>
         <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>BEDROOM</a>
         <a href='' className='text-sm font-medium py-3.5 relative group hover:text-teal-500 duration-300 ease-in-out'>LIVING ROOM</a>
