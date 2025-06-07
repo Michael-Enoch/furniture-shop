@@ -15,8 +15,8 @@ import Register from './pages/RegisterForm';
 import Login from './pages/Login';
 import Homepage from './pages/Homepage';
 import Navbar from './components/Navbar';
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {CartPage } from './pages/CartPage';
 
 >>>>>>> 204969fb06a2e3dd1a329a75b44cb237a50de2d3
 function App() {
@@ -29,6 +29,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </Router>
     </AuthProvider>
