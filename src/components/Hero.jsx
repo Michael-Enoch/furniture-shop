@@ -38,20 +38,20 @@ const Hero = () => {
         {offers.map((offer) => (
           <SwiperSlide key={offer.id}>
             <div
-              className="w-full h-[600px] bg-cover bg-center flex items-center"
+              className="w-full h-full bg-cover bg-center flex items-center"
               style={{ backgroundImage: `url(${offer.image})` }}
             >
               <div className="bg-black/80 w-full h-full flex items-center justify-start px-4 md:px-20 text-center md:text-left">
                 <div className="max-w-xl text-left text-white space-y-4">
                   <h2
                     className="text-4xl md:text-5xl font-bold"
-                    style={{ fontFamily: "'Raleway', sans-serif" }}
+                    style={{ fontFamily: theme.fonts.header }}
                   >
                     {offer.title}
                   </h2>
                   <p
                     className="text-lg md:text-xl"
-                    style={{ fontFamily: "'Inter', sans-serif" }}
+                    style={{ fontFamily: theme.fonts.body }}
                   >
                     {offer.subtitle}
                   </p>

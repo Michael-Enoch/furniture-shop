@@ -144,6 +144,8 @@ const Navbar = () => {
           paddingTop: isScrolled ? "0.5rem" : "1rem",
           paddingBottom: isScrolled ? "0.5rem" : "1rem",
         }}
+        layout
+        transition={{ duration: 0.3, ease: "easeInOut" }}
         className={`w-full max-w-8xl sticky top-0 left-0 mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 z-50 ${
           isScrolled ? "shadow-md" : "border-t"
         }`}
@@ -209,7 +211,9 @@ const Navbar = () => {
                 Home
               </NavLink>
               <motion.span
-                className="absolute left-0 bottom-[-20px] h-0.5 rounded-full"
+                className={`absolute left-0  h-0.5 rounded-full ${
+                  isScrolled ? "bottom-[-12px]" : "bottom-[-18px]"
+                }`}
                 style={{ backgroundColor: theme.colors.accent.hover }}
                 variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
                 transition={{ duration: 0.3, delay: 0.15 }}
@@ -238,7 +242,9 @@ const Navbar = () => {
                     Shop
                   </NavLink>
                   <motion.span
-                    className="absolute left-0 bottom-[-18px] h-0.5 rounded-full"
+                    className={`absolute left-0  h-0.5 rounded-full ${
+                      isScrolled ? "bottom-[-12px]" : "bottom-[-18px]"
+                    }`}
                     style={{ backgroundColor: theme.colors.accent.hover }}
                     variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
                     transition={{ duration: 0.3, delay: 0.15 }}
@@ -257,10 +263,17 @@ const Navbar = () => {
                 {shopOpen && (
                   <motion.div
                     initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      top: isScrolled ? "1.75rem" : "2.25rem",
+                    }}
                     exit={{ opacity: 0, y: -5 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 top-9 font-semibold mt-2 p-4 grid grid-cols-2 gap-4 shadow-lg z-50 w-68"
+                    transition={{
+                      duration: 0.3,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute left-0 font-semibold mt-2 p-4 grid grid-cols-2 gap-4 shadow-lg z-50 w-68"
                     style={{
                       backgroundColor: theme.colors.background.muted,
                       fontFamily: theme.fonts.alt,
@@ -297,7 +310,9 @@ const Navbar = () => {
               >
                 {label}
                 <motion.span
-                  className="absolute left-0 bottom-[-20px] h-0.5 rounded-full"
+                  className={`absolute left-0  h-0.5 rounded-full ${
+                    isScrolled ? "bottom-[-12px]" : "bottom-[-18px]"
+                  }`}
                   style={{ backgroundColor: theme.colors.accent.hover }}
                   variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
                   transition={{ duration: 0.3, delay: 0.15 }}
@@ -322,7 +337,9 @@ const Navbar = () => {
                   </span>
 
                   <motion.span
-                    className="absolute left-0 bottom-[-20px] h-0.5 rounded-full"
+                    className={`absolute left-0  h-0.5 rounded-full ${
+                      isScrolled ? "bottom-[-12px]" : "bottom-[-18px]"
+                    }`}
                     style={{ backgroundColor: theme.colors.accent.hover }}
                     variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
                     transition={{ duration: 0.3, delay: 0.15 }}
