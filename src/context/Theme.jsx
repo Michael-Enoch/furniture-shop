@@ -1,4 +1,10 @@
 const theme = {
+  fonts: {
+      header:  "'Raleway', sans-serif",
+      body: "'Inter', sans-serif",
+      alt: "'Poppins', sans-serif",
+      ui: "'Work Sans', sans-serif",
+    },
   colors: {
     // ✅ Primary Branding Color — headers, nav, primary buttons
     primary: {
