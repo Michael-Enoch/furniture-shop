@@ -114,7 +114,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className="w-full text-xs font-semibold sm:text-sm max-w-8xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between py-4 gap-2 sm:gap-0 text-center sm:text-left"
+        className="w-full text-xs font-semibold sm:text-sm max-w-8xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between py-3 gap-2 sm:gap-0 text-center sm:text-left"
         style={{
           fontFamily: theme.fonts.ui,
           backgroundColor: theme.colors.primary.DEFAULT,
@@ -139,14 +139,9 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Main Navbar */}
       <motion.div
-        animate={{
-          paddingTop: isScrolled ? "0.5rem" : "1rem",
-          paddingBottom: isScrolled ? "0.5rem" : "1rem",
-        }}
-        layout
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className={`w-full max-w-8xl sticky top-0 left-0 mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 z-50 ${
+        className={`flex justify-between items-center h-12 w-full max-w-8xl sticky top-0 left-0 mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 z-50 ${
           isScrolled ? "shadow-md" : "border-t"
         }`}
         style={{
@@ -154,276 +149,217 @@ const Navbar = () => {
           borderColor: isScrolled ? "transparent" : theme.colors.ui.border,
         }}
       >
-        <div className="flex justify-between items-center w-full">
-          <div
-            className="flex-shrink-0 cursor-pointer font-bold select-none flex items-center"
-            tabIndex={0}
-            aria-label="Homepage"
-            style={{
-              color: theme.colors.primary.contrast,
-              fontFamily: theme.fonts.header,
-            }}
+        <div
+          className="flex-shrink-0 cursor-pointer font-bold select-none flex items-center"
+          tabIndex={0}
+          aria-label="Homepage"
+          style={{
+            color: theme.colors.primary.contrast,
+            fontFamily: theme.fonts.header,
+          }}
+        >
+          {/* Logo image */}
+          <img
+            src={Logo}
+            alt="Hudson Logo"
+            className="w-6 h-6 sm:w-8 rounded-full sm:h-8 mr-2"
+          />
+
+          {/* Logo text */}
+          <span
+            className="text-lg sm:text-xl tracking-wide"
+            style={{ color: theme.colors.accent.DEFAULT }}
           >
-            {/* Logo image */}
-            <img
-              src={Logo}
-              alt="Hudson Logo"
-              className="w-6 h-6 sm:w-8 rounded-full sm:h-8 mr-2"
-            />
-
-            {/* Logo text */}
-            <span
-              className="text-lg sm:text-xl tracking-wide"
-              style={{ color: theme.colors.accent.DEFAULT }}
-            >
-              Hudson
-            </span>
-            <span
-              className="ml-1.5 text-sm sm:text-base tracking-normal"
-              style={{ color: theme.colors.primary.contrast }}
-            >
-              Furniture
-            </span>
-          </div>
-
-          <div
-            className="hidden items-center justify-center font-semibold h-full md:flex gap-6 xl:gap-8"
-            style={{ fontFamily: theme.fonts.alt }}
-          >
-            <motion.div
-              className="relative flex items-center  justify-center gap-1 cursor-pointer select-none"
-              whileHover="hover"
-              initial="rest"
-              animate="rest"
-              variants={{
-                rest: { color: theme.colors.primary.contrast },
-                hover: { color: theme.colors.accent.hover },
-              }}
-            >
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive
-                    ? `text-[${theme.colors.accent.hover}] text-sm`
-                    : `text-[${theme.colors.primary.contrast}] hover:text-[${theme.colors.accent.hover}] text-sm`
-                }
-              >
-                Home
-              </NavLink>
-              <motion.span
-                className={`absolute left-0  h-0.5 rounded-full ${
-                  isScrolled ? "bottom-[-12px]" : "bottom-[-18px]"
-                }`}
-                style={{ backgroundColor: theme.colors.accent.hover }}
-                variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
-                transition={{ duration: 0.3, delay: 0.15 }}
-              />
-            </motion.div>
-            <div
-              ref={shopRef}
-              className="relative inline-block"
-              onClick={toggleShopDropdown}
-            >
-              <div className="relative flex items-center justify-center gap-1 cursor-pointer select-none">
-                <motion.div
-                  whileHover="hover"
-                  initial="rest"
-                  animate="rest"
-                  className="relative"
-                >
-                  <NavLink
-                    to="/products"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-[#BF6E3D] text-sm"
-                        : "text-[#F8F5F2] hover:text-[#BF6E3D] text-sm"
-                    }
-                  >
-                    Shop
-                  </NavLink>
-                  <motion.span
-                    className={`absolute left-0  h-0.5 rounded-full ${
-                      isScrolled ? "bottom-[-12px]" : "bottom-[-18px]"
-                    }`}
-                    style={{ backgroundColor: theme.colors.accent.hover }}
-                    variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
-                    transition={{ duration: 0.3, delay: 0.15 }}
-                  />
-                </motion.div>
-                <ChevronDown
-                  size={14}
-                  className={`transition-transform duration-200 ${
-                    shopOpen ? "rotate-180" : ""
-                  } relative top-0.5`}
-                  style={{ color: theme.colors.primary.contrast }}
-                />
-              </div>
-
-              <AnimatePresence>
-                {shopOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      top: isScrolled ? "1.75rem" : "2.25rem",
-                    }}
-                    exit={{ opacity: 0, y: -5 }}
-                    transition={{
-                      duration: 0.3,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute left-0 font-semibold mt-2 p-4 grid grid-cols-2 gap-4 shadow-lg z-50 w-68"
-                    style={{
-                      backgroundColor: theme.colors.background.muted,
-                      fontFamily: theme.fonts.alt,
-                    }}
-                  >
-                    {shopCategories.map(({ name, icon: Icon }) => (
-                      <a
-                        key={name}
-                        href="#"
-                        className="flex items-center gap-2 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm"
-                      >
-                        <Icon size={16} />
-                        {name}
-                      </a>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Static Nav Items */}
-            {["New Arrivals", "Blog"].map((label) => (
-              <motion.a
-                key={label}
-                href="#"
-                className="relative text-sm transition-colors focus:outline-none"
-                whileHover="hover"
-                initial="rest"
-                animate="rest"
-                variants={{
-                  rest: { color: theme.colors.primary.contrast },
-                  hover: { color: theme.colors.accent.hover },
-                }}
-              >
-                {label}
-                <motion.span
-                  className={`absolute left-0  h-0.5 rounded-full ${
-                    isScrolled ? "bottom-[-12px]" : "bottom-[-18px]"
-                  }`}
-                  style={{ backgroundColor: theme.colors.accent.hover }}
-                  variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
-                  transition={{ duration: 0.3, delay: 0.15 }}
-                />
-              </motion.a>
-            ))}
-
-            <div
-              ref={moreRef}
-              className="relative"
-              onClick={toggleMoreDropdown}
-            >
-              <div className="relative flex items-center justify-center gap-1 cursor-pointer select-none">
-                <motion.div
-                  whileHover="hover"
-                  initial="rest"
-                  animate="rest"
-                  className="relative"
-                >
-                  <span className="text-[#F8F5F2] hover:text-[#BF6E3D] text-sm">
-                    More
-                  </span>
-
-                  <motion.span
-                    className={`absolute left-0  h-0.5 rounded-full ${
-                      isScrolled ? "bottom-[-12px]" : "bottom-[-18px]"
-                    }`}
-                    style={{ backgroundColor: theme.colors.accent.hover }}
-                    variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
-                    transition={{ duration: 0.3, delay: 0.15 }}
-                  />
-                </motion.div>
-                <ChevronDown
-                  size={14}
-                  className={`transition-transform duration-200 ${
-                    moreOpen ? "rotate-180" : ""
-                  } relative top-0.5`}
-                  style={{ color: theme.colors.primary.contrast }}
-                />
-              </div>
-
-              {/* Dropdown Menu (desktop) */}
-              <AnimatePresence>
-                {moreOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 top-9 mt-2 w-40 shadow-lg overflow-hidden z-60"
-                  >
-                    {moreLinks.map((label) => (
-                      <a
-                        key={label}
-                        href="#"
-                        className="block px-4 py-2 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium"
-                        style={{
-                          backgroundColor: theme.colors.background.muted,
-                        }}
-                      >
-                        {label}
-                      </a>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* Right Icons + Mobile Toggle */}
-          <div
-            className="md:flex hidden items-center gap-2 sm:gap-3 md:gap-4 relative"
+            Hudson
+          </span>
+          <span
+            className="ml-1.5 text-sm sm:text-base tracking-normal"
             style={{ color: theme.colors.primary.contrast }}
           >
-            {/* Desktop Search */}
-            <Search className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-
-            {/* Desktop Wishlist */}
-            <Heart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-
-            {/* Desktop Cart */}
-            <NavLink to="/cart" aria-label="Cart">
-              <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-            </NavLink>
-
-            {/* Desktop Login */}
-
-            <NavLink to="/login" aria-label="Login">
-              <LogIn className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-            </NavLink>
-
-            {/* Desktop Sign Up */}
-            <NavLink to="/register" aria-label="Sign Up">
-              <UserPlus className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-            </NavLink>
-          </div>
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={toggleMobileMenu}
-            className="block md:hidden rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A65A2E]"
-            style={{ color: theme.colors.primary.contrast }}
-            aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6 sm:w-7 sm:h-7 " />
-            ) : (
-              <Menu className="w-6 h-6 sm:w-7 sm:h-7 " />
-            )}
-          </button>
+            Furniture
+          </span>
         </div>
+
+        <div
+          className="hidden items-center justify-center font-semibold h-full md:flex gap-6 xl:gap-8"
+          style={{ fontFamily: theme.fonts.alt }}
+        >
+          <motion.div
+            className="relative h-full flex items-center justify-center cursor-pointer select-none"
+            whileHover="hover"
+          >
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `text-sm transition-colors duration-300 ${
+                  isActive
+                    ? "text-[#BF6E3D]"
+                    : "text-[#F8F5F2] hover:text-[#BF6E3D]"
+                }`
+              }
+            >
+              Home
+            </NavLink>
+          </motion.div>
+          <div
+            ref={shopRef}
+            className="relative h-full inline-block"
+            onClick={toggleShopDropdown}
+          >
+            <div className="relative h-full flex items-center justify-center cursor-pointer select-none">
+              <motion.div className="relative" whileHover="hover">
+                <NavLink
+                  to="/products"
+                  className={({ isActive }) =>
+                    `text-sm transition-colors duration-300 ${
+                      isActive
+                        ? "text-[#BF6E3D]"
+                        : "text-[#F8F5F2] hover:text-[#BF6E3D]"
+                    }`
+                  }
+                >
+                  Shop
+                </NavLink>
+              </motion.div>
+              <ChevronDown
+                size={14}
+                className={`transition-transform duration-200 ${
+                  shopOpen ? "rotate-180" : ""
+                } relative top-0.5`}
+                style={{ color: theme.colors.primary.contrast }}
+              />
+            </div>
+
+            <AnimatePresence>
+              {shopOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  exit={{ opacity: 0, y: -5 }}
+                  transition={{
+                    duration: 0.3,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute left-0 font-semibold mt-2 p-4 grid grid-cols-2 gap-4 shadow-lg z-50 w-68"
+                  style={{
+                    backgroundColor: theme.colors.background.muted,
+                    fontFamily: theme.fonts.alt,
+                  }}
+                >
+                  {shopCategories.map(({ name, icon: Icon }) => (
+                    <a
+                      key={name}
+                      href="#"
+                      className="flex items-center gap-2 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm"
+                    >
+                      <Icon size={16} />
+                      {name}
+                    </a>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Static Nav Items */}
+          {["New Arrivals", "Blog"].map((label) => (
+            <motion.div
+              key={label}
+              whileHover="hover"
+              className="cursor-pointer text-[#F8F5F2] hover:text-[#BF6E3D] text-sm"
+            >
+              {label}
+            </motion.div>
+          ))}
+
+          <div ref={moreRef} className="relative" onClick={toggleMoreDropdown}>
+            <div className="relative flex items-center justify-center gap-1 cursor-pointer select-none">
+              <motion.div whileHover="hover" className="relative">
+                <span className="text-[#F8F5F2] hover:text-[#BF6E3D] text-sm">
+                  More
+                </span>
+              </motion.div>
+              <ChevronDown
+                size={14}
+                className={`transition-transform duration-200 ${
+                  moreOpen ? "rotate-180" : ""
+                } relative top-0.5`}
+                style={{ color: theme.colors.primary.contrast }}
+              />
+            </div>
+
+            {/* Dropdown Menu (desktop) */}
+            <AnimatePresence>
+              {moreOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute left-0 top-9 mt-2 w-40 shadow-lg overflow-hidden z-60"
+                >
+                  {moreLinks.map((label) => (
+                    <a
+                      key={label}
+                      href="#"
+                      className="block px-4 py-2 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium"
+                      style={{
+                        backgroundColor: theme.colors.background.muted,
+                      }}
+                    >
+                      {label}
+                    </a>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Right Icons + Mobile Toggle */}
+        <div
+          className="md:flex hidden items-center gap-2 sm:gap-3 md:gap-4 relative"
+          style={{ color: theme.colors.primary.contrast }}
+        >
+          {/* Desktop Search */}
+          <Search className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+
+          {/* Desktop Wishlist */}
+          <Heart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+
+          {/* Desktop Cart */}
+          <NavLink to="/cart" aria-label="Cart">
+            <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+          </NavLink>
+
+          {/* Desktop Login */}
+
+          <NavLink to="/login" aria-label="Login">
+            <LogIn className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+          </NavLink>
+
+          {/* Desktop Sign Up */}
+          <NavLink to="/register" aria-label="Sign Up">
+            <UserPlus className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+          </NavLink>
+        </div>
+        {/* Mobile Menu Toggle */}
+        <button
+          onClick={toggleMobileMenu}
+          className="block md:hidden rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A65A2E]"
+          style={{ color: theme.colors.primary.contrast }}
+          aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
+          aria-expanded={mobileMenuOpen}
+        >
+          {mobileMenuOpen ? (
+            <X className="w-6 h-6 sm:w-7 sm:h-7 " />
+          ) : (
+            <Menu className="w-6 h-6 sm:w-7 sm:h-7 " />
+          )}
+        </button>
       </motion.div>
 
       {/* Mobile Sidebar */}

@@ -1,10 +1,10 @@
 [
   {
     "id": 1,
-    "title": "25% Off Bedroom Comfort",
+    "title": "Bedroom Comfort",
     "subtitle": "Upgrade your rest with modern beds & storage",
     "category": "Bedroom",
-    "discount": "25%",
+    "discount": "Up to 25%",
     "image": "../src/assets/images/bedroom.avif",
     "cta": "Shop Bedroom Deals",
     "link": "/shop?category=bedroom"
@@ -24,14 +24,14 @@
     "title": "Outdoor Oasis Sale",
     "subtitle": "Breezy patio sets & garden chairs",
     "category": "Outdoor",
-    "discount": "Up to 35%",
+    "discount": "35% off",
     "image": "../src/assets/images/outdoor.avif",
     "cta": "See Outdoor Collection",
     "link": "/shop?category=outdoor"
   },
   {
     "id": 4,
-    "title": "Work-from-Home Upgrade",
+    "title": "Work-from-Home",
     "subtitle": "Desks, chairs & storage solutions",
     "category": "Home Office",
     "discount": "20% Off",
