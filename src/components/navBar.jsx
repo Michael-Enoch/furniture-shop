@@ -25,6 +25,7 @@ import {
 import app from "../../Firebase/firebase";
 import theme from "../context/Theme";
 import { NavLink } from "react-router-dom";
+import CountdownTimer from "./CountdownTimer";
 
 const Navbar = () => {
   const [visitorCount, setVisitorCount] = useState(0);
@@ -38,15 +39,14 @@ const Navbar = () => {
   const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-useEffect(() => {
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 50);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
-
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const shopRef = useRef(null);
 
@@ -112,45 +112,53 @@ useEffect(() => {
   return (
     <>
       <div
-        className="w-full ext-xs sm:text-sm max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between py-4 gap-2 sm:gap-0 text-center sm:text-left"
+        className="w-full text-xs font-semibold sm:text-sm max-w-8xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between py-4 gap-2 sm:gap-0 text-center sm:text-left"
         style={{
+          fontFamily: theme.fonts.ui,
           backgroundColor: theme.colors.primary.DEFAULT,
           color: theme.colors.primary.contrast,
         }}
       >
-        <p className="font-semibold animate-pulse text-sm">
+        <p className="animate-pulse text-sm">
           🎉 <span className="text-[#A65A2E]">Limited Time: Free Shipping</span>{" "}
           <span className="text-white font-semibold">on Orders Over $99</span> –{" "}
           <span className="text-red-600 italic">Don’t Miss Out!</span>
         </p>
 
-        <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
-          <Users size={14} color={theme.colors.accent.DEFAULT} />
-          <span>
-            {visitorCount ? `${visitorCount} Visitors` : "Loading..."}
-          </span>
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+          <CountdownTimer targetDate="2025-07-10T23:59:59" />
+
+          <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
+            <Users size={14} color={theme.colors.accent.DEFAULT} />
+            <span>
+              {visitorCount ? `${visitorCount} Visitors` : "Loading..."}
+            </span>
+          </div>
         </div>
       </div>
 
       <motion.div
-      animate={{
-    paddingTop: isScrolled ? "0.5rem" : "1rem",
-    paddingBottom: isScrolled ? "0.5rem" : "1rem",
-  }}
-  className={`w-full max-w-7xl sticky top-0 left-0 mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 z-50 ${
-    isScrolled ? "shadow-md" : "border-t border-b"
-  }`}
-  style={{
-    backgroundColor: theme.colors.primary.DEFAULT,
-    borderColor: isScrolled ? "transparent" : theme.colors.ui.border,
-  }}
->
+        animate={{
+          paddingTop: isScrolled ? "0.5rem" : "1rem",
+          paddingBottom: isScrolled ? "0.5rem" : "1rem",
+        }}
+        className={`w-full max-w-8xl sticky top-0 left-0 mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 z-50 ${
+          isScrolled ? "shadow-md" : "border-t"
+        }`}
+        style={{
+          backgroundColor: theme.colors.primary.DEFAULT,
+          borderColor: isScrolled ? "transparent" : theme.colors.ui.border,
+        }}
+      >
         <div className="flex justify-between items-center w-full">
           <div
-            className="flex-shrink-0 cursor-pointer select-none flex items-center"
+            className="flex-shrink-0 cursor-pointer font-bold select-none flex items-center"
             tabIndex={0}
             aria-label="Homepage"
-            style={{ color: theme.colors.primary.contrast }}
+            style={{
+              color: theme.colors.primary.contrast,
+              fontFamily: theme.fonts.header,
+            }}
           >
             {/* Logo image */}
             <img
@@ -161,22 +169,25 @@ useEffect(() => {
 
             {/* Logo text */}
             <span
-              className="text-lg sm:text-xl font-extrabold tracking-wide"
+              className="text-lg sm:text-xl tracking-wide"
               style={{ color: theme.colors.accent.DEFAULT }}
             >
               Hudson
             </span>
             <span
-              className="ml-1.5 text-sm sm:text-base font-semibold italic tracking-normal"
+              className="ml-1.5 text-sm sm:text-base tracking-normal"
               style={{ color: theme.colors.primary.contrast }}
             >
               Furniture
             </span>
           </div>
 
-          <div className="hidden items-center justify-center h-full md:flex gap-6 xl:gap-8">
+          <div
+            className="hidden items-center justify-center font-semibold h-full md:flex gap-6 xl:gap-8"
+            style={{ fontFamily: theme.fonts.alt }}
+          >
             <motion.div
-              className="relative flex items-center justify-center gap-1 cursor-pointer select-none"
+              className="relative flex items-center  justify-center gap-1 cursor-pointer select-none"
               whileHover="hover"
               initial="rest"
               animate="rest"
@@ -189,8 +200,8 @@ useEffect(() => {
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? `text-[${theme.colors.accent.hover}] font-medium text-sm`
-                    : `text-[${theme.colors.primary.contrast}] hover:text-[${theme.colors.accent.hover}] font-medium text-sm`
+                    ? `text-[${theme.colors.accent.hover}] text-sm`
+                    : `text-[${theme.colors.primary.contrast}] hover:text-[${theme.colors.accent.hover}] text-sm`
                 }
               >
                 Home
@@ -215,11 +226,11 @@ useEffect(() => {
                   className="relative"
                 >
                   <NavLink
-                    to="/register"
+                    to="/products"
                     className={({ isActive }) =>
                       isActive
-                        ? "text-[#BF6E3D] font-medium text-sm"
-                        : "text-[#F8F5F2] hover:text-[#BF6E3D] font-medium text-sm"
+                        ? "text-[#BF6E3D] text-sm"
+                        : "text-[#F8F5F2] hover:text-[#BF6E3D] text-sm"
                     }
                   >
                     Shop
@@ -247,14 +258,17 @@ useEffect(() => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -5 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-0 top-9 mt-2 p-4 grid grid-cols-2 gap-4 shadow-lg overflow-hidden z-50 w-64"
-                    style={{ backgroundColor: theme.colors.background.muted }}
+                    className="absolute left-0 top-9 font-semibold mt-2 p-4 grid grid-cols-2 gap-4 shadow-lg z-50 w-68"
+                    style={{
+                      backgroundColor: theme.colors.background.muted,
+                      fontFamily: theme.fonts.alt,
+                    }}
                   >
                     {shopCategories.map(({ name, icon: Icon }) => (
                       <a
                         key={name}
                         href="#"
-                        className="flex items-center font-medium gap-2 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm"
+                        className="flex items-center gap-2 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm"
                       >
                         <Icon size={16} />
                         {name}
@@ -270,7 +284,7 @@ useEffect(() => {
               <motion.a
                 key={label}
                 href="#"
-                className="relative font-medium text-sm transition-colors focus:outline-none"
+                className="relative text-sm transition-colors focus:outline-none"
                 whileHover="hover"
                 initial="rest"
                 animate="rest"
@@ -301,7 +315,7 @@ useEffect(() => {
                   animate="rest"
                   className="relative"
                 >
-                  <span className="text-[#F8F5F2] hover:text-[#BF6E3D] font-medium text-sm">
+                  <span className="text-[#F8F5F2] hover:text-[#BF6E3D] text-sm">
                     More
                   </span>
 
@@ -354,15 +368,24 @@ useEffect(() => {
             className="md:flex hidden items-center gap-2 sm:gap-3 md:gap-4 relative"
             style={{ color: theme.colors.primary.contrast }}
           >
+            {/* Desktop Search */}
             <Search className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
 
+            {/* Desktop Wishlist */}
             <Heart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-            <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-            <a href="/login" aria-label="Login">
-              <LogIn className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-            </a>
 
-            {/* Sign Up */}
+            {/* Desktop Cart */}
+            <NavLink to="/cart" aria-label="Cart">
+              <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+            </NavLink>
+
+            {/* Desktop Login */}
+
+            <NavLink to="/login" aria-label="Login">
+              <LogIn className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+            </NavLink>
+
+            {/* Desktop Sign Up */}
             <NavLink to="/register" aria-label="Sign Up">
               <UserPlus className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
             </NavLink>
@@ -376,9 +399,9 @@ useEffect(() => {
             aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? (
-              <X className="w-4 h-4 sm:w-5 sm:h-5 " />
+              <X className="w-6 h-6 sm:w-7 sm:h-7 " />
             ) : (
-              <Menu className="w-4 h-4 sm:w-5 sm:h-5 " />
+              <Menu className="w-6 h-6 sm:w-7 sm:h-7 " />
             )}
           </button>
         </div>
@@ -403,16 +426,17 @@ useEffect(() => {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 left-0 h-full w-4/5 max-w-xs z-60 bg-white shadow-xl"
+              className="fixed top-0 left-0 h-full w-4/5 max-w-xs z-60 font-medium shadow-xl"
               style={{
                 backgroundColor: theme.colors.primary.DEFAULT,
+                fontFamily: theme.fonts.ui,
                 color: theme.colors.primary.contrast,
                 borderRight: `1px solid ${theme.colors.ui.border}`,
               }}
               aria-label="Mobile Navigation Sidebar"
             >
               {/* Sidebar Header */}
-              <div className="flex justify-between items-center p-4 border-b">
+              <div className="flex justify-between font-semibold items-center p-4 border-b">
                 <div
                   className="flex items-baseline cursor-pointer"
                   tabIndex={0}
@@ -420,16 +444,16 @@ useEffect(() => {
                   onClick={toggleMobileMenu}
                 >
                   <span
-                    className="text-lg font-extrabold"
+                    className="text-lg"
                     style={{ color: theme.colors.accent.DEFAULT }}
                   >
                     Hudson
                   </span>
                   <span
-                    className="ml-1.5 text-sm italic font-medium"
+                    className="ml-1.5 text-sm"
                     style={{ color: theme.colors.primary.contrast }}
                   >
-                    Furnishings
+                    Furniture
                   </span>
                 </div>
                 <button
@@ -455,14 +479,14 @@ useEffect(() => {
                 {/* Login / Register */}
                 <div className="flex flex-col gap-2">
                   <NavLink
-                    to="/login"
+                    to="/cart"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                   >
                     <ShoppingCart size={18} /> Cart
                   </NavLink>
                   <NavLink
-                    to="/login"
+                    to="/"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                   >
