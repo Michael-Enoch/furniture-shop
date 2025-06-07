@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useEffect } from "react";
 import Hero from "../components/Hero";
+import LatestArrivalsGridWithModal from "./LatestArrivals";
+import latestArrivals from "../../public/latestArrivals.json";
+import theme from "../context/Theme";
 
 const Homepage = () => {
   const BASE_URL = "/furniture_database_50_products.json";
@@ -54,7 +57,13 @@ const Homepage = () => {
     fetchCategoriesAndProducts();
   }, []);
 
-  return <Hero />;
+
+  return (
+    <div>
+      <Hero />
+      <LatestArrivalsGridWithModal products={latestArrivals} theme={theme}/>
+    </div>
+  )
 };
 
 export default Homepage;
