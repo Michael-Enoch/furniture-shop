@@ -20,17 +20,14 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
       className="w-full px-4 sm:px-8 md:px-16 py-14 relative"
       style={{ backgroundColor: theme.colors.background.DEFAULT }}
     >
-      {/* Overlay behind the modal, above the grid */}
+      {/* Modal Background Overlay */}
       {selectedProduct && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40"
-          data-aos= "fade-in"
-          aria-hidden="true"
-        />
+        <div className="fixed inset-0 bg-black/50 z-40" data-aos="fade-in" aria-hidden="true" />
       )}
 
-      <div className="text-center mb-16 max-w-2xl mx-auto"
-       data-aos="fade-up"
+      <div
+        className="text-center mb-16 max-w-2xl mx-auto"
+        data-aos="fade-up"
         data-aos-delay="100"
       >
         <h2
@@ -44,7 +41,7 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
         </h2>
 
         <button
-          className="px-8 py-2 border-2 font-medium text-sm tracking-wide uppercase transition-all duration-300ms hover:shadow-lg"
+          className="px-8 py-2 border font-medium text-sm tracking-wide uppercase transition-all duration-300 hover:shadow-lg"
           style={{
             borderColor: theme.colors.accent.DEFAULT,
             color: theme.colors.accent.hover,
@@ -59,43 +56,58 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
             e.currentTarget.style.backgroundColor = "transparent";
             e.currentTarget.style.color = theme.colors.accent.hover;
           }}
-           data-aos="fade-up"
+          data-aos="fade-up"
           data-aos-delay="200"
         >
           Shop All
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8  max-w-6xl mx-auto items-end relative z-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto relative z-10">
         {products.map((product, index) => (
           <div
             key={product.id}
-            className="group cursor-pointer transform transition-all duration-500ms hover:scale-105"
+            className="group cursor-pointer transition-all duration-500 hover:scale-[1.03]"
             onClick={() => setSelectedProduct(product)}
             data-aos="fade-up"
             data-aos-delay={100 + index * 100}
           >
-            {/* Product Image */}
-            <div className="relative overflow-hidden mb-4">
+            {/* Card Container */}
+            <div className="relative rounded-2xl shadow-md overflow-hidden bg-white">
+              {/* Discount Badge */}
+              {product.discount && (
+                <div
+                  className="absolute top-3 left-3 z-20 text-xs px-3 py-1 rounded-full font-semibold shadow-md"
+                  style={{
+                    backgroundColor: theme.colors.accent.DEFAULT,
+                    color: theme.colors.primary.contrast,
+                    fontFamily: theme.fonts.alt,
+                  }}
+                >
+                  {product.discount} OFF
+                </div>
+              )}
+
+              {/* Image */}
               <div
-                className={`w-full transition-all duration-700ms group-hover:scale-110 ${
-                  index === 1 ? "aspect-[4/5]" : "aspect-[4/5]"
-                }`}
+                className="w-full aspect-[4/5] transition-transform duration-700 group-hover:scale-105"
                 style={{
                   backgroundImage: `url(${product.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
               />
-                <div className="absolute inset-0 bg-black/40" />
+
+              {/* Dark overlay */}
+              <div className="absolute inset-0 bg-black/40 z-10" />
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300ms" />
+              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
 
               {/* Quick Preview Button */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300ms">
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-30">
                 <button
-                  className="px-6 py-2 text-[#F8F5F2] text-sm font-medium tracking-wide uppercase transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300ms"
+                  className="px-6 py-2 text-[#F8F5F2] text-sm font-medium tracking-wide uppercase transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 rounded-md"
                   style={{
                     backgroundColor: theme.colors.accent.DEFAULT,
                     fontFamily: theme.fonts.alt,
@@ -106,10 +118,10 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
               </div>
             </div>
 
-            {/* Product Info */}
-            <div className="text-center space-y-1">
+            {/* Info Section */}
+            <div className="text-center space-y-1 mt-4 px-2">
               <h3
-                className="text-xl sm:text-lg md:text-sm lg:text-md font-medium"
+                className="text-lg font-medium"
                 style={{
                   color: theme.colors.text.primary,
                   fontFamily: theme.fonts.body,
@@ -117,7 +129,7 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
               >
                 {product.name}
               </h3>
-              <p className="text-sm text-gray-500   ">
+              <p className="text-sm text-gray-500">
                 {product.category} — {product.type}
               </p>
               <div className="flex justify-center items-center gap-3">
@@ -126,12 +138,6 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
                   style={{ color: theme.colors.primary.DEFAULT }}
                 >
                   ${product.price.toFixed(2)}
-                </span>
-                <span
-                  className="text-sm font-medium"
-                  style={{ color: theme.colors.accent.DEFAULT }}
-                >
-                  {product.discount} OFF
                 </span>
               </div>
             </div>
