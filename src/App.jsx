@@ -7,6 +7,7 @@ import Homepage from './pages/Homepage';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {CartPage } from './pages/CartPage';
+import SearchPage from './pages/SearchPage';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<CartPage />} />
