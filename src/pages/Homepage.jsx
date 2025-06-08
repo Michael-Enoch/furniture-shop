@@ -1,12 +1,20 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Hero from "../components/Hero";
 import LatestArrivalsGridWithModal from "./LatestArrivals";
-import latestArrivals from "../../public/latestArrivals.json";
 import theme from "../context/Theme";
 
 const Homepage = () => {
   const BASE_URL = "/furniture_database_50_products.json";
+const [latestArrivals, setLatestArrivals] = useState([]);
+
+useEffect(() => {
+  axios
+    .get("/latestArrivals.json")
+    .then((res) => setLatestArrivals(res.data))
+    .catch((err) => console.error("Failed to load latest arrivals", err));
+}, []);
+
 
   const fetchCategoriesAndProducts = async () => {
     try {
