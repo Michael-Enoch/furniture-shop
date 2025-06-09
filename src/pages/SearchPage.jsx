@@ -122,7 +122,7 @@ export default function SearchPage() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Type to search products..."
-        className="w-full mb-6 p-3 rounded-lg border"
+        className="w-full mb-6 p-3 rounded-lg border outline-none focus:outline-none"
         style={{
           backgroundColor: theme.colors.ui.base,
           borderColor: theme.colors.ui.border,
