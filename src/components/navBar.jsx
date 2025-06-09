@@ -33,11 +33,6 @@ const Navbar = () => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && query.trim()) {
-      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
-    }
-  };
 
   const handleIconClick = () => {
     if (query.trim()) {
@@ -46,9 +41,6 @@ const Navbar = () => {
       navigate("/search");
     }
   };
-
-  const searchRef = useRef(null);
-  const searchInputRef = useRef(null);
 
   // Close search when clicking outside
   useEffect(() => {
