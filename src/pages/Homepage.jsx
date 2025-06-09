@@ -1,8 +1,13 @@
 import axios from "axios";
 import { useEffect } from "react";
 import Hero from "../components/Hero";
+import Aos from "aos";
+import CategoriesSection from "./categoriesSection";
+import BestSelling from "./bestSellingProducts"; 
+import Ticker from "../components/ScrollingTicker";
 
 const Homepage = () => {
+  Aos.init()
   const BASE_URL = "/furniture_database_50_products.json";
 
   const fetchCategoriesAndProducts = async () => {
@@ -54,7 +59,14 @@ const Homepage = () => {
     fetchCategoriesAndProducts();
   }, []);
 
-  return <Hero />;
+  return (
+  <>
+    <Hero />
+    <CategoriesSection/>
+    <BestSelling/>
+    <Ticker/>
+  </>
+  );
 };
 
 export default Homepage;
