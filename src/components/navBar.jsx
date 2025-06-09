@@ -4,6 +4,9 @@ import { getDatabase, onValue, ref, runTransaction } from "firebase/database";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../assets/images/hudson.png";
 import theme from '../context/Theme.jsx'
+import { NavLink, useNavigate } from "react-router-dom";
+import app from "../../Firebase/firebase";
+import CountdownTimer from './CountdownTimer'
 import {
   ShoppingCart,
   Search,
@@ -12,59 +15,47 @@ import {
   X,
   Users,
   ChevronDown,
-  Bed,
   Sofa,
-  UtensilsCrossed,
-  Briefcase,
-  TreePine,
   LogIn,
   UserPlus,
   Facebook,
   Twitter,
   Instagram,
 } from "lucide-react";
-import app from "../../Firebase/firebase";
-import CountdownTimer from './CountdownTimer'
-import {NavLink} from 'react-router-dom'
-
 
 const Navbar = () => {
   const [visitorCount, setVisitorCount] = useState(0);
-  // Desktop dropdown state
-  const [shopOpen, setShopOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
 
   // Mobile sidebar state
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileShopOpen, setMobileShopOpen] = useState(false);
   const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+
+  const handleIconClick = () => {
+    if (query.trim()) {
+      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+    } else {
+      navigate("/search");
+    }
+  };
+
+  // Close search when clicking outside
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const shopRef = useRef(null);
-
-  useEffect(() => {
-    function handleOutsideClick(event) {
-      if (shopRef.current && !shopRef.current.contains(event.target)) {
-        setShopOpen(false);
+    function handleClick(event) {
+      if (moreRef.current && !moreRef.current.contains(event.target)) {
+        setMoreOpen(false);
       }
     }
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => document.removeEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  const toggleShopDropdown = () => setShopOpen((prev) => !prev);
   const toggleMoreDropdown = () => setMoreOpen((prev) => !prev);
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
-  const toggleMobileShop = () => setMobileShopOpen((prev) => !prev);
   const toggleMobileMore = () => setMobileMoreOpen((prev) => !prev);
 
   // Close the desktop "More" dropdown if clicked outside
@@ -91,321 +82,285 @@ const Navbar = () => {
     return () => unsubscribe();
   }, []);
 
-  const navLinks = [
-    "Home",
-    "Bedroom",
-    "Living Room",
-    "Dining",
-    "Office",
-    "Outdoor",
-  ];
-
-  const shopCategories = [
-    { name: "Bedroom", icon: Bed },
-    { name: "Living Room", icon: Sofa },
-    { name: "Dining", icon: UtensilsCrossed },
-    { name: "Office", icon: Briefcase },
-    { name: "Outdoor", icon: TreePine },
-  ];
-
-  const moreLinks = ["Deals", "Contact", "About Us"];
+  const moreLinks = ["About Us", "Contact", "Reviews", "Blog", "Support"];
 
   return (
     <>
       <div
-        className="w-full text-xs font-semibold sm:text-sm max-w-8xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between py-4 gap-2 sm:gap-0 text-center sm:text-left"
+        className="w-full text-xs font-semibold sm:text-sm max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between py-3 gap-2 sm:gap-0 text-center sm:text-left"
         style={{
           fontFamily: theme.fonts.ui,
-          backgroundColor: theme.colors.primary.DEFAULT,
+          backgroundColor: theme.colors.accent.DEFAULT,
           color: theme.colors.primary.contrast,
         }}
       >
-        <p className="animate-pulse text-sm">
-          🎉 <span className="text-[#A65A2E]">Limited Time: Free Shipping</span>{" "}
-          <span className="text-white font-semibold">on Orders Over $99</span> –{" "}
-          <span className="text-red-600 italic">Don’t Miss Out!</span>
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-          <CountdownTimer targetDate="2025-07-10T23:59:59" />
-
-          <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
-            <Users size={14} color={theme.colors.accent.DEFAULT} />
-            <span>
-              {visitorCount ? `${visitorCount} Visitors` : "Loading..."}
-            </span>
-          </div>
+        <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
+          <p>Call Us</p>
+          {":"}
+        </div>
+        <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
+          <Users size={14} color={theme.colors.primary.contrast} />
+          <span>
+            {visitorCount ? `${visitorCount} Visitors` : "Loading..."}
+          </span>
         </div>
       </div>
 
+      {/* Main Navbar */}
       <motion.div
-        animate={{
-          paddingTop: isScrolled ? "0.5rem" : "1rem",
-          paddingBottom: isScrolled ? "0.5rem" : "1rem",
-        }}
-        className={`w-full max-w-8xl sticky top-0 left-0 mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 z-50 ${
-          isScrolled ? "shadow-md" : "border-t"
-        }`}
+        className={`flex justify-between items-center py-2 w-full max-w-8xl sticky top-0 left-0 mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 z-50`}
         style={{
           backgroundColor: theme.colors.primary.DEFAULT,
-          borderColor: isScrolled ? "transparent" : theme.colors.ui.border,
         }}
       >
-        <div className="flex justify-between items-center w-full">
-          <div
-            className="flex-shrink-0 cursor-pointer font-bold select-none flex items-center"
-            tabIndex={0}
-            aria-label="Homepage"
-            style={{
-              color: theme.colors.primary.contrast,
-              fontFamily: theme.fonts.header,
-            }}
-          >
-            {/* Logo image */}
-            <img
-              src={Logo}
-              alt="Hudson Logo"
-              className="w-6 h-6 sm:w-8 rounded-full sm:h-8 mr-2"
-            />
-
-            {/* Logo text */}
+        {/* Logo Section */}
+        <div
+          className="flex-shrink-0 cursor-pointer font-bold select-none flex items-center"
+          tabIndex={0}
+          aria-label="Homepage"
+          style={{
+            color: theme.colors.primary.contrast,
+            fontFamily: theme.fonts.header,
+          }}
+        >
+          <img
+            src={Logo}
+            alt="Hudson Logo"
+            className="w-6 h-6 sm:w-8 sm:h-8 mr-3 rounded-full"
+          />
+          <div className="flex flex-col">
             <span
-              className="text-lg sm:text-xl tracking-wide"
+              className="text-xl sm:text-2xl tracking-wide leading-none"
               style={{ color: theme.colors.accent.DEFAULT }}
             >
               Hudson
             </span>
             <span
-              className="ml-1.5 text-sm sm:text-base tracking-normal"
+              className="text-xs sm:text-sm tracking-normal opacity-90 leading-none"
               style={{ color: theme.colors.primary.contrast }}
             >
               Furniture
             </span>
           </div>
+        </div>
 
-          <div
-            className="hidden items-center justify-center font-semibold h-full md:flex gap-6 xl:gap-8"
-            style={{ fontFamily: theme.fonts.alt }}
+        {/* Center Navigation Links */}
+        <div
+          className="hidden items-center justify-center font-semibold h-full md:flex gap-8 xl:gap-10"
+          style={{ fontFamily: theme.fonts.alt }}
+        >
+          {/* Home Link */}
+          <motion.div
+            className="relative h-full flex items-center justify-center cursor-pointer select-none"
+            whileHover="hover"
           >
-            <motion.div
-              className="relative flex items-center  justify-center gap-1 cursor-pointer select-none"
-              whileHover="hover"
-              initial="rest"
-              animate="rest"
-              variants={{
-                rest: { color: theme.colors.primary.contrast },
-                hover: { color: theme.colors.accent.hover },
-              }}
-            >
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `text-base transition-colors duration-300 ${
                   isActive
-                    ? `text-[${theme.colors.accent.hover}] text-sm`
-                    : `text-[${theme.colors.primary.contrast}] hover:text-[${theme.colors.accent.hover}] text-sm`
-                }
-              >
-                Home
-              </NavLink>
-              <motion.span
-                className="absolute left-0 bottom-[-20px] h-0.5 rounded-full"
-                style={{ backgroundColor: theme.colors.accent.hover }}
-                variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
-                transition={{ duration: 0.3, delay: 0.15 }}
-              />
-            </motion.div>
-            <div
-              ref={shopRef}
-              className="relative inline-block"
-              onClick={toggleShopDropdown}
+                    ? "text-[#BF6E3D]"
+                    : "text-[#F8F5F2] hover:text-[#BF6E3D]"
+                }`
+              }
             >
-              <div className="relative flex items-center justify-center gap-1 cursor-pointer select-none">
-                <motion.div
-                  whileHover="hover"
-                  initial="rest"
-                  animate="rest"
-                  className="relative"
-                >
-                  <NavLink
-                    to="/products"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-[#BF6E3D] text-sm"
-                        : "text-[#F8F5F2] hover:text-[#BF6E3D] text-sm"
-                    }
-                  >
-                    Shop
-                  </NavLink>
-                  <motion.span
-                    className="absolute left-0 bottom-[-18px] h-0.5 rounded-full"
-                    style={{ backgroundColor: theme.colors.accent.hover }}
-                    variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
-                    transition={{ duration: 0.3, delay: 0.15 }}
-                  />
-                </motion.div>
-                <ChevronDown
-                  size={14}
-                  className={`transition-transform duration-200 ${
-                    shopOpen ? "rotate-180" : ""
-                  } relative top-0.5`}
-                  style={{ color: theme.colors.primary.contrast }}
-                />
-              </div>
+              Home
+            </NavLink>
+          </motion.div>
 
-              <AnimatePresence>
-                {shopOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 top-9 font-semibold mt-2 p-4 grid grid-cols-2 gap-4 shadow-lg z-50 w-68"
+          <motion.div
+            className="relative h-full flex items-center justify-center cursor-pointer select-none group"
+            whileHover="hover"
+          >
+            <NavLink
+              to="/products"
+              className={({ isActive }) =>
+                `text-base transition-colors duration-300 ${
+                  isActive
+                    ? "text-[#BF6E3D]"
+                    : "text-[#F8F5F2] hover:text-[#BF6E3D] group-hover:text-[#BF6E3D]"
+                }`
+              }
+            >
+              Shop
+            </NavLink>
+          </motion.div>
+
+          <motion.div
+            className="relative h-full flex items-center justify-center cursor-pointer select-none"
+            whileHover="hover"
+          >
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `text-base transition-colors duration-300 ${
+                  isActive
+                    ? "text-[#BF6E3D]"
+                    : "text-[#F8F5F2] hover:text-[#BF6E3D]"
+                }`
+              }
+            >
+              Categories
+            </NavLink>
+          </motion.div>
+
+          {/* Deals Link */}
+          <motion.div
+            className="relative h-full flex items-center justify-center cursor-pointer select-none"
+            whileHover="hover"
+          >
+            <NavLink
+              to="/deals"
+              className={({ isActive }) =>
+                `text-base transition-colors duration-300 ${
+                  isActive
+                    ? "text-[#BF6E3D]"
+                    : "text-[#F8F5F2] hover:text-[#BF6E3D]"
+                }`
+              }
+            >
+              Deals
+            </NavLink>
+          </motion.div>
+
+          {/* More Dropdown */}
+          <div ref={moreRef} className="relative" onClick={toggleMoreDropdown}>
+            <div className="relative flex items-center justify-center gap-1 cursor-pointer select-none group">
+              <motion.div whileHover="hover" className="relative">
+                <span className="text-[#F8F5F2] hover:text-[#BF6E3D] group-hover:text-[#BF6E3D] text-base transition-colors duration-300">
+                  More
+                </span>
+              </motion.div>
+              <ChevronDown
+                size={16}
+                className={`transition-all duration-200 ml-1 ${
+                  moreOpen
+                    ? "rotate-180 text-[#BF6E3D]"
+                    : "group-hover:text-[#BF6E3D]"
+                }`}
+                style={{
+                  color: moreOpen
+                    ? theme.colors.accent.DEFAULT
+                    : theme.colors.primary.contrast,
+                }}
+              />
+            </div>
+
+            <AnimatePresence>
+              {moreOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="absolute right-0 top-full mt-2 w-48 shadow-xl rounded-lg overflow-hidden z-60 border"
+                  style={{
+                    borderColor: theme.colors.ui.border,
+                  }}
+                >
+                  <a
+                    href="#"
+                    className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
                     style={{
                       backgroundColor: theme.colors.background.muted,
-                      fontFamily: theme.fonts.alt,
                     }}
                   >
-                    {shopCategories.map(({ name, icon: Icon }) => (
-                      <a
-                        key={name}
-                        href="#"
-                        className="flex items-center gap-2 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm"
-                      >
-                        <Icon size={16} />
-                        {name}
-                      </a>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Static Nav Items */}
-            {["New Arrivals", "Blog"].map((label) => (
-              <motion.a
-                key={label}
-                href="#"
-                className="relative text-sm transition-colors focus:outline-none"
-                whileHover="hover"
-                initial="rest"
-                animate="rest"
-                variants={{
-                  rest: { color: theme.colors.primary.contrast },
-                  hover: { color: theme.colors.accent.hover },
-                }}
-              >
-                {label}
-                <motion.span
-                  className="absolute left-0 bottom-[-20px] h-0.5 rounded-full"
-                  style={{ backgroundColor: theme.colors.accent.hover }}
-                  variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
-                  transition={{ duration: 0.3, delay: 0.15 }}
-                />
-              </motion.a>
-            ))}
-
-            <div
-              ref={moreRef}
-              className="relative"
-              onClick={toggleMoreDropdown}
-            >
-              <div className="relative flex items-center justify-center gap-1 cursor-pointer select-none">
-                <motion.div
-                  whileHover="hover"
-                  initial="rest"
-                  animate="rest"
-                  className="relative"
-                >
-                  <span className="text-[#F8F5F2] hover:text-[#BF6E3D] text-sm">
-                    More
-                  </span>
-
-                  <motion.span
-                    className="absolute left-0 bottom-[-20px] h-0.5 rounded-full"
-                    style={{ backgroundColor: theme.colors.accent.hover }}
-                    variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
-                    transition={{ duration: 0.3, delay: 0.15 }}
-                  />
-                </motion.div>
-                <ChevronDown
-                  size={14}
-                  className={`transition-transform duration-200 ${
-                    moreOpen ? "rotate-180" : ""
-                  } relative top-0.5`}
-                  style={{ color: theme.colors.primary.contrast }}
-                />
-              </div>
-
-              {/* Dropdown Menu (desktop) */}
-              <AnimatePresence>
-                {moreOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 top-9 mt-2 w-40 shadow-lg overflow-hidden z-60"
+                    About Us
+                  </a>
+                  <a
+                    href="#"
+                    className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
+                    style={{
+                      backgroundColor: theme.colors.background.muted,
+                    }}
                   >
-                    {moreLinks.map((label) => (
-                      <a
-                        key={label}
-                        href="#"
-                        className="block px-4 py-2 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium"
-                        style={{
-                          backgroundColor: theme.colors.background.muted,
-                        }}
-                      >
-                        {label}
-                      </a>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                    Contact
+                  </a>
+                  <a
+                    href="#"
+                    className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
+                    style={{
+                      backgroundColor: theme.colors.background.muted,
+                    }}
+                  >
+                    Reviews
+                  </a>
+                  <a
+                    href="#"
+                    className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
+                    style={{
+                      backgroundColor: theme.colors.background.muted,
+                    }}
+                  >
+                    Blog
+                  </a>
+                  <a
+                    href="#"
+                    className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
+                    style={{
+                      backgroundColor: theme.colors.background.muted,
+                    }}
+                  >
+                    Support
+                  </a>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-
-          {/* Right Icons + Mobile Toggle */}
-          <div
-            className="md:flex hidden items-center gap-2 sm:gap-3 md:gap-4 relative"
-            style={{ color: theme.colors.primary.contrast }}
-          >
-            {/* Desktop Search */}
-            <Search className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-
-            {/* Desktop Wishlist */}
-            <Heart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-
-            {/* Desktop Cart */}
-            <NavLink to="/cart" aria-label="Cart">
-              <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-            </NavLink>
-
-            {/* Desktop Login */}
-
-            <NavLink to="/login" aria-label="Login">
-              <LogIn className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-            </NavLink>
-
-            {/* Desktop Sign Up */}
-            <NavLink to="/register" aria-label="Sign Up">
-              <UserPlus className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-            </NavLink>
-          </div>
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={toggleMobileMenu}
-            className="block md:hidden rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A65A2E]"
-            style={{ color: theme.colors.primary.contrast }}
-            aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6 sm:w-7 sm:h-7 " />
-            ) : (
-              <Menu className="w-6 h-6 sm:w-7 sm:h-7 " />
-            )}
-          </button>
         </div>
+
+        {/* Right Section - Search & Icons */}
+        <div
+          className="hidden md:flex items-center gap-6 relative"
+          style={{ color: theme.colors.primary.contrast }}
+        >
+          <div className="relative w-full flex items-center gap-2">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleIconClick}
+              className="p-2 rounded-full hover:bg-white/10 transition-all duration-200"
+            >
+              <Search className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+            </motion.button>
+          </div>
+
+          {/* Action Icons */}
+          <div className="flex items-center gap-4">
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <Heart className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+            </motion.div>
+
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <NavLink to="/cart" aria-label="Cart">
+                <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+              </NavLink>
+            </motion.div>
+
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <NavLink to="/register" aria-label="Sign Up">
+                <UserPlus className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+              </NavLink>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={toggleMobileMenu}
+          className="block md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A65A2E]"
+          style={{ color: theme.colors.primary.contrast }}
+          aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
+          aria-expanded={mobileMenuOpen}
+        >
+          {mobileMenuOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
+        </motion.button>
       </motion.div>
 
       {/* Mobile Sidebar */}
@@ -439,23 +394,30 @@ const Navbar = () => {
               {/* Sidebar Header */}
               <div className="flex justify-between font-semibold items-center p-4 border-b">
                 <div
-                  className="flex items-baseline cursor-pointer"
+                  className="flex items-center cursor-pointer"
                   tabIndex={0}
                   aria-label="Homepage"
                   onClick={toggleMobileMenu}
                 >
-                  <span
-                    className="text-lg"
-                    style={{ color: theme.colors.accent.DEFAULT }}
-                  >
-                    Hudson
-                  </span>
-                  <span
-                    className="ml-1.5 text-sm"
-                    style={{ color: theme.colors.primary.contrast }}
-                  >
-                    Furniture
-                  </span>
+                  <img
+                    src={Logo}
+                    alt="Hudson Logo"
+                    className="w-8 h-8 mr-2 rounded-full"
+                  />
+                  <div className="flex flex-col">
+                    <span
+                      className="text-lg leading-none"
+                      style={{ color: theme.colors.accent.DEFAULT }}
+                    >
+                      Hudson
+                    </span>
+                    <span
+                      className="text-xs leading-none opacity-90"
+                      style={{ color: theme.colors.primary.contrast }}
+                    >
+                      Furniture
+                    </span>
+                  </div>
                 </div>
                 <button
                   onClick={toggleMobileMenu}
@@ -477,7 +439,27 @@ const Navbar = () => {
                   />
                 </div>
 
-                {/* Login / Register */}
+                {/* Navigation Links */}
+                <div className="flex flex-col gap-3">
+                  <NavLink
+                    to="/"
+                    className="flex items-center gap-2 text-base font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                    onClick={toggleMobileMenu}
+                  >
+                    Home
+                  </NavLink>
+                  <NavLink
+                    to="/deals"
+                    className="flex items-center gap-2 text-base font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                    onClick={toggleMobileMenu}
+                  >
+                    Deals
+                  </NavLink>
+                </div>
+
+                {/* Action Links */}
                 <div className="flex flex-col gap-2">
                   <NavLink
                     to="/cart"
@@ -510,45 +492,14 @@ const Navbar = () => {
                 </div>
                 <div>
                   <button
-                    onClick={toggleMobileShop}
                     className="w-full flex justify-between items-center text-base font-medium focus:outline-none"
                     style={{ color: theme.colors.primary.contrast }}
                   >
                     <span className="flex items-center gap-2">
                       <Sofa size={18} />
-                      Shop Categories
+                      Shop
                     </span>
-                    <ChevronDown
-                      className={`transition-transform duration-300 ${
-                        mobileShopOpen ? "rotate-180" : ""
-                      }`}
-                      size={16}
-                    />
                   </button>
-                  <AnimatePresence>
-                    {mobileShopOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="ml-4 mt-2 flex flex-col gap-2"
-                      >
-                        {shopCategories.map(({ name, icon: Icon }) => (
-                          <NavLink
-                            key={name}
-                            to={`/${name.toLowerCase().replace(/\s+/g, "-")}`}
-                            className="flex items-center gap-2 text-sm font-normal"
-                            style={{ color: theme.colors.primary.contrast }}
-                            onClick={toggleMobileMenu} // optionally close sidebar on selection
-                          >
-                            <Icon size={16} />
-                            {name}
-                          </NavLink>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </div>
 
                 <div>

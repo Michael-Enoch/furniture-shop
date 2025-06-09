@@ -1,11 +1,10 @@
 [
   {
     "id": 1,
-    "title": "25% Off Bedroom Comfort",
+    "title": "Bedroom Comfort",
     "subtitle": "Upgrade your rest with modern beds & storage",
     "category": "Bedroom",
-    "discount": "25%",
-    "image": "https://images.unsplash.com/photo-1724166655256-0ae10f1ab89a?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "image": "../src/assets/images/bedroom.avif",
     "cta": "Shop Bedroom Deals",
     "link": "/shop?category=bedroom"
   },
@@ -14,8 +13,7 @@
     "title": "Living Room Luxe",
     "subtitle": "Sofas & sets starting at just $499",
     "category": "Living Room",
-    "discount": "Up to 30%",
-    "image": "https://images.unsplash.com/photo-1597374399680-b77d907ae7e9?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "image": "../src/assets/images/living_room.avif",
     "cta": "Explore Living Room",
     "link": "/shop?category=living-room"
   },
@@ -24,18 +22,16 @@
     "title": "Outdoor Oasis Sale",
     "subtitle": "Breezy patio sets & garden chairs",
     "category": "Outdoor",
-    "discount": "Up to 35%",
-    "image": "https://images.unsplash.com/photo-1654229472764-2c447b245e76?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "image": "../src/assets/images/outdoor.avif",
     "cta": "See Outdoor Collection",
     "link": "/shop?category=outdoor"
   },
   {
     "id": 4,
-    "title": "Work-from-Home Upgrade",
+    "title": "Work-from-Home",
     "subtitle": "Desks, chairs & storage solutions",
     "category": "Home Office",
-    "discount": "20% Off",
-    "image": "https://images.unsplash.com/photo-1683836810476-d0c670418438?q=80&w=2024&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "image": "../src/assets/images/home-office.avif",
     "cta": "Shop Office Furniture",
     "link": "/shop?category=home-office"
   },
@@ -44,8 +40,7 @@
     "title": "Dine in Style",
     "subtitle": "Dining sets for every occasion",
     "category": "Dining Room",
-    "discount": "Up to 40%",
-    "image": "https://images.unsplash.com/photo-1520869578617-557561d7b114?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "image": "../src/assets/images/dining-room.avif",
     "cta": "Browse Dining Sets",
     "link": "/shop?category=dining-room"
   }
