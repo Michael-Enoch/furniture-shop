@@ -69,6 +69,7 @@ const Hero = () => {
         ))}
       </Swiper>
     </section>
+    
   );
 };
 

@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { getDatabase, onValue, ref, runTransaction } from "firebase/database";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../assets/images/hudson.png";
+import theme from '../context/Theme.jsx'
 import {
   ShoppingCart,
   Search,
@@ -23,6 +24,8 @@ import {
   Instagram,
 } from "lucide-react";
 import app from "../../Firebase/firebase";
+import CountdownTimer from './CountdownTimer'
+import {NavLink} from 'react-router-dom'
 
 
 const Navbar = () => {
