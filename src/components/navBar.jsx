@@ -48,9 +48,6 @@ const Navbar = () => {
     }
   };
 
-  const searchRef = useRef(null);
-  const searchInputRef = useRef(null);
-
   // Close search when clicking outside
   useEffect(() => {
     function handleClick(event) {
