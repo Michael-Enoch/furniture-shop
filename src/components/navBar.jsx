@@ -19,7 +19,6 @@ import {
   Instagram,
 } from "lucide-react";
 import app from "../../Firebase/firebase";
-
 import theme from "../context/Theme";
 import { NavLink, useNavigate } from "react-router-dom";
 
