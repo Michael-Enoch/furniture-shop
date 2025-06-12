@@ -5,6 +5,9 @@ import Register from './pages/RegisterForm'
 import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import Homepage from './pages/Homepage'
+import ContactPage from './pages/ContactPage'
+
+
 
 function App() {
 
@@ -15,6 +18,7 @@ function App() {
     <Toaster position='top-right' reverseOrder={false}/>
     <Navbar/>
     <Homepage/>
+    <ContactPage/>
       {/* <Register/>
       <Login/> */}
     </AuthProvider>
