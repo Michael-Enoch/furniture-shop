@@ -152,7 +152,7 @@
     "colorHex": "#1C1C1C",
     "brand": "HomeSmith",
     "durability": "High",
-    "image": "https://videos.openai.com/vg-assets/assets%2Ftask_01jwvvax1tevvvxbn04psd9pjr%2F1748986439_img_0.webp?st=2025-06-03T20%3A00%3A47Z&se=2025-06-09T21%3A00%3A47Z&sks=b&skt=2025-06-03T20%3A00%3A47Z&ske=2025-06-09T21%3A00%3A47Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=m%2B2errog6W79lb0V1Fv3kaOYmayNJVXn3T7ZHlNE2iA%3D&az=oaivgprodscus",
+    "image": "../src/assets/images/metal_frame.jpeg",
     "createdAt": "2025-03-26T12:57:39.226448+00:00"
   },
   {
@@ -226,7 +226,7 @@
     "color": "Matte Gray",
     "colorHex": "#6E6E6E",
     "brand": "Luxe Living",
-    "image": "https://videos.openai.com/vg-assets/assets%2Ftask_01jwvs2tv6eexsbv5wghbqmfzc%2F1748984086_img_0.webp?st=2025-06-03T19%3A38%3A03Z&se=2025-06-09T20%3A38%3A03Z&sks=b&skt=2025-06-03T19%3A38%3A03Z&ske=2025-06-09T20%3A38%3A03Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=ZZOjqKFOKYjf6iA70RayoUlYQ0ZG4H%2BJyRsvT0%2Bhps4%3D&az=oaivgprodscus",
+    "image": "https://i.pinimg.com/736x/5f/65/99/5f6599bb70141e15e549064084b519af.jpg",
     "createdAt": "2024-06-05T22:50:56.633662+00:00"
   },
   {
@@ -244,7 +244,7 @@
     "color": "Pine Natural",
     "colorHex": "#DEB887",
     "brand": "Timber & Co",
-    "image": "https://videos.openai.com/vg-assets/assets%2Ftask_01jwvs2tv6eexsbv5wghbqmfzc%2F1748984086_img_0.webp?st=2025-06-03T19%3A38%3A03Z&se=2025-06-09T20%3A38%3A03Z&sks=b&skt=2025-06-03T19%3A38%3A03Z&ske=2025-06-09T20%3A38%3A03Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=ZZOjqKFOKYjf6iA70RayoUlYQ0ZG4H%2BJyRsvT0%2Bhps4%3D&az=oaivgprodscus",
+    "image": "https://i.pinimg.com/736x/57/58/11/5758114a7f0c2312212a7f15269ff7d7.jpg",
     "createdAt": "2024-06-05T22:50:56.633662+00:00"
   },
   {

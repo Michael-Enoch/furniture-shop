@@ -147,7 +147,7 @@ export default function SearchPage() {
             return (
               <div
                 key={p.id}
-                className="flex flex-col bg-white rounded-3xl border shadow-md overflow-hidden relative group"
+                className="flex flex-col rounded-xl border shadow-md overflow-hidden relative group"
                 style={{
                   backgroundColor: theme.colors.background.muted,
                   borderColor: theme.colors.ui.border,
@@ -166,16 +166,16 @@ export default function SearchPage() {
                   >
                     <button
                       type="button"
-                      className="p-2 rounded-md bg-[rgba(166,90,46,0.9)] hover:bg-[rgba(191,110,61,0.9)] text-white shadow-lg"
-                      style={{ pointerEvents: "auto" }}
+                      className="p-2 rounded-md shadow-lg pointer-events-auto"
+                      style={{background: theme.colors.accent.DEFAULT, color: theme.colors.primary.contrast}}
                       aria-label={`Add ${p.name} to cart`}
                     >
                       <ShoppingCart className="w-6 h-6" aria-hidden="true" />
                     </button>
                     <button
                       type="button"
-                      className="p-2 rounded-md bg-[rgba(166,90,46,0.9)] hover:bg-[rgba(191,110,61,0.9)] text-white shadow-lg"
-                      style={{ pointerEvents: "auto" }}
+                       className="p-2 rounded-md shadow-lg pointer-events-auto"
+                      style={{background: theme.colors.accent.DEFAULT, color: theme.colors.primary.contrast}}
                       aria-label={`Add ${p.name} to wishlist`}
                     >
                       <Heart className="w-6 h-6" aria-hidden="true" />
@@ -254,7 +254,7 @@ export default function SearchPage() {
 
       {totalPages > 1 && (
         <div className="mt-8 flex justify-center gap-3">
-          {Array.from({ length: totalPages }, (_,i) => i + 1).map((num) => (
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
             <button
               key={num}
               onClick={() => setPage(num)}
@@ -263,7 +263,7 @@ export default function SearchPage() {
                 backgroundColor:
                   num === page
                     ? theme.colors.accent.DEFAULT
-                    : theme.colors.ui.base,
+                    : "transparent",
                 color:
                   num === page
                     ? theme.colors.primary.contrast

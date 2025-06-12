@@ -1,28 +1,25 @@
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function LatestArrivalsGridWithModal({ products, theme }) {
+export default function LatestArrivalsGridWithModal({ products, theme, sectionIndex = 1 }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
-
-  useEffect(() => {
-    AOS.init({ duration: 800, once: false });
-  }, []);
-
-  useEffect(() => {
-    if (selectedProduct) {
-      AOS.refresh();
-    }
-  }, [selectedProduct]);
+   const bgColor =
+    sectionIndex % 2 === 0
+      ? theme.colors.background.DEFAULT
+      : theme.colors.background.alt;
 
   return (
     <section
       className="w-full px-4 sm:px-8 md:px-16 py-14 relative"
-      style={{ backgroundColor: theme.colors.background.DEFAULT }}
+      style={{ backgroundColor: bgColor}}
     >
       {/* Modal Background Overlay */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-black/50 z-40" data-aos="fade-in" aria-hidden="true" />
+        <div
+          className="fixed inset-0 bg-black/50 z-40"
+          data-aos="fade-in"
+          aria-hidden="true"
+        />
       )}
 
       <div
@@ -31,7 +28,7 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
         data-aos-delay="100"
       >
         <h2
-          className="text-4xl sm:text-5xl md:text-6xl font-light mb-6 tracking-tight"
+         className="text-3xl sm:text-4xl md:text-5xl font-light mb-6 tracking-tight"
           style={{
             color: theme.colors.text.primary,
             fontFamily: theme.fonts.header,
@@ -40,8 +37,9 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
           Our latest arrivals
         </h2>
 
-        <button
-          className="px-8 py-2 border font-medium text-sm tracking-wide uppercase transition-all duration-300 hover:shadow-lg"
+        <Link
+          to="/shop"
+          className="px-8 py-3 border font-medium text-sm tracking-wide uppercase transition-all duration-300 hover:shadow-lg"
           style={{
             borderColor: theme.colors.accent.DEFAULT,
             color: theme.colors.accent.hover,
@@ -60,7 +58,7 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
           data-aos-delay="200"
         >
           Shop All
-        </button>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto relative z-10">
@@ -70,7 +68,7 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
             className="group cursor-pointer transition-all duration-500 hover:scale-[1.03]"
             onClick={() => setSelectedProduct(product)}
             data-aos="fade-up"
-            data-aos-delay={100 + index * 100}
+            data-aos-delay={index * 100}
           >
             {/* Card Container */}
             <div className="relative rounded-2xl shadow-md overflow-hidden bg-white">
@@ -90,7 +88,7 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
 
               {/* Image */}
               <div
-                className="w-full aspect-[4/5] transition-transform duration-700 group-hover:scale-105"
+                className="w-full aspect-[4/3] transition-transform duration-700 group-hover:scale-105"
                 style={{
                   backgroundImage: `url(${product.image})`,
                   backgroundSize: "cover",
@@ -119,7 +117,7 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
             </div>
 
             {/* Info Section */}
-            <div className="text-center space-y-1 mt-4 px-2">
+            <div className="flex flex-col justify-center items-start text-left gap-1 mt-4 px-2">
               <h3
                 className="text-lg font-medium"
                 style={{
@@ -132,7 +130,7 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
               <p className="text-sm text-gray-500">
                 {product.category} — {product.type}
               </p>
-              <div className="flex justify-center items-center gap-3">
+              <div className="">
                 <span
                   className="text-lg font-semibold"
                   style={{ color: theme.colors.primary.DEFAULT }}
@@ -204,10 +202,12 @@ export default function LatestArrivalsGridWithModal({ products, theme }) {
                     fontFamily: theme.fonts.alt,
                   }}
                   onMouseOver={(e) =>
-                    (e.currentTarget.style.backgroundColor = theme.colors.accent.hover)
+                    (e.currentTarget.style.backgroundColor =
+                      theme.colors.accent.hover)
                   }
                   onMouseOut={(e) =>
-                    (e.currentTarget.style.backgroundColor = theme.colors.accent.DEFAULT)
+                    (e.currentTarget.style.backgroundColor =
+                      theme.colors.accent.DEFAULT)
                   }
                 >
                   Add to Cart

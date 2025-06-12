@@ -4,31 +4,31 @@
       "id": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
       "name": "Bedroom",
       "description": "Cozy and stylish essentials for restful nights, including beds, wardrobes, nightstands, and more.",
-      "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800",
+      "image": "https://i.pinimg.com/736x/be/97/3d/be973dd58ba3194489b24c34c5fd3735.jpg",
       "subcategories": ["Beds", "Mattresses", "Wardrobes", "Nightstands", "Dressers"]
     },
     {
       "id": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
       "name": "Living Room",
       "description": "Stylish living room furniture for lounging, hosting, and relaxing in comfort and elegance",
-      "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800"
+      "image": "https://i.pinimg.com/736x/2b/76/cc/2b76cc89c6c9553288e83f48495a5357.jpg"
     },
     {
       "id": "2e7e89e7-5257-4ef1-8822-60dceb9df63e",
       "name": "Dining Room",
       "description":"Elegant and functional furniture for dining and entertaining — from tables to chairs and storage.",
-      "image": "https://images.unsplash.com/photo-1551298370-9c50423d7451?w=800"
+      "image": "https://i.pinimg.com/736x/cf/8b/14/cf8b149a3111a2defee81a981a65e936.jpg"
     },
     {
       "id": "c87ec79a-f5a0-45af-9373-aed88ee1a331",
       "name": "Home Office",
       "description":"Functional and stylish desks, chairs, and storage pieces designed for productivity at home.",
-      "image": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800"
+      "image": "https://i.pinimg.com/736x/57/66/1d/57661dc80bebda3dfe946c070ee8ed13.jpg"
     },
     {
       "id": "3ae7ae06-42a6-4831-a2bb-79d7f2055a89",
       "name": "Outdoor",
-      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
+      "image": "https://i.pinimg.com/736x/b4/1a/3b/b41a3be442d8e32e9b7bca277ccf4a0f.jpg"
     }
   ]
 }
