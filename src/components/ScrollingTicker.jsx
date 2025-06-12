@@ -1,98 +1,62 @@
 import { useEffect, useState } from "react";
+import theme from "../context/Theme";
 
-const Ticker = () =>{
-      
-    
-  let currentDateTime = new Date()
+const Ticker = () => {
+  const [time, setTime] = useState('');
+  const [location, setLocation] = useState({ lat: null, long: null });
+  const [error, setError] = useState(null);
 
-  let Current = {
-    year : currentDateTime.getFullYear(),
-    month: currentDateTime.getMonth(),
-    day: currentDateTime.getDay(),
-    hours: currentDateTime.getHours(),
-    minutes: currentDateTime.getMinutes(),
-    seconds: currentDateTime.getSeconds()
-  }
-  let convertedHr = Current.hours > 12 ? Current.hours - 12 : Current.hours
-  let AMOrPM = convertedHr >= 12 ? 'AM' : 'PM'
-  let convertedMins = Current.minutes < 10 ? '0' + Current.minutes : Current.minutes
-  let convertedSecs = Current.seconds < 10 ? '0' + Current.seconds : Current.seconds
+  const updateTime = () => {
+    const now = new Date();
+    const hours = now.getHours();
+    const isAM = hours < 12;
+    const formattedTime = `${now.toLocaleDateString(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })} | ${hours % 12 || 12}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')} ${isAM ? 'AM' : 'PM'}`;
+    setTime(formattedTime);
+  };
 
-  let currentTime = convertedHr + ' ' + AMOrPM + ' '+ ':' + ' ' + convertedMins + ' ' + ':' + ' ' + convertedSecs
-
-  let dayOfWeek = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday'
-  ]
-
-  let monthOfYear = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ]
-    
-    const [location, setLocation] = useState({Latitude : null, Longitude : null});
-    const [error, setError] = useState(null)
-    
-    const getLocation = () => {
-        if(navigator.geolocation){
-          navigator.geolocation.getCurrentPosition(
-            (position) =>{
-              const lat = position.coords.latitude
-              const long = position.coords.longitude
-              setLocation({Latitude: lat, Longitude : long })
-            },
-            (err) =>{
-              setError(err.message);
-            }
-          )
-        }else{
-            setError('Geolocation is not supoported by this brower.')
-        }
-
+  const getLocation = () => {
+    if (!navigator.geolocation) {
+      setError('Geolocation is not supported by this browser.');
+      return;
     }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setLocation({ lat: pos.coords.latitude, long: pos.coords.longitude });
+      },
+      (err) => {
+        setError(err.message);
+      }
+    );
+  };
 
-    useEffect(()=>{
-      getLocation();
-    }, []);
+  useEffect(() => {
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    getLocation();
+    return () => clearInterval(interval);
+  }, []);
 
-    return(
-        <>
-        <section>
-           <div className="px-20 py-6 bg-black">
-              <span className='flex gap-4 animate-scroll'>
-                <p className='text-xl text-white'>
-                {
-                `Date : ${dayOfWeek[Current.day]} , 
-                ${monthOfYear[Current.month]} ${Current.year} . 
-                  Time : ${currentTime}`
-                }
-              </p>
-              <p className='text-xl text-white'>
-              {
-                error ? {error} :
-                `Location : n/latitude : ${location.Latitude} , n/longitude : ${location.Longitude}`
-              }
-              </p>
-              </span>
-            </div>
-        </section>
-        </>
-    )
-}
+  return (
+    <div className="fixed bottom-0 left-0 w-full text-sm overflow-hidden z-50"
+    style={{background: theme.colors.primary.DEFAULT, color: theme.colors.primary.contrast}}
+    >
+      <div className="whitespace-nowrap animate-marquee px-4 py-2 flex gap-8">
+        <p>{`📅 ${time}`}</p>
+        <p>
+          {error
+            ? `⚠️ ${error}`
+            : location.lat && location.long
+            ? `📍 Latitude: ${location.lat.toFixed(3)}, Longitude: ${location.long.toFixed(3)}`
+            : '📍 Fetching location...'}
+        </p>
+      </div>
+    </div>
+  );
+};
 
-export default Ticker
+export default Ticker;
