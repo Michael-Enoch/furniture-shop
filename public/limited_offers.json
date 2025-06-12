@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "title": "Bedroom Comfort",
+    "subtitle": "Upgrade your rest with modern beds & storage",
+    "category": "Bedroom",
+    "image": "../src/assets/images/bedroom.avif",
+    "cta": "Shop Bedroom Deals",
+    "link": "/shop?category=bedroom"
+  },
+  {
+    "id": 2,
+    "title": "Living Room Luxe",
+    "subtitle": "Sofas & sets starting at just $499",
+    "category": "Living Room",
+    "image": "../src/assets/images/living_room.avif",
+    "cta": "Explore Living Room",
+    "link": "/shop?category=living-room"
+  },
+  {
+    "id": 3,
+    "title": "Outdoor Oasis Sale",
+    "subtitle": "Breezy patio sets & garden chairs",
+    "category": "Outdoor",
+    "image": "../src/assets/images/outdoor.avif",
+    "cta": "See Outdoor Collection",
+    "link": "/shop?category=outdoor"
+  },
+  {
+    "id": 4,
+    "title": "Work-from-Home",
+    "subtitle": "Desks, chairs & storage solutions",
+    "category": "Home Office",
+    "image": "../src/assets/images/home-office.avif",
+    "cta": "Shop Office Furniture",
+    "link": "/shop?category=home-office"
+  },
+  {
+    "id": 5,
+    "title": "Dine in Style",
+    "subtitle": "Dining sets for every occasion",
+    "category": "Dining Room",
+    "image": "../src/assets/images/dining-room.avif",
+    "cta": "Browse Dining Sets",
+    "link": "/shop?category=dining-room"
+  }
+]
