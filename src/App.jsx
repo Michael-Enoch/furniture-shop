@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {CartPage } from './pages/CartPage';
 import SearchPage from './pages/SearchPage';
+import Breadcrumbs from './components/BreadCrumbs';
 
 
 function App() {
