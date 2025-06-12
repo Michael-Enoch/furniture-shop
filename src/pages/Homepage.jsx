@@ -1,10 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Hero from "../components/Hero";
+import Aos from "aos";
+import CategoriesSection from "./categoriesSection";
+import BestSelling from "./bestSellingProducts"; 
+import Ticker from "../components/ScrollingTicker";
 import LatestArrivalsGridWithModal from "./LatestArrivals";
 import theme from "../context/Theme";
 
 const Homepage = () => {
+  Aos.init()
   const BASE_URL = "/furniture_database_50_products.json";
 const [latestArrivals, setLatestArrivals] = useState([]);
 
@@ -65,13 +70,16 @@ useEffect(() => {
     fetchCategoriesAndProducts();
   }, []);
 
-
   return (
-    <div>
-      <Hero />
-      <LatestArrivalsGridWithModal products={latestArrivals} theme={theme}/>
-    </div>
-  )
+  <>
+    <Hero />
+    <CategoriesSection/>
+    <LatestArrivalsGridWithModal products={latestArrivals} theme={theme}/>
+    <BestSelling/>
+    <Ticker/>
+  </>
+  );
+
 };
 
 export default Homepage;

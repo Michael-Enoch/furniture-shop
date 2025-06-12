@@ -73,6 +73,7 @@ const Hero = () => {
         ))}
       </Swiper>
     </section>
+    
   );
 };
 
