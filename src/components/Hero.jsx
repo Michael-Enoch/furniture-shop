@@ -1,31 +1,14 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Link } from "react-router-dom";
 import theme from "../context/Theme";
 
-const Hero = () => {
-  const [offers, setOffers] = useState([]);
-  const BASE_URL = "/limited_offers.json";
+const Hero = ({ offers }) => {
+  if (!offers.length) return null;
 
-  useEffect(() => {
-    const fetchOffers = async () => {
-      try {
-        const response = await axios.get(BASE_URL);
-        const data = response.data;
-        setOffers(data);
-      } catch (error) {
-        console.error("Failed to fetch offers:", error);
-      }
-    };
-    fetchOffers();
-  }, []);
-
-  if (offers.length === 0) return null;
   return (
     <section className="relative w-full group">
       <Swiper
@@ -73,7 +56,6 @@ const Hero = () => {
         ))}
       </Swiper>
     </section>
-    
   );
 };
 

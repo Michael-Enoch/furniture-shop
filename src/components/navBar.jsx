@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { getDatabase, onValue, ref, runTransaction } from "firebase/database";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../assets/images/hudson.png";
-import theme from '../context/Theme.jsx'
+import theme from "../context/Theme.jsx";
 import { NavLink, useNavigate } from "react-router-dom";
 import app from "../../Firebase/firebase";
-import CountdownTimer from './CountdownTimer'
+import CountdownTimer from "./CountdownTimer";
 import {
   ShoppingCart,
   Search,
@@ -33,7 +33,6 @@ const Navbar = () => {
 
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
-
 
   const handleIconClick = () => {
     if (query.trim()) {
@@ -86,20 +85,21 @@ const Navbar = () => {
 
   return (
     <>
-      <div
-        className="w-full text-xs font-semibold sm:text-sm max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between py-3 gap-2 sm:gap-0 text-center sm:text-left"
-        style={{
+      <div className="w-full text-xs font-semibold sm:text-sm max-w-11xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between py-3 gap-2 sm:gap-0 text-center sm:text-left"
+      style={{
           fontFamily: theme.fonts.ui,
           backgroundColor: theme.colors.accent.DEFAULT,
           color: theme.colors.primary.contrast,
         }}
       >
         <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
-          <p>Call Us</p>
-          {":"}
+          <p>Call Us</p>:
+          <a href="tel:+1234567890" className="hover:underline">
+            +1 (234) 567-890
+          </a>
         </div>
         <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
-          <Users size={14} color={theme.colors.primary.contrast} />
+          <Users size={14} className="text-primary-contrast" />
           <span>
             {visitorCount ? `${visitorCount} Visitors` : "Loading..."}
           </span>
@@ -173,7 +173,7 @@ const Navbar = () => {
             whileHover="hover"
           >
             <NavLink
-              to="/products"
+              to="/shop"
               className={({ isActive }) =>
                 `text-base transition-colors duration-300 ${
                   isActive
@@ -191,7 +191,7 @@ const Navbar = () => {
             whileHover="hover"
           >
             <NavLink
-              to="/"
+              to="/category"
               className={({ isActive }) =>
                 `text-base transition-colors duration-300 ${
                   isActive
