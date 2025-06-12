@@ -2,22 +2,44 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Hero from "../components/Hero";
 import Aos from "aos";
+import "aos/dist/aos.css";
 import CategoriesSection from "./categoriesSection";
-import BestSelling from "./bestSellingProducts"; 
+import BestSelling from "./bestSellingProducts";
 import Ticker from "../components/ScrollingTicker";
 import LatestArrivalsGridWithModal from "./LatestArrivals";
 import theme from "../context/Theme";
+import FullPageLoader from "../components/FullPageLoader";
 
 const Homepage = () => {
-  Aos.init()
   const BASE_URL = "/furniture_database_50_products.json";
-const [latestArrivals, setLatestArrivals] = useState([]);
+  const [latestArrivals, setLatestArrivals] = useState([]);
+  const [offers, setOffers] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-useEffect(() => {
-  axios
-    .get("/latestArrivals.json")
-    .then((res) => setLatestArrivals(res.data))
-    .catch((err) => console.error("Failed to load latest arrivals", err));
+  // Fetch offers + data together
+  useEffect(() => {
+    const loadAll = async () => {
+      try {
+        const offerRes = await axios.get("/limited_offers.json");
+        setOffers(offerRes.data);
+
+        const latestRes = await axios.get("/latestArrivals.json");
+        setLatestArrivals(latestRes.data);
+      } catch (err) {
+        console.error("Failed to load homepage data:", err);
+      } finally {
+        setTimeout(() => {
+          setIsLoaded(true);
+          Aos.init({ duration: 800, once: true, easing: "ease-in-out",  });
+        }, 1000);
+      }
+    };
+
+    loadAll();
+  }, []);
+
+  useEffect(() => {
+  Aos.refresh();
 }, []);
 
 
@@ -71,15 +93,23 @@ useEffect(() => {
   }, []);
 
   return (
-  <>
-    <Hero />
-    <CategoriesSection/>
-    <LatestArrivalsGridWithModal products={latestArrivals} theme={theme}/>
-    <BestSelling/>
-    <Ticker/>
-  </>
+    <div>
+      {!isLoaded ? (
+        <FullPageLoader />
+      ) : (
+        <>
+          <Hero offers={offers} />
+          <CategoriesSection />
+          <LatestArrivalsGridWithModal
+            products={latestArrivals}
+            theme={theme}
+          />
+          <BestSelling />
+          <Ticker />
+        </>
+      )}
+    </div>
   );
-
 };
 
 export default Homepage;

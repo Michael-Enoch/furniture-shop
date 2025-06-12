@@ -6,7 +6,7 @@
     "category": "Bedroom",
     "image": "../src/assets/images/bedroom.avif",
     "cta": "Shop Bedroom Deals",
-    "link": "/shop?category=bedroom"
+    "link": "/shop"
   },
   {
     "id": 2,
@@ -15,7 +15,7 @@
     "category": "Living Room",
     "image": "../src/assets/images/living_room.avif",
     "cta": "Explore Living Room",
-    "link": "/shop?category=living-room"
+    "link": "/shop"
   },
   {
     "id": 3,
@@ -24,7 +24,7 @@
     "category": "Outdoor",
     "image": "../src/assets/images/outdoor.avif",
     "cta": "See Outdoor Collection",
-    "link": "/shop?category=outdoor"
+    "link": "/shop"
   },
   {
     "id": 4,
@@ -33,7 +33,7 @@
     "category": "Home Office",
     "image": "../src/assets/images/home-office.avif",
     "cta": "Shop Office Furniture",
-    "link": "/shop?category=home-office"
+    "link": "/shop"
   },
   {
     "id": 5,
@@ -42,6 +42,6 @@
     "category": "Dining Room",
     "image": "../src/assets/images/dining-room.avif",
     "cta": "Browse Dining Sets",
-    "link": "/shop?category=dining-room"
+    "link": "/shop"
   }
 ]
