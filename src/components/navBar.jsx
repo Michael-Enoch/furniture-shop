@@ -22,6 +22,7 @@ import {
   Twitter,
   Instagram,
 } from "lucide-react";
+import { useCart } from "../context/CartContext.jsx";
 
 const Navbar = () => {
   const [visitorCount, setVisitorCount] = useState(0);
@@ -80,13 +81,17 @@ const Navbar = () => {
     });
     return () => unsubscribe();
   }, []);
-
+  const { cartCount } = useCart();
   const moreLinks = ["About Us", "Contact", "Reviews", "Blog", "Support"];
+  const utilityLink = [
+    { name: "Cart", to: "/cart", icon: <ShoppingCart size={18} /> },
+  ];
 
   return (
     <>
-      <div className="w-full text-xs font-semibold sm:text-sm max-w-11xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between py-3 gap-2 sm:gap-0 text-center sm:text-left"
-      style={{
+      <div
+        className="w-full text-xs font-semibold sm:text-sm max-w-11xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between py-3 gap-2 sm:gap-0 text-center sm:text-left"
+        style={{
           fontFamily: theme.fonts.ui,
           backgroundColor: theme.colors.accent.DEFAULT,
           color: theme.colors.primary.contrast,
@@ -325,17 +330,31 @@ const Navbar = () => {
             </motion.button>
           </div>
 
-          {/* Action Icons */}
+          {/* utility Links*/}
           <div className="flex items-center gap-4">
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
               <Heart className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
             </motion.div>
-
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <NavLink to="/cart" aria-label="Cart">
-                <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-              </NavLink>
-            </motion.div>
+            {utilityLink.map((link) => (
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <NavLink
+                  key={link.name}
+                  to={link.to}
+                  aria-label="Cart"
+                  className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors"
+                >
+                  {link.icon}
+                  {cartCount > 0 && (
+                    <span className="absolute -top-2 -right-2 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center bg-[#D97706] shadow-md">
+                      {cartCount}
+                    </span>
+                  )}
+                </NavLink>
+              </motion.div>
+            ))}
 
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
               <NavLink to="/register" aria-label="Sign Up">
