@@ -9,14 +9,15 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartPage } from "./pages/CartPage";
 import SearchPage from "./pages/SearchPage";
+
+import { CartProvider } from "./context/CartContext";
 import AboutUs from "./pages/AboutUs";
 
 
 function App() {
   return (
     <AuthProvider>
-      {/* <Register/>
-      <Login/> */}
+    <CartProvider>
       <Router>
         <Toaster position="top-right" reverseOrder={false} />
         <Navbar />
@@ -29,6 +30,7 @@ function App() {
           <Route path="/aboutus" element={<AboutUs/>} />
         </Routes>
       </Router>
+      </CartProvider>
     </AuthProvider>
   );
 }
