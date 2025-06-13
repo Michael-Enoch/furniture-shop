@@ -9,7 +9,9 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartPage } from "./pages/CartPage";
 import SearchPage from "./pages/SearchPage";
+
 import { CartProvider } from "./context/CartContext";
+import AboutUs from "./pages/AboutUs";
 
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/aboutus" element={<AboutUs/>} />
         </Routes>
       </Router>
       </CartProvider>
