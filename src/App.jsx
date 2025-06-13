@@ -1,3 +1,4 @@
+
 import { Toaster } from "react-hot-toast";
 import "./App.css";
 import { AuthProvider } from "./context/AuthContext";
@@ -9,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartPage } from "./pages/CartPage";
 import SearchPage from "./pages/SearchPage";
 import { CartProvider } from "./context/CartContext";
+
 
 function App() {
   return (
