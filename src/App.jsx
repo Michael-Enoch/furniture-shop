@@ -8,10 +8,12 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartPage } from "./pages/CartPage";
 import SearchPage from "./pages/SearchPage";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
   return (
     <AuthProvider>
+    <CartProvider>
       <Router>
         <Toaster position="top-right" reverseOrder={false} />
         <Navbar />
@@ -23,6 +25,7 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
         </Routes>
       </Router>
+      </CartProvider>
     </AuthProvider>
   );
 }
