@@ -661,6 +661,8 @@ const AboutUs = () => {
           <p>© 2023 Hudson's Furniture. All rights reserved. Crafted with passion in Brooklyn, NY.</p>
         </div>
       </footer>
+
+      
     </div>
   );
 };
