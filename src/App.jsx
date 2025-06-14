@@ -1,4 +1,3 @@
-
 import { Toaster } from "react-hot-toast";
 import "./App.css";
 import { AuthProvider } from "./context/AuthContext";
@@ -9,10 +8,9 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartPage } from "./pages/CartPage";
 import SearchPage from "./pages/SearchPage";
-
 import { CartProvider } from "./context/CartContext";
 import AboutUs from "./pages/AboutUs";
-import ContactPage from "./pages/ContactPage";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -28,9 +26,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/aboutus" element={<AboutUs/>} />
-          <Route path="/contact" element={<ContactPage/>} />
+          <Route path="/about" element={<AboutUs/>} />
         </Routes>
+        <Footer/>
       </Router>
       </CartProvider>
     </AuthProvider>
