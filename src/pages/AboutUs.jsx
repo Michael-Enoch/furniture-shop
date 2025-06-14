@@ -17,6 +17,16 @@ import {
   FaQuoteLeft,
 } from "react-icons/fa";
 import theme from "../context/Theme";
+import { FaHandshake, FaLeaf, FaLightbulb, FaMedal, FaUsers, FaTools, FaChevronDown, FaHammer, FaTree, FaRuler, FaPaintRoller, FaHeart, FaQuoteLeft, FaFacebook, FaInstagram, FaPinterest } from "react-icons/fa";
+import teamSarah from "../assets/images/profile-images/fem1.jpg";
+import teamMichael from "../assets/images/profile-images/person1.jpg";
+import teamElena from "../assets/images/profile-images/fem2.jpg";
+import teamDavid from "../assets/images/profile-images/person2.avif";
+import teamOlivia from "../assets/images/profile-images/fem3.jpg";
+import teamJames from "../assets/images/profile-images/person3.jpg";
+import teamSophia from "../assets/images/profile-images/fem4.jpg";
+import teamBenjamin from "../assets/images/profile-images/person4.jpeg";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -276,56 +286,17 @@ const AboutUs = () => {
 
   // Data for team members
   const teamData = [
-    {
-      name: "Sarah Johnson",
-      position: "Creative Director",
-      experience: "12 years",
-      quote: "Design is where science and art break even.",
-    },
-    {
-      name: "Michael Chen",
-      position: "Lead Designer",
-      experience: "8 years",
-      quote: "Simplicity is the ultimate sophistication.",
-    },
-    {
-      name: "Elena Rodriguez",
-      position: "Master Craftsman",
-      experience: "15 years",
-      quote: "Wood has a soul - my job is to reveal it.",
-    },
-    {
-      name: "David Wilson",
-      position: "Operations Manager",
-      experience: "10 years",
-      quote: "Precision in process creates perfection in product.",
-    },
-    {
-      name: "Olivia Parker",
-      position: "Customer Experience",
-      experience: "7 years",
-      quote: "Every client relationship is a new story.",
-    },
-    {
-      name: "James Thompson",
-      position: "Materials Specialist",
-      experience: "9 years",
-      quote: "The forest whispers secrets to those who listen.",
-    },
-    {
-      name: "Sophia Miller",
-      position: "Marketing Director",
-      experience: "6 years",
-      quote: "Sharing the beauty of craftsmanship with the world.",
-    },
-    {
-      name: "Benjamin Carter",
-      position: "Production Lead",
-      experience: "11 years",
-      quote: "Quality is never an accident.",
-    },
-  ];
 
+    { name: "Sarah Johnson", img: teamSarah, position: "Creative Director", experience: "12 years", quote: "Design is where science and art break even." },
+    { name: "Michael Chen", img: teamMichael, position: "Lead Designer", experience: "8 years", quote: "Simplicity is the ultimate sophistication." },
+    { name: "Elena Rodriguez", img: teamElena, position: "Master Craftsman", experience: "15 years", quote: "Wood has a soul - my job is to reveal it." },
+    { name: "David Wilson", img: teamDavid, position: "Operations Manager", experience: "10 years", quote: "Precision in process creates perfection in product." },
+    { name: "Olivia Parker", img: teamOlivia, position: "Customer Experience", experience: "7 years", quote: "Every client relationship is a new story." },
+    { name: "James Thompson", img: teamJames, position: "Materials Specialist", experience: "9 years", quote: "The forest whispers secrets to those who listen." },
+    { name: "Sophia Miller", img: teamSophia, position: "Marketing Director", experience: "6 years", quote: "Sharing the beauty of craftsmanship with the world." },
+    { name: "Benjamin Carter", img: teamBenjamin, position: "Production Lead", experience: "11 years", quote: "Quality is never an accident." }
+  ];
+  
   // Craftsmanship process data
   const processData = [
     {
@@ -364,6 +335,40 @@ const AboutUs = () => {
       description:
         "Every piece undergoes rigorous 12-point inspection before leaving our workshop.",
     },
+  ];
+
+  // Signature pieces gallery data
+  const galleryData = [
+    { 
+      img: "https://images.unsplash.com/photo-1555043720-0b7161d6a49a?auto=format&fit=crop&w=800", 
+      title: "Hudson Dining Table", 
+      description: "Walnut & Leather"
+    },
+    { 
+      img: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800", 
+      title: "Modern Lounge Chair", 
+      description: "Oak & Wool"
+    },
+    { 
+      img: "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800", 
+      title: "Artisan Bookshelf", 
+      description: "Cherry Wood"
+    },
+    { 
+      img: "https://images.unsplash.com/photo-1567538096630-e0c55bd6354f?auto=format&fit=crop&w=800", 
+      title: "Executive Desk", 
+      description: "Mahogany & Steel"
+    },
+    { 
+      img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800", 
+      title: "Heritage Bed Frame", 
+      description: "Reclaimed Oak"
+    },
+    { 
+      img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800", 
+      title: "Minimalist Console", 
+      description: "Maple & Brass"
+    }
   ];
 
   return (
@@ -541,11 +546,13 @@ const AboutUs = () => {
               ref={(el) => (teamRefs.current[index] = el)}
               className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group relative"
             >
-              <div className="h-60 bg-gradient-to-br from-[#FFF9F0] to-[#E8DFD1] relative overflow-hidden">
+              <div className="h-60 relative overflow-hidden">
+                <img 
+                  src={member.img} 
+                  alt={member.name} 
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-gray-200 border-2 border-dashed rounded-xl w-32 h-32" />
-                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                   <h4 className="font-bold text-xl group-hover:text-[#C5A880] transition-colors">
                     {member.name}
@@ -691,18 +698,20 @@ const AboutUs = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, index) => (
-            <div
+          {galleryData.map((item, index) => (
+            <div 
               key={index}
-              className="aspect-[4/5] bg-gradient-to-br from-[#FFF9F0] to-[#E8DFD1] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 relative group"
+              className="aspect-[4/5] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 relative group"
             >
-              <div className="absolute inset-0 bg-gray-200 border-2 border-dashed rounded-xl" />
+              <img 
+                src={item.img} 
+                alt={item.title} 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                 <div>
-                  <h4 className="font-bold text-white text-xl">
-                    Hudson Collection
-                  </h4>
-                  <p className="text-[#E8DFD1]">Walnut & Leather</p>
+                  <h4 className="font-bold text-white text-xl">{item.title}</h4>
+                  <p className="text-[#E8DFD1]">{item.description}</p>
                 </div>
               </div>
             </div>
@@ -727,9 +736,10 @@ const AboutUs = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div
     </div>
   );
 };
 
 export default AboutUs;
+
