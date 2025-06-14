@@ -228,7 +228,6 @@ const AboutUs = () => {
       }
     );
 
-
     // Clean up ScrollTriggers
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -376,17 +375,13 @@ const AboutUs = () => {
         role="banner"
         aria-label="Hero section with background image and call to action"
       >
-
-      <div
-  className="absolute inset-0 w-full h-full bg-center bg-cover transition-transform duration-700 z-0"
-  style={{
-    backgroundImage:
-      "url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=1920&q=80')",
-  }}
-/>
-
-
-
+        <div
+          className="absolute inset-0 w-full h-full bg-center bg-cover transition-transform duration-700 z-0"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=1920&q=80')",
+          }}
+        />
 
         {/* Dark Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80 z-10 pointer-events-none" />
@@ -419,7 +414,7 @@ const AboutUs = () => {
           <button
             ref={buttonRef}
             className="px-8 sm:px-10 mb-8 sm:mb-10 py-3 rounded-full text-[#F8F5F2] text-base sm:text-lg font-medium border-1 border-[#A65A2E] bg-[#C5A880]/10 backdrop-blur-md transition-all duration-300 hover:bg-[#A65A2E] hover:shadow-[0_0_20px_4px_rgba(166,90,46,0.4)] hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a65a2e] focus-visible:ring-offset-2"
-             style={{ fontFamily: theme.fonts.body }}
+            style={{ fontFamily: theme.fonts.body }}
           >
             Explore Our Collection
           </button>
@@ -733,8 +728,6 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-
-     
     </div>
   );
 };
