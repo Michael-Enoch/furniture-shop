@@ -12,6 +12,7 @@ import SearchPage from "./pages/SearchPage";
 
 import { CartProvider } from "./context/CartContext";
 import AboutUs from "./pages/AboutUs";
+import ContactPage from "./pages/ContactPage";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/aboutus" element={<AboutUs/>} />
+          <Route path="/contact" element={<ContactPage/>} />
         </Routes>
       </Router>
       </CartProvider>
