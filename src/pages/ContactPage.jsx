@@ -48,8 +48,10 @@ const ContactPage = () => {
 
   return (
     <div
-      className="w-full max-w-screen-2xl mx-auto"
-      style={{ backgroundColor: "#F3EFEB", color: "#2D2D2D", fontFamily: theme.fonts.body }}
+      className="w-full max-w-screen-2xl mx-auto text-[#2D2D2D]"
+      style={{
+        fontFamily: theme.fonts.body,
+      }}
     >
       {/* Hero Section */}
       <div
@@ -65,14 +67,13 @@ const ContactPage = () => {
         <div className="absolute inset-0 bg-black/80 z-10" />
         <div className="relative z-20 text-center px-4 max-w-4xl">
           <h1
-      className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-wide"
-      style={{ fontFamily: theme.fonts.header }}
-    >
-      Get In Touch
-    </h1>
-          <div className="w-32 h-1 bg-[#BF6E3D] mx-auto my-6"></div>
-          <p className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto"
+            className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-wide"
+            style={{ fontFamily: theme.fonts.header }}
           >
+            Get In Touch
+          </h1>
+          <div className="w-32 h-1 bg-[#BF6E3D] mx-auto my-6"></div>
+          <p className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto">
             We're here to answer your questions and help you find the perfect
             piece
           </p>
@@ -135,14 +136,14 @@ const ContactPage = () => {
               // eslint-disable-next-line no-unused-vars
             ].map(({ icon: Icon, label, content }, i) => (
               <div key={i} className="mb-6 flex items-start">
-                <div className="p-3 bg-[#3A2F2A] text-[#A65A2E] rounded-full mr-4">
+                <div className="p-3 bg-[#A65A2E] text-[#F8F5F2] rounded-full mr-4">
                   <Icon className="text-xl" />
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-[#3A2F2A] mb-1">
+                <div className="text-[#2D2D2D] ">
+                  <h3 className="text-lg font-semibold mb-1">
                     {label}
                   </h3>
-                  <p className="text-[#2D2D2D]">{content}</p>
+                  <p>{content}</p>
                 </div>
               </div>
             ))}
@@ -156,7 +157,7 @@ const ContactPage = () => {
                   <a
                     key={i}
                     href="#"
-                    className="w-10 h-10 rounded-full bg-[#3A2F2A] flex items-center justify-center hover:bg-[#A65A2E] transition"
+                    className="w-10 h-10 rounded-full bg-[#A65A2E] flex items-center justify-center hover:bg-[#BF6E3D] transition"
                   >
                     <Icon className="text-white text-xl" />
                   </a>
@@ -273,7 +274,7 @@ const ContactPage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#3A2F2A] text-white py-3 rounded-lg font-semibold hover:bg-[#2D2D2D] transition flex items-center justify-center"
+                className="w-full bg-[#A65A2E] text-[#F8F5F2] py-3 rounded-lg font-semibold hover:bg-[#BF6E3D] transition flex items-center justify-center"
               >
                 {isSubmitting ? (
                   "Sending..."
@@ -290,16 +291,14 @@ const ContactPage = () => {
       </section>
       {/* Map Section */}
       <div
-        className="py-16 px-4 w-full max-w-8xl mx-auto"
-        style={{ backgroundColor: "#F3EFEB" }}
+        className="py-16 px-4 w-full max-w-8xl mx-auto bg-[#EAE6E1]"
       >
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-[#2D2D2D] mb-8 text-center">
             Visit Our Workshop
           </h2>
           <div
-            className="rounded-2xl w-full shadow-xl overflow-hidden h-96 border"
-            style={{ borderColor: "#DAD4CE" }}
+            className="rounded-2xl w-full shadow-xl overflow-hidden h-96"
           >
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.11976397304603!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1659377895806!5m2!1sen!2s"
@@ -315,12 +314,9 @@ const ContactPage = () => {
       </div>
 
       {/* Business Hours */}
-      <div
-        className="py-16 px-4 w-full max-w-8xl mx-auto"
-        style={{ backgroundColor: "#EAE6E1", color: "#2D2D2D" }}
-      >
+      <div className="py-16 px-4 w-full max-w-8xl mx-auto bg-[#F3EFEB] text-[#2D2D2D]">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-[#2D2D2D]">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Business Hours
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -332,14 +328,10 @@ const ContactPage = () => {
             ].map((item, i) => (
               <div
                 key={i}
-                className="p-6 rounded-2xl text-center shadow-md"
-                style={{
-                  backgroundColor: "#FFFFFF",
-                  border: "1px solid #DAD4CE",
-                }}
+                className="p-6 text-center shadow-md bg-white"
               >
-                <div className="bg-[#EFEAE5] text-[#2D2D2D] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
-                  <FaClock className="text-2xl" />
+                <div className="bg-[#A65A2E] text-[#F8F5F2] w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                  <FaClock size={28} />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{item.label}</h3>
                 <p>{item.time}</p>
@@ -347,24 +339,13 @@ const ContactPage = () => {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <p className="text-lg max-w-2xl mx-auto text-[#2D2D2D]">
+          <div className="mt-12 text-center text-[#2D2D2D]">
+            <p className="text-lg max-w-2xl mx-auto">
               We recommend scheduling an appointment for personalized
               consultations to ensure we can give you our undivided attention.
             </p>
             <button
-              className="mt-6 px-8 py-3 rounded-full font-medium text-lg transition-all duration-300"
-              style={{
-                border: "2px solid #2D2D2D",
-                color: "#2D2D2D",
-                backgroundColor: "transparent",
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = "#EFEAE5";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = "transparent";
-              }}
+              className="mt-6 px-8 py-3 rounded-full font-medium text-lg transition-all duration-300 bg-[#A65A2E] text-[#F8F5F2]"
             >
               Schedule an Appointment
             </button>
@@ -373,7 +354,7 @@ const ContactPage = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="w-full max-w-8xl mx-auto bg-[#3A2F2A] text-white py-16 text-center px-4">
+      <div className="w-full max-w-8xl mx-auto bg-[#3A2F2A] text-[#F8F5F2] py-16 text-center px-4 border-b border-[#DAD4CE]">
         <h2 className="text-4xl font-bold mb-4">
           Let's Create Your Dream Space
         </h2>
@@ -383,7 +364,7 @@ const ContactPage = () => {
         </p>
         <a
           href="/shop"
-          className="inline-block bg-[#A65A2E] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#874823] transition-colors"
+          className="bg-[#A65A2E] text-[#F8F5F2] px-6 py-3 rounded-lg font-semibold transition-colors"
         >
           Start Shopping
         </a>

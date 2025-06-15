@@ -420,7 +420,13 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="max-w-8xl">
+    <div className="max-w-8xl"
+    style={{
+    fontFamily: theme.fonts.body,
+    backgroundColor: theme.colors.background,
+    color: theme.colors.text,
+  }}
+    >
       {/* Hero Section - Full Viewport Height */}
       <div
         ref={heroRef}
@@ -493,7 +499,7 @@ const AboutUs = () => {
       </div>
 
       {/* Story Section */}
-      <div className="py-24 px-4 md:px-8 max-w-6xl mx-auto">
+      <div className="py-24 px-4 md:px-8 max-w-8xl mx-auto bg-[#F3EFEB] text-[#2D2D2D]">
         <div className="flex flex-col md:flex-row items-center gap-16">
           <div
             ref={storyImageRef}
@@ -512,7 +518,7 @@ const AboutUs = () => {
           </div>
 
           <div ref={storyTextRef} className="w-full md:w-1/2">
-            <h3 className="text-3xl md:text-4xl font-bold text-[#2F4F4F] mb-6">
+           <h3 className="text-3xl md:text-4xl font-bold text-[#3A2F2A] mb-6">
               Our Heritage & Journey
             </h3>
             <p className="text-lg mb-6 leading-relaxed">
@@ -529,16 +535,20 @@ const AboutUs = () => {
               for future generations.
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
-              <div className="bg-[#2F4F4F] text-white px-4 py-2 rounded-full text-sm">
+              <div className="bg-[#3A2F2A] text-[#F8F5F2] px-4 py-2 rounded-full text-sm">
+
                 25+ Years Experience
               </div>
-              <div className="bg-[#2F4F4F] text-white px-4 py-2 rounded-full text-sm">
+             <div className="bg-[#3A2F2A] text-[#F8F5F2] px-4 py-2 rounded-full text-sm">
+
                 Family-Owned
               </div>
-              <div className="bg-[#2F4F4F] text-white px-4 py-2 rounded-full text-sm">
+              <div className="bg-[#3A2F2A] text-[#F8F5F2] px-4 py-2 rounded-full text-sm">
+
                 Handcrafted
               </div>
-              <div className="bg-[#2F4F4F] text-white px-4 py-2 rounded-full text-sm">
+             <div className="bg-[#3A2F2A] text-[#F8F5F2] px-4 py-2 rounded-full text-sm">
+
                 Sustainable Materials
               </div>
             </div>
@@ -547,12 +557,11 @@ const AboutUs = () => {
       </div>
 
       {/* Mission & Values */}
-      <div className="py-24 bg-[#2F4F4F] text-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <h3 ref={missionRef} className="text-4xl font-bold text-center mb-6">
+        <div className="max-w-8xl mx-auto px-4 py-24 bg-[#EAE6E1] text-[#2D2D2D]">
+          <h3 ref={missionRef} className="text-3xl md:text-4xl font-bold text-center text-[#3A2F2A] mb-6">
             Our Guiding Principles
           </h3>
-          <p className="text-xl text-center max-w-2xl mx-auto mb-16 text-[#E8DFD1]">
+          <p className="text-xl text-center max-w-2xl mx-auto mb-16">
             The values that shape every decision, every design, and every piece
             we create
           </p>
@@ -562,18 +571,17 @@ const AboutUs = () => {
               <div
                 key={index}
                 ref={(el) => (valuesRefs.current[index] = el)}
-                className="bg-[#3A5F5F] p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-[#5C3A21]/30"
+                className="bg-[#FFFFFF] p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-[#DAD4CE]/30"
               >
-                <div className="w-16 h-16 rounded-full bg-[#5C3A21] flex items-center justify-center mb-6 text-white">
+                <div className="w-16 h-16 rounded-full bg-[#3A2F2A] text-[#F8F5F2]  flex items-center justify-center mb-6">
                   {value.icon}
                 </div>
                 <h4 className="text-2xl font-bold mb-4">{value.title}</h4>
-                <p className="text-[#E8DFD1]">{value.description}</p>
+                <p className="">{value.description}</p>
               </div>
             ))}
           </div>
         </div>
-      </div>
 
       {/* Enhanced Meet Our Artisans Section */}
       <div className="py-24 px-4 max-w-6xl mx-auto">
