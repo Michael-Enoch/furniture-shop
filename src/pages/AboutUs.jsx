@@ -1,9 +1,15 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FaHandshake, FaLeaf, FaLightbulb, FaMedal, FaUsers, FaTools, FaChevronDown, FaHammer, FaTree, FaRuler, FaPaintRoller, FaHeart, FaQuoteLeft } from "react-icons/fa";
-import fem1 from "../assets/images/profile-images/fem1.jpg";
-import fem2 from "../assets/images/profile-images/fem2.jpg"
+import { FaHandshake, FaLeaf, FaLightbulb, FaMedal, FaUsers, FaTools, FaChevronDown, FaHammer, FaTree, FaRuler, FaPaintRoller, FaHeart, FaQuoteLeft, FaFacebook, FaInstagram, FaPinterest } from "react-icons/fa";
+import teamSarah from "../assets/images/profile-images/fem1.jpg";
+import teamMichael from "../assets/images/profile-images/person1.jpg";
+import teamElena from "../assets/images/profile-images/fem2.jpg";
+import teamDavid from "../assets/images/profile-images/person2.avif";
+import teamOlivia from "../assets/images/profile-images/fem3.jpg";
+import teamJames from "../assets/images/profile-images/person3.jpg";
+import teamSophia from "../assets/images/profile-images/fem4.jpg";
+import teamBenjamin from "../assets/images/profile-images/person4.jpeg";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -258,16 +264,16 @@ const AboutUs = () => {
 
   // Data for team members
   const teamData = [
-    { name: "Sarah Johnson", img :"fem1", position: "Creative Director", experience: "12 years", quote: "Design is where science and art break even." },
-    { name: "Michael Chen",  img :"fem2",position: "Lead Designer", experience: "8 years", quote: "Simplicity is the ultimate sophistication." },
-    { name: "Elena Rodriguez", position: "Master Craftsman", experience: "15 years", quote: "Wood has a soul - my job is to reveal it." },
-    { name: "David Wilson", position: "Operations Manager", experience: "10 years", quote: "Precision in process creates perfection in product." },
-    { name: "Olivia Parker", position: "Customer Experience", experience: "7 years", quote: "Every client relationship is a new story." },
-    { name: "James Thompson", position: "Materials Specialist", experience: "9 years", quote: "The forest whispers secrets to those who listen." },
-    { name: "Sophia Miller", position: "Marketing Director", experience: "6 years", quote: "Sharing the beauty of craftsmanship with the world." },
-    { name: "Benjamin Carter", position: "Production Lead", experience: "11 years", quote: "Quality is never an accident." }
+    { name: "Sarah Johnson", img: teamSarah, position: "Creative Director", experience: "12 years", quote: "Design is where science and art break even." },
+    { name: "Michael Chen", img: teamMichael, position: "Lead Designer", experience: "8 years", quote: "Simplicity is the ultimate sophistication." },
+    { name: "Elena Rodriguez", img: teamElena, position: "Master Craftsman", experience: "15 years", quote: "Wood has a soul - my job is to reveal it." },
+    { name: "David Wilson", img: teamDavid, position: "Operations Manager", experience: "10 years", quote: "Precision in process creates perfection in product." },
+    { name: "Olivia Parker", img: teamOlivia, position: "Customer Experience", experience: "7 years", quote: "Every client relationship is a new story." },
+    { name: "James Thompson", img: teamJames, position: "Materials Specialist", experience: "9 years", quote: "The forest whispers secrets to those who listen." },
+    { name: "Sophia Miller", img: teamSophia, position: "Marketing Director", experience: "6 years", quote: "Sharing the beauty of craftsmanship with the world." },
+    { name: "Benjamin Carter", img: teamBenjamin, position: "Production Lead", experience: "11 years", quote: "Quality is never an accident." }
   ];
-
+  
   // Craftsmanship process data
   const processData = [
     { icon: <FaTree className="text-3xl" />, title: "Material Selection", description: "We source only the finest sustainable hardwoods from certified forests around the world." },
@@ -276,6 +282,40 @@ const AboutUs = () => {
     { icon: <FaRuler className="text-3xl" />, title: "Precision Joinery", description: "Traditional joinery techniques ensure structural integrity that lasts generations." },
     { icon: <FaPaintRoller className="text-3xl" />, title: "Finishing Touches", description: "Hand-applied natural finishes that enhance the wood's beauty and provide lasting protection." },
     { icon: <FaMedal className="text-3xl" />, title: "Quality Inspection", description: "Every piece undergoes rigorous 12-point inspection before leaving our workshop." }
+  ];
+
+  // Signature pieces gallery data
+  const galleryData = [
+    { 
+      img: "https://images.unsplash.com/photo-1555043720-0b7161d6a49a?auto=format&fit=crop&w=800", 
+      title: "Hudson Dining Table", 
+      description: "Walnut & Leather"
+    },
+    { 
+      img: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800", 
+      title: "Modern Lounge Chair", 
+      description: "Oak & Wool"
+    },
+    { 
+      img: "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800", 
+      title: "Artisan Bookshelf", 
+      description: "Cherry Wood"
+    },
+    { 
+      img: "https://images.unsplash.com/photo-1567538096630-e0c55bd6354f?auto=format&fit=crop&w=800", 
+      title: "Executive Desk", 
+      description: "Mahogany & Steel"
+    },
+    { 
+      img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800", 
+      title: "Heritage Bed Frame", 
+      description: "Reclaimed Oak"
+    },
+    { 
+      img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800", 
+      title: "Minimalist Console", 
+      description: "Maple & Brass"
+    }
   ];
 
   return (
@@ -421,12 +461,13 @@ const AboutUs = () => {
               ref={el => teamRefs.current[index] = el}
               className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group relative"
             >
-              <div className="h-60 bg-gradient-to-br from-[#FFF9F0] to-[#E8DFD1] relative overflow-hidden">
+              <div className="h-60 relative overflow-hidden">
+                <img 
+                  src={member.img} 
+                  alt={member.name} 
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-gray-200 border-2 border-dashed rounded-xl w-32 h-32" />
-                  <img src={member.img} alt="" />
-                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                   <h4 className="font-bold text-xl group-hover:text-[#C5A880] transition-colors">{member.name}</h4>
                   <p className="text-[#E8DFD1]">{member.position}</p>
@@ -563,16 +604,20 @@ const AboutUs = () => {
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, index) => (
+          {galleryData.map((item, index) => (
             <div 
               key={index}
-              className="aspect-[4/5] bg-gradient-to-br from-[#FFF9F0] to-[#E8DFD1] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 relative group"
+              className="aspect-[4/5] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 relative group"
             >
-              <div className="absolute inset-0 bg-gray-200 border-2 border-dashed rounded-xl" />
+              <img 
+                src={item.img} 
+                alt={item.title} 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                 <div>
-                  <h4 className="font-bold text-white text-xl">Hudson Collection</h4>
-                  <p className="text-[#E8DFD1]">Walnut & Leather</p>
+                  <h4 className="font-bold text-white text-xl">{item.title}</h4>
+                  <p className="text-[#E8DFD1]">{item.description}</p>
                 </div>
               </div>
             </div>
@@ -599,77 +644,74 @@ const AboutUs = () => {
       </div>
 
       {/* Footer */}
-      <footer 
-        ref={footerRef}
-        className="bg-[#2F4F4F] text-white pt-16 pb-8"
-      >
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 px-6">
-          <div>
-            <h4 className="text-2xl font-bold mb-6">Hudson's Furniture</h4>
-            <p className="text-[#E8DFD1] mb-4">
-              Crafting timeless pieces for modern homes since 1995.
-            </p>
-            <div className="flex gap-4 mt-4">
-              {[...Array(3)].map((_, i) => (
-                <div 
-                  key={i}
-                  className="w-10 h-10 rounded-full bg-[#5C3A21] flex items-center justify-center hover:bg-[#C5A880] transition-colors cursor-pointer"
-                >
-                  <span className="text-xs">fb</span>
-                </div>
-              ))}
-            </div>
+<footer 
+  ref={footerRef}
+  className="bg-[#1E3E3E] text-white pt-16 pb-8" // Darker shade for grounding
+>
+  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 px-6">
+    <div>
+      <h4 className="text-2xl font-bold mb-6 text-[#C5A880]">Hudson's Furniture</h4> {/* Accent color */}
+      <p className="text-[#E8DFD1] mb-4">
+        Crafting timeless pieces for modern homes since 1995.
+      </p>
+      <div className="flex gap-4 mt-4">
+        {[...Array(3)].map((_, i) => (
+          <div 
+            key={i}
+            className="w-10 h-10 rounded-full bg-[#3A5F5F] flex items-center justify-center hover:bg-[#C5A880] transition-colors cursor-pointer"
+          >
+            <span className="text-xs">fb</span>
           </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Explore</h4>
-            <ul className="space-y-2 text-[#E8DFD1]">
-              {["Collections", "Custom Orders", "Showrooms", "Inspiration Gallery", "Care Instructions"].map((item, i) => (
-                <li key={i} className="hover:text-[#C5A880] cursor-pointer transition-colors">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Company</h4>
-            <ul className="space-y-2 text-[#E8DFD1]">
-              {["About Us", "Sustainability", "Careers", "Press", "Trade Program"].map((item, i) => (
-                <li key={i} className="hover:text-[#C5A880] cursor-pointer transition-colors">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-            <address className="not-italic text-[#E8DFD1]">
-              <p className="mb-2">123 Design Avenue</p>
-              <p className="mb-4">New York, NY 10001</p>
-              <p className="mb-1">info@hudsons.com</p>
-              <p className="mb-6">(212) 555-7890</p>
-              <button 
-                onMouseEnter={handleButtonHover}
-                onMouseLeave={handleButtonHoverEnd}
-                className="border border-white text-white px-6 py-2 rounded-full hover:bg-[#C5A880] hover:border-[#C5A880] transition-colors"
-              >
-                Schedule Consultation
-              </button>
-            </address>
-          </div>
-        </div>
-        
-        <div className="max-w-6xl mx-auto mt-16 pt-8 border-t border-[#5C3A21] text-center text-[#E8DFD1]">
-          <p>© 2023 Hudson's Furniture. All rights reserved. Crafted with passion in Brooklyn, NY.</p>
-        </div>
-      </footer>
-
-      
+        ))}
+      </div>
+    </div>
+    
+    <div>
+      <h4 className="text-lg font-semibold mb-4 text-[#C5A880]">Explore</h4> {/* Accent color */}
+      <ul className="space-y-2 text-[#E8DFD1]">
+        {["Collections", "Custom Orders", "Showrooms", "Inspiration Gallery", "Care Instructions"].map((item, i) => (
+          <li key={i} className="hover:text-[#C5A880] cursor-pointer transition-colors">
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+    
+    <div>
+      <h4 className="text-lg font-semibold mb-4 text-[#C5A880]">Company</h4> {/* Accent color */}
+      <ul className="space-y-2 text-[#E8DFD1]">
+        {["About Us", "Sustainability", "Careers", "Press", "Trade Program"].map((item, i) => (
+          <li key={i} className="hover:text-[#C5A880] cursor-pointer transition-colors">
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+    
+    <div>
+      <h4 className="text-lg font-semibold mb-4 text-[#C5A880]">Contact Us</h4> {/* Accent color */}
+      <address className="not-italic text-[#E8DFD1]">
+        <p className="mb-2">123 Design Avenue</p>
+        <p className="mb-4">New York, NY 10001</p>
+        <p className="mb-1">info@hudsons.com</p>
+        <p className="mb-6">(212) 555-7890</p>
+        <button 
+          onMouseEnter={handleButtonHover}
+          onMouseLeave={handleButtonHoverEnd}
+          className="border border-[#C5A880] text-[#C5A880] px-6 py-2 rounded-full hover:bg-[#C5A880] hover:text-white transition-colors"
+        >
+          Schedule Consultation
+        </button>
+      </address>
+    </div>
+  </div>
+  
+  <div className="max-w-6xl mx-auto mt-16 pt-8 border-t border-[#3A5F5F] text-center text-[#E8DFD1]">
+    <p>© 2023 Hudson's Furniture. All rights reserved. Crafted with passion in Brooklyn, NY.</p>
+  </div>
+</footer>
     </div>
   );
 };
-
 
 export default AboutUs;
