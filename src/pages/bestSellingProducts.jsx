@@ -67,12 +67,12 @@ const BestSelling = ({ sectionIndex = 2 }) => {
         {filteredProducts.slice(0, 4).map((product, index) => (
           <div
             key={product.id}
-            className="flex flex-col rounded-xl border shadow-md overflow-hidden relative group"
+            className="flex flex-col rounded-lg shadow-md overflow-hidden relative group"
             data-aos="fade-up"
             data-aos-duration="1000"
             data-aos-delay={index * 100}
             style={{
-              backgroundColor: theme.colors.background.muted,
+              backgroundColor: theme.colors.ui.base,
               borderColor: theme.colors.ui.border,
               transition: "box-shadow 0.3s ease",
             }}
