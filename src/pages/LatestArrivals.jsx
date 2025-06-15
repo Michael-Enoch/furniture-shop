@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function LatestArrivalsGridWithModal({ products, theme, sectionIndex = 1 }) {
+export default function LatestArrivalsGridWithModal({
+  products,
+  theme,
+  sectionIndex = 1,
+}) {
   const [selectedProduct, setSelectedProduct] = useState(null);
-   const bgColor =
+  const bgColor =
     sectionIndex % 2 === 0
       ? theme.colors.background.DEFAULT
       : theme.colors.background.alt;
@@ -11,7 +15,7 @@ export default function LatestArrivalsGridWithModal({ products, theme, sectionIn
   return (
     <section
       className="w-full px-4 sm:px-8 md:px-16 py-14 relative"
-      style={{ backgroundColor: bgColor}}
+      style={{ backgroundColor: bgColor }}
     >
       {/* Modal Background Overlay */}
       {selectedProduct && (
@@ -28,7 +32,7 @@ export default function LatestArrivalsGridWithModal({ products, theme, sectionIn
         data-aos-delay="100"
       >
         <h2
-         className="text-3xl sm:text-4xl md:text-5xl font-light mb-6 tracking-tight"
+          className="text-3xl sm:text-4xl md:text-5xl font-light mb-6 tracking-tight"
           style={{
             color: theme.colors.text.primary,
             fontFamily: theme.fonts.header,
