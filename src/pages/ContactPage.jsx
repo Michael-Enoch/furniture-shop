@@ -1,358 +1,464 @@
+import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 
-  import React, { useState, useEffect } from "react";
-
-  function ContactPage() {
-    const [formData, setFormData] = useState({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
+const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const titleRef = useRef(null);
+  const sectionRefs = useRef([]);
+  
+  useEffect(() => {
+    // GSAP animations
+    gsap.from(titleRef.current, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power3.out",
+      delay: 0.3
     });
-
-    const [errors, setErrors] = useState({});
-    const [submitted, setSubmitted] = useState(false);
-
-    useEffect(() => {
-      const title = document.getElementById("home-title");
-      if (title) title.classList.add("fadeSlideIn");
-    }, []);
-
-    function handleChange(e) {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
-      setErrors({ ...errors, [e.target.name]: "" });
-    }
-
-    function validate() {
-      const newErrors = {};
-      if (!formData.name.trim()) newErrors.name = "Name is required";
-      if (!formData.email.trim()) newErrors.email = "Email is required";
-      else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email is invalid";
-      if (!formData.subject.trim()) newErrors.subject = "Subject is required";
-      if (!formData.message.trim()) newErrors.message = "Message is required";
-      return newErrors;
-    }
-
-    function handleSubmit(e) {
-      e.preventDefault();
-      const validationErrors = validate();
-      if (Object.keys(validationErrors).length > 0) {
-        setErrors(validationErrors);
-        return;
-      }
-      setSubmitted(true);
-      console.log("Form submitted:", formData);
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+    
+    gsap.utils.toArray(".animate-section").forEach((section, i) => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
       });
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+  
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: "" });
+  };
+  
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email is invalid";
+    if (!formData.subject.trim()) newErrors.subject = "Subject is required";
+    if (!formData.message.trim()) newErrors.message = "Message is required";
+    return newErrors;
+  };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
     }
-
-    function scrollToSection(id) {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
+    
+    setSubmitted(true);
+    
+    // Reset form after submission
+    setTimeout(() => {
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setSubmitted(false);
+    }, 3000);
+  };
+  
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
     }
-
-    return (
-      <>
-        <style>{`
-          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
-
-          body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            background-color: #f5f8fa;
-            color: #333;
-          }
-
-          @keyframes fadeSlideUp {
-            0% {
-              opacity: 0;
-              transform: translateY(30px);
-            }
-            100% {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          .fadeSlideIn {
-            animation: fadeSlideUp 1s ease forwards;
-          }
-
-          button:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
-          }
-
-          input:focus, textarea:focus {
-            outline: none;
-            box-shadow: 0 0 8px #007bff;
-            border-color: #007bff;
-            transition: box-shadow 0.3s ease, border-color 0.3s ease;
-          }
-
-          footer {
-            animation: fadeSlideUp 1.5s ease forwards;
-            opacity: 0;
-            animation-delay: 1s;
-            animation-fill-mode: forwards;
-          }
-        `}</style>
-
+  };
+  
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+  
+  return (
+    <div className="min-h-screen font-sans" style={{ backgroundColor: '#F5F1E9', color: '#333333' }}>
+      
+      {/* Main Content */}
+      <main className="max-w-6xl mx-auto py-16 px-6">
+        <div className="text-center mb-16">
+          <motion.h2 
+            ref={titleRef}
+            className="text-4xl md:text-5xl font-bold mb-4 tracking-tight"
+            style={{ color: '#2F4F4F' }}
+          >
+            Contact Us
+          </motion.h2>
+          <motion.div 
+            className="w-24 h-1 mx-auto mb-6"
+            style={{ backgroundColor: '#5C3A21' }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          />
+          <motion.p 
+            className="text-xl max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+          >
+            Have questions about our furniture collections or custom design services? Our team is ready to assist you.
+          </motion.p>
+        </div>
         
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Contact Form */}
+          <motion.div 
+            className="animate-section p-8 rounded-xl shadow-lg"
+            style={{ backgroundColor: '#FFF9F0' }}
+          >
+            <h3 className="text-2xl font-bold mb-6" style={{ color: '#2F4F4F' }}>
+              Send Us a Message
+            </h3>
+            
+            {submitted ? (
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="p-6 rounded-lg text-center"
+                style={{ backgroundColor: '#e6f4ea', color: '#0f5132' }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
+                <p className="text-lg">We've received your message and will get back to you soon.</p>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="space-y-6"
+                >
+                  <motion.div variants={itemVariants}>
+                    <label className="block font-medium mb-2" htmlFor="name">
+                      Full Name
+                    </label>
+                    <input
+                      className={`w-full px-4 py-3 rounded-lg border ${errors.name ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2`}
+                      style={{ backgroundColor: '#F5F1E9', focusRingColor: '#5C3A21' }}
+                      type="text"
+                      id="name"
+                      name="name"
+                      placeholder="John Smith"
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
+                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                  </motion.div>
 
-        <section id="home" style={styles.homeSection}>
-          <h1 id="home-title" style={styles.homeTitle}>
-            Welcome to Our Website
-          </h1>
-          <p style={styles.homeDesc}>
-            We’re glad you’re here! Explore our site and feel free to reach out below.We are very happy to help.
-          </p>
-        </section>
+                  <motion.div variants={itemVariants}>
+                    <label className="block font-medium mb-2" htmlFor="email">
+                      Email Address
+                    </label>
+                    <input
+                      className={`w-full px-4 py-3 rounded-lg border ${errors.email ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2`}
+                      style={{ backgroundColor: '#F5F1E9', focusRingColor: '#5C3A21' }}
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="john@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                  </motion.div>
 
-        <section id="contact" style={styles.contactSection}>
-          <h2 style={styles.contactHeading}>Contact Us</h2>
-          {submitted && (
-            <div style={styles.successMessage}>
-              Thanks for reaching out! We will get back to you soon.
-            </div>
-          )}
-          <form onSubmit={handleSubmit} noValidate style={styles.form}>
-            <label style={styles.label} htmlFor="name">
-              Name
-            </label>
-            <input
-              style={styles.input}
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Your full name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-            {errors.name && <p style={styles.error}>{errors.name}</p>}
+                  <motion.div variants={itemVariants}>
+                    <label className="block font-medium mb-2" htmlFor="subject">
+                      Subject
+                    </label>
+                    <input
+                      className={`w-full px-4 py-3 rounded-lg border ${errors.subject ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2`}
+                      style={{ backgroundColor: '#F5F1E9', focusRingColor: '#5C3A21' }}
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      placeholder="How can we help?"
+                      value={formData.subject}
+                      onChange={handleChange}
+                    />
+                    {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
+                  </motion.div>
 
-            <label style={styles.label} htmlFor="email">
-              Email
-            </label>
-            <input
-              style={styles.input}
-              type="email"
-              id="email"
-              name="email"
-              placeholder="your.email@example.com"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            {errors.email && <p style={styles.error}>{errors.email}</p>}
+                  <motion.div variants={itemVariants}>
+                    <label className="block font-medium mb-2" htmlFor="message">
+                      Message
+                    </label>
+                    <textarea
+                      className={`w-full px-4 py-3 rounded-lg border ${errors.message ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 min-h-[150px]`}
+                      style={{ backgroundColor: '#F5F1E9', focusRingColor: '#5C3A21' }}
+                      id="message"
+                      name="message"
+                      placeholder="Tell us about your furniture needs..."
+                      value={formData.message}
+                      onChange={handleChange}
+                    />
+                    {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+                  </motion.div>
 
-            <label style={styles.label} htmlFor="subject">
-              Subject
-            </label>
-            <input
-              style={styles.input}
-              type="text"
-              id="subject"
-              name="subject"
-              placeholder="Subject"
-              value={formData.subject}
-              onChange={handleChange}
-            />
-            {errors.subject && <p style={styles.error}>{errors.subject}</p>}
-
-            <label style={styles.label} htmlFor="message">
-              Message
-            </label>
-            <textarea
-              style={{ ...styles.input, height: "100px" }}
-              id="message"
-              name="message"
-              placeholder="Write your message here..."
-              value={formData.message}
-              onChange={handleChange}
-            />
-            {errors.message && <p style={styles.error}>{errors.message}</p>}
-
-            <button type="submit" style={styles.button}>
-              Send Message
-            </button>
-          </form>
-
-          <div style={styles.contactMapContainer}>
-            <div style={styles.contactInfo}>
-              <p><strong>Email:</strong> support@example.com</p>
-              <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-              <p><strong>Address:</strong> 123 Main St, Your City, Country</p>
-            </div>
-            <div style={styles.mapWrapper}>
+                  <motion.div variants={itemVariants}>
+                    <motion.button
+                      type="submit"
+                      className="w-full py-4 text-white font-bold rounded-lg"
+                      style={{ backgroundColor: '#5C3A21' }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      Send Message
+                    </motion.button>
+                  </motion.div>
+                </motion.div>
+              </form>
+            )}
+          </motion.div>
+          
+          {/* Contact Info */}
+          <div className="space-y-8">
+            <motion.div 
+              className="animate-section p-8 rounded-xl shadow-lg"
+              style={{ backgroundColor: '#FFF9F0' }}
+            >
+              <h3 className="text-2xl font-bold mb-6" style={{ color: '#2F4F4F' }}>
+                Our Information
+              </h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="p-3 rounded-full mr-4" style={{ backgroundColor: '#2F4F4F' }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#FFF9F0">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-1" style={{ color: '#2F4F4F' }}>Showroom Address</h4>
+                    <p>123 Design District Avenue</p>
+                    <p>Furniture City, FC 10001</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="p-3 rounded-full mr-4" style={{ backgroundColor: '#2F4F4F' }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#FFF9F0">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-1" style={{ color: '#2F4F4F' }}>Phone</h4>
+                    <p>+1 (555) 123-4567</p>
+                    <p>Mon-Fri: 9am - 6pm</p>
+                    <p>Sat: 10am - 4pm</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="p-3 rounded-full mr-4" style={{ backgroundColor: '#2F4F4F' }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#FFF9F0">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-1" style={{ color: '#2F4F4F' }}>Email</h4>
+                    <p>info@hudsonsfurniture.com</p>
+                    <p>support@hudsonsfurniture.com</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              className="animate-section rounded-xl overflow-hidden shadow-lg"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
               <iframe
-                title="Company Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0865987414576!2d-122.41941568468277!3d37.77492977975888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c5b5a5a37%3A0xb8824cbb9e2e9ab2!2s123%20Main%20St%2C%20San%20Francisco%2C%20CA%2094105%2C%20USA!5e0!3m2!1sen!2sus!4v1696441469023!5m2!1sen!2sus"
+                title="Hudson's Furniture Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.184133404903!2d-73.98757492416464!3d40.75797473455734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1696441469023!5m2!1sen!2sus"
                 width="100%"
-                height="200"
-                style={{ border: 0, borderRadius: 8 }}
+                height="300"
+                style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-              />
+              ></iframe>
+            </motion.div>
+          </div>
+        </div>
+        
+        {/* FAQ Section */}
+        <motion.div 
+          className="animate-section mt-20"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold mb-4" style={{ color: '#2F4F4F' }}>Frequently Asked Questions</h3>
+            <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#5C3A21' }}></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                question: "What is your delivery timeline?",
+                answer: "Standard delivery takes 2-4 weeks after order confirmation. For custom pieces, please allow 6-8 weeks. Expedited options are available."
+              },
+              {
+                question: "Do you offer assembly services?",
+                answer: "Yes, we offer professional assembly services for all our furniture. Our team will ensure everything is set up perfectly in your home."
+              },
+              {
+                question: "What is your return policy?",
+                answer: "We offer a 30-day return policy on all non-custom items. Custom pieces are not returnable but are covered by our quality guarantee."
+              },
+              {
+                question: "Can I customize furniture pieces?",
+                answer: "Absolutely! We specialize in custom furniture. Choose from various fabrics, finishes, and dimensions to create your perfect piece."
+              }
+            ].map((faq, i) => (
+              <motion.div 
+                key={i}
+                className="p-6 rounded-xl shadow-md"
+                style={{ backgroundColor: '#FFF9F0' }}
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <h4 className="font-bold text-lg mb-2" style={{ color: '#2F4F4F' }}>{faq.question}</h4>
+                <p>{faq.answer}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+        
+        {/* Site Map */}
+        <motion.div 
+          className="animate-section mt-20 py-12 px-8 rounded-xl"
+          style={{ backgroundColor: '#2F4F4F', color: '#FFF9F0' }}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold mb-4">Site Map</h3>
+            <div className="w-20 h-1 mx-auto mb-6" style={{ backgroundColor: '#5C3A21' }}></div>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h4 className="font-bold text-lg mb-4">Collections</h4>
+              <ul className="space-y-2">
+                {['Living Room', 'Bedroom', 'Dining Room', 'Home Office', 'Outdoor', 'Accent Pieces'].map((item, i) => (
+                  <li key={i}>
+                    <a href="#" className="hover:opacity-80 transition-opacity">{item}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-lg mb-4">Services</h4>
+              <ul className="space-y-2">
+                {['Custom Design', 'Interior Consultation', 'Delivery & Setup', 'Furniture Restoration', 'Trade Program', 'Financing'].map((item, i) => (
+                  <li key={i}>
+                    <a href="#" className="hover:opacity-80 transition-opacity">{item}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-lg mb-4">About Us</h4>
+              <ul className="space-y-2">
+                {['Our Story', 'Craftsmanship', 'Sustainability', 'Showrooms', 'Careers', 'Press'].map((item, i) => (
+                  <li key={i}>
+                    <a href="#" className="hover:opacity-80 transition-opacity">{item}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-lg mb-4">Customer Support</h4>
+              <ul className="space-y-2">
+                {['Contact Us', 'FAQ', 'Shipping Info', 'Returns & Exchanges', 'Care Instructions', 'Warranty'].map((item, i) => (
+                  <li key={i}>
+                    <a href="#" className="hover:opacity-80 transition-opacity">{item}</a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </section>
-
-        <Footer />
-      </>
-    );
-  }
-
-  function Footer() {
-    return (
-      <footer style={styles.footer}>
-        <div style={styles.footerContent}>
-          <p>© 2025 Your Company. All rights reserved.</p>
-          <div style={styles.socialLinks}>
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" style={styles.socialLink}>
-              Facebook
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" style={styles.socialLink}>
-              Twitter
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" style={styles.socialLink}>
-              LinkedIn
-            </a>
+        </motion.div>
+      </main>
+      
+      {/* Footer */}
+      <footer className="py-12 px-6 mt-20" style={{ backgroundColor: '#2F4F4F', color: '#FFF9F0' }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <h3 className="text-2xl font-bold mb-2">Hudson's Furniture</h3>
+              <p className="max-w-xs opacity-80">Crafting timeless furniture for modern living since 1985</p>
+            </div>
+            
+            <div className="flex space-x-6">
+              {['facebook', 'twitter', 'instagram', 'pinterest'].map((platform, i) => (
+                <motion.a
+                  key={i}
+                  href="#"
+                  className="hover:opacity-80 transition-opacity"
+                  whileHover={{ y: -3 }}
+                >
+                  <span className="sr-only">{platform}</span>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: '#5C3A21' }}>
+                    <div className="w-5 h-5 rounded-full" style={{ backgroundColor: '#FFF9F0' }}></div>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-600 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p>© 2023 Hudson's Furniture. All rights reserved.</p>
+            <div className="mt-4 md:mt-0 flex space-x-6">
+              <a href="#" className="hover:opacity-80 transition-opacity">Privacy Policy</a>
+              <a href="#" className="hover:opacity-80 transition-opacity">Terms of Service</a>
+              <a href="#" className="hover:opacity-80 transition-opacity">Accessibility</a>
+            </div>
           </div>
         </div>
       </footer>
-    );
-  }
+    </div>
+  );
+};
 
-  const styles = {
-    homeSection: {
-      minHeight: "100vh",
-      paddingTop: 80,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#f5f8fa",
-      textAlign: "center",
-      padding: "0 20px",
-    },
-    homeTitle: {
-      fontSize: "3rem",
-      color: "#333",
-      marginBottom: 20,
-      opacity: 0,
-    },
-    homeDesc: {
-      fontSize: "1.25rem",
-      color: "#555",
-      maxWidth: 600,
-    },
-    contactSection: {
-      maxWidth: 800,
-      margin: "40px auto 80px",
-      padding: 30,
-      borderRadius: 8,
-      backgroundColor: "#fff",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-      fontFamily: "'Poppins', sans-serif",
-    },
-    contactHeading: {
-      textAlign: "center",
-      color: "#333",
-      marginBottom: 20,
-    },
-    form: {
-      display: "flex",
-      flexDirection: "column",
-    },
-    label: {
-      fontWeight: "600",
-      marginBottom: 6,
-      color: "#555",
-    },
-    input: {
-      padding: "10px 12px",
-      fontSize: 14,
-      marginBottom: 18,
-      borderRadius: 4,
-      border: "1px solid #ccc",
-      fontFamily: "inherit",
-      transition: "box-shadow 0.3s ease, border-color 0.3s ease",
-    },
-    button: {
-      padding: 12,
-      backgroundColor: "#007bff",
-      color: "#fff",
-      fontSize: 16,
-      border: "none",
-      borderRadius: 4,
-      cursor: "pointer",
-      fontWeight: "600",
-      transition: "transform 0.3s ease",
-    },
-    error: {
-      color: "red",
-      marginTop: -14,
-      marginBottom: 14,
-      fontSize: 12,
-    },
-    contactMapContainer: {
-      display: "flex",
-      gap: 20,
-      marginTop: 30,
-      flexWrap: "wrap",
-      justifyContent: "center",
-    },
-    contactInfo: {
-      flex: "1 1 300px",
-      fontSize: 14,
-      color: "#666",
-      lineHeight: 1.6,
-    },
-    mapWrapper: {
-      flex: "1 1 300px",
-      minWidth: 300,
-      borderRadius: 8,
-      overflow: "hidden",
-      boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-    },
-    successMessage: {
-      backgroundColor: "#d4edda",
-      color: "#155724",
-      borderRadius: 4,
-      padding: "10px 15px",
-      marginBottom: 20,
-      textAlign: "center",
-      fontWeight: "600",
-    },
-
-    footer: {
-      backgroundColor: "#007bff",
-      color: "#fff",
-      padding: "20px 10px",
-      textAlign: "center",
-      marginTop: 40,
-      opacity: 0,
-    },
-    footerContent: {
-      maxWidth: 900,
-      margin: "0 auto",
-    },
-    socialLinks: {
-      marginTop: 8,
-      display: "flex",
-      justifyContent: "center",
-      gap: 15,
-    },
-    socialLink: {
-      color: "#fff",
-      textDecoration: "none",
-      fontWeight: "600",
-    },
-  };
-  export default ContactPage;
+export default ContactPage;
