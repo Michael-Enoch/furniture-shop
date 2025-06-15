@@ -10,6 +10,7 @@ import { CartPage } from "./pages/CartPage";
 import SearchPage from "./pages/SearchPage";
 import { CartProvider } from "./context/CartContext";
 import AboutUs from "./pages/AboutUs";
+import ContactPage from "./pages/ContactPage";
 import Footer from "./components/Footer";
 
 
