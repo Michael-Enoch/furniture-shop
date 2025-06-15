@@ -11,6 +11,7 @@ import SearchPage from "./pages/SearchPage";
 import { CartProvider } from "./context/CartContext";
 import AboutUs from "./pages/AboutUs";
 import Footer from "./components/Footer";
+import ContactPage from "./pages/ContactPage";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/about" element={<AboutUs/>} />
+          <Route path="/contact" element={<ContactPage/>} />
         </Routes>
         <Footer/>
       </Router>
