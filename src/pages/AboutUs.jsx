@@ -1,12 +1,27 @@
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { 
-  FaHandshake, FaLeaf, FaLightbulb, FaMedal, FaUsers, 
-  FaTools, FaChevronDown, FaHammer, FaTree, FaRuler, 
-  FaPaintRoller, FaHeart, FaQuoteLeft, FaFacebook, 
-  FaInstagram, FaPinterest, FaMapMarkerAlt, FaPhone, 
-  FaEnvelope, FaTimes 
+import {
+  FaHandshake,
+  FaLeaf,
+  FaLightbulb,
+  FaMedal,
+  FaUsers,
+  FaTools,
+  FaChevronDown,
+  FaHammer,
+  FaTree,
+  FaRuler,
+  FaPaintRoller,
+  FaHeart,
+  FaQuoteLeft,
+  FaFacebook,
+  FaInstagram,
+  FaPinterest,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelope,
+  FaTimes,
 } from "react-icons/fa";
 
 // Import team images
@@ -26,25 +41,25 @@ const AboutUs = () => {
   const theme = {
     colors: {
       primary: {
-        DEFAULT: '#3A2F2A',
-        contrast: '#F8F5F2',
+        DEFAULT: "#3A2F2A",
+        contrast: "#F8F5F2",
       },
       accent: {
-        DEFAULT: '#A65A2E',
-        hover: '#BF6E3D',
+        DEFAULT: "#A65A2E",
+        hover: "#BF6E3D",
       },
       background: {
-        DEFAULT: '#F3EFEB',
+        DEFAULT: "#F3EFEB",
         alt: "#EFEAE5",
-        muted: '#EAE6E1',
+        muted: "#EAE6E1",
       },
       text: {
-        primary: '#2D2D2D',
-        onPrimary: '#F8F5F2',
+        primary: "#2D2D2D",
+        onPrimary: "#F8F5F2",
       },
       ui: {
-        base: '#FFFFFF',
-        border: '#DAD4CE',
+        base: "#FFFFFF",
+        border: "#DAD4CE",
       },
     },
     fonts: {
@@ -54,18 +69,18 @@ const AboutUs = () => {
       ui: "'Work Sans', sans-serif",
     },
     semanticRoles: {
-      navBackground: 'primary.DEFAULT',
-      primaryButtonBackground: 'primary.DEFAULT',
-      primaryButtonText: 'primary.contrast',
-      sectionBackground: 'background.DEFAULT',
-      cardBackground: 'background.muted',
-      bodyText: 'text.primary',
-      footerBackground: 'ui.base',
-      inputBackground: 'ui.base',
-      inputBorder: 'ui.border',
-      hoverEffect: 'accent.hover',
-      ctaButton: 'accent.DEFAULT',
-      ctaHover: 'accent.hover',
+      navBackground: "primary.DEFAULT",
+      primaryButtonBackground: "primary.DEFAULT",
+      primaryButtonText: "primary.contrast",
+      sectionBackground: "background.DEFAULT",
+      cardBackground: "background.muted",
+      bodyText: "text.primary",
+      footerBackground: "ui.base",
+      inputBackground: "ui.base",
+      inputBorder: "ui.border",
+      hoverEffect: "accent.hover",
+      ctaButton: "accent.DEFAULT",
+      ctaHover: "accent.hover",
     },
   };
 
@@ -374,49 +389,49 @@ const AboutUs = () => {
         .fromTo(
           elementRefs.title.current,
           { opacity: 0, y: 80, rotation: -2 },
-          { 
-            opacity: 1, 
-            y: 0, 
-            rotation: 0, 
-            duration: 1.5, 
-            ease: "elastic.out(1, 0.3)" 
+          {
+            opacity: 1,
+            y: 0,
+            rotation: 0,
+            duration: 1.5,
+            ease: "elastic.out(1, 0.3)",
           }
         )
         .fromTo(
           elementRefs.subtitle.current,
           { opacity: 0, y: 50, scale: 0.95 },
-          { 
-            opacity: 1, 
-            y: 0, 
+          {
+            opacity: 1,
+            y: 0,
             scale: 1,
-            duration: 1.2, 
-            ease: "power3.out" 
+            duration: 1.2,
+            ease: "power3.out",
           },
           "-=1"
         )
         .fromTo(
           elementRefs.ctaButton.current,
           { opacity: 0, y: 30, scale: 0.9 },
-          { 
-            opacity: 1, 
-            y: 0, 
+          {
+            opacity: 1,
+            y: 0,
             scale: 1,
-            duration: 0.8, 
-            ease: "back.out(1.7)" 
+            duration: 0.8,
+            ease: "back.out(1.7)",
           },
           "-=0.8"
         );
 
       // Parallax effect for hero background
       gsap.to(heroBackgroundRef.current, {
-        y: '10%',
+        y: "10%",
         ease: "none",
         scrollTrigger: {
           trigger: sectionRefs.hero.current,
           start: "top top",
           end: "bottom top",
           scrub: true,
-        }
+        },
       });
 
       // Section animations with ScrollTrigger
@@ -478,11 +493,11 @@ const AboutUs = () => {
           // Create a staggered entry with spring physics
           gsap.fromTo(
             el,
-            { 
-              opacity: 0, 
-              y: 60, 
+            {
+              opacity: 0,
+              y: 60,
               scale: 0.9,
-              rotation: -3
+              rotation: -3,
             },
             {
               opacity: 1,
@@ -503,12 +518,12 @@ const AboutUs = () => {
                   duration: 3,
                   repeat: -1,
                   yoyo: true,
-                  ease: "sine.inOut"
+                  ease: "sine.inOut",
                 });
-              }
+              },
             }
           );
-          
+
           // Hover animation for values cards
           el.addEventListener("mouseenter", () => {
             gsap.to(el, {
@@ -518,7 +533,7 @@ const AboutUs = () => {
               ease: "power2.out",
             });
           });
-          
+
           el.addEventListener("mouseleave", () => {
             gsap.to(el, {
               y: 0,
@@ -549,7 +564,7 @@ const AboutUs = () => {
               },
             }
           );
-          
+
           // Hover animation for team cards
           el.addEventListener("mouseenter", () => {
             gsap.to(el, {
@@ -558,7 +573,7 @@ const AboutUs = () => {
               ease: "power1.out",
             });
           });
-          
+
           el.addEventListener("mouseleave", () => {
             gsap.to(el, {
               y: 0,
@@ -593,26 +608,27 @@ const AboutUs = () => {
     });
 
     return () => ctx.revert();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div 
+    <div
       className="bg-[#F3EFEB] text-[#2D2D2D]"
       style={{ fontFamily: theme.fonts.body }}
     >
       {/* Hero Section */}
-      <section 
+      <section
         ref={sectionRefs.hero}
         className="relative h-[90vh] flex items-center justify-center"
         style={{ backgroundColor: theme.colors.primary.DEFAULT }}
       >
-        <div 
+        <div
           className="absolute inset-0 z-10"
           style={{
             background: `linear-gradient(to bottom, 
               ${theme.colors.primary.DEFAULT}90, 
               ${theme.colors.primary.DEFAULT}70, 
-              ${theme.colors.primary.DEFAULT}90)`
+              ${theme.colors.primary.DEFAULT}90)`,
           }}
         ></div>
         <div
@@ -627,24 +643,24 @@ const AboutUs = () => {
 
         <div className="relative z-20 text-center px-4 max-w-4xl">
           <div className="mb-10">
-            <div 
-              className="w-20 h-1 mx-auto mb-6" 
+            <div
+              className="w-20 h-1 mx-auto mb-6"
               style={{ backgroundColor: theme.colors.accent.DEFAULT }}
             ></div>
-            <h1 
+            <h1
               ref={elementRefs.title}
               className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-wide"
               style={{ fontFamily: theme.fonts.header }}
             >
               Crafting Timeless Spaces
             </h1>
-            <div 
-              className="w-32 h-1 mx-auto mt-6" 
+            <div
+              className="w-32 h-1 mx-auto mt-6"
               style={{ backgroundColor: theme.colors.accent.DEFAULT }}
             ></div>
           </div>
 
-          <p 
+          <p
             ref={elementRefs.subtitle}
             className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto mb-10"
             style={{ fontFamily: theme.fonts.alt }}
@@ -665,7 +681,6 @@ const AboutUs = () => {
           </button>
         </div>
       </section>
-
       {/* Story Section */}
       <section
         ref={sectionRefs.story}
@@ -690,11 +705,11 @@ const AboutUs = () => {
           </div>
 
           <div ref={elementRefs.storyText} className="w-full md:w-1/2">
-            <h2 
+            <h2
               className="text-3xl md:text-4xl font-bold mb-6"
-              style={{ 
+              style={{
                 color: theme.colors.primary.DEFAULT,
-                fontFamily: theme.fonts.header 
+                fontFamily: theme.fonts.header,
               }}
             >
               Our Heritage & Journey
@@ -713,13 +728,18 @@ const AboutUs = () => {
               for future generations.
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
-              {["25+ Years Experience", "Family-Owned", "Handcrafted", "Sustainable Materials"].map((tag, i) => (
-                <div 
+              {[
+                "25+ Years Experience",
+                "Family-Owned",
+                "Handcrafted",
+                "Sustainable Materials",
+              ].map((tag, i) => (
+                <div
                   key={i}
                   className="px-4 py-2 rounded-full text-sm"
-                  style={{ 
+                  style={{
                     backgroundColor: theme.colors.primary.DEFAULT,
-                    color: theme.colors.text.onPrimary
+                    color: theme.colors.text.onPrimary,
                   }}
                 >
                   {tag}
@@ -729,7 +749,6 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
       {/* Values Section */}
       <section
         ref={sectionRefs.values}
@@ -738,18 +757,18 @@ const AboutUs = () => {
       >
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 
-              ref={elementRefs.mission} 
+            <h2
+              ref={elementRefs.mission}
               className="text-4xl font-bold text-white"
               style={{ fontFamily: theme.fonts.header }}
             >
               Our Guiding Principles
             </h2>
-            <p 
+            <p
               className="text-xl max-w-2xl mx-auto mt-4"
-              style={{ 
+              style={{
                 color: theme.colors.text.onPrimary,
-                fontFamily: theme.fonts.alt
+                fontFamily: theme.fonts.alt,
               }}
             >
               The values that shape every decision, every design, and every
@@ -763,21 +782,21 @@ const AboutUs = () => {
                 key={index}
                 ref={(el) => (elementRefs.valuesCards.current[index] = el)}
                 className="p-8 rounded-2xl shadow-lg hover:shadow-xl border transition-shadow duration-300"
-                style={{ 
+                style={{
                   backgroundColor: theme.colors.background.alt,
-                  borderColor: theme.colors.ui.border
+                  borderColor: theme.colors.ui.border,
                 }}
               >
-                <div 
+                <div
                   className="w-16 h-16 rounded-full flex items-center justify-center mb-6"
-                  style={{ 
+                  style={{
                     backgroundColor: theme.colors.primary.DEFAULT,
-                    color: theme.colors.text.onPrimary
+                    color: theme.colors.text.onPrimary,
                   }}
                 >
                   {value.icon}
                 </div>
-                <h3 
+                <h3
                   className="text-2xl font-bold mb-4"
                   style={{ color: theme.colors.primary.DEFAULT }}
                 >
@@ -791,23 +810,19 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
       {/* Team Section */}
-      <section 
-        ref={sectionRefs.team} 
-        className="py-24 px-4 max-w-6xl mx-auto"
-      >
+      <section ref={sectionRefs.team} className="py-24 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 
+          <h2
             className="text-4xl font-bold mb-6"
-            style={{ 
+            style={{
               color: theme.colors.primary.DEFAULT,
-              fontFamily: theme.fonts.header
+              fontFamily: theme.fonts.header,
             }}
           >
             Meet Our Artisans
           </h2>
-          <p 
+          <p
             className="text-xl max-w-2xl mx-auto"
             style={{ color: theme.colors.accent.DEFAULT }}
           >
@@ -822,9 +837,9 @@ const AboutUs = () => {
               key={index}
               ref={(el) => (elementRefs.teamMembers.current[index] = el)}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group relative"
-              style={{ 
+              style={{
                 backgroundColor: theme.colors.ui.base,
-                borderColor: theme.colors.ui.border
+                borderColor: theme.colors.ui.border,
               }}
             >
               <div className="relative h-60 w-full overflow-hidden cursor-pointer">
@@ -835,7 +850,7 @@ const AboutUs = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <h3 
+                  <h3
                     className="font-bold text-xl group-hover:text-[#A65A2E] transition-colors"
                     style={{ fontFamily: theme.fonts.ui }}
                   >
@@ -846,7 +861,7 @@ const AboutUs = () => {
               </div>
               <div className="p-4">
                 <div className="flex justify-between items-center mb-3">
-                  <span 
+                  <span
                     className="text-xs text-white px-2 py-1 rounded-full"
                     style={{ backgroundColor: theme.colors.primary.DEFAULT }}
                   >
@@ -859,15 +874,15 @@ const AboutUs = () => {
                   <button
                     onClick={() => openArtisanModal(member, "work")}
                     className="text-xs px-3 py-1 rounded-full transition-colors focus:outline-none focus:ring-1"
-                    style={{ 
+                    style={{
                       backgroundColor: theme.colors.background.muted,
                       color: theme.colors.primary.DEFAULT,
                       fontFamily: theme.fonts.ui,
                       borderColor: theme.colors.ui.border,
-                      '&:hover': {
+                      "&:hover": {
                         backgroundColor: theme.colors.accent.DEFAULT,
-                        color: theme.colors.text.onPrimary
-                      }
+                        color: theme.colors.text.onPrimary,
+                      },
                     }}
                     aria-label={`View work by ${member.name}`}
                   >
@@ -876,14 +891,14 @@ const AboutUs = () => {
                   <button
                     onClick={() => openArtisanModal(member, "contact")}
                     className="text-xs border px-3 py-1 rounded-full transition-colors focus:outline-none focus:ring-1"
-                    style={{ 
+                    style={{
                       borderColor: theme.colors.primary.DEFAULT,
                       color: theme.colors.primary.DEFAULT,
                       fontFamily: theme.fonts.ui,
-                      '&:hover': {
+                      "&:hover": {
                         backgroundColor: theme.colors.primary.DEFAULT,
-                        color: theme.colors.text.onPrimary
-                      }
+                        color: theme.colors.text.onPrimary,
+                      },
                     }}
                     aria-label={`Contact ${member.name}`}
                   >
@@ -895,13 +910,12 @@ const AboutUs = () => {
           ))}
         </div>
       </section>
-
       {/* Craftsmanship Section */}
       <section
         ref={sectionRefs.craftsmanship}
         className="py-24"
-        style={{ 
-          background: `linear-gradient(to bottom, ${theme.colors.background.DEFAULT}, ${theme.colors.background.alt})` 
+        style={{
+          background: `linear-gradient(to bottom, ${theme.colors.background.DEFAULT}, ${theme.colors.background.alt})`,
         }}
       >
         <div className="max-w-6xl mx-auto px-4">
@@ -909,14 +923,14 @@ const AboutUs = () => {
             <h2
               ref={elementRefs.craftsmanshipTitle}
               className="text-4xl font-bold mb-6"
-              style={{ 
+              style={{
                 color: theme.colors.primary.DEFAULT,
-                fontFamily: theme.fonts.header
+                fontFamily: theme.fonts.header,
               }}
             >
               The Hudson Craftsmanship
             </h2>
-            <p 
+            <p
               className="text-xl max-w-3xl mx-auto"
               style={{ color: theme.colors.accent.DEFAULT }}
             >
@@ -925,7 +939,7 @@ const AboutUs = () => {
           </div>
 
           <div className="relative">
-            <div 
+            <div
               className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 z-0"
               style={{ backgroundColor: theme.colors.accent.DEFAULT }}
             ></div>
@@ -940,9 +954,9 @@ const AboutUs = () => {
                       ? "md:mr-auto md:pr-12"
                       : "md:ml-auto md:pl-12"
                   }`}
-                  style={{ 
+                  style={{
                     backgroundColor: theme.colors.ui.base,
-                    borderColor: theme.colors.ui.border
+                    borderColor: theme.colors.ui.border,
                   }}
                 >
                   <div
@@ -957,14 +971,14 @@ const AboutUs = () => {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div 
+                    <div
                       className="text-3xl mt-1"
                       style={{ color: theme.colors.accent.DEFAULT }}
                     >
                       {step.icon}
                     </div>
                     <div>
-                      <h3 
+                      <h3
                         className="text-xl font-bold mb-3"
                         style={{ color: theme.colors.primary.DEFAULT }}
                       >
@@ -980,13 +994,13 @@ const AboutUs = () => {
             </div>
           </div>
 
-          <div 
+          <div
             className="mt-16 rounded-2xl p-8 text-white"
             style={{ backgroundColor: theme.colors.primary.DEFAULT }}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 
+                <h3
                   className="text-2xl font-bold mb-4"
                   style={{ fontFamily: theme.fonts.header }}
                 >
@@ -1003,12 +1017,12 @@ const AboutUs = () => {
                     onMouseEnter={handleButtonHover}
                     onMouseLeave={handleButtonHoverEnd}
                     className="border border-white text-white px-6 py-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                    style={{ 
+                    style={{
                       fontFamily: theme.fonts.ui,
-                      '&:hover': {
+                      "&:hover": {
                         backgroundColor: theme.colors.accent.DEFAULT,
-                        borderColor: theme.colors.accent.DEFAULT
-                      }
+                        borderColor: theme.colors.accent.DEFAULT,
+                      },
                     }}
                     aria-label="Schedule a workshop tour"
                   >
@@ -1018,14 +1032,14 @@ const AboutUs = () => {
                     onMouseEnter={handleButtonHover}
                     onMouseLeave={handleButtonHoverEnd}
                     className="border px-6 py-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                    style={{ 
+                    style={{
                       fontFamily: theme.fonts.ui,
                       borderColor: theme.colors.accent.DEFAULT,
                       color: theme.colors.accent.DEFAULT,
-                      '&:hover': {
+                      "&:hover": {
                         backgroundColor: theme.colors.accent.DEFAULT,
-                        color: theme.colors.text.onPrimary
-                      }
+                        color: theme.colors.text.onPrimary,
+                      },
                     }}
                     aria-label="View workshop calendar"
                   >
@@ -1033,10 +1047,10 @@ const AboutUs = () => {
                   </button>
                 </div>
               </div>
-              <div 
+              <div
                 className="h-64 rounded-xl flex items-center justify-center p-6"
-                style={{ 
-                  background: `linear-gradient(135deg, ${theme.colors.accent.DEFAULT}, ${theme.colors.accent.hover})`
+                style={{
+                  background: `linear-gradient(135deg, ${theme.colors.accent.DEFAULT}, ${theme.colors.accent.hover})`,
                 }}
               >
                 <div className="grid grid-cols-2 gap-4 text-center">
@@ -1066,23 +1080,22 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
       {/* Gallery Section */}
       <section
         ref={sectionRefs.gallery}
         className="py-24 px-4 max-w-6xl mx-auto"
       >
         <div className="text-center mb-16">
-          <h2 
+          <h2
             className="text-4xl font-bold mb-6"
-            style={{ 
+            style={{
               color: theme.colors.primary.DEFAULT,
-              fontFamily: theme.fonts.header
+              fontFamily: theme.fonts.header,
             }}
           >
             Our Signature Pieces
           </h2>
-          <p 
+          <p
             className="text-xl max-w-2xl mx-auto"
             style={{ color: theme.colors.accent.DEFAULT }}
           >
@@ -1108,7 +1121,7 @@ const AboutUs = () => {
                 <div>
                   <h3 className="font-bold text-white text-xl">{item.title}</h3>
                   <p className="text-[#E8DFD1]">{item.description}</p>
-                  <p 
+                  <p
                     className="text-sm mt-1"
                     style={{ color: theme.colors.accent.DEFAULT }}
                   >
@@ -1117,10 +1130,9 @@ const AboutUs = () => {
                 </div>
               </div>
             </div>
-          ))} 
+          ))}
         </div>
       </section>
-
       {/* Testimonial Section */}
       <section
         ref={sectionRefs.testimonial}
@@ -1128,11 +1140,13 @@ const AboutUs = () => {
         style={{ backgroundColor: theme.colors.primary.DEFAULT }}
       >
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div 
+          <div
             className="text-5xl mb-6"
             style={{ color: theme.colors.accent.DEFAULT }}
-          >"</div>
-          <p 
+          >
+            "
+          </div>
+          <p
             className="text-2xl italic mb-8 text-white"
             style={{ fontFamily: theme.fonts.alt }}
           >
@@ -1140,31 +1154,27 @@ const AboutUs = () => {
             craftsmanship is exceptional - you can feel the love and attention
             in every detail. It's more than furniture; it's a legacy piece.
           </p>
-          <div 
+          <div
             className="font-bold text-xl text-white"
             style={{ fontFamily: theme.fonts.header }}
           >
             Emily Richardson
           </div>
-          <div 
-            className="mt-1"
-            style={{ color: theme.colors.accent.DEFAULT }}
-          >
+          <div className="mt-1" style={{ color: theme.colors.accent.DEFAULT }}>
             Hudson Customer since 2018
           </div>
           <div className="flex justify-center mt-8 space-x-2">
             {[...Array(5)].map((_, i) => (
-              <FaQuoteLeft 
-                key={i} 
-                className="text-xl" 
-                style={{ color: `${theme.colors.accent.DEFAULT}30` }} 
+              <FaQuoteLeft
+                key={i}
+                className="text-xl"
+                style={{ color: `${theme.colors.accent.DEFAULT}30` }}
               />
             ))}
           </div>
         </div>
       </section>
-
-      {/* Artisan Modal */}
+      g{/* Artisan Modal */}
       {isModalVisible && selectedArtisan && (
         <div
           ref={modalRef}
@@ -1177,15 +1187,15 @@ const AboutUs = () => {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div 
+            <div
               className="sticky top-0 bg-white z-10 p-6 border-b flex justify-between items-center"
-              style={{ 
+              style={{
                 borderColor: theme.colors.ui.border,
-                fontFamily: theme.fonts.ui
+                fontFamily: theme.fonts.ui,
               }}
             >
               <div>
-                <h3 
+                <h3
                   className="text-2xl font-bold"
                   style={{ color: theme.colors.primary.DEFAULT }}
                 >
@@ -1212,7 +1222,8 @@ const AboutUs = () => {
                 // Work Gallery View
                 <div className="">
                   <div className="flex flex-col md:flex-row items-start gap-8 mb-8">
-                    <div className="w-32 h-32 rounded-full overflow-hidden border-4 flex-shrink-0"
+                    <div
+                      className="w-32 h-32 rounded-full overflow-hidden border-4 flex-shrink-0"
                       style={{ borderColor: theme.colors.accent.DEFAULT }}
                     >
                       <img
@@ -1222,13 +1233,13 @@ const AboutUs = () => {
                       />
                     </div>
                     <div>
-                      <p 
+                      <p
                         className="text-gray-700 mb-4 italic"
                         style={{ fontFamily: theme.fonts.body }}
                       >
                         "{selectedArtisan.quote}"
                       </p>
-                      <p 
+                      <p
                         className="text-gray-600"
                         style={{ fontFamily: theme.fonts.body }}
                       >
@@ -1237,12 +1248,12 @@ const AboutUs = () => {
                     </div>
                   </div>
 
-                  <h4 
+                  <h4
                     className="text-xl font-bold mb-6 pb-2 border-b"
-                    style={{ 
+                    style={{
                       color: theme.colors.primary.DEFAULT,
                       borderColor: theme.colors.accent.DEFAULT,
-                      fontFamily: theme.fonts.header
+                      fontFamily: theme.fonts.header,
                     }}
                   >
                     Featured Creations
@@ -1265,13 +1276,13 @@ const AboutUs = () => {
                           </div>
                           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                             <div>
-                              <h5 
+                              <h5
                                 className="font-bold text-white"
                                 style={{ fontFamily: theme.fonts.ui }}
                               >
                                 {item.title}
                               </h5>
-                              <p 
+                              <p
                                 className="text-sm"
                                 style={{ color: theme.colors.background.muted }}
                               >
@@ -1283,20 +1294,20 @@ const AboutUs = () => {
                       ))}
                   </div>
 
-                  <div 
+                  <div
                     className="rounded-xl p-6"
                     style={{ backgroundColor: theme.colors.background.muted }}
                   >
-                    <h5 
+                    <h5
                       className="text-lg font-bold mb-3"
-                      style={{ 
+                      style={{
                         color: theme.colors.primary.DEFAULT,
-                        fontFamily: theme.fonts.header
+                        fontFamily: theme.fonts.header,
                       }}
                     >
                       Design Philosophy
                     </h5>
-                    <p 
+                    <p
                       className="text-gray-700"
                       style={{ fontFamily: theme.fonts.body }}
                     >
@@ -1312,7 +1323,8 @@ const AboutUs = () => {
                 // Contact Form
                 <div className="max-w-2xl mx-auto">
                   <div className="flex flex-col md:flex-row items-start gap-8 mb-8">
-                    <div className="w-24 h-24 rounded-full overflow-hidden border-4 flex-shrink-0"
+                    <div
+                      className="w-24 h-24 rounded-full overflow-hidden border-4 flex-shrink-0"
                       style={{ borderColor: theme.colors.accent.DEFAULT }}
                     >
                       <img
@@ -1322,7 +1334,7 @@ const AboutUs = () => {
                       />
                     </div>
                     <div>
-                      <p 
+                      <p
                         className="text-gray-700 mb-4"
                         style={{ fontFamily: theme.fonts.body }}
                       >
@@ -1330,18 +1342,22 @@ const AboutUs = () => {
                         commissions, collaborations, or questions about their
                         work.
                       </p>
-                      <div 
+                      <div
                         className="flex items-center gap-2 text-gray-600 mb-2"
                         style={{ fontFamily: theme.fonts.body }}
                       >
-                        <FaEnvelope style={{ color: theme.colors.accent.DEFAULT }} />
+                        <FaEnvelope
+                          style={{ color: theme.colors.accent.DEFAULT }}
+                        />
                         <span>{selectedArtisan.email}</span>
                       </div>
-                      <div 
+                      <div
                         className="flex items-center gap-2 text-gray-600"
                         style={{ fontFamily: theme.fonts.body }}
                       >
-                        <FaPhone style={{ color: theme.colors.accent.DEFAULT }} />
+                        <FaPhone
+                          style={{ color: theme.colors.accent.DEFAULT }}
+                        />
                         <span>
                           (718) 555-
                           {selectedArtisan.name.split(" ")[0].substring(0, 4)}
@@ -1365,13 +1381,13 @@ const AboutUs = () => {
                           id="name"
                           className="w-full px-4 py-3 border rounded-xl focus:ring-2 transition-all"
                           placeholder="John Doe"
-                          style={{ 
+                          style={{
                             borderColor: theme.colors.ui.border,
                             fontFamily: theme.fonts.body,
-                            '&:focus': {
+                            "&:focus": {
                               ringColor: theme.colors.accent.DEFAULT,
-                              borderColor: theme.colors.accent.DEFAULT
-                            }
+                              borderColor: theme.colors.accent.DEFAULT,
+                            },
                           }}
                         />
                       </div>
@@ -1388,13 +1404,13 @@ const AboutUs = () => {
                           id="email"
                           className="w-full px-4 py-3 border rounded-xl focus:ring-2 transition-all"
                           placeholder="john@example.com"
-                          style={{ 
+                          style={{
                             borderColor: theme.colors.ui.border,
                             fontFamily: theme.fonts.body,
-                            '&:focus': {
+                            "&:focus": {
                               ringColor: theme.colors.accent.DEFAULT,
-                              borderColor: theme.colors.accent.DEFAULT
-                            }
+                              borderColor: theme.colors.accent.DEFAULT,
+                            },
                           }}
                         />
                       </div>
@@ -1414,13 +1430,13 @@ const AboutUs = () => {
                         className="w-full px-4 py-3 border rounded-xl focus:ring-2 transition-all"
                         placeholder="Regarding a custom commission"
                         defaultValue={`Inquiry for ${selectedArtisan.name}`}
-                        style={{ 
+                        style={{
                           borderColor: theme.colors.ui.border,
                           fontFamily: theme.fonts.body,
-                          '&:focus': {
+                          "&:focus": {
                             ringColor: theme.colors.accent.DEFAULT,
-                            borderColor: theme.colors.accent.DEFAULT
-                          }
+                            borderColor: theme.colors.accent.DEFAULT,
+                          },
                         }}
                       />
                     </div>
@@ -1438,13 +1454,13 @@ const AboutUs = () => {
                         rows="5"
                         className="w-full px-4 py-3 border rounded-xl focus:ring-2 transition-all"
                         placeholder="Your message..."
-                        style={{ 
+                        style={{
                           borderColor: theme.colors.ui.border,
                           fontFamily: theme.fonts.body,
-                          '&:focus': {
+                          "&:focus": {
                             ringColor: theme.colors.accent.DEFAULT,
-                            borderColor: theme.colors.accent.DEFAULT
-                          }
+                            borderColor: theme.colors.accent.DEFAULT,
+                          },
                         }}
                       ></textarea>
                     </div>
@@ -1461,13 +1477,13 @@ const AboutUs = () => {
                       <button
                         type="submit"
                         className="px-6 py-3 rounded-xl text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
-                        style={{ 
+                        style={{
                           backgroundColor: theme.colors.primary.DEFAULT,
                           fontFamily: theme.fonts.ui,
-                          '&:hover': {
-                            backgroundColor: theme.colors.accent.DEFAULT
+                          "&:hover": {
+                            backgroundColor: theme.colors.accent.DEFAULT,
                           },
-                          focusRingColor: theme.colors.accent.DEFAULT
+                          focusRingColor: theme.colors.accent.DEFAULT,
                         }}
                       >
                         Send Message
