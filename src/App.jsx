@@ -14,6 +14,7 @@ import ContactPage from "./pages/ContactPage";
 import Footer from "./components/Footer";
 
 
+
 function App() {
   return (
     <AuthProvider>
@@ -28,6 +29,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/about" element={<AboutUs/>} />
+          <Route path="/contact" element={<ContactPage/>} />
         </Routes>
         <Footer/>
       </Router>
