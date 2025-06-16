@@ -13,6 +13,7 @@ import SearchPage from "./pages/SearchPage";
 import { CartProvider } from "./context/CartContext";
 import AboutUs from "./pages/AboutUs";
 import ContactPage from "./pages/ContactPage";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/aboutus" element={<AboutUs/>} />
           <Route path="/contact" element={<ContactPage/>} />
         </Routes>
+        <Footer/>
       </Router>
       </CartProvider>
     </AuthProvider>
