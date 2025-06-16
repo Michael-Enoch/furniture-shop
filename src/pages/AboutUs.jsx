@@ -319,11 +319,11 @@ const AboutUs = () => {
           ref={elementRefs.scrollIndicator}
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center"
         >
-          <span className="text-[#E8DFD1] mb-2 text-sm tracking-wider">SCROLL TO DISCOVER</span>
+          {/* <span className="text-[#E8DFD1] mb-2 text-sm tracking-wider">SCROLL TO DISCOVER</span>
           <div className="bounce w-12 h-12 rounded-full border-2 border-[#C5A880] flex items-center justify-center bg-black/30 backdrop-blur-sm">
             <FaChevronDown className="text-[#C5A880] text-xl animate-pulse" />
-          </div>
-          <div className="mt-2 w-1 h-10 bg-gradient-to-b from-[#C5A880] to-transparent rounded-full opacity-70"></div>
+          </div> */}
+          {/* <div className="mt-2 w-1 h-10 bg-gradient-to-b from-[#C5A880] to-transparent rounded-full opacity-70"></div> */}
         </div>
       </section>
 
