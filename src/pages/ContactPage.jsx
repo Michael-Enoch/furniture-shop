@@ -14,60 +14,61 @@ import {
   FaMap,
   FaQuestionCircle,
   FaCalendarAlt,
-  FaSitemap, 
-  FaHome, 
-  FaInfoCircle, 
+  FaSitemap,
+  FaHome,
+  FaInfoCircle,
   FaTools,
-  FaImages, 
-  FaNewspaper, 
-  FaShoppingBag, 
+  FaImages,
+  FaNewspaper,
+  FaShoppingBag,
   FaLock,
   FaTruck,
   FaToolbox,
   FaFileContract,
   FaShieldAlt,
-  FaExchangeAlt
+  FaExchangeAlt,
 } from "react-icons/fa";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 
 // Theme colors based on provided theme
 const theme = {
   colors: {
     primary: {
-      DEFAULT: '#3A2F2A',
-      contrast: '#F8F5F2',
+      DEFAULT: "#3A2F2A",
+      contrast: "#F8F5F2",
     },
     accent: {
-      DEFAULT: '#A65A2E',
-      hover: '#BF6E3D',
+      DEFAULT: "#A65A2E",
+      hover: "#BF6E3D",
     },
     background: {
-      DEFAULT: '#F3EFEB',
-      alt: "#EFEAE5", 
-      muted: '#EAE6E1',
+      DEFAULT: "#F3EFEB",
+      alt: "#EFEAE5",
+      muted: "#EAE6E1",
     },
     text: {
-      primary: '#2D2D2D',
-      onPrimary: '#F8F5F2',
+      primary: "#2D2D2D",
+      onPrimary: "#F8F5F2",
     },
     ui: {
-      base: '#FFFFFF',
-      border: '#DAD4CE',
+      base: "#FFFFFF",
+      border: "#DAD4CE",
     },
     category: {
-      bedroom: '#CDB8A0',
-      living: '#A39887',
-      office: '#7F8B91',
-      dining: '#B57C54',
-      outdoor: '#7A8C5D',
+      bedroom: "#CDB8A0",
+      living: "#A39887",
+      office: "#7F8B91",
+      dining: "#B57C54",
+      outdoor: "#7A8C5D",
     },
   },
   fonts: {
-    header:  "'Raleway', sans-serif",
+    header: "'Raleway', sans-serif",
     body: "'Inter', sans-serif",
     alt: "'Poppins', sans-serif",
     ui: "'Work Sans', sans-serif",
-  }
+  },
 };
 
 const ContactPage = () => {
@@ -231,11 +232,11 @@ const ContactPage = () => {
   }, []);
 
   return (
-    <div 
+    <div
       className="text-[#2D2D2D] overflow-hidden"
-      style={{ 
+      style={{
         backgroundColor: theme.colors.background.DEFAULT,
-        fontFamily: theme.fonts.body
+        fontFamily: theme.fonts.body,
       }}
     >
       {/* Hero Section */}
@@ -284,7 +285,7 @@ const ContactPage = () => {
 
       {/* Tab Navigation */}
       <div className="max-w-6xl mx-auto px-4 mt-8">
-        <div 
+        <div
           className="flex border-b overflow-x-auto"
           style={{ borderColor: theme.colors.ui.border }}
         >
@@ -295,10 +296,16 @@ const ContactPage = () => {
                 ? `text-[${theme.colors.primary.DEFAULT}] border-b-2`
                 : "text-[#7A8C8C] hover:text-[#2F4F4F]"
             }`}
-            style={{ 
-              borderBottomColor: activeTab === "contact" ? theme.colors.primary.DEFAULT : 'transparent',
+            style={{
+              borderBottomColor:
+                activeTab === "contact"
+                  ? theme.colors.primary.DEFAULT
+                  : "transparent",
               fontFamily: theme.fonts.ui,
-              color: activeTab === "contact" ? theme.colors.primary.DEFAULT : '#7A8C8C'
+              color:
+                activeTab === "contact"
+                  ? theme.colors.primary.DEFAULT
+                  : "#7A8C8C",
             }}
           >
             Contact Us
@@ -310,10 +317,14 @@ const ContactPage = () => {
                 ? `text-[${theme.colors.primary.DEFAULT}] border-b-2`
                 : "text-[#7A8C8C] hover:text-[#2F4F4F]"
             }`}
-            style={{ 
-              borderBottomColor: activeTab === "faq" ? theme.colors.primary.DEFAULT : 'transparent',
+            style={{
+              borderBottomColor:
+                activeTab === "faq"
+                  ? theme.colors.primary.DEFAULT
+                  : "transparent",
               fontFamily: theme.fonts.ui,
-              color: activeTab === "faq" ? theme.colors.primary.DEFAULT : '#7A8C8C'
+              color:
+                activeTab === "faq" ? theme.colors.primary.DEFAULT : "#7A8C8C",
             }}
           >
             FAQ
@@ -325,10 +336,16 @@ const ContactPage = () => {
                 ? `text-[${theme.colors.primary.DEFAULT}] border-b-2`
                 : "text-[#7A8C8C] hover:text-[#2F4F4F]"
             }`}
-            style={{ 
-              borderBottomColor: activeTab === "appointment" ? theme.colors.primary.DEFAULT : 'transparent',
+            style={{
+              borderBottomColor:
+                activeTab === "appointment"
+                  ? theme.colors.primary.DEFAULT
+                  : "transparent",
               fontFamily: theme.fonts.ui,
-              color: activeTab === "appointment" ? theme.colors.primary.DEFAULT : '#7A8C8C'
+              color:
+                activeTab === "appointment"
+                  ? theme.colors.primary.DEFAULT
+                  : "#7A8C8C",
             }}
           >
             Book Appointment
@@ -340,10 +357,16 @@ const ContactPage = () => {
                 ? `text-[${theme.colors.primary.DEFAULT}] border-b-2`
                 : "text-[#7A8C8C] hover:text-[#2F4F4F]"
             }`}
-            style={{ 
-              borderBottomColor: activeTab === "sitemap" ? theme.colors.primary.DEFAULT : 'transparent',
+            style={{
+              borderBottomColor:
+                activeTab === "sitemap"
+                  ? theme.colors.primary.DEFAULT
+                  : "transparent",
               fontFamily: theme.fonts.ui,
-              color: activeTab === "sitemap" ? theme.colors.primary.DEFAULT : '#7A8C8C'
+              color:
+                activeTab === "sitemap"
+                  ? theme.colors.primary.DEFAULT
+                  : "#7A8C8C",
             }}
           >
             Site Map
@@ -371,9 +394,9 @@ const ContactPage = () => {
               <div className="lg:w-2/5">
                 <motion.h2
                   className="text-3xl font-bold mb-8"
-                  style={{ 
+                  style={{
                     color: theme.colors.primary.DEFAULT,
-                    fontFamily: theme.fonts.header 
+                    fontFamily: theme.fonts.header,
                   }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -388,17 +411,17 @@ const ContactPage = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 }}
                 >
-                  <div 
+                  <div
                     className="p-3 rounded-full mr-4"
-                    style={{ 
+                    style={{
                       backgroundColor: theme.colors.primary.DEFAULT,
-                      color: theme.colors.accent.DEFAULT
+                      color: theme.colors.accent.DEFAULT,
                     }}
                   >
                     <FaMapMarkerAlt className="text-xl" />
                   </div>
                   <div>
-                    <h3 
+                    <h3
                       className="text-xl font-semibold mb-2"
                       style={{ color: theme.colors.primary.DEFAULT }}
                     >
@@ -420,17 +443,17 @@ const ContactPage = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <div 
+                  <div
                     className="p-3 rounded-full mr-4"
-                    style={{ 
+                    style={{
                       backgroundColor: theme.colors.primary.DEFAULT,
-                      color: theme.colors.accent.DEFAULT
+                      color: theme.colors.accent.DEFAULT,
                     }}
                   >
                     <FaPhone className="text-xl" />
                   </div>
                   <div>
-                    <h3 
+                    <h3
                       className="text-xl font-semibold mb-2"
                       style={{ color: theme.colors.primary.DEFAULT }}
                     >
@@ -450,17 +473,17 @@ const ContactPage = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <div 
+                  <div
                     className="p-3 rounded-full mr-4"
-                    style={{ 
+                    style={{
                       backgroundColor: theme.colors.primary.DEFAULT,
-                      color: theme.colors.accent.DEFAULT
+                      color: theme.colors.accent.DEFAULT,
                     }}
                   >
                     <FaEnvelope className="text-xl" />
                   </div>
                   <div>
-                    <h3 
+                    <h3
                       className="text-xl font-semibold mb-2"
                       style={{ color: theme.colors.primary.DEFAULT }}
                     >
@@ -480,7 +503,7 @@ const ContactPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                 >
-                  <h3 
+                  <h3
                     className="text-xl font-semibold mb-4"
                     style={{ color: theme.colors.primary.DEFAULT }}
                   >
@@ -490,13 +513,13 @@ const ContactPage = () => {
                     <motion.a
                       href="#"
                       className="w-12 h-12 rounded-full flex items-center justify-center transition-colors"
-                      style={{ 
+                      style={{
                         backgroundColor: theme.colors.primary.DEFAULT,
-                        color: theme.colors.primary.contrast
+                        color: theme.colors.primary.contrast,
                       }}
-                      whileHover={{ 
+                      whileHover={{
                         scale: 1.1,
-                        backgroundColor: theme.colors.accent.DEFAULT
+                        backgroundColor: theme.colors.accent.DEFAULT,
                       }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -505,13 +528,13 @@ const ContactPage = () => {
                     <motion.a
                       href="#"
                       className="w-12 h-12 rounded-full flex items-center justify-center transition-colors"
-                      style={{ 
+                      style={{
                         backgroundColor: theme.colors.primary.DEFAULT,
-                        color: theme.colors.primary.contrast
+                        color: theme.colors.primary.contrast,
                       }}
-                      whileHover={{ 
+                      whileHover={{
                         scale: 1.1,
-                        backgroundColor: theme.colors.accent.DEFAULT
+                        backgroundColor: theme.colors.accent.DEFAULT,
                       }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -520,13 +543,13 @@ const ContactPage = () => {
                     <motion.a
                       href="#"
                       className="w-12 h-12 rounded-full flex items-center justify-center transition-colors"
-                      style={{ 
+                      style={{
                         backgroundColor: theme.colors.primary.DEFAULT,
-                        color: theme.colors.primary.contrast
+                        color: theme.colors.primary.contrast,
                       }}
-                      whileHover={{ 
+                      whileHover={{
                         scale: 1.1,
-                        backgroundColor: theme.colors.accent.DEFAULT
+                        backgroundColor: theme.colors.accent.DEFAULT,
                       }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -537,21 +560,21 @@ const ContactPage = () => {
 
                 <motion.div
                   className="mt-12 p-6 rounded-xl border"
-                  style={{ 
+                  style={{
                     backgroundColor: theme.colors.background.alt,
-                    borderColor: theme.colors.ui.border
+                    borderColor: theme.colors.ui.border,
                   }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                 >
-                  <h3 
+                  <h3
                     className="text-xl font-semibold mb-3"
                     style={{ color: theme.colors.primary.DEFAULT }}
                   >
                     Visit Our Showroom
                   </h3>
-                  <p 
+                  <p
                     className="mb-4"
                     style={{ color: theme.colors.text.primary }}
                   >
@@ -561,9 +584,9 @@ const ContactPage = () => {
                   <button
                     onClick={() => setActiveTab("appointment")}
                     className="py-2 px-6 rounded-full font-medium transition-colors w-full"
-                    style={{ 
+                    style={{
                       backgroundColor: theme.colors.primary.DEFAULT,
-                      color: theme.colors.primary.contrast
+                      color: theme.colors.primary.contrast,
                     }}
                   >
                     Schedule a Visit
@@ -575,9 +598,9 @@ const ContactPage = () => {
               <div className="lg:w-3/5">
                 <motion.h2
                   className="text-3xl font-bold mb-8"
-                  style={{ 
+                  style={{
                     color: theme.colors.primary.DEFAULT,
-                    fontFamily: theme.fonts.header 
+                    fontFamily: theme.fonts.header,
                   }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -589,10 +612,10 @@ const ContactPage = () => {
                 {submitSuccess ? (
                   <motion.div
                     className="border px-4 py-3 rounded mb-6 flex items-center"
-                    style={{ 
-                      backgroundColor: '#F0FDF4',
-                      borderColor: '#BBF7D0',
-                      color: '#166534'
+                    style={{
+                      backgroundColor: "#F0FDF4",
+                      borderColor: "#BBF7D0",
+                      color: "#166534",
                     }}
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
@@ -608,10 +631,10 @@ const ContactPage = () => {
                 <motion.form
                   onSubmit={handleSubmit}
                   className="rounded-xl shadow-lg p-6 md:p-8"
-                  style={{ 
+                  style={{
                     backgroundColor: theme.colors.ui.base,
                     borderColor: theme.colors.ui.border,
-                    borderWidth: '1px'
+                    borderWidth: "1px",
                   }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -642,9 +665,11 @@ const ContactPage = () => {
                               : "border-gray-300"
                           }`}
                           placeholder="John Smith"
-                          style={{ 
+                          style={{
                             focusRingColor: theme.colors.accent.DEFAULT,
-                            borderColor: formErrors.name ? '#EF4444' : theme.colors.ui.border
+                            borderColor: formErrors.name
+                              ? "#EF4444"
+                              : theme.colors.ui.border,
                           }}
                         />
                       </div>
@@ -679,9 +704,11 @@ const ContactPage = () => {
                               : "border-gray-300"
                           }`}
                           placeholder="john@example.com"
-                          style={{ 
+                          style={{
                             focusRingColor: theme.colors.accent.DEFAULT,
-                            borderColor: formErrors.email ? '#EF4444' : theme.colors.ui.border
+                            borderColor: formErrors.email
+                              ? "#EF4444"
+                              : theme.colors.ui.border,
                           }}
                         />
                       </div>
@@ -713,9 +740,11 @@ const ContactPage = () => {
                           : "border-gray-300"
                       }`}
                       placeholder="How can we help you?"
-                      style={{ 
+                      style={{
                         focusRingColor: theme.colors.accent.DEFAULT,
-                        borderColor: formErrors.subject ? '#EF4444' : theme.colors.ui.border
+                        borderColor: formErrors.subject
+                          ? "#EF4444"
+                          : theme.colors.ui.border,
                       }}
                     />
                     {formErrors.subject && (
@@ -745,9 +774,11 @@ const ContactPage = () => {
                           : "border-gray-300"
                       }`}
                       placeholder="Tell us about your project or furniture needs..."
-                      style={{ 
+                      style={{
                         focusRingColor: theme.colors.accent.DEFAULT,
-                        borderColor: formErrors.message ? '#EF4444' : theme.colors.ui.border
+                        borderColor: formErrors.message
+                          ? "#EF4444"
+                          : theme.colors.ui.border,
                       }}
                     ></textarea>
                     {formErrors.message && (
@@ -764,8 +795,8 @@ const ContactPage = () => {
                       className="mr-3 w-5 h-5"
                       style={{ accentColor: theme.colors.primary.DEFAULT }}
                     />
-                    <label 
-                      htmlFor="brochure" 
+                    <label
+                      htmlFor="brochure"
                       style={{ color: theme.colors.text.primary }}
                     >
                       Send me Hudson's furniture catalog
@@ -776,9 +807,9 @@ const ContactPage = () => {
                     type="submit"
                     disabled={isSubmitting}
                     className="w-full text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center"
-                    style={{ 
+                    style={{
                       backgroundColor: theme.colors.primary.DEFAULT,
-                      backgroundImage: `linear-gradient(to right, ${theme.colors.primary.DEFAULT}, ${theme.colors.accent.DEFAULT})`
+                      backgroundImage: `linear-gradient(to right, ${theme.colors.primary.DEFAULT}, ${theme.colors.accent.DEFAULT})`,
                     }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -831,9 +862,9 @@ const ContactPage = () => {
             >
               <motion.h2
                 className="text-3xl font-bold mb-8 text-center"
-                style={{ 
+                style={{
                   color: theme.colors.primary.DEFAULT,
-                  fontFamily: theme.fonts.header 
+                  fontFamily: theme.fonts.header,
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -844,10 +875,10 @@ const ContactPage = () => {
 
               <motion.div
                 className="rounded-xl shadow-lg p-6"
-                style={{ 
+                style={{
                   backgroundColor: theme.colors.ui.base,
                   borderColor: theme.colors.ui.border,
-                  borderWidth: '1px'
+                  borderWidth: "1px",
                 }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -864,17 +895,17 @@ const ContactPage = () => {
                       transition={{ delay: index * 0.1 }}
                     >
                       <div className="flex items-start">
-                        <div 
+                        <div
                           className="p-2 rounded-full mr-4"
-                          style={{ 
+                          style={{
                             backgroundColor: theme.colors.primary.DEFAULT,
-                            color: theme.colors.accent.DEFAULT
+                            color: theme.colors.accent.DEFAULT,
                           }}
                         >
                           <FaQuestionCircle className="text-xl" />
                         </div>
                         <div>
-                          <h3 
+                          <h3
                             className="text-xl font-semibold mb-2"
                             style={{ color: theme.colors.primary.DEFAULT }}
                           >
@@ -895,7 +926,7 @@ const ContactPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <p 
+                  <p
                     className="text-lg mb-6 max-w-2xl mx-auto"
                     style={{ color: theme.colors.text.primary }}
                   >
@@ -906,9 +937,9 @@ const ContactPage = () => {
                     onClick={() => setActiveTab("contact")}
                     className="text-white py-3 px-8 rounded-full font-medium transition-colors"
                     style={{ backgroundColor: theme.colors.primary.DEFAULT }}
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.05,
-                      backgroundColor: theme.colors.accent.DEFAULT
+                      backgroundColor: theme.colors.accent.DEFAULT,
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -931,9 +962,9 @@ const ContactPage = () => {
             >
               <motion.h2
                 className="text-3xl font-bold mb-8 text-center"
-                style={{ 
+                style={{
                   color: theme.colors.primary.DEFAULT,
-                  fontFamily: theme.fonts.header 
+                  fontFamily: theme.fonts.header,
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -945,10 +976,10 @@ const ContactPage = () => {
               {submitSuccess ? (
                 <motion.div
                   className="border px-4 py-3 rounded mb-6 flex items-center"
-                  style={{ 
-                    backgroundColor: '#F0FDF4',
-                    borderColor: '#BBF7D0',
-                    color: '#166534'
+                  style={{
+                    backgroundColor: "#F0FDF4",
+                    borderColor: "#BBF7D0",
+                    color: "#166534",
                   }}
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
@@ -964,10 +995,10 @@ const ContactPage = () => {
               <motion.form
                 onSubmit={handleAppointmentSubmit}
                 className="rounded-xl shadow-lg p-6 md:p-8"
-                style={{ 
+                style={{
                   backgroundColor: theme.colors.ui.base,
                   borderColor: theme.colors.ui.border,
-                  borderWidth: '1px'
+                  borderWidth: "1px",
                 }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -975,8 +1006,8 @@ const ContactPage = () => {
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <label 
-                      htmlFor="date" 
+                    <label
+                      htmlFor="date"
                       className="block mb-2"
                       style={{ color: theme.colors.text.primary }}
                     >
@@ -993,9 +1024,11 @@ const ContactPage = () => {
                           formErrors.date ? "border-red-500" : "border-gray-300"
                         }`}
                         min={new Date().toISOString().split("T")[0]}
-                        style={{ 
+                        style={{
                           focusRingColor: theme.colors.accent.DEFAULT,
-                          borderColor: formErrors.date ? '#EF4444' : theme.colors.ui.border
+                          borderColor: formErrors.date
+                            ? "#EF4444"
+                            : theme.colors.ui.border,
                         }}
                       />
                     </div>
@@ -1007,8 +1040,8 @@ const ContactPage = () => {
                   </div>
 
                   <div>
-                    <label 
-                      htmlFor="time" 
+                    <label
+                      htmlFor="time"
                       className="block mb-2"
                       style={{ color: theme.colors.text.primary }}
                     >
@@ -1023,9 +1056,11 @@ const ContactPage = () => {
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
                           formErrors.time ? "border-red-500" : "border-gray-300"
                         }`}
-                        style={{ 
+                        style={{
                           focusRingColor: theme.colors.accent.DEFAULT,
-                          borderColor: formErrors.time ? '#EF4444' : theme.colors.ui.border
+                          borderColor: formErrors.time
+                            ? "#EF4444"
+                            : theme.colors.ui.border,
                         }}
                       >
                         <option value="">Select a time</option>
@@ -1047,8 +1082,8 @@ const ContactPage = () => {
                 </div>
 
                 <div className="mb-6">
-                  <label 
-                    htmlFor="service" 
+                  <label
+                    htmlFor="service"
                     className="block mb-2"
                     style={{ color: theme.colors.text.primary }}
                   >
@@ -1065,9 +1100,11 @@ const ContactPage = () => {
                           ? "border-red-500"
                           : "border-gray-300"
                       }`}
-                      style={{ 
+                      style={{
                         focusRingColor: theme.colors.accent.DEFAULT,
-                        borderColor: formErrors.service ? '#EF4444' : theme.colors.ui.border
+                        borderColor: formErrors.service
+                          ? "#EF4444"
+                          : theme.colors.ui.border,
                       }}
                     >
                       <option value="">Select a service</option>
@@ -1088,8 +1125,8 @@ const ContactPage = () => {
                 </div>
 
                 <div className="mb-6">
-                  <label 
-                    htmlFor="notes" 
+                  <label
+                    htmlFor="notes"
                     className="block mb-2"
                     style={{ color: theme.colors.text.primary }}
                   >
@@ -1103,9 +1140,9 @@ const ContactPage = () => {
                     rows="4"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
                     placeholder="Tell us about your project or specific interests..."
-                    style={{ 
+                    style={{
                       focusRingColor: theme.colors.accent.DEFAULT,
-                      borderColor: theme.colors.ui.border
+                      borderColor: theme.colors.ui.border,
                     }}
                   ></textarea>
                 </div>
@@ -1114,9 +1151,9 @@ const ContactPage = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center"
-                  style={{ 
+                  style={{
                     backgroundColor: theme.colors.primary.DEFAULT,
-                    backgroundImage: `linear-gradient(to right, ${theme.colors.primary.DEFAULT}, ${theme.colors.accent.DEFAULT})`
+                    backgroundImage: `linear-gradient(to right, ${theme.colors.primary.DEFAULT}, ${theme.colors.accent.DEFAULT})`,
                   }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -1166,11 +1203,11 @@ const ContactPage = () => {
               transition={{ duration: 0.3 }}
               className="max-w-4xl mx-auto"
             >
-              <motion.h2 
+              <motion.h2
                 className="text-3xl font-bold mb-8 text-center"
-                style={{ 
+                style={{
                   color: theme.colors.primary.DEFAULT,
-                  fontFamily: theme.fonts.header 
+                  fontFamily: theme.fonts.header,
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -1178,13 +1215,13 @@ const ContactPage = () => {
               >
                 Website Navigation
               </motion.h2>
-              
-              <motion.div 
+
+              <motion.div
                 className="rounded-xl shadow-lg p-6"
-                style={{ 
+                style={{
                   backgroundColor: theme.colors.ui.base,
                   borderColor: theme.colors.ui.border,
-                  borderWidth: '1px'
+                  borderWidth: "1px",
                 }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -1193,13 +1230,16 @@ const ContactPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Main Navigation */}
                   <div>
-                    <div className="flex items-center mb-4 pb-2 border-b"
+                    <div
+                      className="flex items-center mb-4 pb-2 border-b"
                       style={{ borderColor: theme.colors.ui.border }}
                     >
-                      <FaSitemap className="mr-3 text-xl" 
-                        style={{ color: theme.colors.accent.DEFAULT }} 
+                      <FaSitemap
+                        className="mr-3 text-xl"
+                        style={{ color: theme.colors.accent.DEFAULT }}
                       />
-                      <h3 className="text-xl font-bold"
+                      <h3
+                        className="text-xl font-bold"
                         style={{ color: theme.colors.primary.DEFAULT }}
                       >
                         Main Pages
@@ -1207,10 +1247,12 @@ const ContactPage = () => {
                     </div>
                     <ul className="space-y-3">
                       <li className="flex items-center">
-                        <FaHome className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaHome
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1218,10 +1260,12 @@ const ContactPage = () => {
                         </a>
                       </li>
                       <li className="flex items-center">
-                        <FaInfoCircle className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaInfoCircle
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1229,10 +1273,12 @@ const ContactPage = () => {
                         </a>
                       </li>
                       <li className="flex items-center">
-                        <FaTools className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaTools
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1240,10 +1286,12 @@ const ContactPage = () => {
                         </a>
                       </li>
                       <li className="flex items-center">
-                        <FaImages className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaImages
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1251,10 +1299,12 @@ const ContactPage = () => {
                         </a>
                       </li>
                       <li className="flex items-center">
-                        <FaNewspaper className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaNewspaper
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1263,16 +1313,19 @@ const ContactPage = () => {
                       </li>
                     </ul>
                   </div>
-                  
+
                   {/* Products & Services */}
                   <div>
-                    <div className="flex items-center mb-4 pb-2 border-b"
+                    <div
+                      className="flex items-center mb-4 pb-2 border-b"
                       style={{ borderColor: theme.colors.ui.border }}
                     >
-                      <FaTools className="mr-3 text-xl" 
-                        style={{ color: theme.colors.accent.DEFAULT }} 
+                      <FaTools
+                        className="mr-3 text-xl"
+                        style={{ color: theme.colors.accent.DEFAULT }}
                       />
-                      <h3 className="text-xl font-bold"
+                      <h3
+                        className="text-xl font-bold"
                         style={{ color: theme.colors.primary.DEFAULT }}
                       >
                         Collections
@@ -1281,11 +1334,15 @@ const ContactPage = () => {
                     <ul className="space-y-3">
                       <li className="flex items-center">
                         <div className="w-5 mr-3 flex justify-center">
-                          <span className="block w-1.5 h-1.5 rounded-full mt-2"
-                            style={{ backgroundColor: theme.colors.text.primary }}
+                          <span
+                            className="block w-1.5 h-1.5 rounded-full mt-2"
+                            style={{
+                              backgroundColor: theme.colors.text.primary,
+                            }}
                           ></span>
                         </div>
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1294,11 +1351,15 @@ const ContactPage = () => {
                       </li>
                       <li className="flex items-center">
                         <div className="w-5 mr-3 flex justify-center">
-                          <span className="block w-1.5 h-1.5 rounded-full mt-2"
-                            style={{ backgroundColor: theme.colors.text.primary }}
+                          <span
+                            className="block w-1.5 h-1.5 rounded-full mt-2"
+                            style={{
+                              backgroundColor: theme.colors.text.primary,
+                            }}
                           ></span>
                         </div>
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1307,11 +1368,15 @@ const ContactPage = () => {
                       </li>
                       <li className="flex items-center">
                         <div className="w-5 mr-3 flex justify-center">
-                          <span className="block w-1.5 h-1.5 rounded-full mt-2"
-                            style={{ backgroundColor: theme.colors.text.primary }}
+                          <span
+                            className="block w-1.5 h-1.5 rounded-full mt-2"
+                            style={{
+                              backgroundColor: theme.colors.text.primary,
+                            }}
                           ></span>
                         </div>
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1320,11 +1385,15 @@ const ContactPage = () => {
                       </li>
                       <li className="flex items-center">
                         <div className="w-5 mr-3 flex justify-center">
-                          <span className="block w-1.5 h-1.5 rounded-full mt-2"
-                            style={{ backgroundColor: theme.colors.text.primary }}
+                          <span
+                            className="block w-1.5 h-1.5 rounded-full mt-2"
+                            style={{
+                              backgroundColor: theme.colors.text.primary,
+                            }}
                           ></span>
                         </div>
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1333,11 +1402,15 @@ const ContactPage = () => {
                       </li>
                       <li className="flex items-center">
                         <div className="w-5 mr-3 flex justify-center">
-                          <span className="block w-1.5 h-1.5 rounded-full mt-2"
-                            style={{ backgroundColor: theme.colors.text.primary }}
+                          <span
+                            className="block w-1.5 h-1.5 rounded-full mt-2"
+                            style={{
+                              backgroundColor: theme.colors.text.primary,
+                            }}
                           ></span>
                         </div>
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1346,16 +1419,19 @@ const ContactPage = () => {
                       </li>
                     </ul>
                   </div>
-                  
+
                   {/* Support & Legal */}
                   <div>
-                    <div className="flex items-center mb-4 pb-2 border-b"
+                    <div
+                      className="flex items-center mb-4 pb-2 border-b"
                       style={{ borderColor: theme.colors.ui.border }}
                     >
-                      <FaQuestionCircle className="mr-3 text-xl" 
-                        style={{ color: theme.colors.accent.DEFAULT }} 
+                      <FaQuestionCircle
+                        className="mr-3 text-xl"
+                        style={{ color: theme.colors.accent.DEFAULT }}
                       />
-                      <h3 className="text-xl font-bold"
+                      <h3
+                        className="text-xl font-bold"
                         style={{ color: theme.colors.primary.DEFAULT }}
                       >
                         Support
@@ -1363,10 +1439,12 @@ const ContactPage = () => {
                     </div>
                     <ul className="space-y-3">
                       <li className="flex items-center">
-                        <FaEnvelopeOpen className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaEnvelopeOpen
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1374,10 +1452,12 @@ const ContactPage = () => {
                         </a>
                       </li>
                       <li className="flex items-center">
-                        <FaQuestionCircle className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaQuestionCircle
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1385,10 +1465,12 @@ const ContactPage = () => {
                         </a>
                       </li>
                       <li className="flex items-center">
-                        <FaTruck className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaTruck
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1396,10 +1478,12 @@ const ContactPage = () => {
                         </a>
                       </li>
                       <li className="flex items-center">
-                        <FaToolbox className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaToolbox
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1408,16 +1492,19 @@ const ContactPage = () => {
                       </li>
                     </ul>
                   </div>
-                  
+
                   {/* Legal & Shopping */}
                   <div>
-                    <div className="flex items-center mb-4 pb-2 border-b"
+                    <div
+                      className="flex items-center mb-4 pb-2 border-b"
                       style={{ borderColor: theme.colors.ui.border }}
                     >
-                      <FaLock className="mr-3 text-xl" 
-                        style={{ color: theme.colors.accent.DEFAULT }} 
+                      <FaLock
+                        className="mr-3 text-xl"
+                        style={{ color: theme.colors.accent.DEFAULT }}
                       />
-                      <h3 className="text-xl font-bold"
+                      <h3
+                        className="text-xl font-bold"
                         style={{ color: theme.colors.primary.DEFAULT }}
                       >
                         Legal & Shopping
@@ -1425,10 +1512,12 @@ const ContactPage = () => {
                     </div>
                     <ul className="space-y-3">
                       <li className="flex items-center">
-                        <FaShoppingBag className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaShoppingBag
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1436,10 +1525,12 @@ const ContactPage = () => {
                         </a>
                       </li>
                       <li className="flex items-center">
-                        <FaFileContract className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaFileContract
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1447,10 +1538,12 @@ const ContactPage = () => {
                         </a>
                       </li>
                       <li className="flex items-center">
-                        <FaShieldAlt className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaShieldAlt
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1458,10 +1551,12 @@ const ContactPage = () => {
                         </a>
                       </li>
                       <li className="flex items-center">
-                        <FaExchangeAlt className="mr-3" 
-                          style={{ color: theme.colors.text.primary }} 
+                        <FaExchangeAlt
+                          className="mr-3"
+                          style={{ color: theme.colors.text.primary }}
                         />
-                        <a href="#" 
+                        <a
+                          href="#"
                           className="transition-colors"
                           style={{ color: theme.colors.text.primary }}
                         >
@@ -1471,29 +1566,31 @@ const ContactPage = () => {
                     </ul>
                   </div>
                 </div>
-                
-                <motion.div 
+
+                <motion.div
                   className="mt-10 pt-6 border-t text-center"
                   style={{ borderColor: theme.colors.ui.border }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <p className="mb-4"
+                  <p
+                    className="mb-4"
                     style={{ color: theme.colors.text.primary }}
                   >
-                    Having trouble finding what you need? Our team is here to help.
+                    Having trouble finding what you need? Our team is here to
+                    help.
                   </p>
-                  <motion.button 
-                    onClick={() => setActiveTab('contact')}
+                  <motion.button
+                    onClick={() => setActiveTab("contact")}
                     className="py-2 px-6 rounded-full font-medium transition-colors"
-                    style={{ 
+                    style={{
                       backgroundColor: theme.colors.primary.DEFAULT,
-                      color: theme.colors.primary.contrast
+                      color: theme.colors.primary.contrast,
                     }}
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.05,
-                      backgroundColor: theme.colors.accent.DEFAULT
+                      backgroundColor: theme.colors.accent.DEFAULT,
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -1511,9 +1608,9 @@ const ContactPage = () => {
         <div className="max-w-6xl mx-auto">
           <motion.h2
             className="text-3xl font-bold mb-8 text-center"
-            style={{ 
+            style={{
               color: theme.colors.primary.DEFAULT,
-              fontFamily: theme.fonts.header 
+              fontFamily: theme.fonts.header,
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1531,8 +1628,9 @@ const ContactPage = () => {
             {!mapLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
                 <div className="text-center">
-                  <FaMap className="text-5xl mx-auto mb-4" 
-                    style={{ color: theme.colors.primary.DEFAULT }} 
+                  <FaMap
+                    className="text-5xl mx-auto mb-4"
+                    style={{ color: theme.colors.primary.DEFAULT }}
                   />
                   <p className="text-gray-600">Loading map...</p>
                 </div>
@@ -1555,43 +1653,52 @@ const ContactPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <div className="bg-white p-6 rounded-xl shadow-md text-center min-w-[200px]"
+            <div
+              className="bg-white p-6 rounded-xl shadow-md text-center min-w-[200px]"
               style={{ backgroundColor: theme.colors.ui.base }}
             >
-              <div className="text-4xl font-bold"
+              <div
+                className="text-4xl font-bold"
                 style={{ color: theme.colors.primary.DEFAULT }}
               >
                 10+
               </div>
-              <div className="text-lg"
+              <div
+                className="text-lg"
                 style={{ color: theme.colors.text.primary }}
               >
                 Master Craftsmen
               </div>
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-md text-center min-w-[200px]"
+            <div
+              className="bg-white p-6 rounded-xl shadow-md text-center min-w-[200px]"
               style={{ backgroundColor: theme.colors.ui.base }}
             >
-              <div className="text-4xl font-bold"
+              <div
+                className="text-4xl font-bold"
                 style={{ color: theme.colors.primary.DEFAULT }}
               >
                 25+
               </div>
-              <div className="text-lg"
+              <div
+                className="text-lg"
                 style={{ color: theme.colors.text.primary }}
               >
                 Years Experience
               </div>
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-md text-center min-w-[200px]"
+            <div
+              className="bg-white p-6 rounded-xl shadow-md text-center min-w-[200px]"
               style={{ backgroundColor: theme.colors.ui.base }}
             >
-              <div className="text-4xl font-bold"
+              <div
+                className="text-4xl font-bold"
                 style={{ color: theme.colors.primary.DEFAULT }}
               >
                 100%
               </div>
-              <div className="text-lg"
+              <div
+                className="text-lg"
                 style={{ color: theme.colors.text.primary }}
               >
                 Satisfaction Guarantee
@@ -1602,15 +1709,16 @@ const ContactPage = () => {
       </div>
 
       {/* Business Hours */}
-      <div className="py-16 px-4 w-full max-w-8xl mx-auto"
+      <div
+        className="py-16 px-4 w-full max-w-8xl mx-auto"
         style={{ backgroundColor: theme.colors.primary.DEFAULT }}
       >
         <div className="max-w-6xl mx-auto">
           <motion.h2
             className="text-3xl font-bold text-center mb-12"
-            style={{ 
+            style={{
               color: theme.colors.primary.contrast,
-              fontFamily: theme.fonts.header 
+              fontFamily: theme.fonts.header,
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1624,20 +1732,20 @@ const ContactPage = () => {
               <motion.div
                 key={index}
                 className="p-6 rounded-xl text-center border"
-                style={{ 
-                  backgroundColor: '#2D2420',
-                  borderColor: '#453A35',
-                  color: theme.colors.primary.contrast
+                style={{
+                  backgroundColor: "#2D2420",
+                  borderColor: "#453A35",
+                  color: theme.colors.primary.contrast,
                 }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <div 
+                <div
                   className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ 
+                  style={{
                     backgroundColor: theme.colors.primary.DEFAULT,
-                    color: theme.colors.accent.DEFAULT
+                    color: theme.colors.accent.DEFAULT,
                   }}
                 >
                   <FaClock className="text-2xl" />
@@ -1654,7 +1762,8 @@ const ContactPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <p className="text-lg max-w-2xl mx-auto"
+            <p
+              className="text-lg max-w-2xl mx-auto"
               style={{ color: theme.colors.primary.contrast }}
             >
               For personalized consultations beyond our regular hours, we're
@@ -1664,14 +1773,14 @@ const ContactPage = () => {
             <motion.button
               onClick={() => setActiveTab("appointment")}
               className="mt-6 border-2 px-8 py-3 rounded-full font-medium text-lg transition-all duration-300"
-              style={{ 
+              style={{
                 borderColor: theme.colors.primary.contrast,
-                color: theme.colors.primary.contrast
+                color: theme.colors.primary.contrast,
               }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 backgroundColor: theme.colors.accent.DEFAULT,
-                borderColor: theme.colors.accent.DEFAULT
+                borderColor: theme.colors.accent.DEFAULT,
               }}
               whileTap={{ scale: 0.95 }}
             >
@@ -1682,17 +1791,18 @@ const ContactPage = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="py-20 px-4"
-        style={{ 
-          backgroundImage: `linear-gradient(to bottom right, ${theme.colors.background.DEFAULT}, ${theme.colors.background.muted})`
+      <div
+        className="py-20 px-4"
+        style={{
+          backgroundImage: `linear-gradient(to bottom right, ${theme.colors.background.DEFAULT}, ${theme.colors.background.muted})`,
         }}
       >
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-6"
-            style={{ 
+            style={{
               color: theme.colors.primary.DEFAULT,
-              fontFamily: theme.fonts.header 
+              fontFamily: theme.fonts.header,
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1726,13 +1836,13 @@ const ContactPage = () => {
             <motion.button
               onClick={() => setActiveTab("appointment")}
               className="py-3 px-8 rounded-full font-medium transition-colors"
-              style={{ 
+              style={{
                 backgroundColor: theme.colors.primary.DEFAULT,
-                color: theme.colors.primary.contrast
+                color: theme.colors.primary.contrast,
               }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
-                backgroundColor: theme.colors.accent.hover
+                backgroundColor: theme.colors.accent.hover,
               }}
               whileTap={{ scale: 0.95 }}
             >
@@ -1740,14 +1850,14 @@ const ContactPage = () => {
             </motion.button>
             <motion.button
               className="border-2 py-3 px-8 rounded-full font-medium transition-colors"
-              style={{ 
+              style={{
                 borderColor: theme.colors.primary.DEFAULT,
-                color: theme.colors.primary.DEFAULT
+                color: theme.colors.primary.DEFAULT,
               }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 backgroundColor: theme.colors.primary.DEFAULT,
-                color: theme.colors.primary.contrast
+                color: theme.colors.primary.contrast,
               }}
               whileTap={{ scale: 0.95 }}
             >
