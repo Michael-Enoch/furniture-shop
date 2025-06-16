@@ -3,6 +3,7 @@ import axios from "axios"
 import { Link } from "react-router-dom"
 import AOS from "aos"
 import 'aos/dist/aos.css'
+import theme from '../context/Theme.jsx'
 
 
 const CategoriesSection = () => {
@@ -38,15 +39,24 @@ const CategoriesSection = () => {
 
     return (
         <>
-        <div className="px-20 pt-20 py-10 flex flex-col gap-10">
-            <h1 data-aos='fade-up' className="text-3xl flex justify-center">Featured Categories</h1>
-            <div className='grid grid-cols-2 gap-8 w-full' >
+        <div className="p-20 flex flex-col gap-10">
+            <h2
+                data-aos='fade-up'
+                className="text-4xl sm:text-5xl md:text-6xl font-light mb-6 tracking-tight flex justify-center"
+                style={{
+                    color: theme.colors.text.primary,
+                    fontFamily: theme.fonts.header,
+                }}
+            >
+                Featured Categories
+            </h2>
+            <div className='grid grid-cols-3 gap-8 w-full' >
                 
                 {
                     categories.map((category) =>(
                         <Link data-aos='fade-up'  to='/' className="flex flex-col gap-2 font-normal" key={category.id}>
                             <img className="w-full h-80" src={category.image} alt="" />
-                            <p>{category.name}</p>
+                            <p className="text-xl flex justify-center">{category.name}</p>
                         </Link>
                     ))
                     

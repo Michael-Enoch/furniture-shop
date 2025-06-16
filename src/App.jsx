@@ -1,6 +1,5 @@
 
 import { gsap } from "gsap";
-
 import { Toaster } from 'react-hot-toast';
 import './App.css';
 import { AuthProvider } from './context/AuthContext';
