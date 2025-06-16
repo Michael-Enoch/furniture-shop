@@ -1,27 +1,12 @@
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  FaHandshake,
-  FaLeaf,
-  FaLightbulb,
-  FaMedal,
-  FaUsers,
-  FaTools,
-  FaChevronDown,
-  FaHammer,
-  FaTree,
-  FaRuler,
-  FaPaintRoller,
-  FaHeart,
-  FaQuoteLeft,
-  FaFacebook,
-  FaInstagram,
-  FaPinterest,
-  FaMapMarkerAlt,
-  FaPhone,
-  FaEnvelope,
-  FaTimes,
+import { 
+  FaHandshake, FaLeaf, FaLightbulb, FaMedal, FaUsers, 
+  FaTools, FaChevronDown, FaHammer, FaTree, FaRuler, 
+  FaPaintRoller, FaHeart, FaQuoteLeft, FaFacebook, 
+  FaInstagram, FaPinterest, FaMapMarkerAlt, FaPhone, 
+  FaEnvelope, FaTimes 
 } from "react-icons/fa";
 
 // Import team images
@@ -37,6 +22,53 @@ import teamBenjamin from "../assets/images/profile-images/person4.jpeg";
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutUs = () => {
+  // Theme configuration
+  const theme = {
+    colors: {
+      primary: {
+        DEFAULT: '#3A2F2A',
+        contrast: '#F8F5F2',
+      },
+      accent: {
+        DEFAULT: '#A65A2E',
+        hover: '#BF6E3D',
+      },
+      background: {
+        DEFAULT: '#F3EFEB',
+        alt: "#EFEAE5",
+        muted: '#EAE6E1',
+      },
+      text: {
+        primary: '#2D2D2D',
+        onPrimary: '#F8F5F2',
+      },
+      ui: {
+        base: '#FFFFFF',
+        border: '#DAD4CE',
+      },
+    },
+    fonts: {
+      header: "'Raleway', sans-serif",
+      body: "'Inter', sans-serif",
+      alt: "'Poppins', sans-serif",
+      ui: "'Work Sans', sans-serif",
+    },
+    semanticRoles: {
+      navBackground: 'primary.DEFAULT',
+      primaryButtonBackground: 'primary.DEFAULT',
+      primaryButtonText: 'primary.contrast',
+      sectionBackground: 'background.DEFAULT',
+      cardBackground: 'background.muted',
+      bodyText: 'text.primary',
+      footerBackground: 'ui.base',
+      inputBackground: 'ui.base',
+      inputBorder: 'ui.border',
+      hoverEffect: 'accent.hover',
+      ctaButton: 'accent.DEFAULT',
+      ctaHover: 'accent.hover',
+    },
+  };
+
   // State for modal
   const [selectedArtisan, setSelectedArtisan] = useState(null);
   const [modalType, setModalType] = useState(null);
@@ -70,13 +102,14 @@ const AboutUs = () => {
 
   const modalRef = useRef(null);
   const modalContentRef = useRef(null);
+  const heroBackgroundRef = useRef(null);
 
   // Button hover animations
   const handleButtonHover = (e) => {
     gsap.to(e.target, {
       scale: 1.05,
-      backgroundColor: "#2F4F4F",
-      color: "#F5F1E9",
+      backgroundColor: theme.colors.accent.DEFAULT,
+      color: theme.colors.text.onPrimary,
       duration: 0.3,
       ease: "power1.out",
     });
@@ -86,7 +119,7 @@ const AboutUs = () => {
     gsap.to(e.target, {
       scale: 1,
       backgroundColor: "transparent",
-      color: "#2F4F4F",
+      color: theme.colors.accent.DEFAULT,
       duration: 0.3,
       ease: "power1.out",
     });
@@ -104,6 +137,7 @@ const AboutUs = () => {
     gsap.to(modalContentRef.current, {
       y: 50,
       opacity: 0,
+      scale: 0.95,
       duration: 0.4,
       ease: "power2.in",
       onComplete: () => {
@@ -126,7 +160,7 @@ const AboutUs = () => {
 
       gsap.fromTo(
         modalContentRef.current,
-        { y: 100, opacity: 0, scale: 0.95 },
+        { y: 100, opacity: 0, scale: 0.9 },
         {
           y: 0,
           opacity: 1,
@@ -339,29 +373,50 @@ const AboutUs = () => {
         .timeline()
         .fromTo(
           elementRefs.title.current,
-          { opacity: 0, y: 80 },
-          { opacity: 1, y: 0, duration: 1.5, ease: "power3.out" }
+          { opacity: 0, y: 80, rotation: -2 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            rotation: 0, 
+            duration: 1.5, 
+            ease: "elastic.out(1, 0.3)" 
+          }
         )
         .fromTo(
           elementRefs.subtitle.current,
-          { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" },
+          { opacity: 0, y: 50, scale: 0.95 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            scale: 1,
+            duration: 1.2, 
+            ease: "power3.out" 
+          },
           "-=1"
         )
         .fromTo(
           elementRefs.ctaButton.current,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+          { opacity: 0, y: 30, scale: 0.9 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            scale: 1,
+            duration: 0.8, 
+            ease: "back.out(1.7)" 
+          },
           "-=0.8"
         );
 
-      // Scroll indicator animation
-      gsap.to(elementRefs.scrollIndicator.current?.querySelector(".bounce"), {
-        y: 15,
-        repeat: -1,
-        yoyo: true,
-        duration: 1.2,
-        ease: "power1.inOut",
+      // Parallax effect for hero background
+      gsap.to(heroBackgroundRef.current, {
+        y: '10%',
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRefs.hero.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        }
       });
 
       // Section animations with ScrollTrigger
@@ -370,7 +425,7 @@ const AboutUs = () => {
         if (section.current) {
           gsap.fromTo(
             section.current,
-            { opacity: 0, y: 50 },
+            { opacity: 0, y: 80 },
             {
               opacity: 1,
               y: 0,
@@ -389,7 +444,7 @@ const AboutUs = () => {
       // Story section
       gsap.fromTo(
         elementRefs.storyImage.current,
-        { opacity: 0, x: -80, rotation: -3 },
+        { opacity: 0, x: -80, rotation: -5 },
         {
           opacity: 1,
           x: 0,
@@ -404,10 +459,11 @@ const AboutUs = () => {
 
       gsap.fromTo(
         elementRefs.storyText.current,
-        { opacity: 0, y: 60 },
+        { opacity: 0, y: 60, scale: 0.98 },
         {
           opacity: 1,
           y: 0,
+          scale: 1,
           duration: 1.2,
           scrollTrigger: {
             trigger: elementRefs.storyText.current,
@@ -416,24 +472,61 @@ const AboutUs = () => {
         }
       );
 
-      // Values cards
+      // Values cards - Enhanced animation
       elementRefs.valuesCards.current.forEach((el, index) => {
         if (el) {
+          // Create a staggered entry with spring physics
           gsap.fromTo(
             el,
-            { opacity: 0, y: 60, rotation: -5 },
+            { 
+              opacity: 0, 
+              y: 60, 
+              scale: 0.9,
+              rotation: -3
+            },
             {
               opacity: 1,
               y: 0,
+              scale: 1,
               rotation: 0,
-              duration: 0.7,
+              duration: 0.8,
               delay: index * 0.15,
+              ease: "elastic.out(1, 0.8)",
               scrollTrigger: {
                 trigger: el,
                 start: "top bottom-=180",
               },
+              onComplete: () => {
+                // Add subtle continuous floating effect after entry
+                gsap.to(el, {
+                  y: 3,
+                  duration: 3,
+                  repeat: -1,
+                  yoyo: true,
+                  ease: "sine.inOut"
+                });
+              }
             }
           );
+          
+          // Hover animation for values cards
+          el.addEventListener("mouseenter", () => {
+            gsap.to(el, {
+              y: -10,
+              scale: 1.03,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          });
+          
+          el.addEventListener("mouseleave", () => {
+            gsap.to(el, {
+              y: 0,
+              scale: 1,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          });
         }
       });
 
@@ -442,18 +535,37 @@ const AboutUs = () => {
         if (el) {
           gsap.fromTo(
             el,
-            { opacity: 0, scale: 0.8 },
+            { opacity: 0, scale: 0.85, y: 30 },
             {
               opacity: 1,
               scale: 1,
+              y: 0,
               duration: 0.6,
               delay: index * 0.1,
+              ease: "back.out(1.7)",
               scrollTrigger: {
                 trigger: el.parentNode,
                 start: "top bottom-=180",
               },
             }
           );
+          
+          // Hover animation for team cards
+          el.addEventListener("mouseenter", () => {
+            gsap.to(el, {
+              y: -5,
+              duration: 0.3,
+              ease: "power1.out",
+            });
+          });
+          
+          el.addEventListener("mouseleave", () => {
+            gsap.to(el, {
+              y: 0,
+              duration: 0.3,
+              ease: "power1.out",
+            });
+          });
         }
       });
 
@@ -462,12 +574,14 @@ const AboutUs = () => {
         if (el) {
           gsap.fromTo(
             el,
-            { opacity: 0, y: 60 },
+            { opacity: 0, y: 60, scale: 0.95 },
             {
               opacity: 1,
               y: 0,
+              scale: 1,
               duration: 0.7,
               delay: index * 0.2,
+              ease: "back.out(1.7)",
               scrollTrigger: {
                 trigger: el,
                 start: "top bottom-=180",
@@ -479,15 +593,30 @@ const AboutUs = () => {
     });
 
     return () => ctx.revert();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="bg-[#F5F1E9] text-[#333333]">
+    <div 
+      className="bg-[#F3EFEB] text-[#2D2D2D]"
+      style={{ fontFamily: theme.fonts.body }}
+    >
       {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center justify-center bg-black">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/90 z-10"></div>
+      <section 
+        ref={sectionRefs.hero}
+        className="relative h-[90vh] flex items-center justify-center"
+        style={{ backgroundColor: theme.colors.primary.DEFAULT }}
+      >
+        <div 
+          className="absolute inset-0 z-10"
+          style={{
+            background: `linear-gradient(to bottom, 
+              ${theme.colors.primary.DEFAULT}90, 
+              ${theme.colors.primary.DEFAULT}70, 
+              ${theme.colors.primary.DEFAULT}90)`
+          }}
+        ></div>
         <div
+          ref={heroBackgroundRef}
           className="absolute inset-0 bg-cover bg-center opacity-80"
           style={{
             backgroundImage:
@@ -498,23 +627,39 @@ const AboutUs = () => {
 
         <div className="relative z-20 text-center px-4 max-w-4xl">
           <div className="mb-10">
-            <div className="w-20 h-1 bg-[#C5A880] mx-auto mb-6"></div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-wide">
+            <div 
+              className="w-20 h-1 mx-auto mb-6" 
+              style={{ backgroundColor: theme.colors.accent.DEFAULT }}
+            ></div>
+            <h1 
+              ref={elementRefs.title}
+              className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-wide"
+              style={{ fontFamily: theme.fonts.header }}
+            >
               Crafting Timeless Spaces
             </h1>
-            <div className="w-32 h-1 bg-[#C5A880] mx-auto mt-6"></div>
+            <div 
+              className="w-32 h-1 mx-auto mt-6" 
+              style={{ backgroundColor: theme.colors.accent.DEFAULT }}
+            ></div>
           </div>
 
-          <p className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto mb-10">
+          <p 
+            ref={elementRefs.subtitle}
+            className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto mb-10"
+            style={{ fontFamily: theme.fonts.alt }}
+          >
             Blending centuries-old craftsmanship with contemporary design to
             create furniture that tells a story
           </p>
 
           <button
+            ref={elementRefs.ctaButton}
             onMouseEnter={handleButtonHover}
             onMouseLeave={handleButtonHoverEnd}
-            className="mt-8 border-2 border-white text-white px-10 py-3 rounded-full font-medium text-lg transition-all duration-300 hover:bg-[#C5A880] hover:border-[#C5A880] focus:outline-none focus:ring-2 focus:ring-[#C5A880] focus:ring-opacity-50"
+            className="mt-8 border-2 border-white text-white px-10 py-3 rounded-full font-medium text-lg transition-all duration-300 hover:bg-[#A65A2E] hover:border-[#A65A2E] focus:outline-none focus:ring-2 focus:ring-[#A65A2E] focus:ring-opacity-50"
             aria-label="Explore our furniture collection"
+            style={{ fontFamily: theme.fonts.ui }}
           >
             Explore Our Collection
           </button>
@@ -529,7 +674,7 @@ const AboutUs = () => {
         <div className="flex flex-col md:flex-row items-center gap-16">
           <div
             ref={elementRefs.storyImage}
-            className="w-full md:w-1/2 h-[500px] relative  rounded-2xl shadow-2xl"
+            className="w-full md:w-1/2 h-[500px] relative rounded-2xl shadow-2xl overflow-hidden"
           >
             <div
               className="w-full h-full bg-cover bg-center"
@@ -545,7 +690,13 @@ const AboutUs = () => {
           </div>
 
           <div ref={elementRefs.storyText} className="w-full md:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2F4F4F] mb-6">
+            <h2 
+              className="text-3xl md:text-4xl font-bold mb-6"
+              style={{ 
+                color: theme.colors.primary.DEFAULT,
+                fontFamily: theme.fonts.header 
+              }}
+            >
               Our Heritage & Journey
             </h2>
             <p className="text-lg mb-6 leading-relaxed">
@@ -562,18 +713,18 @@ const AboutUs = () => {
               for future generations.
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
-              <div className="bg-[#2F4F4F] text-white px-4 py-2 rounded-full text-sm">
-                25+ Years Experience
-              </div>
-              <div className="bg-[#2F4F4F] text-white px-4 py-2 rounded-full text-sm">
-                Family-Owned
-              </div>
-              <div className="bg-[#2F4F4F] text-white px-4 py-2 rounded-full text-sm">
-                Handcrafted
-              </div>
-              <div className="bg-[#2F4F4F] text-white px-4 py-2 rounded-full text-sm">
-                Sustainable Materials
-              </div>
+              {["25+ Years Experience", "Family-Owned", "Handcrafted", "Sustainable Materials"].map((tag, i) => (
+                <div 
+                  key={i}
+                  className="px-4 py-2 rounded-full text-sm"
+                  style={{ 
+                    backgroundColor: theme.colors.primary.DEFAULT,
+                    color: theme.colors.text.onPrimary
+                  }}
+                >
+                  {tag}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -582,14 +733,25 @@ const AboutUs = () => {
       {/* Values Section */}
       <section
         ref={sectionRefs.values}
-        className="py-24 bg-[#2F4F4F] text-white"
+        className="py-24"
+        style={{ backgroundColor: theme.colors.primary.DEFAULT }}
       >
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 ref={elementRefs.mission} className="text-4xl font-bold">
+            <h2 
+              ref={elementRefs.mission} 
+              className="text-4xl font-bold text-white"
+              style={{ fontFamily: theme.fonts.header }}
+            >
               Our Guiding Principles
             </h2>
-            <p className="text-xl max-w-2xl mx-auto mt-4 text-[#E8DFD1]">
+            <p 
+              className="text-xl max-w-2xl mx-auto mt-4"
+              style={{ 
+                color: theme.colors.text.onPrimary,
+                fontFamily: theme.fonts.alt
+              }}
+            >
               The values that shape every decision, every design, and every
               piece we create
             </p>
@@ -600,13 +762,30 @@ const AboutUs = () => {
               <div
                 key={index}
                 ref={(el) => (elementRefs.valuesCards.current[index] = el)}
-                className="bg-[#3A5F5F] p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-[#5C3A21]/30"
+                className="p-8 rounded-2xl shadow-lg hover:shadow-xl border transition-shadow duration-300"
+                style={{ 
+                  backgroundColor: theme.colors.background.alt,
+                  borderColor: theme.colors.ui.border
+                }}
               >
-                <div className="w-16 h-16 rounded-full bg-[#3A2F2A] text-[#F8F5F2]  flex items-center justify-center mb-6">
+                <div 
+                  className="w-16 h-16 rounded-full flex items-center justify-center mb-6"
+                  style={{ 
+                    backgroundColor: theme.colors.primary.DEFAULT,
+                    color: theme.colors.text.onPrimary
+                  }}
+                >
                   {value.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-4">{value.title}</h3>
-                <p className="text-[#E8DFD1]">{value.description}</p>
+                <h3 
+                  className="text-2xl font-bold mb-4"
+                  style={{ color: theme.colors.primary.DEFAULT }}
+                >
+                  {value.title}
+                </h3>
+                <p style={{ color: theme.colors.text.primary }}>
+                  {value.description}
+                </p>
               </div>
             ))}
           </div>
@@ -614,12 +793,24 @@ const AboutUs = () => {
       </section>
 
       {/* Team Section */}
-      <section ref={sectionRefs.team} className="py-24 px-4 max-w-6xl mx-auto">
+      <section 
+        ref={sectionRefs.team} 
+        className="py-24 px-4 max-w-6xl mx-auto"
+      >
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-[#2F4F4F] mb-6">
+          <h2 
+            className="text-4xl font-bold mb-6"
+            style={{ 
+              color: theme.colors.primary.DEFAULT,
+              fontFamily: theme.fonts.header
+            }}
+          >
             Meet Our Artisans
           </h2>
-          <p className="text-xl max-w-2xl mx-auto text-[#5C3A21]">
+          <p 
+            className="text-xl max-w-2xl mx-auto"
+            style={{ color: theme.colors.accent.DEFAULT }}
+          >
             The passionate individuals who transform raw materials into works of
             art
           </p>
@@ -631,8 +822,12 @@ const AboutUs = () => {
               key={index}
               ref={(el) => (elementRefs.teamMembers.current[index] = el)}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group relative"
+              style={{ 
+                backgroundColor: theme.colors.ui.base,
+                borderColor: theme.colors.ui.border
+              }}
             >
-             <div className="relative h-60 w-full overflow-hidden cursor-pointer">
+              <div className="relative h-60 w-full overflow-hidden cursor-pointer">
                 <img
                   src={member.img}
                   alt={member.name}
@@ -640,7 +835,10 @@ const AboutUs = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <h3 className="font-bold text-xl group-hover:text-[#C5A880] transition-colors">
+                  <h3 
+                    className="font-bold text-xl group-hover:text-[#A65A2E] transition-colors"
+                    style={{ fontFamily: theme.fonts.ui }}
+                  >
                     {member.name}
                   </h3>
                   <p className="text-[#E8DFD1]">{member.position}</p>
@@ -648,23 +846,45 @@ const AboutUs = () => {
               </div>
               <div className="p-4">
                 <div className="flex justify-between items-center mb-3">
-                  <span className="text-xs bg-[#2F4F4F] text-white px-2 py-1 rounded-full">
+                  <span 
+                    className="text-xs text-white px-2 py-1 rounded-full"
+                    style={{ backgroundColor: theme.colors.primary.DEFAULT }}
+                  >
                     {member.experience}
                   </span>
-                  <FaQuoteLeft className="text-[#C5A880]" />
+                  <FaQuoteLeft style={{ color: theme.colors.accent.DEFAULT }} />
                 </div>
                 <p className="text-sm text-gray-600 italic">"{member.quote}"</p>
                 <div className="mt-4 flex gap-2">
                   <button
                     onClick={() => openArtisanModal(member, "work")}
-                    className="text-xs bg-[#F5F1E9] text-[#2F4F4F] px-3 py-1 rounded-full hover:bg-[#C5A880] hover:text-white transition-colors focus:outline-none focus:ring-1 focus:ring-[#C5A880]"
+                    className="text-xs px-3 py-1 rounded-full transition-colors focus:outline-none focus:ring-1"
+                    style={{ 
+                      backgroundColor: theme.colors.background.muted,
+                      color: theme.colors.primary.DEFAULT,
+                      fontFamily: theme.fonts.ui,
+                      borderColor: theme.colors.ui.border,
+                      '&:hover': {
+                        backgroundColor: theme.colors.accent.DEFAULT,
+                        color: theme.colors.text.onPrimary
+                      }
+                    }}
                     aria-label={`View work by ${member.name}`}
                   >
                     View Work
                   </button>
                   <button
                     onClick={() => openArtisanModal(member, "contact")}
-                    className="text-xs border border-[#2F4F4F] text-[#2F4F4F] px-3 py-1 rounded-full hover:bg-[#2F4F4F] hover:text-white transition-colors focus:outline-none focus:ring-1 focus:ring-[#C5A880]"
+                    className="text-xs border px-3 py-1 rounded-full transition-colors focus:outline-none focus:ring-1"
+                    style={{ 
+                      borderColor: theme.colors.primary.DEFAULT,
+                      color: theme.colors.primary.DEFAULT,
+                      fontFamily: theme.fonts.ui,
+                      '&:hover': {
+                        backgroundColor: theme.colors.primary.DEFAULT,
+                        color: theme.colors.text.onPrimary
+                      }
+                    }}
                     aria-label={`Contact ${member.name}`}
                   >
                     Contact
@@ -679,54 +899,80 @@ const AboutUs = () => {
       {/* Craftsmanship Section */}
       <section
         ref={sectionRefs.craftsmanship}
-        className="py-24 bg-gradient-to-b from-[#F5F1E9] to-[#E8DFD1]"
+        className="py-24"
+        style={{ 
+          background: `linear-gradient(to bottom, ${theme.colors.background.DEFAULT}, ${theme.colors.background.alt})` 
+        }}
       >
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2
               ref={elementRefs.craftsmanshipTitle}
-              className="text-4xl font-bold text-[#2F4F4F] mb-6"
+              className="text-4xl font-bold mb-6"
+              style={{ 
+                color: theme.colors.primary.DEFAULT,
+                fontFamily: theme.fonts.header
+              }}
             >
               The Hudson Craftsmanship
             </h2>
-            <p className="text-xl max-w-3xl mx-auto text-[#5C3A21]">
+            <p 
+              className="text-xl max-w-3xl mx-auto"
+              style={{ color: theme.colors.accent.DEFAULT }}
+            >
               Our meticulous process from forest to finished piece
             </p>
           </div>
 
           <div className="relative">
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-[#C5A880] transform md:-translate-x-1/2 z-0"></div>
+            <div 
+              className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 z-0"
+              style={{ backgroundColor: theme.colors.accent.DEFAULT }}
+            ></div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-8 relative z-10">
               {processData.map((step, index) => (
                 <div
                   key={index}
                   ref={(el) => (elementRefs.processItems.current[index] = el)}
-                  className={`bg-white p-6 rounded-2xl shadow-md border border-[#E8DFD1] relative ${
+                  className={`bg-white p-6 rounded-2xl shadow-md border relative ${
                     index % 2 === 0
                       ? "md:mr-auto md:pr-12"
                       : "md:ml-auto md:pl-12"
                   }`}
+                  style={{ 
+                    backgroundColor: theme.colors.ui.base,
+                    borderColor: theme.colors.ui.border
+                  }}
                 >
                   <div
-                    className={`absolute top-8 w-6 h-6 rounded-full bg-[#C5A880] flex items-center justify-center ${
+                    className={`absolute top-8 w-6 h-6 rounded-full flex items-center justify-center ${
                       index % 2 === 0
                         ? "md:right-[-52px] right-[-12px]"
                         : "md:left-[-52px] left-[-12px]"
                     }`}
+                    style={{ backgroundColor: theme.colors.accent.DEFAULT }}
                   >
                     <div className="w-3 h-3 rounded-full bg-white"></div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="text-3xl text-[#C5A880] mt-1">
+                    <div 
+                      className="text-3xl mt-1"
+                      style={{ color: theme.colors.accent.DEFAULT }}
+                    >
                       {step.icon}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-[#2F4F4F] mb-3">
+                      <h3 
+                        className="text-xl font-bold mb-3"
+                        style={{ color: theme.colors.primary.DEFAULT }}
+                      >
                         {step.title}
                       </h3>
-                      <p className="text-gray-700">{step.description}</p>
+                      <p style={{ color: theme.colors.text.primary }}>
+                        {step.description}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -734,10 +980,16 @@ const AboutUs = () => {
             </div>
           </div>
 
-          <div className="mt-16 bg-[#2F4F4F] rounded-2xl p-8 text-white">
+          <div 
+            className="mt-16 rounded-2xl p-8 text-white"
+            style={{ backgroundColor: theme.colors.primary.DEFAULT }}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold mb-4">
+                <h3 
+                  className="text-2xl font-bold mb-4"
+                  style={{ fontFamily: theme.fonts.header }}
+                >
                   Our Workshop Experience
                 </h3>
                 <p className="mb-4">
@@ -750,7 +1002,14 @@ const AboutUs = () => {
                   <button
                     onMouseEnter={handleButtonHover}
                     onMouseLeave={handleButtonHoverEnd}
-                    className="border border-white text-white px-6 py-2 rounded-full hover:bg-[#C5A880] hover:border-[#C5A880] transition-colors focus:outline-none focus:ring-2 focus:ring-[#C5A880] focus:ring-opacity-50"
+                    className="border border-white text-white px-6 py-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50"
+                    style={{ 
+                      fontFamily: theme.fonts.ui,
+                      '&:hover': {
+                        backgroundColor: theme.colors.accent.DEFAULT,
+                        borderColor: theme.colors.accent.DEFAULT
+                      }
+                    }}
                     aria-label="Schedule a workshop tour"
                   >
                     Schedule a Tour
@@ -758,14 +1017,28 @@ const AboutUs = () => {
                   <button
                     onMouseEnter={handleButtonHover}
                     onMouseLeave={handleButtonHoverEnd}
-                    className="border border-[#C5A880] text-[#C5A880] px-6 py-2 rounded-full hover:bg-[#C5A880] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#C5A880] focus:ring-opacity-50"
+                    className="border px-6 py-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50"
+                    style={{ 
+                      fontFamily: theme.fonts.ui,
+                      borderColor: theme.colors.accent.DEFAULT,
+                      color: theme.colors.accent.DEFAULT,
+                      '&:hover': {
+                        backgroundColor: theme.colors.accent.DEFAULT,
+                        color: theme.colors.text.onPrimary
+                      }
+                    }}
                     aria-label="View workshop calendar"
                   >
                     Workshop Calendar
                   </button>
                 </div>
               </div>
-              <div className="h-64 bg-gradient-to-br from-[#3A5F5F] to-[#5C3A21] rounded-xl flex items-center justify-center p-6">
+              <div 
+                className="h-64 rounded-xl flex items-center justify-center p-6"
+                style={{ 
+                  background: `linear-gradient(135deg, ${theme.colors.accent.DEFAULT}, ${theme.colors.accent.hover})`
+                }}
+              >
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div>
                     <div className="text-4xl font-bold mb-2">15K</div>
@@ -800,10 +1073,19 @@ const AboutUs = () => {
         className="py-24 px-4 max-w-6xl mx-auto"
       >
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-[#2F4F4F] mb-6">
+          <h2 
+            className="text-4xl font-bold mb-6"
+            style={{ 
+              color: theme.colors.primary.DEFAULT,
+              fontFamily: theme.fonts.header
+            }}
+          >
             Our Signature Pieces
           </h2>
-          <p className="text-xl max-w-2xl mx-auto text-[#5C3A21]">
+          <p 
+            className="text-xl max-w-2xl mx-auto"
+            style={{ color: theme.colors.accent.DEFAULT }}
+          >
             Timeless designs that define the Hudson aesthetic
           </p>
         </div>
@@ -826,33 +1108,57 @@ const AboutUs = () => {
                 <div>
                   <h3 className="font-bold text-white text-xl">{item.title}</h3>
                   <p className="text-[#E8DFD1]">{item.description}</p>
-                  <p className="text-[#C5A880] text-sm mt-1">
+                  <p 
+                    className="text-sm mt-1"
+                    style={{ color: theme.colors.accent.DEFAULT }}
+                  >
                     By {item.creator}
                   </p>
                 </div>
               </div>
             </div>
-          ))}
+          ))} 
         </div>
       </section>
 
       {/* Testimonial Section */}
       <section
         ref={sectionRefs.testimonial}
-        className="py-24 bg-[#2F4F4F] text-white"
+        className="py-24"
+        style={{ backgroundColor: theme.colors.primary.DEFAULT }}
       >
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="text-5xl mb-6 text-[#C5A880]">"</div>
-          <p className="text-2xl italic mb-8">
+          <div 
+            className="text-5xl mb-6"
+            style={{ color: theme.colors.accent.DEFAULT }}
+          >"</div>
+          <p 
+            className="text-2xl italic mb-8 text-white"
+            style={{ fontFamily: theme.fonts.alt }}
+          >
             Our Hudson dining table has become the heart of our home. The
             craftsmanship is exceptional - you can feel the love and attention
             in every detail. It's more than furniture; it's a legacy piece.
           </p>
-          <div className="font-bold text-xl">Emily Richardson</div>
-          <div className="text-[#C5A880]">Hudson Customer since 2018</div>
+          <div 
+            className="font-bold text-xl text-white"
+            style={{ fontFamily: theme.fonts.header }}
+          >
+            Emily Richardson
+          </div>
+          <div 
+            className="mt-1"
+            style={{ color: theme.colors.accent.DEFAULT }}
+          >
+            Hudson Customer since 2018
+          </div>
           <div className="flex justify-center mt-8 space-x-2">
             {[...Array(5)].map((_, i) => (
-              <FaQuoteLeft key={i} className="text-[#C5A880]/30 text-xl" />
+              <FaQuoteLeft 
+                key={i} 
+                className="text-xl" 
+                style={{ color: `${theme.colors.accent.DEFAULT}30` }} 
+              />
             ))}
           </div>
         </div>
@@ -871,18 +1177,29 @@ g
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="sticky top-0 bg-white z-10 p-6 border-b border-gray-200 flex justify-between items-center">
+            <div 
+              className="sticky top-0 bg-white z-10 p-6 border-b flex justify-between items-center"
+              style={{ 
+                borderColor: theme.colors.ui.border,
+                fontFamily: theme.fonts.ui
+              }}
+            >
               <div>
-                <h3 className="text-2xl font-bold text-[#2F4F4F]">
+                <h3 
+                  className="text-2xl font-bold"
+                  style={{ color: theme.colors.primary.DEFAULT }}
+                >
                   {modalType === "work"
                     ? `${selectedArtisan.name}'s Work`
                     : `Contact ${selectedArtisan.name}`}
                 </h3>
-                <p className="text-[#5C3A21]">{selectedArtisan.position}</p>
+                <p style={{ color: theme.colors.accent.DEFAULT }}>
+                  {selectedArtisan.position}
+                </p>
               </div>
               <button
                 onClick={closeModal}
-                className="text-3xl text-gray-500 hover:text-[#C5A880] transition-colors"
+                className="text-3xl text-gray-500 hover:text-[#A65A2E] transition-colors"
                 aria-label="Close modal"
               >
                 <FaTimes />
@@ -893,9 +1210,11 @@ g
             <div className="p-6">
               {modalType === "work" ? (
                 // Work Gallery View
-                <div>
+                <div className="">
                   <div className="flex flex-col md:flex-row items-start gap-8 mb-8">
-                    <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#C5A880] flex-shrink-0">
+                    <div className="w-32 h-32 rounded-full overflow-hidden border-4 flex-shrink-0"
+                      style={{ borderColor: theme.colors.accent.DEFAULT }}
+                    >
                       <img
                         src={selectedArtisan.img}
                         alt={selectedArtisan.name}
@@ -903,14 +1222,29 @@ g
                       />
                     </div>
                     <div>
-                      <p className="text-gray-700 mb-4 italic">
+                      <p 
+                        className="text-gray-700 mb-4 italic"
+                        style={{ fontFamily: theme.fonts.body }}
+                      >
                         "{selectedArtisan.quote}"
                       </p>
-                      <p className="text-gray-600">{selectedArtisan.bio}</p>
+                      <p 
+                        className="text-gray-600"
+                        style={{ fontFamily: theme.fonts.body }}
+                      >
+                        {selectedArtisan.bio}
+                      </p>
                     </div>
                   </div>
 
-                  <h4 className="text-xl font-bold text-[#2F4F4F] mb-6 pb-2 border-b border-[#C5A880]">
+                  <h4 
+                    className="text-xl font-bold mb-6 pb-2 border-b"
+                    style={{ 
+                      color: theme.colors.primary.DEFAULT,
+                      borderColor: theme.colors.accent.DEFAULT,
+                      fontFamily: theme.fonts.header
+                    }}
+                  >
                     Featured Creations
                   </h4>
 
@@ -931,10 +1265,16 @@ g
                           </div>
                           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                             <div>
-                              <h5 className="font-bold text-white">
+                              <h5 
+                                className="font-bold text-white"
+                                style={{ fontFamily: theme.fonts.ui }}
+                              >
                                 {item.title}
                               </h5>
-                              <p className="text-[#E8DFD1] text-sm">
+                              <p 
+                                className="text-sm"
+                                style={{ color: theme.colors.background.muted }}
+                              >
                                 {item.description}
                               </p>
                             </div>
@@ -943,11 +1283,23 @@ g
                       ))}
                   </div>
 
-                  <div className="bg-[#F5F1E9] rounded-xl p-6">
-                    <h5 className="text-lg font-bold text-[#2F4F4F] mb-3">
+                  <div 
+                    className="rounded-xl p-6"
+                    style={{ backgroundColor: theme.colors.background.muted }}
+                  >
+                    <h5 
+                      className="text-lg font-bold mb-3"
+                      style={{ 
+                        color: theme.colors.primary.DEFAULT,
+                        fontFamily: theme.fonts.header
+                      }}
+                    >
                       Design Philosophy
                     </h5>
-                    <p className="text-gray-700">
+                    <p 
+                      className="text-gray-700"
+                      style={{ fontFamily: theme.fonts.body }}
+                    >
                       {selectedArtisan.name} believes in creating furniture that
                       tells a story. Each piece is designed to evolve with its
                       owner, developing character through years of use while
@@ -960,7 +1312,9 @@ g
                 // Contact Form
                 <div className="max-w-2xl mx-auto">
                   <div className="flex flex-col md:flex-row items-start gap-8 mb-8">
-                    <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-[#C5A880] flex-shrink-0">
+                    <div className="w-24 h-24 rounded-full overflow-hidden border-4 flex-shrink-0"
+                      style={{ borderColor: theme.colors.accent.DEFAULT }}
+                    >
                       <img
                         src={selectedArtisan.img}
                         alt={selectedArtisan.name}
@@ -968,17 +1322,26 @@ g
                       />
                     </div>
                     <div>
-                      <p className="text-gray-700 mb-4">
+                      <p 
+                        className="text-gray-700 mb-4"
+                        style={{ fontFamily: theme.fonts.body }}
+                      >
                         Contact {selectedArtisan.name} directly about custom
                         commissions, collaborations, or questions about their
                         work.
                       </p>
-                      <div className="flex items-center gap-2 text-gray-600 mb-2">
-                        <FaEnvelope className="text-[#C5A880]" />
+                      <div 
+                        className="flex items-center gap-2 text-gray-600 mb-2"
+                        style={{ fontFamily: theme.fonts.body }}
+                      >
+                        <FaEnvelope style={{ color: theme.colors.accent.DEFAULT }} />
                         <span>{selectedArtisan.email}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <FaPhone className="text-[#C5A880]" />
+                      <div 
+                        className="flex items-center gap-2 text-gray-600"
+                        style={{ fontFamily: theme.fonts.body }}
+                      >
+                        <FaPhone style={{ color: theme.colors.accent.DEFAULT }} />
                         <span>
                           (718) 555-
                           {selectedArtisan.name.split(" ")[0].substring(0, 4)}
@@ -993,28 +1356,46 @@ g
                         <label
                           htmlFor="name"
                           className="block text-gray-700 mb-2"
+                          style={{ fontFamily: theme.fonts.ui }}
                         >
                           Your Name
                         </label>
                         <input
                           type="text"
                           id="name"
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#C5A880] focus:border-[#C5A880] transition-all"
+                          className="w-full px-4 py-3 border rounded-xl focus:ring-2 transition-all"
                           placeholder="John Doe"
+                          style={{ 
+                            borderColor: theme.colors.ui.border,
+                            fontFamily: theme.fonts.body,
+                            '&:focus': {
+                              ringColor: theme.colors.accent.DEFAULT,
+                              borderColor: theme.colors.accent.DEFAULT
+                            }
+                          }}
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="email"
                           className="block text-gray-700 mb-2"
+                          style={{ fontFamily: theme.fonts.ui }}
                         >
                           Your Email
                         </label>
                         <input
                           type="email"
                           id="email"
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#C5A880] focus:border-[#C5A880] transition-all"
+                          className="w-full px-4 py-3 border rounded-xl focus:ring-2 transition-all"
                           placeholder="john@example.com"
+                          style={{ 
+                            borderColor: theme.colors.ui.border,
+                            fontFamily: theme.fonts.body,
+                            '&:focus': {
+                              ringColor: theme.colors.accent.DEFAULT,
+                              borderColor: theme.colors.accent.DEFAULT
+                            }
+                          }}
                         />
                       </div>
                     </div>
@@ -1023,15 +1404,24 @@ g
                       <label
                         htmlFor="subject"
                         className="block text-gray-700 mb-2"
+                        style={{ fontFamily: theme.fonts.ui }}
                       >
                         Subject
                       </label>
                       <input
                         type="text"
                         id="subject"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#C5A880] focus:border-[#C5A880] transition-all"
+                        className="w-full px-4 py-3 border rounded-xl focus:ring-2 transition-all"
                         placeholder="Regarding a custom commission"
                         defaultValue={`Inquiry for ${selectedArtisan.name}`}
+                        style={{ 
+                          borderColor: theme.colors.ui.border,
+                          fontFamily: theme.fonts.body,
+                          '&:focus': {
+                            ringColor: theme.colors.accent.DEFAULT,
+                            borderColor: theme.colors.accent.DEFAULT
+                          }
+                        }}
                       />
                     </div>
 
@@ -1039,14 +1429,23 @@ g
                       <label
                         htmlFor="message"
                         className="block text-gray-700 mb-2"
+                        style={{ fontFamily: theme.fonts.ui }}
                       >
                         Message
                       </label>
                       <textarea
                         id="message"
                         rows="5"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#C5A880] focus:border-[#C5A880] transition-all"
+                        className="w-full px-4 py-3 border rounded-xl focus:ring-2 transition-all"
                         placeholder="Your message..."
+                        style={{ 
+                          borderColor: theme.colors.ui.border,
+                          fontFamily: theme.fonts.body,
+                          '&:focus': {
+                            ringColor: theme.colors.accent.DEFAULT,
+                            borderColor: theme.colors.accent.DEFAULT
+                          }
+                        }}
                       ></textarea>
                     </div>
 
@@ -1055,12 +1454,21 @@ g
                         type="button"
                         onClick={closeModal}
                         className="mr-4 px-6 py-3 border border-gray-300 rounded-xl hover:bg-gray-100 transition-colors"
+                        style={{ fontFamily: theme.fonts.ui }}
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
-                        className="bg-[#2F4F4F] text-white px-6 py-3 rounded-xl hover:bg-[#1E3E3E] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#C5A880]"
+                        className="px-6 py-3 rounded-xl text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
+                        style={{ 
+                          backgroundColor: theme.colors.primary.DEFAULT,
+                          fontFamily: theme.fonts.ui,
+                          '&:hover': {
+                            backgroundColor: theme.colors.accent.DEFAULT
+                          },
+                          focusRingColor: theme.colors.accent.DEFAULT
+                        }}
                       >
                         Send Message
                       </button>
