@@ -73,8 +73,8 @@ const Ticker = () =>{
     return(
         <>
         <section>
-           <div className="px-20 py-6 bg-black">
-              <span className='flex gap-4 animate-scroll'>
+           <div className="px-20 py-6 bg-black position-absolute b-0">
+              <span className='transform -translate-x-2 duration-100 ease-in flex gap-4 animate-scroll'>
                 <p className='text-xl text-white'>
                 {
                 `Date : ${dayOfWeek[Current.day]} , 
