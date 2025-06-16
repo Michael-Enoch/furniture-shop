@@ -857,7 +857,7 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-      
+g
       {/* Artisan Modal */}
       {isModalVisible && selectedArtisan && (
         <div
