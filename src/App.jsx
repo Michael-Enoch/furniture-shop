@@ -12,7 +12,7 @@ import { CartProvider } from "./context/CartContext";
 import AboutUs from "./pages/AboutUs";
 import ContactPage from "./pages/ContactPage";
 import Footer from "./components/Footer";
-import ContactPage from "./pages/ContactPage";
+
 
 
 function App() {
