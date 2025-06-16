@@ -1,11 +1,27 @@
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { 
-  FaHandshake, FaLeaf, FaLightbulb, FaMedal, FaUsers, 
-  FaTools, FaChevronDown, FaHammer, FaTree, FaRuler, 
-  FaPaintRoller, FaHeart, FaQuoteLeft, FaFacebook, 
-  FaInstagram, FaPinterest, FaMapMarkerAlt, FaPhone, FaEnvelope, FaTimes
+import {
+  FaHandshake,
+  FaLeaf,
+  FaLightbulb,
+  FaMedal,
+  FaUsers,
+  FaTools,
+  FaChevronDown,
+  FaHammer,
+  FaTree,
+  FaRuler,
+  FaPaintRoller,
+  FaHeart,
+  FaQuoteLeft,
+  FaFacebook,
+  FaInstagram,
+  FaPinterest,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelope,
+  FaTimes,
 } from "react-icons/fa";
 
 // Import team images
@@ -25,7 +41,7 @@ const AboutUs = () => {
   const [selectedArtisan, setSelectedArtisan] = useState(null);
   const [modalType, setModalType] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  
+
   // Refs organized by section
   const sectionRefs = {
     hero: useRef(null),
@@ -81,7 +97,7 @@ const AboutUs = () => {
     setSelectedArtisan(artisan);
     setModalType(type);
     setIsModalVisible(true);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
@@ -94,27 +110,29 @@ const AboutUs = () => {
         setIsModalVisible(false);
         setSelectedArtisan(null);
         setModalType(null);
-        document.body.style.overflow = 'auto';
-      }
+        document.body.style.overflow = "auto";
+      },
     });
   };
 
   // Modal animation
   useEffect(() => {
     if (isModalVisible && modalRef.current && modalContentRef.current) {
-      gsap.fromTo(modalRef.current,
+      gsap.fromTo(
+        modalRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 0.3 }
       );
-      
-      gsap.fromTo(modalContentRef.current,
+
+      gsap.fromTo(
+        modalContentRef.current,
         { y: 100, opacity: 0, scale: 0.95 },
-        { 
-          y: 0, 
-          opacity: 1, 
-          scale: 1, 
-          duration: 0.7, 
-          ease: "back.out(1.7)" 
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.7,
+          ease: "back.out(1.7)",
         }
       );
     }
@@ -161,78 +179,78 @@ const AboutUs = () => {
   ];
 
   const teamData = [
-    { 
-      name: "Sarah Johnson", 
-      img: teamSarah, 
-      position: "Creative Director", 
-      experience: "12 years", 
+    {
+      name: "Sarah Johnson",
+      img: teamSarah,
+      position: "Creative Director",
+      experience: "12 years",
       quote: "Design is where science and art break even.",
       email: "sarah.johnson@hudsoncraft.com",
-      bio: "With a background in industrial design and fine arts, Sarah brings a unique perspective to furniture design that balances form and function."
+      bio: "With a background in industrial design and fine arts, Sarah brings a unique perspective to furniture design that balances form and function.",
     },
-    { 
-      name: "Michael Chen", 
-      img: teamMichael, 
-      position: "Lead Designer", 
-      experience: "8 years", 
+    {
+      name: "Michael Chen",
+      img: teamMichael,
+      position: "Lead Designer",
+      experience: "8 years",
       quote: "Simplicity is the ultimate sophistication.",
       email: "michael.chen@hudsoncraft.com",
-      bio: "Michael specializes in minimalist designs that maximize both aesthetic appeal and practical utility."
+      bio: "Michael specializes in minimalist designs that maximize both aesthetic appeal and practical utility.",
     },
-    { 
-      name: "Elena Rodriguez", 
-      img: teamElena, 
-      position: "Master Craftsman", 
-      experience: "15 years", 
+    {
+      name: "Elena Rodriguez",
+      img: teamElena,
+      position: "Master Craftsman",
+      experience: "15 years",
       quote: "Wood has a soul - my job is to reveal it.",
       email: "elena.rodriguez@hudsoncraft.com",
-      bio: "A third-generation woodworker, Elena preserves traditional techniques while innovating new approaches to joinery."
+      bio: "A third-generation woodworker, Elena preserves traditional techniques while innovating new approaches to joinery.",
     },
-    { 
-      name: "David Wilson", 
-      img: teamDavid, 
-      position: "Operations Manager", 
-      experience: "10 years", 
+    {
+      name: "David Wilson",
+      img: teamDavid,
+      position: "Operations Manager",
+      experience: "10 years",
       quote: "Precision in process creates perfection in product.",
       email: "david.wilson@hudsoncraft.com",
-      bio: "David ensures our workshop runs with military precision while maintaining our artisanal soul."
+      bio: "David ensures our workshop runs with military precision while maintaining our artisanal soul.",
     },
-    { 
-      name: "Olivia Parker", 
-      img: teamOlivia, 
-      position: "Customer Experience", 
-      experience: "7 years", 
+    {
+      name: "Olivia Parker",
+      img: teamOlivia,
+      position: "Customer Experience",
+      experience: "7 years",
       quote: "Every client relationship is a new story.",
       email: "olivia.parker@hudsoncraft.com",
-      bio: "Olivia builds lasting relationships with our clients, ensuring their vision becomes reality."
+      bio: "Olivia builds lasting relationships with our clients, ensuring their vision becomes reality.",
     },
-    { 
-      name: "James Thompson", 
-      img: teamJames, 
-      position: "Materials Specialist", 
-      experience: "9 years", 
+    {
+      name: "James Thompson",
+      img: teamJames,
+      position: "Materials Specialist",
+      experience: "9 years",
       quote: "The forest whispers secrets to those who listen.",
       email: "james.thompson@hudsoncraft.com",
-      bio: "James travels worldwide to source only the most sustainable and beautiful woods for our creations."
+      bio: "James travels worldwide to source only the most sustainable and beautiful woods for our creations.",
     },
-    { 
-      name: "Sophia Miller", 
-      img: teamSophia, 
-      position: "Marketing Director", 
-      experience: "6 years", 
+    {
+      name: "Sophia Miller",
+      img: teamSophia,
+      position: "Marketing Director",
+      experience: "6 years",
       quote: "Sharing the beauty of craftsmanship with the world.",
       email: "sophia.miller@hudsoncraft.com",
-      bio: "Sophia tells the stories behind our creations and connects with audiences who appreciate true craftsmanship."
+      bio: "Sophia tells the stories behind our creations and connects with audiences who appreciate true craftsmanship.",
     },
-    { 
-      name: "Benjamin Carter", 
-      img: teamBenjamin, 
-      position: "Production Lead", 
-      experience: "11 years", 
+    {
+      name: "Benjamin Carter",
+      img: teamBenjamin,
+      position: "Production Lead",
+      experience: "11 years",
       quote: "Quality is never an accident.",
       email: "benjamin.carter@hudsoncraft.com",
-      bio: "Benjamin oversees every production detail to ensure each piece meets our exacting standards."
-    }
+      bio: "Benjamin oversees every production detail to ensure each piece meets our exacting standards.",
+    },
   ];
 
   const processData = [
@@ -275,42 +293,42 @@ const AboutUs = () => {
   ];
 
   const galleryData = [
-    { 
-      img: "https://images.unsplash.com/photo-1555043720-0b7161d6a49a?auto=format&fit=crop&w=800", 
-      title: "Hudson Dining Table", 
+    {
+      img: "https://images.unsplash.com/photo-1555043720-0b7161d6a49a?auto=format&fit=crop&w=800",
+      title: "Hudson Dining Table",
       description: "Walnut & Leather",
-      creator: "Sarah Johnson"
+      creator: "Sarah Johnson",
     },
-    { 
-      img: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800", 
-      title: "Modern Lounge Chair", 
+    {
+      img: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800",
+      title: "Modern Lounge Chair",
       description: "Oak & Wool",
-      creator: "Michael Chen"
+      creator: "Michael Chen",
     },
-    { 
-      img: "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800", 
-      title: "Artisan Bookshelf", 
+    {
+      img: "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800",
+      title: "Artisan Bookshelf",
       description: "Cherry Wood",
-      creator: "Elena Rodriguez"
+      creator: "Elena Rodriguez",
     },
-    { 
-      img: "https://images.unsplash.com/photo-1567538096630-e0c55bd6354f?auto=format&fit=crop&w=800", 
-      title: "Executive Desk", 
+    {
+      img: "https://images.unsplash.com/photo-1567538096630-e0c55bd6354f?auto=format&fit=crop&w=800",
+      title: "Executive Desk",
       description: "Mahogany & Steel",
-      creator: "Benjamin Carter"
+      creator: "Benjamin Carter",
     },
-    { 
-      img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800", 
-      title: "Heritage Bed Frame", 
+    {
+      img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800",
+      title: "Heritage Bed Frame",
       description: "Reclaimed Oak",
-      creator: "James Thompson"
+      creator: "James Thompson",
     },
-    { 
-      img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800", 
-      title: "Minimalist Console", 
+    {
+      img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800",
+      title: "Minimalist Console",
       description: "Maple & Brass",
-      creator: "Sophia Miller"
-    }
+      creator: "Sophia Miller",
+    },
   ];
 
   // Animation setup
@@ -467,9 +485,7 @@ const AboutUs = () => {
   return (
     <div className="bg-[#F5F1E9] text-[#333333]">
       {/* Hero Section */}
-      <section
-        className="relative h-[90vh] flex items-center justify-center bg-black"
-      >
+      <section className="relative h-[90vh] flex items-center justify-center bg-black">
         <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/90 z-10"></div>
         <div
           className="absolute inset-0 bg-cover bg-center opacity-80"
@@ -483,17 +499,13 @@ const AboutUs = () => {
         <div className="relative z-20 text-center px-4 max-w-4xl">
           <div className="mb-10">
             <div className="w-20 h-1 bg-[#C5A880] mx-auto mb-6"></div>
-            <h1
-              className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-wide"
-            >
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-wide">
               Crafting Timeless Spaces
             </h1>
             <div className="w-32 h-1 bg-[#C5A880] mx-auto mt-6"></div>
           </div>
 
-          <p
-            className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto mb-10"
-          >
+          <p className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto mb-10">
             Blending centuries-old craftsmanship with contemporary design to
             create furniture that tells a story
           </p>
@@ -507,7 +519,6 @@ const AboutUs = () => {
             Explore Our Collection
           </button>
         </div>
-        
       </section>
 
       {/* Story Section */}
@@ -621,7 +632,7 @@ const AboutUs = () => {
               ref={(el) => (elementRefs.teamMembers.current[index] = el)}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group relative"
             >
-              <div className="h-60 relative">
+             <div className="relative h-60 w-full overflow-hidden cursor-pointer">
                 <img
                   src={member.img}
                   alt={member.name}
@@ -644,15 +655,15 @@ const AboutUs = () => {
                 </div>
                 <p className="text-sm text-gray-600 italic">"{member.quote}"</p>
                 <div className="mt-4 flex gap-2">
-                  <button 
-                    onClick={() => openArtisanModal(member, 'work')}
+                  <button
+                    onClick={() => openArtisanModal(member, "work")}
                     className="text-xs bg-[#F5F1E9] text-[#2F4F4F] px-3 py-1 rounded-full hover:bg-[#C5A880] hover:text-white transition-colors focus:outline-none focus:ring-1 focus:ring-[#C5A880]"
                     aria-label={`View work by ${member.name}`}
                   >
                     View Work
                   </button>
-                  <button 
-                    onClick={() => openArtisanModal(member, 'contact')}
+                  <button
+                    onClick={() => openArtisanModal(member, "contact")}
                     className="text-xs border border-[#2F4F4F] text-[#2F4F4F] px-3 py-1 rounded-full hover:bg-[#2F4F4F] hover:text-white transition-colors focus:outline-none focus:ring-1 focus:ring-[#C5A880]"
                     aria-label={`Contact ${member.name}`}
                   >
@@ -801,19 +812,23 @@ const AboutUs = () => {
           {galleryData.map((item, index) => (
             <div
               key={index}
-              className="aspect-[4/5] rounded-xl  shadow-md hover:shadow-xl transition-all duration-300 relative group"
+              className="rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative group"
             >
-              <img
-                src={item.img}
-                alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                loading="lazy"
-              />
+              <div className="relative aspect-[4/5] w-full overflow-hidden cursor-pointer">
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                 <div>
                   <h3 className="font-bold text-white text-xl">{item.title}</h3>
                   <p className="text-[#E8DFD1]">{item.description}</p>
-                  <p className="text-[#C5A880] text-sm mt-1">By {item.creator}</p>
+                  <p className="text-[#C5A880] text-sm mt-1">
+                    By {item.creator}
+                  </p>
                 </div>
               </div>
             </div>
@@ -844,7 +859,7 @@ const AboutUs = () => {
       </section>
 
       {/* Footer */}
-      <footer ref={sectionRefs.footer} className="bg-[#2F4F4F] text-white py-16">
+      {/* <footer ref={sectionRefs.footer} className="bg-[#2F4F4F] text-white py-16">
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">Hudson Craftsmanship</h3>
@@ -909,16 +924,16 @@ const AboutUs = () => {
         <div className="max-w-6xl mx-auto px-4 mt-12 pt-6 border-t border-[#3A5F5F] text-center text-[#E8DFD1] text-sm">
           <p>&copy; {new Date().getFullYear()} Hudson Craftsmanship. All rights reserved.</p>
         </div>
-      </footer>
+      </footer> */}
 
       {/* Artisan Modal */}
       {isModalVisible && selectedArtisan && (
-        <div 
+        <div
           ref={modalRef}
           className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"
           onClick={closeModal}
         >
-          <div 
+          <div
             ref={modalContentRef}
             className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
@@ -927,14 +942,13 @@ const AboutUs = () => {
             <div className="sticky top-0 bg-white z-10 p-6 border-b border-gray-200 flex justify-between items-center">
               <div>
                 <h3 className="text-2xl font-bold text-[#2F4F4F]">
-                  {modalType === 'work' 
-                    ? `${selectedArtisan.name}'s Work` 
-                    : `Contact ${selectedArtisan.name}`
-                  }
+                  {modalType === "work"
+                    ? `${selectedArtisan.name}'s Work`
+                    : `Contact ${selectedArtisan.name}`}
                 </h3>
                 <p className="text-[#5C3A21]">{selectedArtisan.position}</p>
               </div>
-              <button 
+              <button
                 onClick={closeModal}
                 className="text-3xl text-gray-500 hover:text-[#C5A880] transition-colors"
                 aria-label="Close modal"
@@ -942,16 +956,16 @@ const AboutUs = () => {
                 <FaTimes />
               </button>
             </div>
-            
+
             {/* Modal Body */}
             <div className="p-6">
-              {modalType === 'work' ? (
+              {modalType === "work" ? (
                 // Work Gallery View
                 <div>
                   <div className="flex flex-col md:flex-row items-start gap-8 mb-8">
                     <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#C5A880] flex-shrink-0">
-                      <img 
-                        src={selectedArtisan.img} 
+                      <img
+                        src={selectedArtisan.img}
                         alt={selectedArtisan.name}
                         className="w-full h-full object-cover"
                       />
@@ -960,43 +974,53 @@ const AboutUs = () => {
                       <p className="text-gray-700 mb-4 italic">
                         "{selectedArtisan.quote}"
                       </p>
-                      <p className="text-gray-600">
-                        {selectedArtisan.bio}
-                      </p>
+                      <p className="text-gray-600">{selectedArtisan.bio}</p>
                     </div>
                   </div>
-                  
+
                   <h4 className="text-xl font-bold text-[#2F4F4F] mb-6 pb-2 border-b border-[#C5A880]">
                     Featured Creations
                   </h4>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                     {galleryData
-                      .filter(item => item.creator === selectedArtisan.name)
+                      .filter((item) => item.creator === selectedArtisan.name)
                       .map((item, index) => (
-                        <div key={index} className="group relative overflow-hidden rounded-xl">
+                        <div
+                          key={index}
+                          className="group relative overflow-hidden rounded-xl"
+                        >
                           <div className="aspect-[4/3] bg-gray-200 overflow-hidden">
-                            <img 
-                              src={item.img} 
+                            <img
+                              src={item.img}
                               alt={item.title}
                               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                             />
                           </div>
                           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                             <div>
-                              <h5 className="font-bold text-white">{item.title}</h5>
-                              <p className="text-[#E8DFD1] text-sm">{item.description}</p>
+                              <h5 className="font-bold text-white">
+                                {item.title}
+                              </h5>
+                              <p className="text-[#E8DFD1] text-sm">
+                                {item.description}
+                              </p>
                             </div>
                           </div>
                         </div>
-                      ))
-                    }
+                      ))}
                   </div>
-                  
+
                   <div className="bg-[#F5F1E9] rounded-xl p-6">
-                    <h5 className="text-lg font-bold text-[#2F4F4F] mb-3">Design Philosophy</h5>
+                    <h5 className="text-lg font-bold text-[#2F4F4F] mb-3">
+                      Design Philosophy
+                    </h5>
                     <p className="text-gray-700">
-                      {selectedArtisan.name} believes in creating furniture that tells a story. Each piece is designed to evolve with its owner, developing character through years of use while maintaining structural integrity through traditional joinery techniques.
+                      {selectedArtisan.name} believes in creating furniture that
+                      tells a story. Each piece is designed to evolve with its
+                      owner, developing character through years of use while
+                      maintaining structural integrity through traditional
+                      joinery techniques.
                     </p>
                   </div>
                 </div>
@@ -1005,15 +1029,17 @@ const AboutUs = () => {
                 <div className="max-w-2xl mx-auto">
                   <div className="flex flex-col md:flex-row items-start gap-8 mb-8">
                     <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-[#C5A880] flex-shrink-0">
-                      <img 
-                        src={selectedArtisan.img} 
+                      <img
+                        src={selectedArtisan.img}
                         alt={selectedArtisan.name}
                         className="w-full h-full object-cover"
                       />
                     </div>
                     <div>
                       <p className="text-gray-700 mb-4">
-                        Contact {selectedArtisan.name} directly about custom commissions, collaborations, or questions about their work.
+                        Contact {selectedArtisan.name} directly about custom
+                        commissions, collaborations, or questions about their
+                        work.
                       </p>
                       <div className="flex items-center gap-2 text-gray-600 mb-2">
                         <FaEnvelope className="text-[#C5A880]" />
@@ -1021,54 +1047,77 @@ const AboutUs = () => {
                       </div>
                       <div className="flex items-center gap-2 text-gray-600">
                         <FaPhone className="text-[#C5A880]" />
-                        <span>(718) 555-{selectedArtisan.name.split(' ')[0].substring(0,4)}</span>
+                        <span>
+                          (718) 555-
+                          {selectedArtisan.name.split(" ")[0].substring(0, 4)}
+                        </span>
                       </div>
                     </div>
                   </div>
-                  
+
                   <form className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="name" className="block text-gray-700 mb-2">Your Name</label>
-                        <input 
-                          type="text" 
-                          id="name" 
+                        <label
+                          htmlFor="name"
+                          className="block text-gray-700 mb-2"
+                        >
+                          Your Name
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
                           className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#C5A880] focus:border-[#C5A880] transition-all"
                           placeholder="John Doe"
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-gray-700 mb-2">Your Email</label>
-                        <input 
-                          type="email" 
-                          id="email" 
+                        <label
+                          htmlFor="email"
+                          className="block text-gray-700 mb-2"
+                        >
+                          Your Email
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
                           className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#C5A880] focus:border-[#C5A880] transition-all"
                           placeholder="john@example.com"
                         />
                       </div>
                     </div>
-                    
+
                     <div>
-                      <label htmlFor="subject" className="block text-gray-700 mb-2">Subject</label>
-                      <input 
-                        type="text" 
-                        id="subject" 
+                      <label
+                        htmlFor="subject"
+                        className="block text-gray-700 mb-2"
+                      >
+                        Subject
+                      </label>
+                      <input
+                        type="text"
+                        id="subject"
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#C5A880] focus:border-[#C5A880] transition-all"
                         placeholder="Regarding a custom commission"
                         defaultValue={`Inquiry for ${selectedArtisan.name}`}
                       />
                     </div>
-                    
+
                     <div>
-                      <label htmlFor="message" className="block text-gray-700 mb-2">Message</label>
-                      <textarea 
-                        id="message" 
+                      <label
+                        htmlFor="message"
+                        className="block text-gray-700 mb-2"
+                      >
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
                         rows="5"
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#C5A880] focus:border-[#C5A880] transition-all"
                         placeholder="Your message..."
                       ></textarea>
                     </div>
-                    
+
                     <div className="flex justify-end">
                       <button
                         type="button"
