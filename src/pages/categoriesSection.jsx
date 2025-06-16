@@ -16,6 +16,7 @@ export default function CategoriesSection({ sectionIndex = 0 }) {
       try {
         const response = await axios.get(BASE_URL);
         const data = response.data;
+        console.log(data)
         setCategories(data.categories);
       } catch (err) {
         console.error("Failed to fetch categories:", err);
