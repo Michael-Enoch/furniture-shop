@@ -179,9 +179,9 @@ const ContactPage = () => {
   }, []);
 
   return (
-    <div className="bg-[#F9F7F2] text-[#333333] overflow-hidden">
+    <div className="bg-[#F9F7F2] text-[#333333]">
       {/* Hero Section */}
-      <div className="relative h-[70vh] flex items-center justify-center bg-black">
+      <div className="relative h-[70vh] flex items-center justify-center">
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/90 z-10"></div>
 
@@ -888,7 +888,7 @@ const ContactPage = () => {
           </motion.h2>
 
           <motion.div
-            className="rounded-xl overflow-hidden shadow-xl h-96 relative bg-gray-200"
+            className="rounded-xl shadow-xl h-96 relative bg-gray-200"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}

@@ -406,10 +406,9 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div className="bg-[#F5F1E9] text-[#333333] overflow-hidden">
+    <div className="bg-[#F5F1E9] text-[#333333]">
       {/* Hero Section */}
       <section
-        ref={sectionRefs.hero}
         className="relative h-[90vh] flex items-center justify-center bg-black"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/90 z-10"></div>
@@ -426,7 +425,6 @@ const AboutUs = () => {
           <div className="mb-10">
             <div className="w-20 h-1 bg-[#C5A880] mx-auto mb-6"></div>
             <h1
-              ref={elementRefs.title}
               className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-wide"
             >
               Crafting Timeless Spaces
@@ -435,7 +433,6 @@ const AboutUs = () => {
           </div>
 
           <p
-            ref={elementRefs.subtitle}
             className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto mb-10"
           >
             Blending centuries-old craftsmanship with contemporary design to
@@ -443,7 +440,6 @@ const AboutUs = () => {
           </p>
 
           <button
-            ref={elementRefs.ctaButton}
             onMouseEnter={handleButtonHover}
             onMouseLeave={handleButtonHoverEnd}
             className="mt-8 border-2 border-white text-white px-10 py-3 rounded-full font-medium text-lg transition-all duration-300 hover:bg-[#C5A880] hover:border-[#C5A880] focus:outline-none focus:ring-2 focus:ring-[#C5A880] focus:ring-opacity-50"
@@ -453,16 +449,6 @@ const AboutUs = () => {
           </button>
         </div>
 
-        <div
-          ref={elementRefs.scrollIndicator}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center"
-        >
-          {/* <span className="text-[#E8DFD1] mb-2 text-sm tracking-wider">SCROLL TO DISCOVER</span>
-          <div className="bounce w-12 h-12 rounded-full border-2 border-[#C5A880] flex items-center justify-center bg-black/30 backdrop-blur-sm">
-            <FaChevronDown className="text-[#C5A880] text-xl animate-pulse" />
-          </div> */}
-          {/* <div className="mt-2 w-1 h-10 bg-gradient-to-b from-[#C5A880] to-transparent rounded-full opacity-70"></div> */}
-        </div>
       </section>
 
       {/* Story Section */}
@@ -473,7 +459,7 @@ const AboutUs = () => {
         <div className="flex flex-col md:flex-row items-center gap-16">
           <div
             ref={elementRefs.storyImage}
-            className="w-full md:w-1/2 h-[500px] relative overflow-hidden rounded-2xl shadow-2xl"
+            className="w-full md:w-1/2 h-[500px] relative  rounded-2xl shadow-2xl"
           >
             <div
               className="w-full h-full bg-cover bg-center"
@@ -574,9 +560,9 @@ const AboutUs = () => {
             <div
               key={index}
               ref={(el) => (elementRefs.teamMembers.current[index] = el)}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group relative"
+              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group relative"
             >
-              <div className="h-60 relative overflow-hidden">
+              <div className="h-60 relative">
                 <img
                   src={member.img}
                   alt={member.name}
@@ -754,7 +740,7 @@ const AboutUs = () => {
           {galleryData.map((item, index) => (
             <div
               key={index}
-              className="aspect-[4/5] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 relative group"
+              className="aspect-[4/5] rounded-xl  shadow-md hover:shadow-xl transition-all duration-300 relative group"
             >
               <img
                 src={item.img}
