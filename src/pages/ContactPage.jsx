@@ -30,7 +30,6 @@ import {
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Theme colors based on provided theme
 const theme = {
   colors: {
     primary: {
