@@ -4,7 +4,7 @@ import { getDatabase, onValue, ref, runTransaction } from "firebase/database";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../assets/images/hudson.png";
 import theme from "../context/Theme.jsx";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import app from "../../Firebase/firebase";
 import {
   ShoppingCart,
@@ -96,11 +96,18 @@ const Navbar = () => {
           color: theme.colors.primary.contrast,
         }}
       >
+        
         <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
           <p>Call Us</p>:
-          <a href="tel:+1234567890" className="hover:underline">
+          <a href="tel:+1234567890" className="underline">
             +1 (234) 567-890
           </a>
+        </div>
+        <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
+          <p>Shop now and get 25% Off on all orders</p>
+          <Link to="/register" className="underline">
+            Sign up Now
+          </Link>
         </div>
         <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
           <Users size={14} className="text-primary-contrast" />
