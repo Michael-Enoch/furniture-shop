@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Debounced }  from "../hooks/DebouncedValue";
-import { highlightMatch } from "../utils/HighlightMatch";
+import { Debounced }  from "../hooks/useDebouncedValue";
+import {highlightMatch} from "../utils/HighlightMatch"
 import theme from "../context/Theme";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 
