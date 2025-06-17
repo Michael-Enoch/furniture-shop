@@ -6,7 +6,6 @@ import Logo from "../assets/images/hudson.png";
 import theme from "../context/Theme.jsx";
 import { NavLink, useNavigate } from "react-router-dom";
 import app from "../../Firebase/firebase";
-import CountdownTimer from "./CountdownTimer";
 import {
   ShoppingCart,
   Search,
