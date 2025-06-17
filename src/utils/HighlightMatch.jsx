@@ -1,7 +1,14 @@
-export function highlightMatch(text, query) {
+function highlightMatch(text, query) {
   if (!query) return text;
-  const regex = new RegExp(`(${query})`, 'gi');
+ const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const regex = new RegExp(`(${escapedQuery})`, "gi");
   return text.split(regex).map((part, index) =>
-    regex.test(part) ? <mark key={index}>{part}</mark> : part
+    part.toLowerCase() === query.toLowerCase() ? (
+      <mark key={index}>{part}</mark>
+    ) : (
+      part
+    )
   );
 }
+
+export default highlightMatch;
