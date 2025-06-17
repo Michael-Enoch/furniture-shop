@@ -5,7 +5,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Register from "./pages/RegisterForm";
 import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Nav";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartPage } from "./pages/CartPage";
 import SearchPage from "./pages/SearchPage";
