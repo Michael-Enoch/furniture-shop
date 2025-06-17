@@ -756,7 +756,7 @@ const AboutUs = () => {
       {isModalVisible && selectedArtisan && (
         <div 
           ref={modalRef}
-          className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 custom-scrollbar"
           onClick={closeModal}
         >
           <div 
@@ -788,7 +788,7 @@ const AboutUs = () => {
             <div className="p-6">
               {modalType === 'work' ? (
                 // Work Gallery View
-                <div>
+                <div className="">
                   <div className="flex flex-col md:flex-row items-start gap-8 mb-8">
                     <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#C5A880] flex-shrink-0">
                       <img 
@@ -843,7 +843,7 @@ const AboutUs = () => {
                 </div>
               ) : (
                 // Contact Form
-                <div className="max-w-2xl mx-auto">
+                <div className="max-w-2xl mx-auto custom-scrollbar">
                   <div className="flex flex-col md:flex-row items-start gap-8 mb-8">
                     <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-[#C5A880] flex-shrink-0">
                       <img 
