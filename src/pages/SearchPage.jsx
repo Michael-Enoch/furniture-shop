@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { DebouncedValue } from "../../src/hooks/UseDebouncedValue";
-import { highlightMatch } from "../utils/HighlightMatch";
+import { Debounced }  from "../hooks/useDebouncedValue";
+import {highlightMatch} from "../utils/HighlightMatch"
 import theme from "../context/Theme";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 
@@ -35,7 +35,7 @@ export default function SearchPage() {
   const [products, setProducts] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") || "");
-  const debouncedQuery = DebouncedValue(query, 300);
+  const debouncedQuery = Debounced(query, 300);
   const [page, setPage] = useState(1);
 
   // Fetch products once on mount
