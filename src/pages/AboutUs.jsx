@@ -22,7 +22,6 @@ import teamBenjamin from "../assets/images/profile-images/person4.jpeg";
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutUs = () => {
-  // Theme configuration
   const theme = {
     colors: {
       primary: {
