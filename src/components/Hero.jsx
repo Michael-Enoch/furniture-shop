@@ -15,7 +15,7 @@ const Hero = ({ offers }) => {
         modules={[Autoplay]}
         loop
         autoplay={{ delay: 5000, disableOnInteraction: false }}
-        className="w-full h-screen"
+        className="w-full h-[500px] sm:h-[600px]"
       >
         {offers.map((offer) => (
           <SwiperSlide key={offer.id}>
