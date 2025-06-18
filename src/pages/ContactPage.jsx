@@ -232,54 +232,49 @@ const ContactPage = () => {
   }, []);
 
   return (
-    <div
-      className="text-[#2D2D2D] overflow-hidden"
+    <section
+      className="text-[#2D2D2D] relative w-full group"
       style={{
         backgroundColor: theme.colors.background.DEFAULT,
         fontFamily: theme.fonts.body,
       }}
     >
       {/* Hero Section */}
-      <div className="relative h-[70vh] flex items-center justify-center">
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/90 z-10"></div>
-
-        {/* Furniture background */}
+      <div className="w-full h-[500px] sm:h-[600px] flex items-center justify-center">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-80"
+          className="w-full h-full bg-cover bg-center"
           style={{
             backgroundImage:
               "url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1920')",
           }}
-        ></div>
-
-        {/* Content */}
-        <div className="relative z-20 text-center px-4 max-w-4xl">
-          <motion.h1
-            className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-wide"
-            style={{ fontFamily: theme.fonts.header }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Crafted Connections
-          </motion.h1>
-          <motion.div
-            className="w-32 h-1 mx-auto my-6"
-            style={{ backgroundColor: theme.colors.accent.DEFAULT }}
-            initial={{ width: 0 }}
-            animate={{ width: "8rem" }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          ></motion.div>
-          <motion.p
-            className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto"
-            style={{ fontFamily: theme.fonts.alt }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            Let's discuss your bespoke furniture journey
-          </motion.p>
+        >
+          <div className="bg-black/80 w-full h-full flex flex-col items-center md:items-start justify-center text-white px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
+            <motion.h1
+              className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-wide"
+              style={{ fontFamily: theme.fonts.header }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              Crafted Connections
+            </motion.h1>
+            <motion.div
+              className="w-32 h-1 mx-auto my-6"
+              style={{ backgroundColor: theme.colors.accent.DEFAULT }}
+              initial={{ width: 0 }}
+              animate={{ width: "8rem" }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            ></motion.div>
+            <motion.p
+              className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto"
+              style={{ fontFamily: theme.fonts.alt }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              Let's discuss your bespoke furniture journey
+            </motion.p>
+          </div>
         </div>
       </div>
 
@@ -1866,7 +1861,7 @@ const ContactPage = () => {
           </motion.div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -8,13 +8,12 @@ import BestSelling from "./bestSellingProducts";
 import Ticker from "../components/ScrollingTicker";
 import LatestArrivalsGridWithModal from "./LatestArrivals";
 import theme from "../context/Theme";
-import FullPageLoader from "../components/FullPageLoader";
+
 
 const Homepage = () => {
   const BASE_URL = "/furniture_database_50_products.json";
   const [latestArrivals, setLatestArrivals] = useState([]);
   const [offers, setOffers] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   // Fetch offers + data together
   useEffect(() => {
@@ -29,7 +28,6 @@ const Homepage = () => {
         console.error("Failed to load homepage data:", err);
       } finally {
         setTimeout(() => {
-          setIsLoaded(true);
           Aos.init({ duration: 800, once: true, easing: "ease-in-out",  });
         }, 1000);
       }
@@ -94,9 +92,6 @@ const Homepage = () => {
 
   return (
     <div>
-      {!isLoaded ? (
-        <FullPageLoader />
-      ) : (
         <>
           <Hero offers={offers} />
           <CategoriesSection />
@@ -105,9 +100,7 @@ const Homepage = () => {
             theme={theme}
           />
           <BestSelling />
-          <Ticker />
         </>
-      )}
     </div>
   );
 };

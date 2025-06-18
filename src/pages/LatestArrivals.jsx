@@ -69,13 +69,13 @@ export default function LatestArrivalsGridWithModal({
         {products.map((product, index) => (
           <div
             key={product.id}
-            className="group cursor-pointer transition-all duration-500 hover:scale-[1.03]"
+            className="group cursor-pointer transition-all duration-500 hover:scale-105"
             onClick={() => setSelectedProduct(product)}
             data-aos="fade-up"
             data-aos-delay={index * 100}
           >
             {/* Card Container */}
-            <div className="relative rounded-2xl shadow-md overflow-hidden bg-white">
+            <div className="relative rounded-2xl shadow-md overflow-hidden">
               {/* Discount Badge */}
               {product.discount && (
                 <div
