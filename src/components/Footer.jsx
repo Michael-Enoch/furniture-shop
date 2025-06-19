@@ -66,7 +66,7 @@ const Footer = () => {
             Company <FaChevronRight className="ml-2 text-xs opacity-70" />
           </h4>
           <ul className="space-y-2 ">
-            {["About Us", "Sustainability", "FAQ"].map((item, i) => (
+            {["About Us", "Contact Us", "Sustainability", "FAQ"].map((item, i) => (
               <li key={i} className="group">
                 <a href="#" className="flex items-center py-1 transition-all duration-300 hover:text-[#BF6E3D]">
                   <span className="w-0 h-px bg-[#BF6E3D] group-hover:w-4 mr-2 transition-all duration-300"></span>
