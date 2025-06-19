@@ -12,13 +12,17 @@ import WhyChooseUs from "../components/WhyChooseUs";
 import Reviews from "../components/Reviews";
 import Newsletter from "../components/NewsLetter";
 import InstagramFeed from "../components/InstagramFeed";
-import TestimonialsCarousel from "../components/TestimonialCarousel";
 import CTASection from "../components/CTA";
 import Gallery from "../components/Gallery";
 import MiniAboutContact from "../components/MiniAboutContact";
+import Features from "../components/Features";
 
 
 const Homepage = () => {
+   useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
+  
   const BASE_URL = "/furniture_database_50_products.json";
   const [latestArrivals, setLatestArrivals] = useState([]);
   const [offers, setOffers] = useState([]);
@@ -106,9 +110,8 @@ const Homepage = () => {
       }}
     >
       <Hero offers={offers} />
-      {/* <BrandIntro /> */}
+      <Features/>
       <CategoriesSection />
-      {/* <ShopByRoom /> */}
       <LatestArrivalsGridWithModal products={latestArrivals} theme={theme} />
       <BestSelling />
       <WhyChooseUs />
@@ -117,10 +120,8 @@ const Homepage = () => {
       <MiniAboutContact/>
       <FAQ />
       <Newsletter />
-      <TestimonialsCarousel />
       <InstagramFeed />
       <CTASection />
-      {/* <BlogSupportReviewSections /> */}
     </main>
   );
 };

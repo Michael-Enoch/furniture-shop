@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import theme from "../context/Theme";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const faqItems = [
   {

@@ -19,7 +19,7 @@ const Gallery = ({ sectionIndex = 5 }) => {
   const [selected, setSelected] = useState(null);
 
   return (
-    <section className="py-16 px-4 sm:px-8 md:px-16 max-w-8xl mx-auto"
+    <section className="w-full max-w-screen-2xl py-16 px-4 sm:px-8 md:px-16 mx-auto"
     style={{background: bgColor}}
     >
       <h2
@@ -30,7 +30,7 @@ const Gallery = ({ sectionIndex = 5 }) => {
         Gallery
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {images.map((src, i) => (
           <motion.img
             key={i}

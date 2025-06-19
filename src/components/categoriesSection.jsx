@@ -15,9 +15,7 @@ export default function CategoriesSection({ sectionIndex = 0 }) {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(BASE_URL);
-        const data = response.data;
-        console.log(data)
-        setCategories(data.categories);
+        setCategories(response.data.categories);
       } catch (err) {
         console.error("Failed to fetch categories:", err);
       }
@@ -28,17 +26,17 @@ export default function CategoriesSection({ sectionIndex = 0 }) {
 
   return (
     <section
-    id="category"
-      className="w-full px-6 sm:px-8 md:px-16 py-14 relative"
+      id="category"
+      className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-12 lg:px-16 py-14 mx-auto"
       style={{ backgroundColor: bgColor }}
     >
       <div
-        className="text-center mb-16 max-w-2xl mx-auto"
+        className="w-full text-center mb-16 max-w-2xl mx-auto"
         data-aos="fade-up"
         data-aos-delay="100"
       >
         <h2
-          className="text-3xl sm:text-4xl md:text-5xl font-light mb-6 tracking-tight"
+          className="text-2xl sm:text-4xl md:text-5xl font-light mb-6 tracking-tight"
           style={{
             color: theme.colors.text.primary,
             fontFamily: theme.fonts.header,
@@ -48,10 +46,11 @@ export default function CategoriesSection({ sectionIndex = 0 }) {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto relative z-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 max-w-6xl mx-auto">
         {categories.map((category, index) => (
           <div
-            className="group cursor-pointer transition-all duration-500 hover:scale-[1.03]"
+            key={category.name || index}
+            className="group transition-transform duration-500 hover:scale-100 sm:hover:scale-[1.03] cursor-pointer"
             data-aos="fade-up"
             data-aos-delay={index * 100}
           >
@@ -63,7 +62,6 @@ export default function CategoriesSection({ sectionIndex = 0 }) {
                   backgroundImage: `url(${category.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
-                  
                 }}
               />
               {/* Overlay */}
@@ -74,7 +72,7 @@ export default function CategoriesSection({ sectionIndex = 0 }) {
               {/* Name */}
               <div className="absolute inset-0 flex items-center justify-center z-30">
                 <p
-                  className="text-xl font-semibold uppercase tracking-wide text-center"
+                  className="text-lg sm:text-xl font-semibold uppercase tracking-wide text-center px-2"
                   style={{
                     fontFamily: theme.fonts.alt,
                     color: theme.colors.text.onPrimary,
