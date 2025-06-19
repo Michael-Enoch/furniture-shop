@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function LatestArrivalsGridWithModal({
   products,
   theme,
-  sectionIndex = 1,
+  sectionIndex = 2,
 }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const bgColor =
@@ -28,11 +28,11 @@ export default function LatestArrivalsGridWithModal({
 
       <div
         className="text-center mb-16 max-w-2xl mx-auto"
-        data-aos="fade-up"
-        data-aos-delay="100"
       >
         <h2
           className="text-3xl sm:text-4xl md:text-5xl font-light mb-6 tracking-tight"
+          data-aos="zoom-in-down"
+          data-aos-delay="100"
           style={{
             color: theme.colors.text.primary,
             fontFamily: theme.fonts.header,
@@ -44,6 +44,8 @@ export default function LatestArrivalsGridWithModal({
         <Link
           to="/shop"
           className="px-8 py-3 border font-medium text-sm tracking-wide uppercase transition-all duration-300 hover:shadow-lg"
+          data-aos="fade-in"
+          data-aos-delay="300"
           style={{
             borderColor: theme.colors.accent.DEFAULT,
             color: theme.colors.accent.hover,
@@ -57,9 +59,7 @@ export default function LatestArrivalsGridWithModal({
           onMouseOut={(e) => {
             e.currentTarget.style.backgroundColor = "transparent";
             e.currentTarget.style.color = theme.colors.accent.hover;
-          }}
-          data-aos="fade-up"
-          data-aos-delay="200"
+          }} 
         >
           Shop All
         </Link>

@@ -194,34 +194,7 @@ const ContactPage = () => {
     { day: "By Appointment", hours: "Available evenings" },
   ];
 
-  const faqItems = [
-    {
-      question: "How long does custom furniture take to make?",
-      answer:
-        "Our custom pieces typically take 6-8 weeks from design approval to completion. Complex designs may take longer.",
-    },
-    {
-      question: "Do you offer international shipping?",
-      answer:
-        "Yes, we ship worldwide. Shipping costs and times vary based on location and size of the furniture.",
-    },
-    {
-      question: "What materials do you use?",
-      answer:
-        "We use sustainably sourced hardwoods, premium upholstery fabrics, and eco-friendly finishes. All materials are ethically sourced.",
-    },
-    {
-      question: "Can I visit your workshop?",
-      answer:
-        "Absolutely! We offer private tours of our workshop by appointment. Please schedule a visit through our contact form.",
-    },
-    {
-      question: "Do you provide design consultations?",
-      answer:
-        "Yes, our design team offers complimentary 30-minute consultations to discuss your project and vision.",
-    },
-  ];
-
+  
   // Simulate map loading
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -305,7 +278,7 @@ const ContactPage = () => {
           >
             Contact Us
           </button>
-          <button
+          {/* <button
             onClick={() => setActiveTab("faq")}
             className={`py-4 px-6 text-lg font-medium transition-colors whitespace-nowrap ${
               activeTab === "faq"
@@ -323,7 +296,7 @@ const ContactPage = () => {
             }}
           >
             FAQ
-          </button>
+          </button> */}
           <button
             onClick={() => setActiveTab("appointment")}
             className={`py-4 px-6 text-lg font-medium transition-colors whitespace-nowrap ${
@@ -845,7 +818,7 @@ const ContactPage = () => {
             </motion.div>
           )}
 
-          {/* FAQ Tab */}
+{/*          
           {activeTab === "faq" && (
             <motion.div
               key="faq"
@@ -943,7 +916,7 @@ const ContactPage = () => {
                 </motion.div>
               </motion.div>
             </motion.div>
-          )}
+          )} */}
 
           {/* Appointment Tab */}
           {activeTab === "appointment" && (

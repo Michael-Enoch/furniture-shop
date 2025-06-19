@@ -27,7 +27,7 @@ const StarRating = ({ rating = 0, max = 5 }) => {
   );
 };
 
-const BestSelling = ({ sectionIndex = 2 }) => {
+const BestSelling = ({ sectionIndex = 3 }) => {
   const [products, setProducts] = useState([]);
   const BASE_URL = "/products.json";
   const bgColor =
@@ -48,12 +48,14 @@ const BestSelling = ({ sectionIndex = 2 }) => {
 
   return (
     <section
-      className="w-full px-4 sm:px-8 md:px-16 py-14"
+      className="w-full py-16 px-4 sm:px-8 md:px-16 max-w-8xl mx-auto"
       style={{ backgroundColor: bgColor }}
     >
       <div className="text-center mb-16 max-w-2xl mx-auto">
         <h2
           className="text-3xl sm:text-4xl md:text-5xl font-light mb-6 tracking-tight"
+          data-aos="zoom-out-up"
+          data-aos-delay="100"
           style={{
             color: theme.colors.text.primary,
             fontFamily: theme.fonts.header,
@@ -63,7 +65,7 @@ const BestSelling = ({ sectionIndex = 2 }) => {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {filteredProducts.slice(0, 4).map((product, index) => (
           <div
             key={product.id}

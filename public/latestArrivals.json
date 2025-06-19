@@ -18,23 +18,6 @@
   },
   {
     "id": 102,
-    "name": "Luna L-Shaped Sectional",
-    "category": "Living Room",
-    "type": "Sectional Sofa",
-    "brand": "UrbanNest",
-    "material": "Fabric",
-    "materialType": "Linen Blend",
-    "color": "Slate Gray",
-    "colorHex": "#4A4A4A",
-    "size": "Large",
-    "dimensions": "95 x 95 x 35 inches",
-    "durability": "8 years",
-    "price": 1299.00,
-    "discount": "15%",
-    "image": "../src/assets/images/L-sectional.jpg"
-  },
-  {
-    "id": 103,
     "name": "Veranda Teak Bistro Set",
     "category": "Outdoor",
     "type": "Bistro Set",
@@ -51,7 +34,7 @@
     "image": "../src/assets/images/teak.jpg"
   },
   {
-    "id": 104,
+    "id": 103,
     "name": "Elevate Adjustable Standing Desk",
     "category": "Home Office",
     "type": "Standing Desk",
@@ -68,7 +51,7 @@
     "image": "../src/assets/images/desk.jpeg"
   },
   {
-    "id": 105,
+    "id": 104,
     "name": "Arlo Mid-Century Dining Table",
     "category": "Dining Room",
     "type": "Dining Table",
@@ -85,7 +68,7 @@
     "image": "../src/assets/images/mid-century.jpeg"
   },
   {
-    "id": 106,
+    "id": 105,
     "name": "Nimbus Recliner Chair",
     "category": "Living Room",
     "type": "Recliner",
@@ -102,7 +85,7 @@
     "image": "../src/assets/images/recliner.jpeg"
   },
   {
-    "id": 107,
+    "id": 106,
     "name": "Breeze Outdoor Chaise Lounger",
     "category": "Outdoor",
     "type": "Chaise",
@@ -119,7 +102,7 @@
     "image": "../src/assets/images/chaise.jpeg"
   },
   {
-    "id": 108,
+    "id": 107,
     "name": "Nordic Bookshelf With Cabinet",
     "category": "Home Office",
     "type": "Bookshelf",
@@ -136,7 +119,7 @@
     "image": "../src/assets/images/nordic.jpeg"
   },
   {
-    "id": 109,
+    "id": 108,
     "name": "Ember Velvet Dining Chairs",
     "category": "Dining Room",
     "type": "Dining Chairs",
