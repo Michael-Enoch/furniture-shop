@@ -717,6 +717,23 @@
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "price": 750.21
   },
+    {
+    "id": 102,
+    "name": "Luna L-Shaped Sectional",
+    "category": "Living Room",
+    "type": "Sectional Sofa",
+    "brand": "UrbanNest",
+    "material": "Fabric",
+    "materialType": "Linen Blend",
+    "color": "Slate Gray",
+    "colorHex": "#4A4A4A",
+    "size": "Large",
+    "dimensions": "95x95x35 cm",
+    "durability": "High",
+    "price": 1299.00,
+    "discount": "15%",
+    "image": "../src/assets/images/L-sectional.jpg"
+  },
    {
     "id": "3a582cfb-6f24-4e24-bfd4-9e9cbc18713e",
     "name": "Hudson Modular Sectional",

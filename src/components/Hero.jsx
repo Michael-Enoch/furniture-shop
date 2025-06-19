@@ -23,9 +23,9 @@ const Hero = ({ offers }) => {
               className="w-full h-full bg-cover bg-center"
               style={{ backgroundImage: `url(${offer.image})` }}
             >
-              <div className="bg-black/80 w-full h-full flex flex-col items-center md:items-start justify-center text-white px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
+              <div className="bg-black/80 w-full h-full flex flex-col items-center md:items-start justify-center text-white px-6 sm:px-8 md:px-16 lg:px-6 py-10 md:py-16 text-center md:text-left space-y-6">
                 <h2
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-snug"
+                  className="text-4xl sm:text-5xl font-bold tracking-tight leading-snug"
                   style={{ fontFamily: theme.fonts.header }}
                 >
                   {offer.title}
@@ -35,7 +35,7 @@ const Hero = ({ offers }) => {
                 </h2>
 
                 <p
-                  className="text-xs sm:text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed"
+                  className="text-sm sm:text-md md:text-lg lg:text-xl max-w-3xl leading-relaxed"
                   style={{ fontFamily: theme.fonts.body }}
                 >
                   {offer.subtitle} — Discover beautifully crafted furniture that
@@ -45,7 +45,7 @@ const Hero = ({ offers }) => {
 
                 <Link
                   to={offer.link}
-                  className="inline-block px-3 py-1 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base md:text-lg font-medium bg-[#A65A2E] hover:bg-[#BF6E3D] transition-all duration-300 shadow-md"
+                  className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-md md:text-lg lg:text-xl font-medium bg-[#A65A2E] hover:bg-[#BF6E3D] transition-all duration-300 shadow-md"
                   style={{ fontFamily: theme.fonts.alt }}
                 >
                   {offer.cta}
