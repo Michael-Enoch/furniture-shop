@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import theme from "../context/Theme";
+import Marquee from "react-fast-marquee";
 
 const Ticker = () => {
   const [time, setTime] = useState('');
@@ -15,7 +16,9 @@ const Ticker = () => {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-    })} | ${hours % 12 || 12}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')} ${isAM ? 'AM' : 'PM'}`;
+    })} | ${hours % 12 || 12}:${String(now.getMinutes()).padStart(2, '0')}:${String(
+      now.getSeconds()
+    ).padStart(2, '0')} ${isAM ? 'AM' : 'PM'}`;
     setTime(formattedTime);
   };
 
@@ -41,20 +44,25 @@ const Ticker = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const message = `📅 ${time} ${
+    error
+      ? `⚠️ ${error}`
+      : location.lat && location.long
+      ? `📍 Latitude: ${location.lat.toFixed(3)}, Longitude: ${location.long.toFixed(3)}`
+      : '📍 Fetching location...'
+  }`;
+
   return (
-    <div className="fixed bottom-0 left-0 w-full text-sm overflow-hidden z-50"
-    style={{background: theme.colors.primary.DEFAULT, color: theme.colors.primary.contrast}}
+    <div
+      className="fixed bottom-0 left-0 w-full z-50 text-sm"
+      style={{
+        background: theme.colors.primary.DEFAULT,
+        color: theme.colors.primary.contrast,
+      }}
     >
-      <div className="whitespace-nowrap animate-marquee px-4 py-2 flex gap-8">
-        <p>{`📅 ${time}`}</p>
-        <p>
-          {error
-            ? `⚠️ ${error}`
-            : location.lat && location.long
-            ? `📍 Latitude: ${location.lat.toFixed(3)}, Longitude: ${location.long.toFixed(3)}`
-            : '📍 Fetching location...'}
-        </p>
-      </div>
+      <Marquee pauseOnHover gradient={false} speed={50}>
+        <p className="px-4 py-2">{message}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{message}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{message}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{message}</p>
+      </Marquee>
     </div>
   );
 };
