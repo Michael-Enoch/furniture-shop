@@ -8,8 +8,6 @@ import BestSelling from "../components/bestSellingProducts";
 import LatestArrivalsGridWithModal from "../components/LatestArrivals";
 import theme from "../context/Theme";
 import FAQ from "../components/FAQSnippet";
-import BrandIntro from "../components/BrandIntro";
-import ShopByRoom from "../components/ShopByRoom";
 import WhyChooseUs from "../components/WhyChooseUs";
 import Reviews from "../components/Reviews";
 import Newsletter from "../components/NewsLetter";
@@ -17,8 +15,8 @@ import InstagramFeed from "../components/InstagramFeed";
 import TestimonialsCarousel from "../components/TestimonialCarousel";
 import CTASection from "../components/CTA";
 import Gallery from "../components/Gallery";
-import MiniAboutAndContact from "../components/MiniAboutandContact";
-import BlogSupportReviewSections from "../components/BlogSupportReviewSections";
+import MiniAboutContact from "../components/MiniAboutContact";
+
 
 const Homepage = () => {
   const BASE_URL = "/furniture_database_50_products.json";
@@ -116,7 +114,7 @@ const Homepage = () => {
       <WhyChooseUs />
       <Gallery />
       <Reviews />
-      <MiniAboutAndContact/>
+      <MiniAboutContact/>
       <FAQ />
       <Newsletter />
       <TestimonialsCarousel />
