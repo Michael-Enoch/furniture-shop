@@ -2,7 +2,7 @@
 import theme from "../context/Theme";
 import { Link } from "react-router-dom";
 
-const MiniAboutAndContact =({ sectionIndex = 7 }) => {
+const MiniAboutContact =({ sectionIndex = 7 }) => {
    const bgColor =
       sectionIndex % 2 === 0
         ? theme.colors.background.DEFAULT
@@ -59,4 +59,4 @@ const MiniAboutAndContact =({ sectionIndex = 7 }) => {
   );
 };
 
-export default MiniAboutAndContact;
+export default MiniAboutContact;
