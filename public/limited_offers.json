@@ -4,7 +4,7 @@
     "title": "Bedroom Comfort",
     "subtitle": "Upgrade your rest with modern beds & storage",
     "category": "Bedroom",
-    "image": "../src/assets/images/bedroom.avif",
+    "image": "/images/bedroom.avif",
     "cta": "Shop Bedroom Deals",
     "link": "/shop"
   },
@@ -13,7 +13,7 @@
     "title": "Living Room Luxe",
     "subtitle": "Sofas & sets starting at just $499",
     "category": "Living Room",
-    "image": "../src/assets/images/living_room.avif",
+    "image": "/images/living_room.avif",
     "cta": "Explore Living Room",
     "link": "/shop"
   },
@@ -22,7 +22,7 @@
     "title": "Outdoor Oasis Sale",
     "subtitle": "Breezy patio sets & garden chairs",
     "category": "Outdoor",
-    "image": "../src/assets/images/outdoor.avif",
+    "image": "/images/outdoor.avif",
     "cta": "See Outdoor Collection",
     "link": "/shop"
   },
@@ -31,7 +31,7 @@
     "title": "Work-from-Home",
     "subtitle": "Desks, chairs & storage solutions",
     "category": "Home Office",
-    "image": "../src/assets/images/home-office.avif",
+    "image": "/images/home-office.avif",
     "cta": "Shop Office Furniture",
     "link": "/shop"
   },
@@ -40,7 +40,7 @@
     "title": "Dine in Style",
     "subtitle": "Dining sets for every occasion",
     "category": "Dining Room",
-    "image": "../src/assets/images/dining-room.avif",
+    "image": "/images/dining-room.avif",
     "cta": "Browse Dining Sets",
     "link": "/shop"
   }

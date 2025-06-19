@@ -152,7 +152,7 @@
     "colorHex": "#1C1C1C",
     "brand": "HomeSmith",
     "durability": "High",
-    "image": "../src/assets/images/metal_frame.jpeg",
+    "image": "/images/metal_frame.jpeg",
     "createdAt": "2025-03-26T12:57:39.226448+00:00"
   },
   {
