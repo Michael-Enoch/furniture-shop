@@ -14,7 +14,7 @@ export default function LatestArrivalsGridWithModal({
 
   return (
     <section
-      className="w-full px-4 sm:px-8 md:px-16 py-14 relative"
+      className="w-full max-w-screen-2xl px-4 sm:px-8 md:px-16 py-14 relative"
       style={{ backgroundColor: bgColor }}
     >
       {/* Modal Background Overlay */}
@@ -27,7 +27,7 @@ export default function LatestArrivalsGridWithModal({
       )}
 
       <div
-        className="text-center mb-16 max-w-2xl mx-auto"
+        className="w-full text-center mb-16 max-w-2xl mx-auto"
       >
         <h2
           className="text-3xl sm:text-4xl md:text-5xl font-light mb-6 tracking-tight"
@@ -65,7 +65,7 @@ export default function LatestArrivalsGridWithModal({
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto relative z-10">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto relative z-10">
         {products.map((product, index) => (
           <div
             key={product.id}

@@ -9,7 +9,7 @@ const MiniAboutContact =({ sectionIndex = 7 }) => {
         : theme.colors.background.alt;
   return (
     <section
-      className="grid grid-cols-1 md:grid-cols-2 gap-10 py-20 px-6 max-w-8xl mx-auto"
+      className="w-full max-w-screen-2xl grid grid-cols-1 md:grid-cols-2 gap-10 py-20 px-6 max-w-8xl mx-auto"
       style={{ background: bgColor, fontFamily: theme.fonts.body }}
     >
       <div

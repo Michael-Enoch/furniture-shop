@@ -23,7 +23,7 @@ const BrandIntro = ({ sectionIndex = 0 }) => {
         Crafted for Comfort. Designed to Last.
       </motion.h2>
       <motion.p
-        className="text-base text-gray-700"
+        className="text-base"
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
