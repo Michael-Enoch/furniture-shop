@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import highlightMatch from "../utils/HighlightMatch"
+
+import highlightMatch from "../utils/HighlightMatch";
+
 import theme from "../context/Theme";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 
@@ -109,9 +111,9 @@ export default function SearchPage() {
 
   return (
     <div
-      className="p-6 min-h-screen"
+      className="p-6"
       style={{
-        backgroundColor: theme.colors.background.DEFAULT,
+
         fontFamily: theme.fonts.body,
         color: theme.colors.text.primary,
       }}
@@ -145,11 +147,10 @@ export default function SearchPage() {
             return (
               <div
                 key={p.id}
-                className="flex flex-col rounded-xl border shadow-md overflow-hidden relative group"
+                className="flex flex-col rounded-xl border shadow-md overflow-hidden relative group transition ease duration-300"
                 style={{
-                  backgroundColor: theme.colors.background.muted,
+                  backgroundColor: theme.colors.ui.base,
                   borderColor: theme.colors.ui.border,
-                  transition: "box-shadow 0.3s ease",
                 }}
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden cursor-pointer">
@@ -159,8 +160,7 @@ export default function SearchPage() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div
-                    className="absolute inset-0 bg-black/45 flex flex-col items-end p-3 space-y-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ pointerEvents: "none" }}
+                    className="absolute inset-0 bg-black/45 flex flex-col items-end p-3 space-y-4 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   >
                     <button
                       type="button"
@@ -203,7 +203,7 @@ export default function SearchPage() {
                     </p>
                     <StarRating rating={p.rating || 0} />
                   </div>
-
+                  
                   <div
                     className="mt-4 text-sm space-y-2"
                     style={{ color: theme.colors.text.primary }}

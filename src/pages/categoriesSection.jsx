@@ -28,6 +28,7 @@ export default function CategoriesSection({ sectionIndex = 0 }) {
 
   return (
     <section
+    id="category"
       className="w-full px-4 sm:px-8 md:px-16 py-14 relative"
       style={{ backgroundColor: bgColor }}
     >

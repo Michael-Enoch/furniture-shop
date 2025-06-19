@@ -12,6 +12,7 @@ import { CartProvider } from "./context/CartContext";
 import AboutUs from "./pages/AboutUs";
 import ContactPage from "./pages/ContactPage";
 import Footer from "./components/Footer";
+import Ticker from "./components/ScrollingTicker";
 
 
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/contact" element={<ContactPage/>} />
         </Routes>
         <Footer/>
+        <Ticker />
       </Router>
       </CartProvider>
     </AuthProvider>
