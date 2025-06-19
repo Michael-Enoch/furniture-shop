@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useDebouncedValue } from "../hooks/useDebouncedValue";
-import { highlightMatch } from "../utils/HighlightMatch";
+import highlightMatch from "../utils/HighlightMatch"
 import theme from "../context/Theme";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 
@@ -35,7 +34,6 @@ export default function SearchPage() {
   const [products, setProducts] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") || "");
-  const debouncedQuery = useDebouncedValue(query, 300);
   const [page, setPage] = useState(1);
 
   // Fetch products once on mount
@@ -68,12 +66,12 @@ export default function SearchPage() {
   // Sync query to URL
   useEffect(() => {
     const currentQ = searchParams.get("q") || "";
-    if (debouncedQuery !== currentQ) {
-      setSearchParams({ q: debouncedQuery });
+    if (query !== currentQ) {
+      setSearchParams({ q: query });
       setPage(1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedQuery]);
+  }, [query]);
 
   // Initialize query from URL
   useEffect(() => {
@@ -85,7 +83,7 @@ export default function SearchPage() {
   const filtered = useMemo(() => {
     if (!Array.isArray(products)) return [];
 
-    const q = debouncedQuery.toLowerCase();
+    const q = query.toLowerCase();
     if (!q) return products;
 
     return products.filter((p) => {
@@ -96,7 +94,7 @@ export default function SearchPage() {
       console.log("Filtering:", p.name, "Matched:", matched);
       return matched;
     });
-  }, [debouncedQuery, products]);
+  }, [query, products]);
 
   const paginated = useMemo(() => {
     const start = (page - 1) * ITEMS_PER_PAGE;
@@ -105,7 +103,7 @@ export default function SearchPage() {
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
 
-  console.log("Query:", query, "| Debounced:", debouncedQuery);
+  console.log("Query:", query, "| Debounced:", query);
   console.log("Products:", products.length);
   console.log("Filtered:", filtered.length);
 
@@ -192,7 +190,7 @@ export default function SearchPage() {
                         fontFamily: theme.fonts.header,
                       }}
                     >
-                      {highlightMatch(p.name, debouncedQuery)}
+                      {highlightMatch(p.name, query)}
                     </h2>
                     <p
                       className="text-base mt-1 mb-1"
@@ -201,7 +199,7 @@ export default function SearchPage() {
                         fontFamily: theme.fonts.body,
                       }}
                     >
-                      {highlightMatch(p.brand, debouncedQuery)}
+                      {highlightMatch(p.brand, query)}
                     </p>
                     <StarRating rating={p.rating || 0} />
                   </div>
@@ -217,7 +215,7 @@ export default function SearchPage() {
                       >
                         Category:
                       </span>{" "}
-                      {highlightMatch(p.category, debouncedQuery)}
+                      {highlightMatch(p.category, query)}
                     </p>
                     <p>
                       <span
@@ -226,7 +224,7 @@ export default function SearchPage() {
                       >
                         Material:
                       </span>{" "}
-                      {highlightMatch(p.material, debouncedQuery)}
+                      {highlightMatch(p.material, query)}
                     </p>
                     <p>
                       <span
@@ -235,7 +233,7 @@ export default function SearchPage() {
                       >
                         Color:
                       </span>{" "}
-                      {highlightMatch(p.color, debouncedQuery)}
+                      {highlightMatch(p.color, query)}
                     </p>
                   </div>
                 </div>
