@@ -13,6 +13,7 @@ import AboutUs from "./pages/AboutUs";
 import ContactPage from "./pages/ContactPage";
 import Footer from "./components/Footer";
 import Ticker from "./components/ScrollingTicker";
+import FaqPage from "./pages/FAQPage";
 
 
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/about" element={<AboutUs/>} />
           <Route path="/contact" element={<ContactPage/>} />
+          <Route path="/faq" element={<FaqPage />} />
         </Routes>
         <Footer/>
         <Ticker />
