@@ -1,4 +1,5 @@
 {
+  // This file contains a list of products available in the Bedroom category.
 "products" : [
   {
     "id": "dfa8ac27-09cd-445d-91aa-85b8fea2128f",
@@ -717,7 +718,11 @@
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "price": 750.21
   },
-    {
+  
+  
+      // =================== LIVING ROOM CATEGORY (12 products) ===================
+
+  {
     "id": 102,
     "name": "Luna L-Shaped Sectional",
     "category": "Living Room",
@@ -1328,6 +1333,9 @@
     "price": 899.00,
     "createdAt": "2025-06-06T12:00:00Z"
   },
+
+
+
   {
     "id": "17e077c1-f010-4978-933b-7b5c39b27ca4",
     "name": "Oak & Stone Teal Chair",
