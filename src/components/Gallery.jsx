@@ -10,7 +10,7 @@ const images = [
   "/images/lookbook4.jpg"
 ];
 
-const Gallery = ({ sectionIndex = 5 }) => {
+const Gallery = ({ sectionIndex = 6 }) => {
     const bgColor =
     sectionIndex % 2 === 0
       ? theme.colors.background.DEFAULT

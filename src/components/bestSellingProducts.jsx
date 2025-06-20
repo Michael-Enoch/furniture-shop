@@ -27,7 +27,7 @@ const StarRating = ({ rating = 0, max = 5 }) => {
   );
 };
 
-const BestSelling = ({ sectionIndex = 3 }) => {
+const BestSelling = ({ sectionIndex = 4 }) => {
   const [products, setProducts] = useState([]);
   const BASE_URL = "/products.json";
   const bgColor =

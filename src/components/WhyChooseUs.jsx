@@ -26,7 +26,7 @@ const benefits = [
   }
 ];
 
-const WhyChooseUs = ({ sectionIndex = 4 }) => {
+const WhyChooseUs = ({ sectionIndex = 5 }) => {
     const bgColor =
     sectionIndex % 2 === 0
       ? theme.colors.background.DEFAULT

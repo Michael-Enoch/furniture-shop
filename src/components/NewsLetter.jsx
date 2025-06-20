@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import theme from "../context/Theme";
 
-const Newsletter = ({ sectionIndex = 9 }) => {
+const Newsletter = ({ sectionIndex = 10 }) => {
    const bgColor =
       sectionIndex % 2 === 0
         ? theme.colors.background.DEFAULT
