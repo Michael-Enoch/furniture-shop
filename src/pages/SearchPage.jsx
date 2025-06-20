@@ -38,6 +38,10 @@ export default function SearchPage() {
   const [query, setQuery] = useState(searchParams.get("q") || "");
   const [page, setPage] = useState(1);
 
+  useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, []);
+
   // Fetch products once on mount
   useEffect(() => {
     fetch("/products.json")
@@ -256,7 +260,7 @@ export default function SearchPage() {
             <button
               key={num}
               onClick={() => setPage(num)}
-              className={`px-5 py-2 rounded-full font-semibold transition-colors duration-200`}
+              className={`px-4 py-2 rounded-full font-semibold transition-colors duration-200`}
               style={{
                 backgroundColor:
                   num === page
@@ -266,7 +270,7 @@ export default function SearchPage() {
                   num === page
                     ? theme.colors.primary.contrast
                     : theme.colors.primary.DEFAULT,
-                border: `1.5px solid ${theme.colors.accent.DEFAULT}`,
+                border: `1.5px solid ${theme.colors.ui.border}`,
                 fontFamily: theme.fonts.ui,
                 cursor: "pointer",
               }}
