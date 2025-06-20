@@ -262,7 +262,7 @@
     "color": "Midnight Blue",
     "colorHex": "#191970",
     "brand": "ModHaus",
-    "image": "https://videos.openai.com/vg-assets/assets%2Ftask_01jwvs2tv6eexsbv5wghbqmfzc%2F1748984086_img_0.webp?st=2025-06-03T19%3A38%3A03Z&se=2025-06-09T20%3A38%3A03Z&sks=b&skt=2025-06-03T19%3A38%3A03Z&ske=2025-06-09T20%3A38%3A03Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=ZZOjqKFOKYjf6iA70RayoUlYQ0ZG4H%2BJyRsvT0%2Bhps4%3D&az=oaivgprodscus",
+    "image": "https://i.pinimg.com/736x/63/ae/1c/63ae1c07c43333bdfa7f6dc5e60de2e1.jpg",
     "createdAt": "2024-06-05T22:50:56.633662+00:00"
   },
   {
@@ -280,7 +280,7 @@
     "color": "Light Gray",
     "colorHex": "#D3D3D3",
     "brand": "Willow & Elm",
-    "image": "https://videos.openai.com/vg-assets/assets%2Ftask_01jwvs2tv6eexsbv5wghbqmfzc%2F1748984086_img_0.webp?st=2025-06-03T19%3A38%3A03Z&se=2025-06-09T20%3A38%3A03Z&sks=b&skt=2025-06-03T19%3A38%3A03Z&ske=2025-06-09T20%3A38%3A03Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=ZZOjqKFOKYjf6iA70RayoUlYQ0ZG4H%2BJyRsvT0%2Bhps4%3D&az=oaivgprodscus",
+    "image": "https://i.pinimg.com/736x/d3/00/93/d300939b480741b863a8da6623120cc7.jpg",
     "createdAt": "2024-06-05T22:50:56.633662+00:00"
   },
   {
@@ -297,7 +297,7 @@
     "brand": "ModHaus",
     "price": 3367.46,
     "createdAt": "2025-06-06T17:56:19.742193",
-    "image": "/images/placeholder.jpg",
+    "image": "https://i.pinimg.com/736x/01/bb/38/01bb38de96f7a70c2688c2a1439ce985.jpg",
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "category": "Bedroom"
   },
@@ -315,7 +315,7 @@
     "brand": "CozyLiving",
     "price": 4292.62,
     "createdAt": "2025-06-06T17:56:19.742193",
-    "image": "/images/placeholder.jpg",
+    "image": "https://i.pinimg.com/736x/bd/fc/13/bdfc13e19973038ad179b0ee0158ba4c.jpg",
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "category": "Bedroom"
   },
@@ -333,7 +333,7 @@
     "brand": "Urban Nest",
     "price": 2152.86,
     "createdAt": "2025-06-06T17:56:19.742193",
-    "image": "/images/placeholder.jpg",
+    "image": "https://i.pinimg.com/736x/f2/f9/2b/f2f92b0443dd59fb190a4d668cfcfba7.jpg",
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "category": "Bedroom"
   },
@@ -351,7 +351,7 @@
     "brand": "Willow & Elm",
     "price": 2323.67,
     "createdAt": "2025-06-06T17:56:19.742193",
-    "image": "/images/placeholder.jpg",
+    "image": "https://i.pinimg.com/736x/17/5a/4d/175a4d451fead0257523d68937774dba.jpg",
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "category": "Bedroom"
   },
@@ -369,7 +369,7 @@
     "brand": "Haven Interiors",
     "price": 3121.75,
     "createdAt": "2025-06-06T17:56:19.742193",
-    "image": "/images/placeholder.jpg",
+    "image": "https://i.pinimg.com/736x/a3/ff/9e/a3ff9e8e2fe605ba5e2239309e351e34.jpg",
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "category": "Bedroom"
   },
@@ -387,7 +387,7 @@
     "brand": "StudioForm",
     "price": 1483.22,
     "createdAt": "2025-06-06T17:56:19.742193",
-    "image": "/images/placeholder.jpg",
+    "image": "https://i.pinimg.com/736x/71/f3/0c/71f30c1e3db375b51e6dfeae0e62ce08.jpg",
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "category": "Bedroom"
   },
@@ -405,13 +405,13 @@
     "brand": "ModHaus",
     "price": 1912.43,
     "createdAt": "2025-06-06T17:56:19.742193",
-    "image": "/images/placeholder.jpg",
+    "image": "https://i.pinimg.com/736x/47/3c/37/473c37749d00249b9c7f19d3be2a38d2.jpg",
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "category": "Bedroom"
   },
   {
     "id": "6e938ecd-0831-49d4-b64a-17e114f7e9c0",
-    "name": "Mesa Panel Bed",
+    "name": "Mesh Panel Bed",
     "description": "Strong panel bed made with kiln-dried hardwood and crossbeam supports.",
     "type": "Panel Bed",
     "material": "Hardwood",
@@ -423,7 +423,7 @@
     "brand": "Nordico",
     "price": 2934.77,
     "createdAt": "2025-06-06T17:56:19.742193",
-    "image": "/images/placeholder.jpg",
+    "image": "/https://i.pinimg.com/736x/dc/14/56/dc145664ac4cb7a1db1ec9780be70fd5.jpg",
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "category": "Bedroom"
   },
@@ -441,7 +441,7 @@
     "brand": "HomeSmith",
     "price": 3568.96,
     "createdAt": "2025-06-06T17:56:19.742193",
-    "image": "/images/placeholder.jpg",
+    "image": "https://i.pinimg.com/736x/58/6f/8c/586f8ce095718bcfe59784401a0b3714.jpg",
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "category": "Bedroom"
   },
@@ -459,6 +459,7 @@
     "brand": "CozyLiving",
     "category": "Bedroom",
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+    "image": "https://i.pinimg.com/736x/26/16/3a/26163a453eef2baa87a49062c0094682.jpg",
     "price": 4249.38
   },
   {
@@ -475,6 +476,7 @@
     "brand": "Timber & Co",
     "category": "Bedroom",
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+    "image": "https://i.pinimg.com/736x/e1/89/cd/e189cd3c4f1ba49d74f79ee1e7143931.jpg",
     "price": 1478.62
   },
   {
@@ -573,54 +575,7 @@
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "price": 1887.89
   },
-  {
-    "id": "824de4ea-c7dd-45cb-baa7-5a8ec498c1b9",
-    "name": "Solstice LED Vanity Table",
-    "description": "Vanity with LED light mirror and storage drawers, finished in matte gray engineered wood.",
-    "type": "Vanity Table",
-    "material": "MDF & Glass",
-    "materialType": "Engineered Wood/Glass",
-    "dimensions": "110x50x75 cm",
-    "size": "Medium",
-    "color": "Matte Gray",
-    "colorHex": "#6E6E6E",
-    "brand": "Luxe Living",
-    "category": "Bedroom",
-    "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
-    "price": 3773.13
-  },
-  {
-    "id": "173d62db-2e87-43a3-9655-3eb80e9b1eb3",
-    "name": "Everest Metal Frame Bed",
-    "description": "Heavy-duty steel bed frame with powder-coated matte black finish and cross beams.",
-    "type": "Metal Bed",
-    "material": "Steel",
-    "materialType": "Metal",
-    "dimensions": "210x160x90 cm",
-    "size": "Queen",
-    "color": "Matte Black",
-    "colorHex": "#1C1C1C",
-    "brand": "HomeSmith",
-    "category": "Bedroom",
-    "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
-    "price": 4391.44
-  },
-  {
-    "id": "799837aa-8e1e-48e3-9f44-4f4b2a7ff6b1",
-    "name": "Cascade Mirror Dresser",
-    "description": "Four-drawer dresser with full-length mirror panel, finished in high gloss white lacquer.",
-    "type": "Dresser",
-    "material": "MDF & Glass",
-    "materialType": "Engineered Wood/Glass",
-    "dimensions": "150x45x80 cm",
-    "size": "Wide",
-    "color": "Glossy White",
-    "colorHex": "#FFFFFF",
-    "brand": "Amber Oak",
-    "category": "Bedroom",
-    "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
-    "price": 2209.37
-  },
+  
   {
     "id": "44b6f0f6-2a7f-44e1-8f8e-7289782c9726",
     "name": "Nova Rattan Accent Chair",
@@ -653,70 +608,6 @@
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "price": 4923.87
   },
-  {
-    "id": "2641f1d0-5289-4e9f-996c-285f32b49032",
-    "name": "Solace Floating Shelf",
-    "description": "Slim floating shelf in natural pine, perfect for bedside essentials and décor.",
-    "type": "Wall Shelf",
-    "material": "Pine",
-    "materialType": "Wood",
-    "dimensions": "80x20x5 cm",
-    "size": "Slim",
-    "color": "Natural Pine",
-    "colorHex": "#DEB887",
-    "brand": "StudioForm",
-    "category": "Bedroom",
-    "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
-    "price": 430.02
-  },
-  {
-    "id": "5d6f3742-330c-4a63-8436-7a6d7bc57660",
-    "name": "Phoenix Upholstered Bench",
-    "description": "Comfortable bedroom bench with cushioned linen fabric and solid pine legs.",
-    "type": "Bedroom Bench",
-    "material": "Linen & Pine",
-    "materialType": "Fabric/Wood",
-    "dimensions": "120x40x45 cm",
-    "size": "Medium",
-    "color": "Light Gray",
-    "colorHex": "#D3D3D3",
-    "brand": "ModHaus",
-    "category": "Bedroom",
-    "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
-    "price": 1115.39
-  },
-  {
-    "id": "21d6e3ae-c3d6-47c1-9a2a-c6f9cfa8a1e5",
-    "name": "Meridian Sliding Door Wardrobe",
-    "description": "Large wardrobe with sliding doors and mirror panels crafted from engineered wood.",
-    "type": "Wardrobe",
-    "material": "MDF & Glass",
-    "materialType": "Engineered Wood/Glass",
-    "dimensions": "200x60x220 cm",
-    "size": "Large",
-    "color": "Light Gray",
-    "colorHex": "#D3D3D3",
-    "brand": "Willow & Elm",
-    "category": "Bedroom",
-    "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
-    "price": 3397.56
-  },
-  {
-    "id": "6bcfc68e-7f8a-4eaf-b5af-bcd4ee3f913e",
-    "name": "Vesper Velvet Ottoman",
-    "description": "Plush velvet ottoman with button tufting, wooden legs, and hidden storage.",
-    "type": "Ottoman",
-    "material": "Velvet & Wood",
-    "materialType": "Fabric/Wood",
-    "dimensions": "90x45x40 cm",
-    "size": "Low",
-    "color": "Midnight Blue",
-    "colorHex": "#191970",
-    "brand": "ModHaus",
-    "category": "Bedroom",
-    "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
-    "price": 750.21
-  },
     {
     "id": 102,
     "name": "Luna L-Shaped Sectional",
@@ -732,7 +623,7 @@
     "durability": "High",
     "price": 1299.00,
     "discount": "15%",
-    "image": "../src/assets/images/L-sectional.jpg"
+    "image": "/images/L-sectional.jpg"
   },
    {
     "id": "3a582cfb-6f24-4e24-bfd4-9e9cbc18713e",
@@ -746,7 +637,7 @@
     "color": "Charcoal Gray",
     "colorHex": "#36454F",
     "brand": "LoftStyle",
-    "image": "https://via.placeholder.com/600x400?text=Hudson+Modular+Sectional",
+    "image": "https://i.pinimg.com/736x/bf/39/97/bf39975a2ebe446d928d303e1636d8df.jpg",
     "createdAt": "2025-06-06T10:00:00Z",
     "price": 3499.99,
     "categoryId": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
@@ -764,7 +655,7 @@
     "color": "Natural Oak",
     "colorHex": "#C3B091",
     "brand": "Timber & Co",
-    "image": "https://via.placeholder.com/600x400?text=Oakridge+Media+Console",
+    "image": "https://i.pinimg.com/736x/75/d5/f9/75d5f962aea23be0022be7abfae301d8.jpg",
     "createdAt": "2025-06-06T10:00:00Z",
     "price": 1299.50,
     "categoryId": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
@@ -782,7 +673,7 @@
     "color": "Chestnut Brown",
     "colorHex": "#964B00",
     "brand": "Luxe Living",
-    "image": "https://via.placeholder.com/600x400?text=Verona+Leather+Recliner",
+    "image": "https://i.pinimg.com/736x/c7/c3/6e/c7c36e2ddc89a74aa04b98eb04c45bfe.jpg",
     "createdAt": "2025-06-06T10:00:00Z",
     "price": 2199.75,
     "categoryId": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
@@ -800,7 +691,7 @@
     "color": "White Marble",
     "colorHex": "#F8F8FF",
     "brand": "StudioForm",
-    "image": "https://via.placeholder.com/600x400?text=Aria+Marble+Coffee+Table",
+    "image": "https://i.pinimg.com/736x/19/93/15/1993156d3c17b3de4b99dbdb11efbac0.jpg",
     "createdAt": "2025-06-06T10:00:00Z",
     "price": 1890.10,
     "categoryId": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
@@ -818,7 +709,7 @@
     "color": "Warm Beige",
     "colorHex": "#F5F5DC",
     "brand": "CozyLiving",
-    "image": "https://via.placeholder.com/600x400?text=Willow+Linen+Loveseat",
+    "image": "https://i.pinimg.com/736x/6d/93/01/6d93019d234bd390c36358e4640165eb.jpg",
     "createdAt": "2025-06-06T10:00:00Z",
     "price": 1745.00,
     "categoryId": "ef675c5f-ecb4-47fd-b06e-16e2badd1b35",
