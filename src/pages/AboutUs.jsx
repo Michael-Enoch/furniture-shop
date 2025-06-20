@@ -1173,7 +1173,7 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-      g{/* Artisan Modal */}
+      {/* Artisan Modal */}
       {isModalVisible && selectedArtisan && (
         <div
           ref={modalRef}
@@ -1313,7 +1313,7 @@ const AboutUs = () => {
                       {selectedArtisan.name} believes in creating furniture that
                       tells a story. Each piece is designed to evolve with its
                       owner, developing character through years of use while
-                      maintaining structural integrity through traditional
+                      maintaininzstructural integrity through traditional
                       joinery techniques.
                     </p>
                   </div>
