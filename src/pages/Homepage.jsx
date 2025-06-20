@@ -16,6 +16,7 @@ import CTASection from "../components/CTA";
 import Gallery from "../components/Gallery";
 import MiniAboutContact from "../components/MiniAboutContact";
 import Features from "../components/Features";
+import Brands from "../components/Brands";
 
 
 const Homepage = () => {
@@ -72,6 +73,18 @@ const Homepage = () => {
 
       console.log("Bedroom Products:", bedroomProducts);
 
+      const LivingRoomCategoryId = categories.find(
+        (cat) => cat.name === "Living Room"
+      )?.id;
+
+      // Filter Bedroom products
+      const LivingRoomProducts = products.filter(
+        (product) => product.categoryId === LivingRoomCategoryId
+      );
+
+      console.log("LivingRoom Products:", LivingRoomProducts);
+
+
       // Extract unique filters
       const bedroomBrands = [...new Set(bedroomProducts.map((p) => p.brand))];
       const bedroomTypes = [...new Set(bedroomProducts.map((p) => p.type))];
@@ -83,9 +96,11 @@ const Homepage = () => {
       const bedroomMaterialTypes = [
         ...new Set(bedroomProducts.map((p) => p.materialType)),
       ];
+      const livingroomBrands = [...new Set(LivingRoomProducts.map((p) => p.brand))];
 
       // Log filters
       console.log("Bedroom Brands:", bedroomBrands);
+      console.log("LivingRoom Brands:", livingroomBrands);
       console.log("Bedroom Types:", bedroomTypes);
       console.log("Bedroom Colors:", bedroomColors);
       console.log("Bedroom Sizes:", bedroomSizes);
@@ -112,6 +127,7 @@ const Homepage = () => {
       <Hero offers={offers} />
       <Features/>
       <CategoriesSection />
+      <Brands/>
       <LatestArrivalsGridWithModal products={latestArrivals} theme={theme} />
       <BestSelling />
       <WhyChooseUs />

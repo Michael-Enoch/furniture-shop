@@ -4,9 +4,9 @@ html {
   scroll-behavior: smooth;
 }
 
-* {
-  outline: 1px solid rgba(255, 0, 0, 0.2); /* light red borders */
-}
+/* * {
+  outline: 1px solid rgba(255, 0, 0, 0.2); 
+} */
 
 html, body {
   overflow-x: hidden;
