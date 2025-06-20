@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   FaMapMarkerAlt,
   FaPhone,
@@ -72,6 +72,10 @@ const theme = {
 };
 
 const ContactPage = () => {
+   useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -278,25 +282,7 @@ const ContactPage = () => {
           >
             Contact Us
           </button>
-          {/* <button
-            onClick={() => setActiveTab("faq")}
-            className={`py-4 px-6 text-lg font-medium transition-colors whitespace-nowrap ${
-              activeTab === "faq"
-                ? `text-[${theme.colors.primary.DEFAULT}] border-b-2`
-                : "text-[#7A8C8C] hover:text-[#2F4F4F]"
-            }`}
-            style={{
-              borderBottomColor:
-                activeTab === "faq"
-                  ? theme.colors.primary.DEFAULT
-                  : "transparent",
-              fontFamily: theme.fonts.ui,
-              color:
-                activeTab === "faq" ? theme.colors.primary.DEFAULT : "#7A8C8C",
-            }}
-          >
-            FAQ
-          </button> */}
+        
           <button
             onClick={() => setActiveTab("appointment")}
             className={`py-4 px-6 text-lg font-medium transition-colors whitespace-nowrap ${
@@ -817,106 +803,6 @@ const ContactPage = () => {
               </div>
             </motion.div>
           )}
-
-{/*          
-          {activeTab === "faq" && (
-            <motion.div
-              key="faq"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="max-w-4xl mx-auto"
-            >
-              <motion.h2
-                className="text-3xl font-bold mb-8 text-center"
-                style={{
-                  color: theme.colors.primary.DEFAULT,
-                  fontFamily: theme.fonts.header,
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                Frequently Asked Questions
-              </motion.h2>
-
-              <motion.div
-                className="rounded-xl shadow-lg p-6"
-                style={{
-                  backgroundColor: theme.colors.ui.base,
-                  borderColor: theme.colors.ui.border,
-                  borderWidth: "1px",
-                }}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <div className="space-y-6">
-                  {faqItems.map((faq, index) => (
-                    <motion.div
-                      key={index}
-                      className="border-b pb-6 last:border-0 last:pb-0"
-                      style={{ borderColor: theme.colors.ui.border }}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <div className="flex items-start">
-                        <div
-                          className="p-2 rounded-full mr-4"
-                          style={{
-                            backgroundColor: theme.colors.primary.DEFAULT,
-                            color: theme.colors.accent.DEFAULT,
-                          }}
-                        >
-                          <FaQuestionCircle className="text-xl" />
-                        </div>
-                        <div>
-                          <h3
-                            className="text-xl font-semibold mb-2"
-                            style={{ color: theme.colors.primary.DEFAULT }}
-                          >
-                            {faq.question}
-                          </h3>
-                          <p style={{ color: theme.colors.text.primary }}>
-                            {faq.answer}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <motion.div
-                  className="mt-12 text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                >
-                  <p
-                    className="text-lg mb-6 max-w-2xl mx-auto"
-                    style={{ color: theme.colors.text.primary }}
-                  >
-                    Didn't find the answer you were looking for? Our team is
-                    ready to assist you.
-                  </p>
-                  <motion.button
-                    onClick={() => setActiveTab("contact")}
-                    className="text-white py-3 px-8 rounded-full font-medium transition-colors"
-                    style={{ backgroundColor: theme.colors.primary.DEFAULT }}
-                    whileHover={{
-                      scale: 1.05,
-                      backgroundColor: theme.colors.accent.DEFAULT,
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Contact Support
-                  </motion.button>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          )} */}
 
           {/* Appointment Tab */}
           {activeTab === "appointment" && (

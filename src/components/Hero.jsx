@@ -1,8 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules"; // 🆕 Fade effect
 import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import "swiper/css/effect-fade";
 import { Link } from "react-router-dom";
 import theme from "../context/Theme";
 
@@ -10,46 +9,60 @@ const Hero = ({ offers }) => {
   if (!offers.length) return null;
 
   return (
-    <section className="relative w-full group">
+    <section className="relative w-full max-w-screen-2xl mx-auto overflow-hidden">
       <Swiper
-        modules={[Autoplay]}
+        modules={[Autoplay, EffectFade]}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
         loop
         autoplay={{ delay: 5000, disableOnInteraction: false }}
-        className="w-full h-[500px] sm:h-[600px]"
+        className="w-full h-[500px] min-h-[500px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px]"
       >
         {offers.map((offer) => (
-          <SwiperSlide key={offer.id}>
+          <SwiperSlide key={offer.id} className="w-full max-w-full">
             <div
-              className="w-full h-full bg-cover bg-center"
+              className="w-full max-w-full h-full bg-cover bg-center"
               style={{ backgroundImage: `url(${offer.image})` }}
             >
-              <div className="bg-black/80 w-full h-full flex flex-col items-center md:items-start justify-center text-white px-6 sm:px-8 md:px-16 lg:px-6 py-10 md:py-16 text-center md:text-left space-y-6">
-                <h2
-                  className="text-4xl sm:text-5xl font-bold tracking-tight leading-snug"
-                  style={{ fontFamily: theme.fonts.header }}
-                >
-                  {offer.title}
-                  <span className="text-[#F4A261] font-semibold ml-2">
-                    {offer.discount}
-                  </span>
-                </h2>
+              <div className="w-full h-full bg-gradient-to-b from-black/70 to-black/60 text-white flex items-center justify-center md:justify-start px-4 sm:px-8 md:px-16 py-20">
+                <div className="max-w-5xl text-center md:text-left space-y-6">
+                  <h2
+                    className="font-bold leading-tight tracking-tight text-white"
+                    style={{
+                      fontFamily: theme.fonts.header,
+                      fontSize: "clamp(2rem, 6vw, 3.5rem)",
+                    }}
+                  >
+                    {offer.title}
+                    <span
+                      className="ml-2 text-[#F4A261] font-semibold"
+                      style={{
+                        fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
+                      }}
+                    >
+                      {offer.discount}
+                    </span>
+                  </h2>
 
-                <p
-                  className="text-sm sm:text-md md:text-lg lg:text-xl max-w-3xl leading-relaxed"
-                  style={{ fontFamily: theme.fonts.body }}
-                >
-                  {offer.subtitle} — Discover beautifully crafted furniture that
-                  blends comfort and sophistication in your{" "}
-                  {offer.category.toLowerCase()} space.
-                </p>
+                  <p
+                    className="text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto md:mx-0"
+                    style={{ fontFamily: theme.fonts.body }}
+                  >
+                    {offer.subtitle} — Discover beautifully crafted furniture
+                    that blends comfort and sophistication in your{" "}
+                    {offer.category.toLowerCase()} space.
+                  </p>
 
-                <Link
-                  to={offer.link}
-                  className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-md md:text-lg lg:text-xl font-medium bg-[#A65A2E] hover:bg-[#BF6E3D] transition-all duration-300 shadow-md"
-                  style={{ fontFamily: theme.fonts.alt }}
-                >
-                  {offer.cta}
-                </Link>
+                  <div className="flex justify-center md:justify-start">
+                    <Link
+                      to={offer.link}
+                      className="inline-block px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-medium bg-[#A65A2E] hover:bg-[#BF6E3D] transition-all duration-300 shadow-md text-white text-sm sm:text-base md:text-lg"
+                      style={{ fontFamily: theme.fonts.alt }}
+                    >
+                      {offer.cta}
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </SwiperSlide>

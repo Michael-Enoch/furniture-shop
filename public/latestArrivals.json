@@ -14,7 +14,7 @@
     "durability": "7 years",
     "price": 599.99,
     "discount": "10%",
-    "image": "../src/assets/images/platform.jpeg"
+    "image": "/images/platform.jpeg"
   },
   {
     "id": 102,
@@ -31,7 +31,7 @@
     "durability": "10 years",
     "price": 429.00,
     "discount": "20%",
-    "image": "../src/assets/images/teak.jpg"
+    "image": "/images/teak.jpg"
   },
   {
     "id": 103,
@@ -48,7 +48,7 @@
     "durability": "5 years",
     "price": 389.00,
     "discount": "5%",
-    "image": "../src/assets/images/desk.jpeg"
+    "image": "/images/desk.jpeg"
   },
   {
     "id": 104,
@@ -65,7 +65,7 @@
     "durability": "6 years",
     "price": 649.00,
     "discount": "12%",
-    "image": "../src/assets/images/mid-century.jpeg"
+    "image": "/images/mid-century.jpeg"
   },
   {
     "id": 105,
@@ -82,7 +82,7 @@
     "durability": "10 years",
     "price": 799.00,
     "discount": "18%",
-    "image": "../src/assets/images/recliner.jpeg"
+    "image": "/images/recliner.jpeg"
   },
   {
     "id": 106,
@@ -99,7 +99,7 @@
     "durability": "7 years",
     "price": 349.00,
     "discount": "25%",
-    "image": "../src/assets/images/chaise.jpeg"
+    "image": "/images/chaise.jpeg"
   },
   {
     "id": 107,
@@ -116,7 +116,7 @@
     "durability": "6 years",
     "price": 289.00,
     "discount": "10%",
-    "image": "../src/assets/images/nordic.jpeg"
+    "image": "/images/nordic.jpeg"
   },
   {
     "id": 108,
@@ -133,6 +133,6 @@
     "durability": "4 years",
     "price": 229.00,
     "discount": "15%",
-    "image": "../src/assets/images/ember.jpeg"
+    "image": "/images/ember.jpeg"
   }
 ]

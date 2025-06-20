@@ -18,7 +18,7 @@ const InstagramFeed = ({ sectionIndex = 11 }) => {
         : theme.colors.background.alt;
   return (
     <section
-      className="py-16 px-4 sm:px-8 md:px-16 max-w-8xl mx-auto text-center"
+      className="py-16 px-4 sm:px-8 md:px-16 w-full max-w-screen-2xl mx-auto text-center"
       style={{ background: bgColor }}
     >
       <h2
@@ -28,7 +28,7 @@ const InstagramFeed = ({ sectionIndex = 11 }) => {
         Follow Us On Instagram
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {posts.map((src, i) => (
           <motion.img
             key={i}

@@ -4,13 +4,13 @@ import theme from '../context/Theme';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#3A2F2A] relative text-[#F8F5F2] pt-16 pb-8"
+    <footer className="bg-[#3A2F2A] relative text-[#F8F5F2] pt-16 pb-8 w-full max-w-screen-2xl"
     style={ {fontFamily: theme.fonts.body}}
     >
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#A65A2E] to-transparent opacity-30"></div>
       
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 px-6 relative">
-        <div>
+      <div className="max-w-6xl w-full mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 px-6 relative">
+        <div className='w-full'>
           <h4 className="text-2xl font-bold mb-6 font-header relative z-10"><span className='text-[#A65A2E]'>Hudson</span> Furniture</h4>
           <p className=" mb-4 relative z-10">
             Crafting timeless pieces for modern homes since 1995.
@@ -41,7 +41,7 @@ const Footer = () => {
           </div>
         </div>
         
-        <div>
+        <div className='w-full'> 
           <h4 className="text-lg font-semibold mb-4 text-[#BF6E3D] flex items-center"
           style={ {fontFamily: theme.fonts.header}}
           >
@@ -59,7 +59,7 @@ const Footer = () => {
           </ul>
         </div>
         
-        <div>
+        <div className='w-full'>
           <h4 className="text-lg font-semibold mb-4 text-[#BF6E3D] flex items-center"
           style={ {fontFamily: theme.fonts.header}}
           >
@@ -77,7 +77,7 @@ const Footer = () => {
           </ul>
         </div>
         
-        <div>
+        <div className='w-full'>
           <h4 className="text-lg font-semibold mb-4 text-[#BF6E3D]"
           style={ {fontFamily: theme.fonts.header}}
           >
@@ -110,7 +110,7 @@ const Footer = () => {
           </address>
         </div>
 
-        <div>
+        <div className='w-full'>
           <h4 className="text-lg font-semibold mb-4 font-header">Subscribe to our newsletter</h4>
           <form aria-label="Newsletter subscription form" className="flex flex-col gap-3">
             <input
@@ -129,7 +129,7 @@ const Footer = () => {
 
       </div>
       
-      <div className="max-w-6xl mx-auto mt-16 pt-8 border-t border-[#DAD4CE] text-center relative">
+      <div className="max-w-6xl w-full mx-auto mt-16 pt-8 border-t border-[#DAD4CE] text-center relative">
         <p className="cursor-default text-xs sm:text-base">
           &copy; 2025 Hudson's Furniture. All rights reserved. Crafted with passion in Brooklyn, NY.
         </p>
