@@ -1,7 +1,7 @@
 import Marquee from "react-fast-marquee";
 import theme from "../context/Theme";
 
-const Brands = ({ sectionIndex = 0 }) => {
+const Brands = ({ sectionIndex = 2 }) => {
   const bgColor =
     sectionIndex % 2 === 0
       ? theme.colors.background.DEFAULT

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function LatestArrivalsGridWithModal({
   products,
   theme,
-  sectionIndex = 2,
+  sectionIndex = 3,
 }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const bgColor =

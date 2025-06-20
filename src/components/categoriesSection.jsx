@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import theme from "../context/Theme";
 
-export default function CategoriesSection({ sectionIndex = 0 }) {
+export default function CategoriesSection({ sectionIndex = 1 }) {
   const [categories, setCategories] = useState([]);
   const BASE_URL = "/categories.json";
   const bgColor =

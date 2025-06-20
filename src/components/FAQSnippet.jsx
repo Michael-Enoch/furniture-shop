@@ -26,7 +26,7 @@ const faqItems = [
   },
 ];
 
-const FAQ = ({ sectionIndex = 8 }) => {
+const FAQ = ({ sectionIndex = 9 }) => {
   const bgColor =
     sectionIndex % 2 === 0
       ? theme.colors.background.DEFAULT

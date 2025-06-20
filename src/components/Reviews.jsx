@@ -21,7 +21,7 @@ const reviews = [
   }
 ];
 
-const Reviews = ({ sectionIndex = 6 }) => {
+const Reviews = ({ sectionIndex = 7 }) => {
    const bgColor =
       sectionIndex % 2 === 0
         ? theme.colors.background.DEFAULT
