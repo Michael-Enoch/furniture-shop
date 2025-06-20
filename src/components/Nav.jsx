@@ -20,6 +20,8 @@ import {
   Facebook,
   Twitter,
   Instagram,
+  Tag,
+  Home,
 } from "lucide-react";
 import { useCart } from "../context/CartContext.jsx";
 
@@ -31,9 +33,14 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
 
-  const [query, setQuery] = useState("");
   const navigate = useNavigate();
+  const [query, setQuery] = useState("");
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      navigate(`/search?q=${encodeURIComponent(query)}`);
+    }
+  };
   const handleIconClick = () => {
     if (query.trim()) {
       navigate(`/search?q=${encodeURIComponent(query.trim())}`);
@@ -81,7 +88,14 @@ const Navbar = () => {
     return () => unsubscribe();
   }, []);
   const { cartCount } = useCart();
-  const moreLinks = ["About Us", "Contact", "Reviews", "Blog", "Support"];
+  const moreLinks = [
+    { name: "About Us", to: "/about" },
+    { name: "Contact", to: "/contact" },
+    { name: "Reviews", to: "/submit-reviews" },
+    { name: "Blog", to: "/blog" },
+    { name: "Help Center", to: "/support" },
+  ];
+
   const utilityLink = [
     { name: "Cart", to: "/cart", icon: <ShoppingCart size={18} /> },
   ];
@@ -96,7 +110,6 @@ const Navbar = () => {
           color: theme.colors.primary.contrast,
         }}
       >
-        
         <div className="flex items-center gap-1 sm:gap-2">
           <p>Call Us</p>:
           <a href="tel:+1234567890" className="underline">
@@ -454,63 +467,69 @@ const Navbar = () => {
                   <input
                     type="text"
                     placeholder="Search products..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={handleKeyPress}
                     className="w-full bg-transparent outline-none text-sm"
                   />
                 </div>
 
                 {/* Navigation Links */}
                 <div className="flex flex-col gap-3">
-                  <NavLink
+                  <Link
                     to="/"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                     onClick={toggleMobileMenu}
                   >
+                    <Home size={18} />
                     Home
-                  </NavLink>
-                  <NavLink
+                  </Link>
+                  <Link
                     to="/deals"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                     onClick={toggleMobileMenu}
                   >
+                    <Tag size={18} />
                     Deals
-                  </NavLink>
+                  </Link>
                 </div>
 
                 {/* Action Links */}
                 <div className="flex flex-col gap-2">
-                  <NavLink
+                  <Link
                     to="/cart"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                   >
                     <ShoppingCart size={18} /> Cart
-                  </NavLink>
-                  <NavLink
+                  </Link>
+                  <Link
                     to="/"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                   >
                     <Heart size={18} /> Wishlist
-                  </NavLink>
-                  <NavLink
+                  </Link>
+                  <Link
                     to="/login"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                   >
                     <LogIn size={18} /> Login
-                  </NavLink>
-                  <NavLink
+                  </Link>
+                  <Link
                     to="/register"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                   >
                     <UserPlus size={18} /> Register
-                  </NavLink>
+                  </Link>
                 </div>
                 <div>
-                  <button
+                  <Link
+                    to="/shop"
                     className="w-full flex justify-between items-center text-base font-medium focus:outline-none"
                     style={{ color: theme.colors.primary.contrast }}
                   >
@@ -518,7 +537,7 @@ const Navbar = () => {
                       <Sofa size={18} />
                       Shop
                     </span>
-                  </button>
+                  </Link>
                 </div>
 
                 <div>
@@ -547,9 +566,9 @@ const Navbar = () => {
                         className="ml-4 mt-2 flex flex-col gap-2"
                       >
                         {moreLinks.map((label) => (
-                          <a
-                            key={label}
-                            href="#"
+                          <Link
+                            key={label.name}
+                            to={label.to}
                             className="text-base font-normal transition-colors focus:outline-none"
                             style={{ color: theme.colors.primary.contrast }}
                             onClick={() => {
@@ -558,7 +577,7 @@ const Navbar = () => {
                             }}
                           >
                             {label}
-                          </a>
+                          </Link>
                         ))}
                       </motion.div>
                     )}
