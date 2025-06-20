@@ -5,7 +5,7 @@ import theme from "../context/Theme";
 const CTASection = () => {
   return (
     <section
-      className="py-20 px-6 text-center border-b"
+      className="py-20 px-6 w-full max-w-screen-2xl text-center border-b"
       style={{ background: theme.colors.primary.DEFAULT, color: theme.colors.primary.contrast, borderColor: theme.colors.ui.border }}
     >
       <motion.div
@@ -13,7 +13,7 @@ const CTASection = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="max-w-3xl mx-auto"
+        className="max-w-3xl w-full mx-auto"
       >
         <h2
           className="text-3xl font-bold mb-4"

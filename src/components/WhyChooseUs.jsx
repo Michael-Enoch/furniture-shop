@@ -26,13 +26,13 @@ const benefits = [
   }
 ];
 
-const WhyChooseUs = ({ sectionIndex = 4 }) => {
+const WhyChooseUs = ({ sectionIndex = 5 }) => {
     const bgColor =
     sectionIndex % 2 === 0
       ? theme.colors.background.DEFAULT
       : theme.colors.background.alt;
   return (
-    <section className="py-16 px-4 sm:px-8 md:px-16 max-w-8xl mx-auto"
+    <section className="w-full max-w-screen-2xl py-16 px-4 sm:px-8 md:px-16 mx-auto"
     style={{ background: bgColor, fontFamily: theme.fonts.body}}
     >
       <h2
@@ -44,7 +44,7 @@ const WhyChooseUs = ({ sectionIndex = 4 }) => {
         Why Choose Us
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {benefits.map((item, index) => (
           <div
             key={index}

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import theme from "../context/Theme";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const faqItems = [
   {
@@ -26,7 +26,7 @@ const faqItems = [
   },
 ];
 
-const FAQ = ({ sectionIndex = 8 }) => {
+const FAQ = ({ sectionIndex = 9 }) => {
   const bgColor =
     sectionIndex % 2 === 0
       ? theme.colors.background.DEFAULT
