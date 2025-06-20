@@ -3,18 +3,25 @@ import { useEffect, useState } from "react";
 import Hero from "../components/Hero";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import CategoriesSection from "./categoriesSection";
-import BestSelling from "./bestSellingProducts";
-import Ticker from "../components/ScrollingTicker";
-import LatestArrivalsGridWithModal from "./LatestArrivals";
+import CategoriesSection from "../components/categoriesSection";
+import BestSelling from "../components/bestSellingProducts";
+import LatestArrivalsGridWithModal from "../components/LatestArrivals";
 import theme from "../context/Theme";
-import FullPageLoader from "../components/FullPageLoader";
+import FAQ from "../components/FAQSnippet";
+import WhyChooseUs from "../components/WhyChooseUs";
+import Reviews from "../components/Reviews";
+import Newsletter from "../components/NewsLetter";
+import InstagramFeed from "../components/InstagramFeed";
+import TestimonialsCarousel from "../components/TestimonialCarousel";
+import CTASection from "../components/CTA";
+import Gallery from "../components/Gallery";
+import MiniAboutContact from "../components/MiniAboutContact";
+
 
 const Homepage = () => {
   const BASE_URL = "/furniture_database_50_products.json";
   const [latestArrivals, setLatestArrivals] = useState([]);
   const [offers, setOffers] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   // Fetch offers + data together
   useEffect(() => {
@@ -29,8 +36,7 @@ const Homepage = () => {
         console.error("Failed to load homepage data:", err);
       } finally {
         setTimeout(() => {
-          setIsLoaded(true);
-          Aos.init({ duration: 800, once: true, easing: "ease-in-out",  });
+          Aos.init({ duration: 700, once: true, easing: "ease-out-cubic" });
         }, 1000);
       }
     };
@@ -39,9 +45,8 @@ const Homepage = () => {
   }, []);
 
   useEffect(() => {
-  Aos.refresh();
-}, []);
-
+    Aos.refresh();
+  }, []);
 
   const fetchCategoriesAndProducts = async () => {
     try {
@@ -93,22 +98,30 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div>
-      {!isLoaded ? (
-        <FullPageLoader />
-      ) : (
-        <>
-          <Hero offers={offers} />
-          <CategoriesSection />
-          <LatestArrivalsGridWithModal
-            products={latestArrivals}
-            theme={theme}
-          />
-          <BestSelling />
-          <Ticker />
-        </>
-      )}
-    </div>
+    <main
+      style={{
+        background: theme.colors.background.DEFAULT,
+        color: theme.colors.text.primary,
+        fontFamily: theme.fonts.body,
+      }}
+    >
+      <Hero offers={offers} />
+      {/* <BrandIntro /> */}
+      <CategoriesSection />
+      {/* <ShopByRoom /> */}
+      <LatestArrivalsGridWithModal products={latestArrivals} theme={theme} />
+      <BestSelling />
+      <WhyChooseUs />
+      <Gallery />
+      <Reviews />
+      <MiniAboutContact/>
+      <FAQ />
+      <Newsletter />
+      <TestimonialsCarousel />
+      <InstagramFeed />
+      <CTASection />
+      {/* <BlogSupportReviewSections /> */}
+    </main>
   );
 };
 
