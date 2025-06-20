@@ -97,19 +97,19 @@ const Navbar = () => {
         }}
       >
         
-        <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
+        <div className="flex items-center gap-1 sm:gap-2">
           <p>Call Us</p>:
           <a href="tel:+1234567890" className="underline">
             +1 (234) 567-890
           </a>
         </div>
-        <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
-          <p>Shop now and get 25% Off on all orders</p>
+        <div className="flex items-center gap-1 sm:gap-2 animate-pulse">
+          <p>Shop now and get a Discount on all orders</p>
           <Link to="/register" className="underline">
             Sign up Now
           </Link>
         </div>
-        <div className="flex items-center gap-1 sm:gap-2 text-[11px]">
+        <div className="flex items-center gap-1 sm:gap-2">
           <Users size={14} className="text-primary-contrast" />
           <span>
             {visitorCount ? `${visitorCount} Visitors` : "Loading..."}
@@ -201,18 +201,12 @@ const Navbar = () => {
             className="relative h-full flex items-center justify-center cursor-pointer select-none"
             whileHover="hover"
           >
-            <NavLink
-              to="/category"
-              className={({ isActive }) =>
-                `text-base transition-colors duration-300 ${
-                  isActive
-                    ? "text-[#BF6E3D]"
-                    : "text-[#F8F5F2] hover:text-[#BF6E3D]"
-                }`
-              }
+            <a
+              href="#category"
+              className="text-[#F8F5F2] hover:text-[#BF6E3D] text-base transition-colors duration-300"
             >
               Categories
-            </NavLink>
+            </a>
           </motion.div>
 
           {/* Deals Link */}
@@ -269,24 +263,24 @@ const Navbar = () => {
                     borderColor: theme.colors.ui.border,
                   }}
                 >
-                  <a
-                    href="#"
+                  <NavLink
+                    to="/about"
                     className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
                     style={{
                       backgroundColor: theme.colors.background.muted,
                     }}
                   >
                     About Us
-                  </a>
-                  <a
-                    href="#"
+                  </NavLink>
+                  <NavLink
+                    to="contact"
                     className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
                     style={{
                       backgroundColor: theme.colors.background.muted,
                     }}
                   >
                     Contact
-                  </a>
+                  </NavLink>
                   <a
                     href="#"
                     className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
