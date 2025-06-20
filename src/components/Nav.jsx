@@ -576,7 +576,7 @@ const Navbar = () => {
                               setMobileMenuOpen(false);
                             }}
                           >
-                            {label}
+                            {label.name}
                           </Link>
                         ))}
                       </motion.div>
