@@ -14,8 +14,7 @@ import ContactPage from "./pages/ContactPage";
 import Footer from "./components/Footer";
 import Ticker from "./components/ScrollingTicker";
 import FaqPage from "./pages/FAQPage";
-import DebugBar from "./components/DebugBar";
-
+// import DebugBar from "./components/DebugBar";
 
 
 function App() {
@@ -35,7 +34,7 @@ function App() {
           <Route path="/contact" element={<ContactPage/>} />
           <Route path="/faq" element={<FaqPage />} />
         </Routes>
-          <DebugBar />
+          {/* <DebugBar /> */}
         <Footer/>
         <Ticker />
       </Router>
