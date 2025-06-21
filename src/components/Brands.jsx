@@ -49,9 +49,7 @@ const Brands = ({ sectionIndex = 2 }) => {
             key={i}
             src={src}
             alt={`Brand ${i + 1}`}
-            className="h-20 w-auto mx-8 object-contain"
-            data-aos="fade-up"
-            data-aos-delay={(i % brandLogos.length) * 100}
+            className="h-20 w-auto mx-4 object-contain"
           />
         ))}
       </Marquee>
