@@ -44,7 +44,7 @@ const Ticker = () =>{
     'November',
     'December'
   ]
-    
+
     const [location, setLocation] = useState({Latitude : null, Longitude : null});
     const [error, setError] = useState(null)
     
