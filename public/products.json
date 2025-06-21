@@ -1,4 +1,5 @@
 {
+  // This file contains a list of products available in the Bedroom category.
 "products" : [
   {
     "id": "dfa8ac27-09cd-445d-91aa-85b8fea2128f",
@@ -673,7 +674,76 @@
     "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
     "price": 4923.87
   },
-    {
+  {
+    "id": "2641f1d0-5289-4e9f-996c-285f32b49032",
+    "name": "Solace Floating Shelf",
+    "description": "Slim floating shelf in natural pine, perfect for bedside essentials and décor.",
+    "type": "Wall Shelf",
+    "material": "Pine",
+    "materialType": "Wood",
+    "dimensions": "80x20x5 cm",
+    "size": "Slim",
+    "color": "Natural Pine",
+    "colorHex": "#DEB887",
+    "brand": "StudioForm",
+    "category": "Bedroom",
+    "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+    "price": 430.02
+  },
+  {
+    "id": "5d6f3742-330c-4a63-8436-7a6d7bc57660",
+    "name": "Phoenix Upholstered Bench",
+    "description": "Comfortable bedroom bench with cushioned linen fabric and solid pine legs.",
+    "type": "Bedroom Bench",
+    "material": "Linen & Pine",
+    "materialType": "Fabric/Wood",
+    "dimensions": "120x40x45 cm",
+    "size": "Medium",
+    "color": "Light Gray",
+    "colorHex": "#D3D3D3",
+    "brand": "ModHaus",
+    "category": "Bedroom",
+    "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+    "price": 1115.39
+  },
+  {
+    "id": "21d6e3ae-c3d6-47c1-9a2a-c6f9cfa8a1e5",
+    "name": "Meridian Sliding Door Wardrobe",
+    "description": "Large wardrobe with sliding doors and mirror panels crafted from engineered wood.",
+    "type": "Wardrobe",
+    "material": "MDF & Glass",
+    "materialType": "Engineered Wood/Glass",
+    "dimensions": "200x60x220 cm",
+    "size": "Large",
+    "color": "Light Gray",
+    "colorHex": "#D3D3D3",
+    "brand": "Willow & Elm",
+    "category": "Bedroom",
+    "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+    "price": 3397.56
+  },
+  {
+    "id": "6bcfc68e-7f8a-4eaf-b5af-bcd4ee3f913e",
+    "name": "Vesper Velvet Ottoman",
+    "description": "Plush velvet ottoman with button tufting, wooden legs, and hidden storage.",
+    "type": "Ottoman",
+    "material": "Velvet & Wood",
+    "materialType": "Fabric/Wood",
+    "dimensions": "90x45x40 cm",
+    "size": "Low",
+    "color": "Midnight Blue",
+    "colorHex": "#191970",
+    "brand": "ModHaus",
+    "category": "Bedroom",
+    "categoryId": "d3e9a532-284c-4a97-b17b-98fcf6aa873b",
+    "price": 750.21
+  },
+  
+  
+      // =================== LIVING ROOM CATEGORY (12 products) ===================
+
+  {
+    
     "id": 102,
     "name": "Luna L-Shaped Sectional",
     "category": "Living Room",
@@ -1284,6 +1354,9 @@
     "price": 899.00,
     "createdAt": "2025-06-06T12:00:00Z"
   },
+
+
+
   {
     "id": "17e077c1-f010-4978-933b-7b5c39b27ca4",
     "name": "Oak & Stone Teal Chair",

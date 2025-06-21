@@ -17,6 +17,7 @@ import FaqPage from "./pages/FAQPage";
 import DebugBar from "./components/DebugBar";
 import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetailPage";
+import ForgotPassword from "./pages/ForgotPassword";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/about" element={<AboutUs/>} />
           <Route path="/contact" element={<ContactPage/>} />
           <Route path="/faq" element={<FaqPage />} />
+          <Route path="/forgot-password" element={<ForgotPassword/>} />
         </Routes>
           {/* <DebugBar /> */}
         <Footer/>
