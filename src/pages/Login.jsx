@@ -6,20 +6,21 @@ import { motion } from "framer-motion";
 import { FiMail, FiLock, FiLogIn } from "react-icons/fi";
 import { FaChair } from "react-icons/fa";
 import theme from "../context/Theme";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const { login } = useAuth();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const onSubmit = async (data) => {
+
+const onSubmit = async (data) => {
     setLoading(true);
     try {
       await login(data.email, data.password);
-      toast.success("Welcome back to our furniture family!");
-      
-      // Animation delay for smoother transition
-      await new Promise(resolve => setTimeout(resolve, 800));
+      toast.success("Welcome back to Hudson's Furniture!");
+      navigate('/'); // Redirect to homepage after successful login
     } catch (error) {
       console.error("Login error:", error);
       toast.error(error.message || "Couldn't sign you in. Please try again.");
