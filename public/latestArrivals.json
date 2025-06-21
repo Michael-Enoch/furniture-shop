@@ -14,6 +14,7 @@
     "durability": "7 years",
     "price": 599.99,
     "discount": "10%",
+    "originalPrice": 666.66,
     "image": "/images/platform.jpeg"
   },
   {
@@ -31,6 +32,7 @@
     "durability": "10 years",
     "price": 429.00,
     "discount": "20%",
+    "originalPrice": 536.25,
     "image": "/images/teak.jpg"
   },
   {
@@ -48,6 +50,7 @@
     "durability": "5 years",
     "price": 389.00,
     "discount": "5%",
+    "originalPrice": 409.47,
     "image": "/images/desk.jpeg"
   },
   {
@@ -65,6 +68,7 @@
     "durability": "6 years",
     "price": 649.00,
     "discount": "12%",
+    "originalPrice": 737.50,
     "image": "/images/mid-century.jpeg"
   },
   {
@@ -82,6 +86,7 @@
     "durability": "10 years",
     "price": 799.00,
     "discount": "18%",
+    "originalPrice": 974.39,
     "image": "/images/recliner.jpeg"
   },
   {
@@ -99,6 +104,7 @@
     "durability": "7 years",
     "price": 349.00,
     "discount": "25%",
+    "originalPrice": 465.33,
     "image": "/images/chaise.jpeg"
   },
   {
@@ -116,6 +122,7 @@
     "durability": "6 years",
     "price": 289.00,
     "discount": "10%",
+    "originalPrice": 321.11,
     "image": "/images/nordic.jpeg"
   },
   {
@@ -133,6 +140,7 @@
     "durability": "4 years",
     "price": 229.00,
     "discount": "15%",
+    "originalPrice": 269.41,
     "image": "/images/ember.jpeg"
   }
 ]

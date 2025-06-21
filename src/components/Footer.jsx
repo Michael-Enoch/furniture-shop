@@ -1,7 +1,18 @@
 import { FaFacebookF, FaInstagram, FaTwitter, FaMapMarkerAlt, FaPhone, FaEnvelope, FaChevronRight } from 'react-icons/fa';
 import { FiArrowUpRight } from 'react-icons/fi';
 import theme from '../context/Theme';
+import { Link } from 'react-router-dom';
 
+<<<<<<< HEAD
+=======
+const companyLinks = [
+  {name:"About Us", to:"/about"}, 
+  {name:"Contact Us", to:"/contact"},
+  {name:"Sustainability", to:"/"}, 
+  {name:"Site Map", to:"/site-map"}, 
+  {name:"FAQ", to:"/faq"}
+]
+>>>>>>> 467e2af838b14a35aa23748de34565cc7695491c
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -85,6 +96,7 @@ const Footer = () => {
           >
             Company <FaChevronRight className="ml-2 text-xs opacity-70" />
           </h4>
+<<<<<<< HEAD
           <ul className="space-y-3">
             {[
               { name: "About Us", url: "#" },
@@ -103,6 +115,15 @@ const Footer = () => {
                   {item.name}
                   <FiArrowUpRight className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
+=======
+          <ul className="space-y-2 ">
+            {companyLinks.map((item, i) => (
+              <li key={i} className="group">
+                <Link to={item.to} className="flex items-center py-1 transition-all duration-300 hover:text-[#BF6E3D]">
+                  <span className="w-0 h-px bg-[#BF6E3D] group-hover:w-4 mr-2 transition-all duration-300"></span>
+                  {item.name}
+                </Link>
+>>>>>>> 467e2af838b14a35aa23748de34565cc7695491c
               </li>
             ))}
           </ul>

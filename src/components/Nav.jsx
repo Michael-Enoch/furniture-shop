@@ -31,8 +31,15 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
 
-  const [query, setQuery] = useState("");
+   const [query, setQuery] = useState("");
   const navigate = useNavigate();
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && query.trim()) {
+       setMobileMenuOpen(false);
+      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+    }
+  };
 
   const handleIconClick = () => {
     if (query.trim()) {
@@ -81,7 +88,13 @@ const Navbar = () => {
     return () => unsubscribe();
   }, []);
   const { cartCount } = useCart();
-  const moreLinks = ["About Us", "Contact", "Reviews", "Blog", "Support"];
+  const moreLinks = [
+  {name:"About Us", to:"/about"}, 
+  {name:"Contact Us", to:"/contact"},
+  {name:"Reviews", to:"/"}, 
+  {name:"Blog", to:"/"}, 
+  {name:"Support", to:"/"}
+]
   const utilityLink = [
     { name: "Cart", to: "/cart", icon: <ShoppingCart size={18} /> },
   ];
@@ -184,7 +197,7 @@ const Navbar = () => {
             whileHover="hover"
           >
             <NavLink
-              to="/shop"
+              to="/products"
               className={({ isActive }) =>
                 `text-base transition-colors duration-300 ${
                   isActive
@@ -344,7 +357,7 @@ const Navbar = () => {
                   key={link.name}
                   to={link.to}
                   aria-label="Cart"
-                  className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors"
+                  className="relative w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors"
                 >
                   {link.icon}
                   {cartCount > 0 && (
@@ -453,29 +466,32 @@ const Navbar = () => {
                   <Search size={16} />
                   <input
                     type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search products..."
+                    onKeyDown={handleKeyDown}
                     className="w-full bg-transparent outline-none text-sm"
                   />
                 </div>
 
                 {/* Navigation Links */}
                 <div className="flex flex-col gap-3">
-                  <NavLink
+                  <Link
                     to="/"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                     onClick={toggleMobileMenu}
                   >
                     Home
-                  </NavLink>
-                  <NavLink
-                    to="/deals"
+                  </Link>
+                  <a
+                    href="#deals"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                     onClick={toggleMobileMenu}
                   >
                     Deals
-                  </NavLink>
+                  </a>
                 </div>
 
                 {/* Action Links */}
@@ -546,10 +562,10 @@ const Navbar = () => {
                         transition={{ duration: 0.2 }}
                         className="ml-4 mt-2 flex flex-col gap-2"
                       >
-                        {moreLinks.map((label) => (
-                          <a
-                            key={label}
-                            href="#"
+                        {moreLinks.map((label, i) => (
+                          <Link
+                            key={i}
+                            to={label.to}
                             className="text-base font-normal transition-colors focus:outline-none"
                             style={{ color: theme.colors.primary.contrast }}
                             onClick={() => {
@@ -557,8 +573,8 @@ const Navbar = () => {
                               setMobileMenuOpen(false);
                             }}
                           >
-                            {label}
-                          </a>
+                            {label.name}
+                          </Link>
                         ))}
                       </motion.div>
                     )}
