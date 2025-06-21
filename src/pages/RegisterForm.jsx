@@ -19,6 +19,7 @@ import {
   FaChair,
   FaBed 
 } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const theme = {
   fonts: {
@@ -88,18 +89,19 @@ const Register = () => {
     dining: <FiCoffee className="h-5 w-5" />,
     outdoor: <FiUmbrella className="h-5 w-5" />,
   };
+  const navigate = useNavigate();
 
-  const onSubmit = async (data) => {
+ const onSubmit = async (data) => {
     setLoading(true);
     try {
-      // Add selected category to registration data
       const userData = {
         ...data,
         preferences: selectedCategory ? [selectedCategory] : []
       };
 
       await signUp(userData.email, userData.password, userData.role || 'customer', userData.name);
-      toast.success("Welcome to our furniture family!");
+      toast.success("Welcome to Hudson's Furniture!");
+      navigate('/'); // Redirect to homepage after successful registration
     } catch (error) {
       console.error("Registration error:", error);
       toast.error(error.message || "Couldn't create your account. Please try again.");
@@ -107,7 +109,6 @@ const Register = () => {
       setLoading(false);
     }
   };
-
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0, y: 30 },
