@@ -22,7 +22,6 @@ const DebugBar = () => {
           className: el.className || null,
           scrollOffset: rect.right - docWidth,
         };
-        overflowElements.push(info);
 
           if (style.display.includes("flex") && style.gap && scrollOffset < 0) {
       el.classList.add("__flex-gap-alert");

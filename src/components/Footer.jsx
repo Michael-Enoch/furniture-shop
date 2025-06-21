@@ -1,7 +1,14 @@
 import { FaFacebookF, FaInstagram, FaTwitter, FaMapMarkerAlt, FaPhone, FaEnvelope, FaChevronRight } from 'react-icons/fa';
 import theme from '../context/Theme';
+import { Link } from 'react-router-dom';
 
-
+const companyLinks = [
+  {name:"About Us", to:"/about"}, 
+  {name:"Contact Us", to:"/contact"},
+  {name:"Sustainability", to:"/"}, 
+  {name:"Site Map", to:"/site-map"}, 
+  {name:"FAQ", to:"/faq"}
+]
 const Footer = () => {
   return (
     <footer className="bg-[#3A2F2A] relative text-[#F8F5F2] pt-16 pb-8 w-full max-w-screen-2xl"
@@ -66,12 +73,12 @@ const Footer = () => {
             Company <FaChevronRight className="ml-2 text-xs opacity-70" />
           </h4>
           <ul className="space-y-2 ">
-            {["About Us", "Contact Us", "Sustainability", "FAQ"].map((item, i) => (
+            {companyLinks.map((item, i) => (
               <li key={i} className="group">
-                <a href="#" className="flex items-center py-1 transition-all duration-300 hover:text-[#BF6E3D]">
+                <Link to={item.to} className="flex items-center py-1 transition-all duration-300 hover:text-[#BF6E3D]">
                   <span className="w-0 h-px bg-[#BF6E3D] group-hover:w-4 mr-2 transition-all duration-300"></span>
-                  {item}
-                </a>
+                  {item.name}
+                </Link>
               </li>
             ))}
           </ul>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { Trash2 } from "lucide-react"
 import { useCart } from "../context/CartContext"
-
+import Breadcrumbs from "../components/BreadCrumbs"
 
 export const CartPage = () => {
   const { cart, addToCart, removeFromCart } = useCart()
@@ -18,7 +18,7 @@ export const CartPage = () => {
       const updatedCart = cart.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity - 1 } : item
       )
-      // Forcing the update
+
       updatedCart.forEach(item => {
         if (item.id === id) {
           removeFromCart(item.id)
@@ -47,6 +47,7 @@ export const CartPage = () => {
 
   return (
     <div className="py-10 px-4 max-w-6xl mx-auto">
+    <Breadcrumbs/>
       <h1 className="text-3xl font-bold mb-6 text-primary-dark">Your Shopping Cart</h1>
       <div className="grid gap-6">
         {cart.map((item) => (

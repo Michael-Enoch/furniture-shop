@@ -20,8 +20,6 @@ import {
   Facebook,
   Twitter,
   Instagram,
-  Tag,
-  Home,
 } from "lucide-react";
 import { useCart } from "../context/CartContext.jsx";
 
@@ -33,14 +31,16 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
 
+   const [query, setQuery] = useState("");
   const navigate = useNavigate();
-  const [query, setQuery] = useState("");
 
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      navigate(`/search?q=${encodeURIComponent(query)}`);
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && query.trim()) {
+       setMobileMenuOpen(false);
+      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
     }
   };
+
   const handleIconClick = () => {
     if (query.trim()) {
       navigate(`/search?q=${encodeURIComponent(query.trim())}`);
@@ -89,13 +89,12 @@ const Navbar = () => {
   }, []);
   const { cartCount } = useCart();
   const moreLinks = [
-    { name: "About Us", to: "/about" },
-    { name: "Contact", to: "/contact" },
-    { name: "Reviews", to: "/submit-reviews" },
-    { name: "Blog", to: "/blog" },
-    { name: "Help Center", to: "/support" },
-  ];
-
+  {name:"About Us", to:"/about"}, 
+  {name:"Contact Us", to:"/contact"},
+  {name:"Reviews", to:"/"}, 
+  {name:"Blog", to:"/"}, 
+  {name:"Support", to:"/"}
+]
   const utilityLink = [
     { name: "Cart", to: "/cart", icon: <ShoppingCart size={18} /> },
   ];
@@ -110,6 +109,7 @@ const Navbar = () => {
           color: theme.colors.primary.contrast,
         }}
       >
+        
         <div className="flex items-center gap-1 sm:gap-2">
           <p>Call Us</p>:
           <a href="tel:+1234567890" className="underline">
@@ -197,7 +197,7 @@ const Navbar = () => {
             whileHover="hover"
           >
             <NavLink
-              to="/shop"
+              to="/products"
               className={({ isActive }) =>
                 `text-base transition-colors duration-300 ${
                   isActive
@@ -357,7 +357,7 @@ const Navbar = () => {
                   key={link.name}
                   to={link.to}
                   aria-label="Cart"
-                  className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors"
+                  className="relative w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors"
                 >
                   {link.icon}
                   {cartCount > 0 && (
@@ -466,10 +466,10 @@ const Navbar = () => {
                   <Search size={16} />
                   <input
                     type="text"
-                    placeholder="Search products..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    onKeyDown={handleKeyPress}
+                    placeholder="Search products..."
+                    onKeyDown={handleKeyDown}
                     className="w-full bg-transparent outline-none text-sm"
                   />
                 </div>
@@ -482,54 +482,51 @@ const Navbar = () => {
                     style={{ color: theme.colors.primary.contrast }}
                     onClick={toggleMobileMenu}
                   >
-                    <Home size={18} />
                     Home
                   </Link>
-                  <Link
-                    to="/deals"
+                  <a
+                    href="#deals"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                     onClick={toggleMobileMenu}
                   >
-                    <Tag size={18} />
                     Deals
-                  </Link>
+                  </a>
                 </div>
 
                 {/* Action Links */}
                 <div className="flex flex-col gap-2">
-                  <Link
+                  <NavLink
                     to="/cart"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                   >
                     <ShoppingCart size={18} /> Cart
-                  </Link>
-                  <Link
+                  </NavLink>
+                  <NavLink
                     to="/"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                   >
                     <Heart size={18} /> Wishlist
-                  </Link>
-                  <Link
+                  </NavLink>
+                  <NavLink
                     to="/login"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                   >
                     <LogIn size={18} /> Login
-                  </Link>
-                  <Link
+                  </NavLink>
+                  <NavLink
                     to="/register"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                   >
                     <UserPlus size={18} /> Register
-                  </Link>
+                  </NavLink>
                 </div>
                 <div>
-                  <Link
-                    to="/shop"
+                  <button
                     className="w-full flex justify-between items-center text-base font-medium focus:outline-none"
                     style={{ color: theme.colors.primary.contrast }}
                   >
@@ -537,7 +534,7 @@ const Navbar = () => {
                       <Sofa size={18} />
                       Shop
                     </span>
-                  </Link>
+                  </button>
                 </div>
 
                 <div>
@@ -565,9 +562,9 @@ const Navbar = () => {
                         transition={{ duration: 0.2 }}
                         className="ml-4 mt-2 flex flex-col gap-2"
                       >
-                        {moreLinks.map((label) => (
+                        {moreLinks.map((label, i) => (
                           <Link
-                            key={label.name}
+                            key={i}
                             to={label.to}
                             className="text-base font-normal transition-colors focus:outline-none"
                             style={{ color: theme.colors.primary.contrast }}
