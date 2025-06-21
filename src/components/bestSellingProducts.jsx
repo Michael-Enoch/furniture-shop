@@ -27,7 +27,7 @@ const StarRating = ({ rating = 0, max = 5 }) => {
   );
 };
 
-const BestSelling = ({ sectionIndex = 3 }) => {
+const BestSelling = ({ sectionIndex = 4 }) => {
   const [products, setProducts] = useState([]);
   const BASE_URL = "/products.json";
   const bgColor =
@@ -48,7 +48,7 @@ const BestSelling = ({ sectionIndex = 3 }) => {
 
   return (
     <section
-      className="w-full py-16 px-4 sm:px-8 md:px-16 max-w-8xl mx-auto"
+      className="py-16 px-4 sm:px-8 md:px-16 w-full max-w-screen-2xl mx-auto"
       style={{ backgroundColor: bgColor }}
     >
       <div className="text-center mb-16 max-w-2xl mx-auto">
@@ -65,7 +65,7 @@ const BestSelling = ({ sectionIndex = 3 }) => {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {filteredProducts.slice(0, 4).map((product, index) => (
           <div
             key={product.id}
