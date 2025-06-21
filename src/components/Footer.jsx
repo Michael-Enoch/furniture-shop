@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const companyLinks = [
   {name:"About Us", to:"/about"}, 
   {name:"Contact Us", to:"/contact"},
-  {name:"Sustainability", to:"/"}, 
+  {name:"Reviews", to:"/"}, 
   {name:"Site Map", to:"/site-map"}, 
   {name:"FAQ", to:"/faq"}
 ]
