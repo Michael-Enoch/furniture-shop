@@ -16,7 +16,6 @@ import {
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 
-// Theme colors based on provided theme
 const theme = {
   colors: {
     primary: {
