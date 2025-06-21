@@ -14,7 +14,9 @@ import ContactPage from "./pages/ContactPage";
 import Footer from "./components/Footer";
 import Ticker from "./components/ScrollingTicker";
 import FaqPage from "./pages/FAQPage";
-// import DebugBar from "./components/DebugBar";
+import DebugBar from "./components/DebugBar";
+import ProductPage from "./pages/ProductPage";
+import ProductDetail from "./pages/ProductDetailPage";
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/products" element={<ProductPage />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
