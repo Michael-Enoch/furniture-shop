@@ -1,9 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useDebouncedValue } from "../hooks/useDebouncedValue";
-import { highlightMatch } from "../utils/HighlightMatch";
+
+import highlightMatch from "../utils/HighlightMatch";
+
 import theme from "../context/Theme";
-import { Heart, ShoppingCart, Star } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Heart,
+  ShoppingCart,
+  Star,
+} from "lucide-react";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -35,8 +42,15 @@ export default function SearchPage() {
   const [products, setProducts] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") || "");
-  const debouncedQuery = useDebouncedValue(query, 300);
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
 
   // Fetch products once on mount
   useEffect(() => {
@@ -51,11 +65,11 @@ export default function SearchPage() {
 
         const normalized = rawProducts.map((p) => ({
           ...p,
-          name: String(p.name || ""),
-          brand: String(p.brand || ""),
-          category: String(p.category || ""),
-          material: String(p.material || ""),
-          color: String(p.color || ""),
+          name: p.name || "",
+          brand: p.brand || "",
+          category: p.category || "",
+          material: p.material || "",
+          color: p.color || "",
         }));
         setProducts(normalized);
       })
@@ -68,12 +82,12 @@ export default function SearchPage() {
   // Sync query to URL
   useEffect(() => {
     const currentQ = searchParams.get("q") || "";
-    if (debouncedQuery !== currentQ) {
-      setSearchParams({ q: debouncedQuery });
+    if (query !== currentQ) {
+      setSearchParams({ q: query });
       setPage(1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedQuery]);
+  }, [query]);
 
   // Initialize query from URL
   useEffect(() => {
@@ -85,7 +99,7 @@ export default function SearchPage() {
   const filtered = useMemo(() => {
     if (!Array.isArray(products)) return [];
 
-    const q = debouncedQuery.toLowerCase();
+    const q = query.toLowerCase();
     if (!q) return products;
 
     return products.filter((p) => {
@@ -96,7 +110,7 @@ export default function SearchPage() {
       console.log("Filtering:", p.name, "Matched:", matched);
       return matched;
     });
-  }, [debouncedQuery, products]);
+  }, [query, products]);
 
   const paginated = useMemo(() => {
     const start = (page - 1) * ITEMS_PER_PAGE;
@@ -105,15 +119,14 @@ export default function SearchPage() {
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
 
-  console.log("Query:", query, "| Debounced:", debouncedQuery);
+  console.log("Query:", query, "| Debounced:", query);
   console.log("Products:", products.length);
   console.log("Filtered:", filtered.length);
 
   return (
-    <div
-      className="p-6 min-h-screen"
+    <section
+      className="py-16 px-4 sm:px-8 md:px-16 w-full max-w-screen-2xl mx-auto"
       style={{
-        backgroundColor: theme.colors.background.DEFAULT,
         fontFamily: theme.fonts.body,
         color: theme.colors.text.primary,
       }}
@@ -142,16 +155,15 @@ export default function SearchPage() {
       </h1>
 
       {paginated.length ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 w-full max-w-screen-2xl">
           {paginated.map((p) => {
             return (
               <div
                 key={p.id}
-                className="flex flex-col bg-white rounded-3xl border shadow-md overflow-hidden relative group"
+                className="flex flex-col rounded-xl w-full shadow-md overflow-hidden relative group transition ease duration-300"
                 style={{
-                  backgroundColor: theme.colors.background.muted,
+                  backgroundColor: theme.colors.ui.base,
                   borderColor: theme.colors.ui.border,
-                  transition: "box-shadow 0.3s ease",
                 }}
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden cursor-pointer">
@@ -160,22 +172,25 @@ export default function SearchPage() {
                     alt={p.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div
-                    className="absolute inset-0 bg-black/45 flex flex-col items-end p-3 space-y-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ pointerEvents: "none" }}
-                  >
+                  <div className="absolute inset-0 bg-black/45 flex flex-col items-end p-3 space-y-4 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <button
                       type="button"
-                      className="p-2 rounded-md bg-[rgba(166,90,46,0.9)] hover:bg-[rgba(191,110,61,0.9)] text-white shadow-lg"
-                      style={{ pointerEvents: "auto" }}
+                      className="p-2 rounded-md shadow-lg pointer-events-auto"
+                      style={{
+                        background: theme.colors.accent.DEFAULT,
+                        color: theme.colors.primary.contrast,
+                      }}
                       aria-label={`Add ${p.name} to cart`}
                     >
                       <ShoppingCart className="w-6 h-6" aria-hidden="true" />
                     </button>
                     <button
                       type="button"
-                      className="p-2 rounded-md bg-[rgba(166,90,46,0.9)] hover:bg-[rgba(191,110,61,0.9)] text-white shadow-lg"
-                      style={{ pointerEvents: "auto" }}
+                      className="p-2 rounded-md shadow-lg pointer-events-auto"
+                      style={{
+                        background: theme.colors.accent.DEFAULT,
+                        color: theme.colors.primary.contrast,
+                      }}
                       aria-label={`Add ${p.name} to wishlist`}
                     >
                       <Heart className="w-6 h-6" aria-hidden="true" />
@@ -192,7 +207,7 @@ export default function SearchPage() {
                         fontFamily: theme.fonts.header,
                       }}
                     >
-                      {highlightMatch(p.name, debouncedQuery)}
+                      {highlightMatch(p.name, query)}
                     </h2>
                     <p
                       className="text-base mt-1 mb-1"
@@ -201,7 +216,7 @@ export default function SearchPage() {
                         fontFamily: theme.fonts.body,
                       }}
                     >
-                      {highlightMatch(p.brand, debouncedQuery)}
+                      {highlightMatch(p.brand, query)}
                     </p>
                     <StarRating rating={p.rating || 0} />
                   </div>
@@ -217,7 +232,7 @@ export default function SearchPage() {
                       >
                         Category:
                       </span>{" "}
-                      {highlightMatch(p.category, debouncedQuery)}
+                      {highlightMatch(p.category, query)}
                     </p>
                     <p>
                       <span
@@ -226,7 +241,7 @@ export default function SearchPage() {
                       >
                         Material:
                       </span>{" "}
-                      {highlightMatch(p.material, debouncedQuery)}
+                      {highlightMatch(p.material, query)}
                     </p>
                     <p>
                       <span
@@ -235,7 +250,7 @@ export default function SearchPage() {
                       >
                         Color:
                       </span>{" "}
-                      {highlightMatch(p.color, debouncedQuery)}
+                      {highlightMatch(p.color, query)}
                     </p>
                   </div>
                 </div>
@@ -251,34 +266,82 @@ export default function SearchPage() {
           No matching products found.
         </p>
       )}
-
       {totalPages > 1 && (
-        <div className="mt-8 flex justify-center gap-3">
-          {Array.from({ length: totalPages }, (_,i) => i + 1).map((num) => (
+        <div className="mt-10 flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-wrap gap-2 justify-center">
             <button
-              key={num}
-              onClick={() => setPage(num)}
-              className={`px-5 py-2 rounded-full font-semibold transition-colors duration-200`}
+              onClick={() => setPage((p) => Math.max(p - 1, 1))}
+              disabled={page === 1}
+              className="px-3 rounded border bg-[#A65A2E] text-[#F8F5F2] font-medium transition disabled:opacity-40"
               style={{
-                backgroundColor:
-                  num === page
-                    ? theme.colors.accent.DEFAULT
-                    : theme.colors.ui.base,
-                color:
-                  num === page
-                    ? theme.colors.primary.contrast
-                    : theme.colors.primary.DEFAULT,
-                border: `1.5px solid ${theme.colors.accent.DEFAULT}`,
+                borderColor: theme.colors.ui.border,
                 fontFamily: theme.fonts.ui,
-                cursor: "pointer",
               }}
-              aria-current={num === page ? "page" : undefined}
             >
-              {num}
+              <ChevronLeft className="w-4 h-4" />
             </button>
-          ))}
+
+            <span className="text-gray-800">
+              Page {page} of {totalPages}
+            </span>
+
+            <button
+              onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
+              disabled={page === totalPages}
+              className="px-3 rounded border bg-[#A65A2E] text-[#F8F5F2] font-medium transition disabled:opacity-40"
+              style={{
+                borderColor: theme.colors.ui.border,
+                fontFamily: theme.fonts.ui,
+              }}
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const val = e.target.elements.pageNum.value;
+              const num = parseInt(val, 10);
+              if (num >= 1 && num <= totalPages) {
+                setPage(num);
+              }
+              e.target.reset();
+            }}
+            className="flex gap-2 items-center justify-center text-sm"
+          >
+            <label htmlFor="pageNum" style={{ fontFamily: theme.fonts.ui }}>
+              Go to page:
+            </label>
+            <input
+              id="pageNum"
+              type="number"
+              min="1"
+              max={totalPages}
+              placeholder="e.g. 5"
+              className="border px-2 py-1 rounded w-20 text-center"
+              style={{
+                fontFamily: theme.fonts.ui,
+                backgroundColor: theme.colors.ui.base,
+                color: theme.colors.text.primary,
+                borderColor: theme.colors.ui.border,
+              }}
+            />
+            <button
+              type="submit"
+              className="px-3 py-1 rounded border font-medium"
+              style={{
+                backgroundColor: theme.colors.accent.DEFAULT,
+                borderColor: theme.colors.ui.border,
+                color: theme.colors.primary.contrast,
+                fontFamily: theme.fonts.ui,
+              }}
+            >
+              Go
+            </button>
+          </form>
         </div>
       )}
-    </div>
+    </section>
   );
 }
