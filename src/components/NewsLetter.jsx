@@ -2,14 +2,14 @@
 import { motion } from "framer-motion";
 import theme from "../context/Theme";
 
-const Newsletter = ({ sectionIndex = 9 }) => {
+const Newsletter = ({ sectionIndex = 10 }) => {
    const bgColor =
       sectionIndex % 2 === 0
         ? theme.colors.background.DEFAULT
         : theme.colors.background.alt;
   return (
     <section
-      className="py-20 px-6 text-center"
+      className="w-full max-w-screen-2xl py-20 px-6 text-center"
       style={{ background: bgColor, fontFamily: theme.fonts.body }}
     >
       <motion.div

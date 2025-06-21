@@ -21,13 +21,13 @@ const reviews = [
   }
 ];
 
-const Reviews = ({ sectionIndex = 6 }) => {
+const Reviews = ({ sectionIndex = 7 }) => {
    const bgColor =
       sectionIndex % 2 === 0
         ? theme.colors.background.DEFAULT
         : theme.colors.background.alt;
   return (
-    <section className="py-16 px-4 sm:px-8 md:px-16 max-w-8xl mx-auto"
+    <section className="py-16 px-4 sm:px-8 md:px-16 w-full max-w-screen-2xl mx-auto"
     style={{background: bgColor}}
     >
       <h2
@@ -37,7 +37,7 @@ const Reviews = ({ sectionIndex = 6 }) => {
         What Our Customers Say
       </h2>
 
-      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+      <div className="w-full grid gap-6 sm:grid-cols-2 md:grid-cols-3">
         {reviews.map((r, i) => (
           <motion.div
             key={i}
