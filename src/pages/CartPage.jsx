@@ -2,9 +2,14 @@ import { Link } from "react-router-dom"
 import { Trash2 } from "lucide-react"
 import { useCart } from "../context/CartContext"
 import Breadcrumbs from "../components/BreadCrumbs"
+import { useEffect } from "react"
 
 export const CartPage = () => {
   const { cart, addToCart, removeFromCart } = useCart()
+
+  useEffect(() => {
+    window.scrollTo({top: 0, behavior: "smooth"})
+  }, [])
 
   const increaseQty = (item) => {
     addToCart(item)
