@@ -20,6 +20,7 @@ import {
   Facebook,
   Twitter,
   Instagram,
+  Home,
 } from "lucide-react";
 import { useCart } from "../context/CartContext.jsx";
 
@@ -31,12 +32,12 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
 
-   const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && query.trim()) {
-       setMobileMenuOpen(false);
+      setMobileMenuOpen(false);
       navigate(`/search?q=${encodeURIComponent(query.trim())}`);
     }
   };
@@ -89,12 +90,11 @@ const Navbar = () => {
   }, []);
   const { cartCount } = useCart();
   const moreLinks = [
-  {name:"About Us", to:"/about"}, 
-  {name:"Contact Us", to:"/contact"},
-  {name:"Reviews", to:"/"}, 
-  {name:"Blog", to:"/"}, 
-  {name:"Support", to:"/"}
-]
+    { name: "Site map", to: "/" },
+    { name: "Reviews", to: "/" },
+    { name: "Help Center", to: "/" },
+    { name: "FAQ", to: "/faq" },
+  ];
   const utilityLink = [
     { name: "Cart", to: "/cart", icon: <ShoppingCart size={18} /> },
   ];
@@ -109,7 +109,6 @@ const Navbar = () => {
           color: theme.colors.primary.contrast,
         }}
       >
-        
         <div className="flex items-center gap-1 sm:gap-2">
           <p>Call Us</p>:
           <a href="tel:+1234567890" className="underline">
@@ -170,7 +169,7 @@ const Navbar = () => {
 
         {/* Center Navigation Links */}
         <div
-          className="hidden items-center justify-center font-semibold h-full md:flex gap-8 xl:gap-10"
+          className="hidden items-center justify-center font-medium h-full md:flex gap-8 xl:gap-10"
           style={{ fontFamily: theme.fonts.alt }}
         >
           {/* Home Link */}
@@ -214,21 +213,8 @@ const Navbar = () => {
             className="relative h-full flex items-center justify-center cursor-pointer select-none"
             whileHover="hover"
           >
-            <a
-              href="#category"
-              className="text-[#F8F5F2] hover:text-[#BF6E3D] text-base transition-colors duration-300"
-            >
-              Categories
-            </a>
-          </motion.div>
-
-          {/* Deals Link */}
-          <motion.div
-            className="relative h-full flex items-center justify-center cursor-pointer select-none"
-            whileHover="hover"
-          >
             <NavLink
-              to="/deals"
+              to="/about"
               className={({ isActive }) =>
                 `text-base transition-colors duration-300 ${
                   isActive
@@ -237,7 +223,26 @@ const Navbar = () => {
                 }`
               }
             >
-              Deals
+              About Us
+            </NavLink>
+          </motion.div>
+
+          {/* Deals Link */}
+          <motion.div
+            className="relative h-full flex items-center justify-center cursor-pointer select-none"
+            whileHover="hover"
+          >
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `text-base transition-colors duration-300 ${
+                  isActive
+                    ? "text-[#BF6E3D]"
+                    : "text-[#F8F5F2] hover:text-[#BF6E3D]"
+                }`
+              }
+            >
+              Contact
             </NavLink>
           </motion.div>
 
@@ -274,53 +279,18 @@ const Navbar = () => {
                   className="absolute right-0 top-full mt-2 w-48 shadow-xl rounded-lg overflow-hidden z-60 border"
                   style={{
                     borderColor: theme.colors.ui.border,
+                    backgroundColor: theme.colors.background.muted,
                   }}
                 >
-                  <NavLink
-                    to="/about"
-                    className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
-                    style={{
-                      backgroundColor: theme.colors.background.muted,
-                    }}
-                  >
-                    About Us
-                  </NavLink>
-                  <NavLink
-                    to="contact"
-                    className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
-                    style={{
-                      backgroundColor: theme.colors.background.muted,
-                    }}
-                  >
-                    Contact
-                  </NavLink>
-                  <a
-                    href="#"
-                    className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
-                    style={{
-                      backgroundColor: theme.colors.background.muted,
-                    }}
-                  >
-                    Reviews
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
-                    style={{
-                      backgroundColor: theme.colors.background.muted,
-                    }}
-                  >
-                    Blog
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200"
-                    style={{
-                      backgroundColor: theme.colors.background.muted,
-                    }}
-                  >
-                    Support
-                  </a>
+                  {moreLinks.map((label, i) => (
+                    <Link
+                      key={i}
+                      to={label.to}
+                      className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium transition-all duration-200"
+                    >
+                      {label.name}
+                    </Link>
+                  ))}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -482,16 +452,24 @@ const Navbar = () => {
                     style={{ color: theme.colors.primary.contrast }}
                     onClick={toggleMobileMenu}
                   >
-                    Home
+                    <Home size={18} /> Home
                   </Link>
-                  <a
-                    href="#deals"
+                  <Link
+                    to="/about"
                     className="flex items-center gap-2 text-base font-medium"
                     style={{ color: theme.colors.primary.contrast }}
                     onClick={toggleMobileMenu}
                   >
-                    Deals
-                  </a>
+                    About Us
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="flex items-center gap-2 text-base font-medium"
+                    style={{ color: theme.colors.primary.contrast }}
+                    onClick={toggleMobileMenu}
+                  >
+                    Contact
+                  </Link>
                 </div>
 
                 {/* Action Links */}
