@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
   localStorage.setItem("userRole", role);
   };
 
-  const logOut = () => signOut(auth);
+  const logout = () => signOut(auth);
 
   // Track auth state and retrieve role
 
@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ currentUser, role, register, login, logOut }}
+      value={{ currentUser, role, register, login, logout }}
     >
       {!loading && children}
     </AuthContext.Provider>

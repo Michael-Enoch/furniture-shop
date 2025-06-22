@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { useCart } from "../context/CartContext.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
+import toast from "react-hot-toast";
 
 // Utility function to get initials
 const getInitials = (name = '', email = '') => {
@@ -144,9 +145,11 @@ const Navbar = () => {
       await logout();
       setProfileOpen(false);
       setMobileMenuOpen(false);
+      toast.success("Logged out successfully");
       navigate("/login");
     } catch (error) {
       console.error("Logout error:", error);
+      toast.error("Failed to log out. Please try again.");
     }
   };
 
@@ -392,8 +395,9 @@ const Navbar = () => {
               </motion.div>
             ))}
 
-            {/* Profile Dropdown */}
+            {/* Conditional rendering based on auth state */}
             {currentUser ? (
+              /* Logged-in state */
               <div ref={profileRef} className="relative">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
@@ -462,15 +466,26 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
             ) : (
+              /* Logged-out state */
               <>
                 <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-                  <NavLink to="/login" aria-label="Login">
+                  <NavLink 
+                    to="/login" 
+                    className="flex items-center gap-1"
+                    aria-label="Login"
+                  >
                     <LogIn className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+                    <span className="hidden lg:inline text-sm">Login</span>
                   </NavLink>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-                  <NavLink to="/register" aria-label="Sign Up">
+                  <NavLink 
+                    to="/register" 
+                    className="flex items-center gap-1"
+                    aria-label="Sign Up"
+                  >
                     <UserPlus className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+                    <span className="hidden lg:inline text-sm">Register</span>
                   </NavLink>
                 </motion.div>
               </>

@@ -209,9 +209,9 @@ const ContactPage = () => {
               "url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1920')",
           }}
         >
-          <div className="bg-black/80 w-full h-full flex flex-col items-center md:items-start justify-center text-white px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
+          <div className="bg-black/80 w-full h-full  flex flex-col items-center md:items-start justify-center text-white px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
             <motion.h1
-              className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-wide"
+              className="text-4xl md:text-6xl font-bold align-center text-white mb-6 tracking-wide text-center"
               style={{ fontFamily: theme.fonts.header }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
