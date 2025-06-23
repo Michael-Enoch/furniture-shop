@@ -30,13 +30,10 @@ export default function CategoriesSection({ sectionIndex = 1 }) {
       className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-12 lg:px-16 py-14 mx-auto"
       style={{ backgroundColor: bgColor }}
     >
-      <div
-        className="w-full text-center mb-16 max-w-2xl mx-auto"
-        data-aos="fade-up"
+
+        <h2 className="text-center text-3xl font-semibold mb-6"
+data-aos="fade-up"
         data-aos-delay="100"
-      >
-        <h2
-          className="text-2xl sm:text-4xl md:text-5xl font-light mb-6 tracking-tight"
           style={{
             color: theme.colors.text.primary,
             fontFamily: theme.fonts.header,
@@ -44,7 +41,6 @@ export default function CategoriesSection({ sectionIndex = 1 }) {
         >
           Featured Categories
         </h2>
-      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 max-w-6xl mx-auto">
         {categories.map((category, index) => (
