@@ -38,7 +38,7 @@ export default function SearchPage() {
   const debouncedQuery = useDebouncedValue(query, 300);
   const [page, setPage] = useState(1);
 
-  // Fetch products once on mount
+ 
   useEffect(() => {
     fetch("/products.json")
       .then((res) => res.json())
@@ -65,7 +65,7 @@ export default function SearchPage() {
       });
   }, []);
 
-  // Sync query to URL
+ 
   useEffect(() => {
     const currentQ = searchParams.get("q") || "";
     if (debouncedQuery !== currentQ) {
