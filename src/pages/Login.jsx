@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { FiMail, FiLock, FiLogIn } from "react-icons/fi";
 import { FaChair } from "react-icons/fa";
@@ -14,13 +15,16 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+   useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
 
 const onSubmit = async (data) => {
     setLoading(true);
     try {
       await login(data.email, data.password);
       toast.success("Welcome back to Hudson's Furniture!");
-      navigate('/'); // Redirect to homepage after successful login
+      navigate('/'); 
     } catch (error) {
       console.error("Login error:", error);
       toast.error(error.message || "Couldn't sign you in. Please try again.");
@@ -29,7 +33,6 @@ const onSubmit = async (data) => {
     }
   };
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -42,13 +45,7 @@ const onSubmit = async (data) => {
     }
   };
 
-  const inputVariants = {
-    focus: {
-      scale: 1.02,
-      boxShadow: "0 0 0 2px rgba(166, 90, 46, 0.2)",
-      transition: { duration: 0.2 }
-    }
-  };
+
 
   return (
     <div 
@@ -162,7 +159,7 @@ const onSubmit = async (data) => {
               loading ? "opacity-70 cursor-not-allowed" : "hover:opacity-90"
             }`}
             style={{ 
-              backgroundColor: loading ? theme.colors.ui.border : theme.colors.primary.DEFAULT,
+              backgroundColor: loading ? theme.colors.ui.border : theme.colors.accent.DEFAULT,
               color: theme.colors.primary.contrast,
               fontFamily: theme.fonts.ui
             }}
