@@ -1,5 +1,6 @@
-[
-  {
+{
+  "offers" : [
+    {
     "id": 101,
     "name": "Aurora Queen Platform Bed",
     "category": "Bedroom",
@@ -143,4 +144,5 @@
     "originalPrice": 269.41,
     "image": "/images/ember.jpeg"
   }
-]
+  ]
+}

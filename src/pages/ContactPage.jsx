@@ -15,45 +15,7 @@ import {
 } from "react-icons/fa";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-
-const theme = {
-  colors: {
-    primary: {
-      DEFAULT: "#3A2F2A",
-      contrast: "#F8F5F2",
-    },
-    accent: {
-      DEFAULT: "#A65A2E",
-      hover: "#BF6E3D",
-    },
-    background: {
-      DEFAULT: "#F3EFEB",
-      alt: "#EFEAE5",
-      muted: "#EAE6E1",
-    },
-    text: {
-      primary: "#2D2D2D",
-      onPrimary: "#F8F5F2",
-    },
-    ui: {
-      base: "#FFFFFF",
-      border: "#DAD4CE",
-    },
-    category: {
-      bedroom: "#CDB8A0",
-      living: "#A39887",
-      office: "#7F8B91",
-      dining: "#B57C54",
-      outdoor: "#7A8C5D",
-    },
-  },
-  fonts: {
-    header: "'Raleway', sans-serif",
-    body: "'Inter', sans-serif",
-    alt: "'Poppins', sans-serif",
-    ui: "'Work Sans', sans-serif",
-  },
-};
+import theme from "../context/Theme";
 
 const ContactPage = () => {
    useEffect(() => {
@@ -194,7 +156,7 @@ const ContactPage = () => {
 
   return (
     <section
-      className="text-[#2D2D2D] relative w-full group"
+      className="text-[#2D2D2D] w-full max-w-screen-2xl text-center mx-auto"
       style={{
         backgroundColor: theme.colors.background.DEFAULT,
         fontFamily: theme.fonts.body,
@@ -209,16 +171,16 @@ const ContactPage = () => {
               "url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1920')",
           }}
         >
-          <div className="bg-black/80 w-full h-full flex flex-col items-center md:items-start justify-center text-white px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
-            <motion.h1
-              className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-wide"
+          <div className="bg-black/80 w-full h-full flex flex-col items-center  justify-center text-white px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
+            <motion.h4
+              className="text-4xl md:text-6xl font-medium text-white mb-6 tracking-wide"
               style={{ fontFamily: theme.fonts.header }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
               Crafted Connections
-            </motion.h1>
+            </motion.h4>
             <motion.div
               className="w-32 h-1 mx-auto my-6"
               style={{ backgroundColor: theme.colors.accent.DEFAULT }}

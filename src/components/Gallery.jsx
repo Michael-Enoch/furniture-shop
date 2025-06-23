@@ -19,7 +19,8 @@ const Gallery = ({ sectionIndex = 6 }) => {
   const [selected, setSelected] = useState(null);
 
   return (
-    <section className="w-full max-w-screen-2xl py-16 px-4 sm:px-8 md:px-16 mx-auto"
+      <section
+      className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-12 lg:px-16 py-14 mx-auto"
     style={{background: bgColor}}
     >
       <h2

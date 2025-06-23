@@ -34,60 +34,14 @@ import teamJames from "../assets/images/profile-images/person3.jpg";
 import teamSophia from "../assets/images/profile-images/fem4.jpg";
 import teamBenjamin from "../assets/images/profile-images/person4.jpeg";
 import AboutUsSections from "../components/AboutUsSections";
+import theme from "../context/Theme";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutUs = () => {
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-
-  const theme = {
-    colors: {
-      primary: {
-        DEFAULT: "#3A2F2A",
-        contrast: "#F8F5F2",
-      },
-      accent: {
-        DEFAULT: "#A65A2E",
-        hover: "#BF6E3D",
-      },
-      background: {
-        DEFAULT: "#F3EFEB",
-        alt: "#EFEAE5",
-        muted: "#EAE6E1",
-      },
-      text: {
-        primary: "#2D2D2D",
-        onPrimary: "#F8F5F2",
-      },
-      ui: {
-        base: "#FFFFFF",
-        border: "#DAD4CE",
-      },
-    },
-    fonts: {
-      header: "'Raleway', sans-serif",
-      body: "'Inter', sans-serif",
-      alt: "'Poppins', sans-serif",
-      ui: "'Work Sans', sans-serif",
-    },
-    semanticRoles: {
-      navBackground: "primary.DEFAULT",
-      primaryButtonBackground: "primary.DEFAULT",
-      primaryButtonText: "primary.contrast",
-      sectionBackground: "background.DEFAULT",
-      cardBackground: "background.muted",
-      bodyText: "text.primary",
-      footerBackground: "ui.base",
-      inputBackground: "ui.base",
-      inputBorder: "ui.border",
-      hoverEffect: "accent.hover",
-      ctaButton: "accent.DEFAULT",
-      ctaHover: "accent.hover",
-    },
-  };
 
   // State for modal
   const [selectedArtisan, setSelectedArtisan] = useState(null);
@@ -547,45 +501,6 @@ const AboutUs = () => {
         }
       });
 
-      // Team members
-      elementRefs.teamMembers.current.forEach((el, index) => {
-        if (el) {
-          gsap.fromTo(
-            el,
-            { opacity: 0, scale: 0.85, y: 30 },
-            {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              duration: 0.6,
-              delay: index * 0.1,
-              ease: "back.out(1.7)",
-              scrollTrigger: {
-                trigger: el.parentNode,
-                start: "top bottom-=180",
-              },
-            }
-          );
-
-          // Hover animation for team cards
-          el.addEventListener("mouseenter", () => {
-            gsap.to(el, {
-              y: -5,
-              duration: 0.3,
-              ease: "power1.out",
-            });
-          });
-
-          el.addEventListener("mouseleave", () => {
-            gsap.to(el, {
-              y: 0,
-              duration: 0.3,
-              ease: "power1.out",
-            });
-          });
-        }
-      });
-
       // Process items
       elementRefs.processItems.current.forEach((el, index) => {
         if (el) {
@@ -618,9 +533,9 @@ const AboutUs = () => {
       className="bg-[#F3EFEB] text-[#2D2D2D] max-w-screen-2xl w-full"
       style={{ fontFamily: theme.fonts.body }}
     >
-     <AboutUsSections valuesData={valuesData} />
+      <AboutUsSections valuesData={valuesData} />
       {/* Team Section */}
-      <section ref={sectionRefs.team} className="py-24 px-4 max-w-6xl mx-auto">
+      <section className="py-24 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2
             className="text-4xl font-bold mb-6"
