@@ -10,6 +10,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartPage } from './pages/CartPage';
 import SearchPage from './pages/SearchPage';
 import ContactPage from './pages/ContactPage';
+import ModernWishlist from './pages/wishlist';
+
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/wishlist" element={<ModernWishlist/>}/>
         </Routes>
       </Router>
     </AuthProvider>
