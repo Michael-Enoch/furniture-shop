@@ -21,11 +21,6 @@ import {
   LogOut,
   Settings,
   History
-  Facebook,
-  Twitter,
-  Instagram,
-  Home,
- 
 } from "lucide-react";
 import { useCart } from "../context/CartContext.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
@@ -90,10 +85,6 @@ const Navbar = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
-<<<<<<< HEAD
-=======
-
->>>>>>> b580f47f2e0959d1c6af7e25d0dc66422e71fd39
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const { cartCount } = useCart();
@@ -163,7 +154,6 @@ const Navbar = () => {
   };
 
   const moreLinks = [
-<<<<<<< HEAD
     { name: "About Us", to: "/about" },
     { name: "Contact Us", to: "/contact" },
     { name: "Reviews", to: "/reviews" },
@@ -179,13 +169,6 @@ const Navbar = () => {
   ];
 
   const utilityLinks = [
-
-    { name: "Site map", to: "/" },
-    { name: "Reviews", to: "/" },
-    { name: "Help Center", to: "/" },
-    { name: "FAQ", to: "/faq" },
-  ];
-  const utilityLink = [
     { name: "Cart", to: "/cart", icon: <ShoppingCart size={18} /> },
     { name: "Wishlist", to: "/wishlist", icon: <Heart size={18} /> }
   ];
@@ -267,7 +250,7 @@ const Navbar = () => {
 
         {/* Center Navigation Links */}
         <div
-          className="hidden items-center justify-center font-medium h-full md:flex gap-8 xl:gap-10"
+          className="hidden items-center justify-center font-semibold h-full md:flex gap-8 xl:gap-10"
           style={{ fontFamily: theme.fonts.alt }}
         >
           <NavLink
@@ -319,40 +302,6 @@ const Navbar = () => {
             Deals
           </NavLink>
 
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                `text-base transition-colors duration-300 ${
-                  isActive
-                    ? "text-[#BF6E3D]"
-                    : "text-[#F8F5F2] hover:text-[#BF6E3D]"
-                }`
-              }
-            >
-              About Us
-            </NavLink>
-          </motion.div>
-
-          {/* Deals Link */}
-          <motion.div
-            className="relative h-full flex items-center justify-center cursor-pointer select-none"
-            whileHover="hover"
-          >
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                `text-base transition-colors duration-300 ${
-                  isActive
-                    ? "text-[#BF6E3D]"
-                    : "text-[#F8F5F2] hover:text-[#BF6E3D]"
-                }`
-              }
-            >
-              Contact
-            </NavLink>
-          </motion.div>
->>>>>>> b580f47f2e0959d1c6af7e25d0dc66422e71fd39
-
           {/* More Dropdown */}
           <div ref={moreRef} className="relative" onClick={toggleMoreDropdown}>
             <div className="relative flex items-center justify-center gap-1 cursor-pointer select-none group">
@@ -386,7 +335,6 @@ const Navbar = () => {
                   className="absolute right-0 top-full mt-2 w-48 shadow-xl rounded-lg overflow-hidden z-60 border"
                   style={{
                     borderColor: theme.colors.ui.border,
-                    backgroundColor: theme.colors.background.muted,
                   }}
                 >
                   {moreLinks.map((link) => (
@@ -400,15 +348,6 @@ const Navbar = () => {
                     >
                       {link.name}
                     </NavLink>
-
-                  {moreLinks.map((label, i) => (
-                    <Link
-                      key={i}
-                      to={label.to}
-                      className="block px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium transition-all duration-200"
-                    >
-                      {label.name}
-                    </Link>
                   ))}
                 </motion.div>
               )}
@@ -679,7 +618,6 @@ const Navbar = () => {
                     }
                     onClick={toggleMobileMenu}
                   >
-<<<<<<< HEAD
                     Home
                   </NavLink>
                   <NavLink
@@ -721,26 +659,6 @@ const Navbar = () => {
                   >
                     Deals
                   </NavLink>
-=======
-                    <Home size={18} /> Home
-                  </Link>
-                  <Link
-                    to="/about"
-                    className="flex items-center gap-2 text-base font-medium"
-                    style={{ color: theme.colors.primary.contrast }}
-                    onClick={toggleMobileMenu}
-                  >
-                    About Us
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="flex items-center gap-2 text-base font-medium"
-                    style={{ color: theme.colors.primary.contrast }}
-                    onClick={toggleMobileMenu}
-                  >
-                    Contact
-                  </Link>
->>>>>>> b580f47f2e0959d1c6af7e25d0dc66422e71fd39
                 </div>
 
                 {/* Action Links */}
