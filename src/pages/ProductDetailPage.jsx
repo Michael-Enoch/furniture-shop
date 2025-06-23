@@ -5,7 +5,7 @@ import Breadcrumbs from "../components/BreadCrumbs";
 import theme from "../context/Theme";
 import { ShoppingCart, Star } from "lucide-react";
 import { useCart } from "../context/CartContext";
-import ReviewForm from "../components/ReviewFrom";
+import ReviewForm from "../components/ReviewForm";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -52,10 +52,8 @@ const ProductDetail = () => {
     fetchReviews();
   }, [id]);
 
-   const handleAddToCart = () => {
-    if (product) {
-      addToCart(product, quantity);
-    }
+   const handleAddToCart = (product, quantity) => {
+ addToCart(product, quantity);
   };
 
   const handleReviewSubmit = (review) => {
@@ -169,6 +167,9 @@ const ProductDetail = () => {
               <strong>Material:</strong> {product.material}
             </li>
             <li>
+              <strong>Type:</strong> {product.type}
+            </li>
+            <li>
               <strong>Stock:</strong> {product.stock}
             </li>
             <li>
@@ -178,7 +179,6 @@ const ProductDetail = () => {
               <strong>Dimensions:</strong> {product.dimensions}
             </li>
           </ul>
-
           <button
             type="button"
             className="mt-4 w-full py-2 rounded-lg font-medium hover:text-[#BF6E3D] flex items-center justify-center gap-2 transition-colors"
@@ -187,7 +187,7 @@ const ProductDetail = () => {
               color: theme.colors.primary.contrast,
               fontFamily: theme.fonts.body,
             }}
-           onClick={handleAddToCart}
+            onClick={() => handleAddToCart(product)}
           >
             <ShoppingCart size={16} />
             Add to Cart
