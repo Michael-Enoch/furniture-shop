@@ -4,7 +4,7 @@ import {
   FaPhone,
   FaEnvelope,
   FaClock,
-  FaFacebook,
+  FaFacebookF,
   FaInstagram,
   FaPinterest,
   FaPaperPlane,
@@ -168,7 +168,7 @@ const ContactPage = () => {
           className="w-full h-full bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1920')",
+              "url('https://images.unsplash.com/photo-1563512449174-5e39364a2f33?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
           }}
         >
           <div className="bg-black/80 w-full h-full flex flex-col items-center  justify-center text-white px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
@@ -179,10 +179,10 @@ const ContactPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              Crafted Connections
+              Connect With The Hudson Team
             </motion.h4>
             <motion.div
-              className="w-32 h-1 mx-auto my-6"
+              className="w-32 h-1 mx-auto "
               style={{ backgroundColor: theme.colors.accent.DEFAULT }}
               initial={{ width: 0 }}
               animate={{ width: "8rem" }}
@@ -204,15 +204,15 @@ const ContactPage = () => {
       {/* Tab Navigation */}
       <div className="max-w-6xl mx-auto px-4 mt-8">
         <div
-          className="flex border-b overflow-x-auto"
+          className="flex border-b"
           style={{ borderColor: theme.colors.ui.border }}
         >
           <button
             onClick={() => setActiveTab("contact")}
             className={`py-4 px-6 text-lg font-medium transition-colors whitespace-nowrap ${
               activeTab === "contact"
-                ? `text-[${theme.colors.primary.DEFAULT}] border-b-2`
-                : "text-[#7A8C8C] hover:text-[#2F4F4F]"
+                ? `text-[${theme.colors.text.primary}] border-b-2`
+                : `opacity-50`
             }`}
             style={{
               borderBottomColor:
@@ -220,10 +220,6 @@ const ContactPage = () => {
                   ? theme.colors.primary.DEFAULT
                   : "transparent",
               fontFamily: theme.fonts.ui,
-              color:
-                activeTab === "contact"
-                  ? theme.colors.primary.DEFAULT
-                  : "#7A8C8C",
             }}
           >
             Contact Us
@@ -233,8 +229,8 @@ const ContactPage = () => {
             onClick={() => setActiveTab("appointment")}
             className={`py-4 px-6 text-lg font-medium transition-colors whitespace-nowrap ${
               activeTab === "appointment"
-                ? `text-[${theme.colors.primary.DEFAULT}] border-b-2`
-                : "text-[#7A8C8C] hover:text-[#2F4F4F]"
+                ? `text-[${theme.colors.text.primary}] border-b-2`
+                : `opacity-50`
             }`}
             style={{
               borderBottomColor:
@@ -242,10 +238,6 @@ const ContactPage = () => {
                   ? theme.colors.primary.DEFAULT
                   : "transparent",
               fontFamily: theme.fonts.ui,
-              color:
-                activeTab === "appointment"
-                  ? theme.colors.primary.DEFAULT
-                  : "#7A8C8C",
             }}
           >
             Book Appointment
@@ -255,8 +247,7 @@ const ContactPage = () => {
 
       {/* Tab Content */}
       <div
-        id="contact-section"
-        className="py-16 px-4 md:px-8 max-w-6xl mx-auto"
+        className="py-16 px-4 md:px-8 max-w-6xl  mx-auto"
       >
         <AnimatePresence mode="wait">
           {/* Contact Tab */}
@@ -272,7 +263,7 @@ const ContactPage = () => {
               {/* Contact Information */}
               <div className="lg:w-2/5">
                 <motion.h2
-                  className="text-3xl font-bold mb-8"
+                  className="text-3xl text-left font-bold mb-8"
                   style={{
                     color: theme.colors.primary.DEFAULT,
                     fontFamily: theme.fonts.header,
@@ -285,154 +276,156 @@ const ContactPage = () => {
                 </motion.h2>
 
                 <motion.div
-                  className="mb-8 flex items-start"
+                  className="mb-8 flex flex-row items-start"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 }}
                 >
                   <div
-                    className="p-3 rounded-full mr-4"
+                    className="w-10 h-10 flex items-center justify-center rounded-full mr-4"
                     style={{
                       backgroundColor: theme.colors.primary.DEFAULT,
                       color: theme.colors.accent.DEFAULT,
                     }}
                   >
-                    <FaMapMarkerAlt className="text-xl" />
+                    <FaMapMarkerAlt size={18} />
                   </div>
-                  <div>
+                   <div className="flex flex-col items-start">
                     <h3
                       className="text-xl font-semibold mb-2"
                       style={{ color: theme.colors.primary.DEFAULT }}
                     >
                       Artisan Workshop
                     </h3>
-                    <p style={{ color: theme.colors.text.primary }}>
-                      123 Design Avenue
-                      <br />
-                      Lagos, Nigeria
-                      <br />
-                      West Africa
-                    </p>
+                    <div className="flex flex-col items-start space-y-1"
+                    style={{ color: theme.colors.text.primary }}
+                    >
+                      <p>123 Design Avenue</p>
+                      <p>Lagos, Nigeria</p>
+                      <p>West Africa</p>
+                    </div>
                   </div>
                 </motion.div>
 
-                <motion.div
-                  className="mb-8 flex items-start"
+               <motion.div
+                  className="mb-8 flex flex-row items-start"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <div
-                    className="p-3 rounded-full mr-4"
+                   <div
+                    className="w-10 h-10 flex items-center justify-center rounded-full mr-4"
                     style={{
                       backgroundColor: theme.colors.primary.DEFAULT,
                       color: theme.colors.accent.DEFAULT,
                     }}
                   >
-                    <FaPhone className="text-xl" />
+                    <FaPhone size={18}  />
                   </div>
-                  <div>
+                  <div className="flex flex-col items-start">
                     <h3
                       className="text-xl font-semibold mb-2"
                       style={{ color: theme.colors.primary.DEFAULT }}
                     >
                       Phone
                     </h3>
-                    <p style={{ color: theme.colors.text.primary }}>
-                      +234 (0) 812 345 6789
-                      <br />
-                      Mon-Fri, 9am-6pm WAT
-                    </p>
+                    <div className="flex flex-col items-start space-y-1"
+                    style={{ color: theme.colors.text.primary }}
+                    >
+                     <p>+234 (0) 812 345 6789</p> 
+                      <p>Mon-Fri, 9am-6pm WAT</p>
+                    </div>
                   </div>
                 </motion.div>
 
-                <motion.div
-                  className="mb-8 flex items-start"
+               <motion.div
+                  className="mb-8 flex flex-row items-start"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
                 >
                   <div
-                    className="p-3 rounded-full mr-4"
+                    className="w-10 h-10 flex items-center justify-center rounded-full mr-4"
                     style={{
                       backgroundColor: theme.colors.primary.DEFAULT,
                       color: theme.colors.accent.DEFAULT,
                     }}
                   >
-                    <FaEnvelope className="text-xl" />
+                    <FaEnvelope size={18}/>
                   </div>
-                  <div>
+                 <div className="flex flex-col items-start">
                     <h3
                       className="text-xl font-semibold mb-2"
                       style={{ color: theme.colors.primary.DEFAULT }}
                     >
                       Email
                     </h3>
-                    <p style={{ color: theme.colors.text.primary }}>
-                      info@hudsons.com
-                      <br />
-                      inquiries@hudsons.com
-                    </p>
+                    <div className="flex flex-col items-start space-y-1"
+                    style={{ color: theme.colors.text.primary }}
+                    >
+                     <p>husdon@gmail.com</p> 
+                      <p>inquiries_hudson@gmail.com</p>
+                    </div>
                   </div>
                 </motion.div>
 
                 <motion.div
-                  className="mt-10"
+                  className="mb-8 flex flex-col items-start"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                 >
                   <h3
-                    className="text-xl font-semibold mb-4"
+                    className="text-lg font-semibold mb-4"
                     style={{ color: theme.colors.primary.DEFAULT }}
                   >
                     Connect With Us
                   </h3>
-                  <div className="flex space-x-4">
+                  <div className="flex flex-row space-x-2">
                     <motion.a
                       href="#"
-                      className="w-12 h-12 rounded-full flex items-center justify-center transition-colors"
+                      className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
                       style={{
                         backgroundColor: theme.colors.primary.DEFAULT,
-                        color: theme.colors.primary.contrast,
+                        color: theme.colors.accent.DEFAULT,
                       }}
                       whileHover={{
-                        scale: 1.1,
-                        backgroundColor: theme.colors.accent.DEFAULT,
+                        backgroundColor: theme.colors.accent.hover,
+                        color: theme.colors.primary.contrast,
                       }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <FaFacebook className="text-xl" />
+                      <FaFacebookF size={18} />
                     </motion.a>
                     <motion.a
                       href="#"
-                      className="w-12 h-12 rounded-full flex items-center justify-center transition-colors"
+                      className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
                       style={{
                         backgroundColor: theme.colors.primary.DEFAULT,
-                        color: theme.colors.primary.contrast,
+                        color: theme.colors.accent.DEFAULT,
                       }}
                       whileHover={{
-                        scale: 1.1,
-                        backgroundColor: theme.colors.accent.DEFAULT,
+                        backgroundColor: theme.colors.accent.hover,
+                        color: theme.colors.primary.contrast,
                       }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <FaInstagram className="text-xl" />
+                      <FaInstagram size={18} />
                     </motion.a>
                     <motion.a
                       href="#"
-                      className="w-12 h-12 rounded-full flex items-center justify-center transition-colors"
+                      className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
                       style={{
                         backgroundColor: theme.colors.primary.DEFAULT,
-                        color: theme.colors.primary.contrast,
+                        color: theme.colors.accent.DEFAULT,
                       }}
                       whileHover={{
-                        scale: 1.1,
-                        backgroundColor: theme.colors.accent.DEFAULT,
+                        backgroundColor: theme.colors.accent.hover,
+                        color: theme.colors.primary.contrast,
                       }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <FaPinterest className="text-xl" />
+                      <FaPinterest size={18} />
                     </motion.a>
                   </div>
                 </motion.div>
@@ -442,6 +435,7 @@ const ContactPage = () => {
                   style={{
                     backgroundColor: theme.colors.background.alt,
                     borderColor: theme.colors.ui.border,
+                    color: theme.colors.text.primary
                   }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -449,7 +443,6 @@ const ContactPage = () => {
                 >
                   <h3
                     className="text-xl font-semibold mb-3"
-                    style={{ color: theme.colors.primary.DEFAULT }}
                   >
                     Visit Our Showroom
                   </h3>
