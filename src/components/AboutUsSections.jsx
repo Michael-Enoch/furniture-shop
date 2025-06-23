@@ -37,7 +37,7 @@ export const AboutUsSections = ({ valuesData }) => {
           className="w-full h-full bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=1920')",
+              "url('https://images.unsplash.com/photo-1622653533660-a1538fe8424c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
           }}
           aria-label="Furniture workshop background"
         >
