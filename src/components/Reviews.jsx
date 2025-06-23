@@ -27,7 +27,8 @@ const Reviews = ({ sectionIndex = 7 }) => {
         ? theme.colors.background.DEFAULT
         : theme.colors.background.alt;
   return (
-    <section className="py-16 px-4 sm:px-8 md:px-16 w-full max-w-screen-2xl mx-auto"
+      <section
+      className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-12 lg:px-16 py-14 mx-auto"
     style={{background: bgColor}}
     >
       <h2
