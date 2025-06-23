@@ -13,6 +13,7 @@ import {
 import axios from "axios";
 import theme from "../context/Theme";
 import Breadcrumbs from "../components/BreadCrumbs";
+import { useCart } from "../context/CartContext";
 
 const PAGE_SIZE = 6;
 
@@ -21,13 +22,22 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [materials, setMaterials] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(false);
   const [sortOption, setSortOption] = useState("");
+  const [showAllBrands, setShowAllBrands] = useState(false);
+  const [showAllMaterials, setShowAllMaterials] = useState(false);
+  const [showAllTypes, setShowAllTypes] = useState(false);
+
+  const { addToCart } = useCart();
 
   const category = searchParams.get("category") || "";
   const brand = searchParams.get("brand") || "";
+  const type = searchParams.get("type") || "";
   const price = searchParams.get("price") || "";
+  const material = searchParams.get("material") || "";
   const page = parseInt(searchParams.get("page") || "1");
 
   useEffect(() => {
@@ -85,6 +95,8 @@ const ProductPage = () => {
 
         setCategories(unique(all, "category"));
         setBrands(unique(all, "brand"));
+        setMaterials(unique(all, "material"));
+        setTypes(unique(all, "type"));
         setProducts(all);
       } catch (err) {
         console.error("Failed to fetch products:", err);
@@ -96,20 +108,37 @@ const ProductPage = () => {
     fetchData();
   }, []);
 
+  const handleAddToCart = (products) => {
+    addToCart(products);
+  };
+
   const filterProducts = () => {
     return products.filter((product) => {
       const inCategory = category ? product.category === category : true;
-      const inBrand = brand ? product.brand === brand : true;
+      const selectedBrands = brand.split(",").filter(Boolean);
+      const inBrand = selectedBrands.length
+        ? selectedBrands.includes(product.brand)
+        : true;
+      const selectedMaterials = material.split(",").filter(Boolean);
+      const inMaterial = selectedMaterials.length
+        ? selectedMaterials.includes(product.material)
+        : true;
+
+      const selectedTypes = type.split(",").filter(Boolean);
+      const inType = selectedTypes.length
+        ? selectedTypes.includes(product.type)
+        : true;
+
       const inPrice =
-        price === "Under $100"
-          ? product.price < 100
-          : price === "$100 - $300"
-          ? product.price >= 100 && product.price <= 300
-          : price === "Above $300"
-          ? product.price > 300
+        price === "Under $500"
+          ? product.price < 500
+          : price === "$500 - $1000"
+          ? product.price >= 500 && product.price <= 1000
+          : price === "Above $1000"
+          ? product.price > 1000
           : true;
 
-      return inCategory && inBrand && inPrice;
+      return inCategory && inBrand && inPrice && inMaterial && inType;
     });
   };
 
@@ -132,7 +161,7 @@ const ProductPage = () => {
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
-  const prices = ["Under $100", "$100 - $300", "Above $300"];
+  const prices = ["Under $500", "$500 - $1000", "Above $1000"];
 
   return (
     <section
@@ -153,12 +182,12 @@ const ProductPage = () => {
         </button>
       </div>
 
-      <Breadcrumbs/>
+      <Breadcrumbs />
 
       <div className="flex flex-col md:flex-row gap-6">
         {(showFilters || window.innerWidth >= 768) && (
           <aside
-            className="w-full md:w-64 p-4 rounded-xl shadow"
+            className="scrollbar w-full md:max-w-[250px] p-4 rounded shadow overflow-y-auto max-h-[85vh]"
             style={{ backgroundColor: theme.colors.background.alt }}
           >
             {/* Filters Title */}
@@ -206,26 +235,49 @@ const ProductPage = () => {
 
             {/* Brand Filters */}
             <div className="mb-4">
-              <h3 className="text-sm font-medium">Brand</h3>
-              {brands.map((b) => (
-                <div key={b} className="text-sm mt-1">
-                  <label>
-                    <input
-                      type="radio"
-                      name="brand"
-                      checked={brand === b}
-                      onChange={() => updateParam("brand", b)}
-                      className="mr-2"
-                    />
-                    {b}
-                  </label>
+              <h3 className="text-sm font-medium mb-2">Brand</h3>
+              <div className="relative">
+                <div
+                  className={`scrollbar grid grid-cols-2 gap-y-2 overflow-y-auto transition-all duration-300 ${
+                    showAllBrands ? "max-h-none" : "max-h-[200px]"
+                  }`}
+                >
+                  {brands.map((b) => (
+                    <label key={b} className="flex items-center text-xs gap-2">
+                      <input
+                        type="checkbox"
+                        name="brand"
+                        checked={brand.split(",").includes(b)}
+                        onChange={() => {
+                          const current = brand.split(",").filter(Boolean);
+                          const updated = current.includes(b)
+                            ? current.filter((x) => x !== b)
+                            : [...current, b];
+                          updateParam("brand", updated.join(","));
+                        }}
+                      />
+                      {b}
+                    </label>
+                  ))}
                 </div>
-              ))}
+
+                {/* Show More / Show Less Toggle */}
+                {brands.length > 6 && (
+                  <button
+                    type="button"
+                    onClick={() => setShowAllBrands(!showAllBrands)}
+                    className="mt-2 text-xs text-blue-600 underline"
+                  >
+                    {showAllBrands ? "Show Less" : "Show More"}
+                  </button>
+                )}
+              </div>
+
+              {/* Reset brands */}
               <div className="text-sm mt-2">
                 <label>
                   <input
-                    type="radio"
-                    name="brand"
+                    type="checkbox"
                     checked={brand === ""}
                     onChange={() => updateParam("brand", "")}
                     className="mr-2"
@@ -235,8 +287,43 @@ const ProductPage = () => {
               </div>
             </div>
 
+            <div className="mb-4">
+              <h3 className="text-sm font-medium mb-2">Type</h3>
+              <div
+                className={`scrollbar grid grid-cols-2 gap-y-2 overflow-y-auto transition-all duration-300 ${
+                  showAllTypes ? "max-h-none" : "max-h-[200px]"
+                }`}
+              >
+                {types.map((t) => (
+                  <label key={t} className="flex items-center text-[11px] gap-2">
+                    <input
+                      type="checkbox"
+                      name="type"
+                      checked={type.split(",").includes(t)}
+                      onChange={() => {
+                        const current = type.split(",").filter(Boolean);
+                        const updated = current.includes(t)
+                          ? current.filter((x) => x !== t)
+                          : [...current, t];
+                        updateParam("type", updated.join(","));
+                      }}
+                    />
+                    {t}
+                  </label>
+                ))}
+              </div>
+              {types.length > 6 && (
+                <button
+                  onClick={() => setShowAllTypes(!showAllTypes)}
+                  className="mt-2 text-xs text-blue-600 underline"
+                >
+                  {showAllTypes ? "Show Less" : "Show More"}
+                </button>
+              )}
+            </div>
+
             {/* Price Filters */}
-            <div>
+            <div className="mb-4">
               <h3 className="text-sm font-medium">Price</h3>
               {prices.map((range) => (
                 <div key={range} className="text-sm mt-1">
@@ -264,6 +351,41 @@ const ProductPage = () => {
                   All
                 </label>
               </div>
+            </div>
+
+            <div className="mb-4">
+              <h3 className="text-sm font-medium mb-2">Material</h3>
+              <div
+                className={`scrollbar grid grid-cols-2 gap-y-2 overflow-y-auto transition-all duration-300 ${
+                  showAllMaterials ? "max-h-none" : "max-h-[200px]"
+                }`}
+              >
+                {materials.map((mat) => (
+                  <label key={mat} className="flex items-center text-[11px] gap-2">
+                    <input
+                      type="checkbox"
+                      name="material"
+                      checked={material.split(",").includes(mat)}
+                      onChange={() => {
+                        const current = material.split(",").filter(Boolean);
+                        const updated = current.includes(mat)
+                          ? current.filter((x) => x !== mat)
+                          : [...current, mat];
+                        updateParam("material", updated.join(","));
+                      }}
+                    />
+                    {mat}
+                  </label>
+                ))}
+              </div>
+              {materials.length > 6 && (
+                <button
+                  onClick={() => setShowAllMaterials(!showAllMaterials)}
+                  className="mt-2 text-xs text-blue-600 underline"
+                >
+                  {showAllMaterials ? "Show Less" : "Show More"}
+                </button>
+              )}
             </div>
           </aside>
         )}
@@ -337,9 +459,8 @@ const ProductPage = () => {
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {paginated.map((product) => (
-                  <Link
+                  <div
                     key={product.id}
-                    to={`/products/${product.id}`}
                     className="bg-white flex flex-col rounded-xl w-full shadow-md overflow-hidden relative"
                   >
                     <div className="relative aspect-[4/3] w-full overflow-hidden">
@@ -352,8 +473,9 @@ const ProductPage = () => {
 
                     <div className="flex flex-col flex-1 justify-between p-6">
                       <div>
-                        <h3
-                          to={`/product/${product.id}`}
+                        <Link
+                          key={product.id}
+                          to={`/products/${product.id}`}
                           className="text-md font-semibold leading-tight line-clamp-2"
                           style={{
                             color: theme.colors.primary.DEFAULT,
@@ -361,7 +483,7 @@ const ProductPage = () => {
                           }}
                         >
                           {product.name}
-                        </h3>
+                        </Link>
                         <p
                           className="text-base mt-1 mb-1 capitalize"
                           style={{
@@ -389,22 +511,20 @@ const ProductPage = () => {
                         </p>
                         <button
                           type="button"
-                          className="mt-4 w-full py-2 rounded-lg font-medium hover:text-[#BF6E3D] flex items-center justify-center gap-2 transition-colors"
+                          className="mt-4 w-full py-2 rounded-lg font-medium hover:text-[#BF6E3D] flex items-center justify-center gap-2 transition-colors pointer-events-auto"
                           style={{
                             backgroundColor: theme.colors.accent.DEFAULT,
                             color: theme.colors.primary.contrast,
                             fontFamily: theme.fonts.body,
                           }}
-                          onClick={() =>
-                            console.log(`Added ${product.name} to cart`)
-                          }
+                          onClick={() => handleAddToCart(products)}
                         >
                           <ShoppingCart size={16} />
                           Add to Cart
                         </button>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
 
