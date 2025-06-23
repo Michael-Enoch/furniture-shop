@@ -17,17 +17,74 @@ import {
   Sofa,
   LogIn,
   UserPlus,
-  Facebook,
-  Twitter,
-  Instagram,
   Home,
+  LayoutDashboard,
+  LogOut,
+  Settings,
+  History,
+  BookOpenText,
+  Mail,
 } from "lucide-react";
 import { useCart } from "../context/CartContext.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
+import { useWishlist } from "../context/WishlistContext.jsx";
+
+// Get initials from Full name
+const getInitials = (name = "", email = "") => {
+  if (name && name.trim().length > 0) {
+    const nameParts = name.trim().split(" "); 
+    if (nameParts.length > 1) {
+      return `${nameParts[0][0]}${nameParts[nameParts.length - 1][0]}`.toUpperCase();
+    }
+    return nameParts[0][0].toUpperCase();
+  }
+
+  if (email) {
+    const localPart = email.split("@")[0];
+    const parts = localPart.split(".");
+    if (parts.length > 1) {
+      return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
+    }
+    return localPart[0].toUpperCase();
+  }
+
+  return "U"; 
+};
+
+// Avatar Component
+const Avatar = ({ user }) => {
+  const initials = getInitials(user?.displayName, user?.email);
+
+  return (
+    <div
+      className="rounded-full w-8 h-8 border-2 flex items-center justify-center"
+      style={{
+        borderColor: theme.colors.accent.DEFAULT,
+        backgroundColor: theme.colors.category.living,
+        color: theme.colors.primary.contrast,
+      }}
+    >
+      {user?.photoURL ? (
+        <img
+          src={user.photoURL}
+          alt="Profile"
+          className="w-full h-full object-cover rounded-full"
+        />
+      ) : (
+        <span className="text-sm font-medium">{initials}</span>
+      )}
+    </div>
+  );
+};
+
 
 const Navbar = () => {
+  const { cartCount } = useCart();
+  const { wishlistCount } = useWishlist();
+  const { logOut, currentUser } = useAuth();
   const [visitorCount, setVisitorCount] = useState(0);
   const [moreOpen, setMoreOpen] = useState(false);
-
+  const [profileOpen, setProfileOpen] = useState(false);
   // Mobile sidebar state
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
@@ -50,27 +107,23 @@ const Navbar = () => {
     }
   };
 
-  // Close search when clicking outside
-  useEffect(() => {
-    function handleClick(event) {
-      if (moreRef.current && !moreRef.current.contains(event.target)) {
-        setMoreOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, []);
-
   const toggleMoreDropdown = () => setMoreOpen((prev) => !prev);
+  const toggleProfileDropdown = () => setProfileOpen((prev) => !prev);
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
   const toggleMobileMore = () => setMobileMoreOpen((prev) => !prev);
 
   // Close the desktop "More" dropdown if clicked outside
   const moreRef = useRef(null);
+  // Close the desktop "Profile" dropdown if clicked outside
+  const profileRef = useRef(null);
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (moreRef.current && !moreRef.current.contains(event.target)) {
         setMoreOpen(false);
+      }
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setProfileOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -88,21 +141,57 @@ const Navbar = () => {
     });
     return () => unsubscribe();
   }, []);
-  const { cartCount } = useCart();
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      setProfileOpen(false);
+      setMobileMenuOpen(false);
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
   const moreLinks = [
     { name: "Site map", to: "/" },
     { name: "Reviews", to: "/" },
     { name: "Help Center", to: "/" },
     { name: "FAQ", to: "/faq" },
   ];
-  const utilityLink = [
+  const profileLinks = [
+    {
+      name: "Dashboard",
+      to: "/dashboard",
+      icon: <LayoutDashboard size={18} />,
+    },
+    { name: "Orders", to: "/orders", icon: <History size={18} /> },
+    { name: "Settings", to: "/settings", icon: <Settings size={18} /> },
+    { name: "Logout", icon: <LogOut size={18} />, onClick: handleLogout },
+  ];
+
+  const utilityLinks = [
     { name: "Cart", to: "/cart", icon: <ShoppingCart size={18} /> },
+    { name: "Wishlist", to: "/wishlist", icon: <Heart size={18} /> },
+  ];
+
+  const Navlinks = [
+    { name: "Home", to: "/" },
+    { name: "Shop", to: "/products" },
+    { name: "About Us", to: "/about" },
+    { name: "Contact Us", to: "/contact" },
+  ];
+
+  const MobileNavLinks = [
+    { name: "Home", to: "/", icon: <Home size={18} /> },
+    { name: "Shop", to: "/products", icon: <Sofa size={18} /> },
+    { name: "About Us", to: "/about", icon: <BookOpenText size={18} /> },
+    { name: "Contact Us", to: "/contact", icon: <Mail size={18} /> },
   ];
 
   return (
     <>
       <div
-        className="w-full text-xs font-semibold sm:text-sm max-w-11xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between py-3 gap-2 sm:gap-0 text-center sm:text-left"
+        className="w-full text-xs font-semibold sm:text-sm max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between py-3 gap-2 sm:gap-0 text-center sm:text-left"
         style={{
           fontFamily: theme.fonts.ui,
           backgroundColor: theme.colors.accent.DEFAULT,
@@ -130,8 +219,8 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
-      <motion.div
-        className={`flex justify-between items-center py-2 w-full max-w-8xl sticky top-0 left-0 mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 z-50`}
+      <div
+        className={`flex justify-between items-center py-2 w-full max-w-screen-2xl sticky top-0 left-0 mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 z-50`}
         style={{
           backgroundColor: theme.colors.primary.DEFAULT,
         }}
@@ -162,7 +251,7 @@ const Navbar = () => {
               className="text-xs sm:text-sm tracking-normal opacity-90 leading-none"
               style={{ color: theme.colors.primary.contrast }}
             >
-              Furniture
+              Furnishings
             </span>
           </div>
         </div>
@@ -172,79 +261,26 @@ const Navbar = () => {
           className="hidden items-center justify-center font-medium h-full md:flex gap-8 xl:gap-10"
           style={{ fontFamily: theme.fonts.alt }}
         >
-          {/* Home Link */}
-          <motion.div
-            className="relative h-full flex items-center justify-center cursor-pointer select-none"
-            whileHover="hover"
-          >
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `text-base transition-colors duration-300 ${
-                  isActive
-                    ? "text-[#BF6E3D]"
-                    : "text-[#F8F5F2] hover:text-[#BF6E3D]"
-                }`
-              }
+          {Navlinks.map((link) => (
+            <motion.div
+              className="relative h-full flex items-center justify-center cursor-pointer select-none"
+              whileHover="hover"
             >
-              Home
-            </NavLink>
-          </motion.div>
-
-          <motion.div
-            className="relative h-full flex items-center justify-center cursor-pointer select-none group"
-            whileHover="hover"
-          >
-            <NavLink
-              to="/products"
-              className={({ isActive }) =>
-                `text-base transition-colors duration-300 ${
-                  isActive
-                    ? "text-[#BF6E3D]"
-                    : "text-[#F8F5F2] hover:text-[#BF6E3D] group-hover:text-[#BF6E3D]"
-                }`
-              }
-            >
-              Shop
-            </NavLink>
-          </motion.div>
-
-          <motion.div
-            className="relative h-full flex items-center justify-center cursor-pointer select-none"
-            whileHover="hover"
-          >
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                `text-base transition-colors duration-300 ${
-                  isActive
-                    ? "text-[#BF6E3D]"
-                    : "text-[#F8F5F2] hover:text-[#BF6E3D]"
-                }`
-              }
-            >
-              About Us
-            </NavLink>
-          </motion.div>
-
-          {/* Deals Link */}
-          <motion.div
-            className="relative h-full flex items-center justify-center cursor-pointer select-none"
-            whileHover="hover"
-          >
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                `text-base transition-colors duration-300 ${
-                  isActive
-                    ? "text-[#BF6E3D]"
-                    : "text-[#F8F5F2] hover:text-[#BF6E3D]"
-                }`
-              }
-            >
-              Contact
-            </NavLink>
-          </motion.div>
+              <NavLink
+                to={link.to}
+                key={link.name}
+                className={({ isActive }) =>
+                  `text-base transition-colors duration-300 ${
+                    isActive
+                      ? "text-[#BF6E3D]"
+                      : "text-[#F8F5F2] hover:text-[#BF6E3D]"
+                  }`
+                }
+              >
+                {link.name}
+              </NavLink>
+            </motion.div>
+          ))}
 
           {/* More Dropdown */}
           <div ref={moreRef} className="relative" onClick={toggleMoreDropdown}>
@@ -315,10 +351,7 @@ const Navbar = () => {
 
           {/* utility Links*/}
           <div className="flex items-center gap-4">
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <Heart className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-            </motion.div>
-            {utilityLink.map((link) => (
+            {utilityLinks.map((link) => (
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -330,20 +363,106 @@ const Navbar = () => {
                   className="relative w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors"
                 >
                   {link.icon}
-                  {cartCount > 0 && (
-                    <span className="absolute -top-2 -right-2 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center bg-[#D97706] shadow-md">
-                      {cartCount}
-                    </span>
-                  )}
+                    {link.name === "Cart" && cartCount > 0 && (
+                      <span className="absolute -top-2 -right-2 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center bg-[#D97706] shadow-md">
+                        {cartCount}
+                      </span>
+                    )}
+                    {link.name === "Wishlist" && wishlistCount > 0 && (
+                      <span className="absolute -top-2 -right-2 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center bg-[#D97706] shadow-md">
+                        {wishlistCount}
+                      </span>
+                    )}
                 </NavLink>
               </motion.div>
             ))}
 
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <NavLink to="/register" aria-label="Sign Up">
-                <UserPlus className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
-              </NavLink>
-            </motion.div>
+            {/* Profile Dropdown */}
+            {currentUser ? (
+              <div ref={profileRef} className="relative">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={toggleProfileDropdown}
+                  className="flex items-center gap-1 cursor-pointer"
+                >
+                  <Avatar user={currentUser} size={18} />
+                  <ChevronDown
+                    size={16}
+                    className={`transition-transform ${
+                      profileOpen ? "rotate-180 text-[#BF6E3D]" : ""
+                    }`}
+                  />
+                </motion.div>
+
+                <AnimatePresence>
+                  {profileOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="absolute right-0 top-full mt-2 w-48 shadow-xl rounded-lg overflow-hidden z-60 border"
+                      style={{
+                        borderColor: theme.colors.ui.border,
+                      }}
+                    >
+                      <div
+                        className="px-4 py-3 border-b"
+                        style={{
+                          backgroundColor: theme.colors.background.muted,
+                        }}
+                      >
+                        <p className="text-sm font-medium text-[#2D2D2D]">
+                          {currentUser.displayName || "User"}
+                        </p>
+                        <p className="text-xs text-gray-500 truncate">
+                          {currentUser.email}
+                        </p>
+                      </div>
+                      {profileLinks.map((link) =>
+                        link.onClick ? (
+                          <button
+                            key={link.name}
+                            onClick={link.onClick}
+                            className="w-full text-left px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200 flex items-center gap-2"
+                            style={{
+                              backgroundColor: theme.colors.background.muted,
+                            }}
+                          >
+                            {link.icon}
+                            {link.name}
+                          </button>
+                        ) : (
+                          <NavLink
+                            key={link.name}
+                            to={link.to}
+                            className="px-4 py-3 text-[#2D2D2D] hover:text-[#BF6E3D] text-sm font-medium hover:bg-gray-50 transition-all duration-200 flex items-center gap-2"
+                            style={{
+                              backgroundColor: theme.colors.background.muted,
+                            }}
+                          >
+                            {link.icon}
+                            {link.name}
+                          </NavLink>
+                        )
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              <>
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <NavLink to="/register" aria-label="Sign Up">
+                    <UserPlus className="w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors" />
+                  </NavLink>
+                </motion.div>
+              </>
+            )}
           </div>
         </div>
 
@@ -363,7 +482,7 @@ const Navbar = () => {
             <Menu className="w-6 h-6" />
           )}
         </motion.button>
-      </motion.div>
+      </div>
 
       {/* Mobile Sidebar */}
       <AnimatePresence>
@@ -430,6 +549,19 @@ const Navbar = () => {
                 </button>
               </div>
 
+              {/* User Profile Section */}
+              {currentUser && (
+                <div className="px-4 py-3 border-b flex items-center gap-3">
+                  <Avatar user={currentUser} size={40} />
+                  <div>
+                    <p className="text-sm font-medium">{currentUser.displayName || "User"}</p>
+                    <p className="text-xs opacity-75 truncate">
+                      {currentUser.email}
+                    </p>
+                  </div>
+                </div>
+              )}
+
               {/* Sidebar Links */}
               <nav className="flex flex-col px-4 py-6 gap-4 overflow-y-auto">
                 <div className="flex items-center gap-2 border rounded-md px-3 py-2">
@@ -445,74 +577,102 @@ const Navbar = () => {
                 </div>
 
                 {/* Navigation Links */}
-                <div className="flex flex-col gap-3">
-                  <Link
-                    to="/"
-                    className="flex items-center gap-2 text-base font-medium"
-                    style={{ color: theme.colors.primary.contrast }}
-                    onClick={toggleMobileMenu}
-                  >
-                    <Home size={18} /> Home
-                  </Link>
-                  <Link
-                    to="/about"
-                    className="flex items-center gap-2 text-base font-medium"
-                    style={{ color: theme.colors.primary.contrast }}
-                    onClick={toggleMobileMenu}
-                  >
-                    About Us
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="flex items-center gap-2 text-base font-medium"
-                    style={{ color: theme.colors.primary.contrast }}
-                    onClick={toggleMobileMenu}
-                  >
-                    Contact
-                  </Link>
+                <div className="flex flex-col gap-2">
+                  {MobileNavLinks.map((link) => (
+                    <NavLink
+                      to={link.to}
+                      key={link.name}
+                      onClick={toggleMobileMenu}
+                      style={{ color: theme.colors.primary.contrast }}
+                      className={({ isActive }) =>
+                        `text-base transition-colors w-full duration-300 flex items-center gap-2 font-medium ${
+                          isActive
+                            ? "text-[#BF6E3D]"
+                            : "text-[#F8F5F2] hover:text-[#BF6E3D]"
+                        }`
+                      }
+                    >
+                      {link.icon}
+                      {link.name}
+                    </NavLink>
+                  ))}
                 </div>
 
                 {/* Action Links */}
                 <div className="flex flex-col gap-2">
-                  <NavLink
-                    to="/cart"
-                    className="flex items-center gap-2 text-base font-medium"
-                    style={{ color: theme.colors.primary.contrast }}
-                  >
-                    <ShoppingCart size={18} /> Cart
-                  </NavLink>
-                  <NavLink
-                    to="/"
-                    className="flex items-center gap-2 text-base font-medium"
-                    style={{ color: theme.colors.primary.contrast }}
-                  >
-                    <Heart size={18} /> Wishlist
-                  </NavLink>
-                  <NavLink
-                    to="/login"
-                    className="flex items-center gap-2 text-base font-medium"
-                    style={{ color: theme.colors.primary.contrast }}
-                  >
-                    <LogIn size={18} /> Login
-                  </NavLink>
-                  <NavLink
-                    to="/register"
-                    className="flex items-center gap-2 text-base font-medium"
-                    style={{ color: theme.colors.primary.contrast }}
-                  >
-                    <UserPlus size={18} /> Register
-                  </NavLink>
-                </div>
-                <div>
-                  <button
-                    className="w-full flex justify-between items-center text-base font-medium focus:outline-none"
-                    style={{ color: theme.colors.primary.contrast }}
-                  >
-                    <span className="flex items-center gap-2">
-                      <Sofa size={18} />
-                      Shop
-                    </span>
-                  </button>
+                  {utilityLinks.map((link) => (
+                    <NavLink
+                      key={link.name}
+                      to={link.to}
+                      className="flex items-center gap-2 text-base font-medium"
+                      style={{ color: theme.colors.primary.contrast }}
+                      onClick={toggleMobileMenu}
+                    >
+                      {link.icon}
+                      {link.name}
+                      {link.name === "Cart" && cartCount > 0 && (
+                        <span className="ml-auto text-xs w-5 h-5 rounded-full flex items-center justify-center bg-[#D97706]">
+                          {cartCount}
+                        </span>
+                      )}
+                      {link.name === "Wishlist" && wishlistCount > 0 && (
+                        <span className="ml-auto text-xs w-5 h-5 rounded-full flex items-center justify-center bg-[#D97706]">
+                          {wishlistCount}
+                        </span>
+                      )}
+                    </NavLink>
+                  ))}
+
+                  {currentUser ? (
+                    <>
+                      {profileLinks.map((link) =>
+                        link.onClick ? (
+                          <button
+                            key={link.name}
+                            onClick={() => {
+                              link.onClick;
+                              toggleMobileMenu();
+                            }}
+                            className="flex items-center gap-2 text-base font-medium w-full text-left"
+                            style={{ color: theme.colors.primary.contrast }}
+                          >
+                            {link.icon}
+                            {link.name}
+                          </button>
+                        ) : (
+                          <NavLink
+                            key={link.name}
+                            to={link.to}
+                            className="flex items-center gap-2 text-base font-medium"
+                            style={{ color: theme.colors.primary.contrast }}
+                            onClick={toggleMobileMenu}
+                          >
+                            {link.icon}
+                            {link.name}
+                          </NavLink>
+                        )
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <NavLink
+                        to="/login"
+                        className="flex items-center gap-2 text-base font-medium"
+                        style={{ color: theme.colors.primary.contrast }}
+                        onClick={toggleMobileMenu}
+                      >
+                        <LogIn size={18} /> Login
+                      </NavLink>
+                      <NavLink
+                        to="/register"
+                        className="flex items-center gap-2 text-base font-medium"
+                        style={{ color: theme.colors.primary.contrast }}
+                        onClick={toggleMobileMenu}
+                      >
+                        <UserPlus size={18} /> Register
+                      </NavLink>
+                    </>
+                  )}
                 </div>
 
                 <div>

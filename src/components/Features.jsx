@@ -28,8 +28,8 @@ const Features = ({ sectionIndex = 0 }) => {
   ];
 
   return (
-    <section
-      className="w-full py-16 px-4 sm:px-8 md:px-16 max-w-screen-2xl mx-auto"
+      <section
+      className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-12 lg:px-16 py-14 mx-auto"
       style={{ background: bgColor, fontFamily: theme.fonts.body }}
     >
       <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">

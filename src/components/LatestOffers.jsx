@@ -1,34 +1,46 @@
 import { useState } from "react";
-import { ShoppingCart } from "lucide-react";
+import { Heart, ShoppingCart } from "lucide-react";
+import { useWishlist } from "../context/WishlistContext";
+import { useCart } from "../context/CartContext";
 
-export default function LatestArrivalsGridWithModal({ products, theme, sectionIndex = 3 }) {
+export default function LatestOffersGridWithModal({
+  products,
+  theme,
+  sectionIndex = 3,
+}) {
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const { toggleWishlist, isWishlisted } = useWishlist();
+  const { addToCart } = useCart();
 
   const bgColor =
     sectionIndex % 2 === 0
       ? theme.colors.background.DEFAULT
       : theme.colors.background.alt;
 
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
+
   return (
     <section
-      className="py-16 px-4 sm:px-8 md:px-16 w-full max-w-screen-2xl mx-auto"
+      className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-12 lg:px-16 py-14 mx-auto"
       style={{ backgroundColor: bgColor }}
     >
       {/* Modal Overlay */}
       {selectedProduct && <div className="fixed inset-0 bg-black/50 z-40" />}
 
       {/* Section Header */}
-      <div className="text-center mb-16 max-w-2xl mx-auto">
-        <h2
-          className="text-3xl sm:text-4xl md:text-5xl font-light mb-6 tracking-tight"
-          style={{
-            color: theme.colors.text.primary,
-            fontFamily: theme.fonts.header,
-          }}
-        >
-          Our Latest Arrivals
-        </h2>
-      </div>
+      <h2
+        className="text-center text-3xl font-semibold mb-6"
+        data-aos="fade-up"
+        data-aos-delay="100"
+        style={{
+          color: theme.colors.text.primary,
+          fontFamily: theme.fonts.header,
+        }}
+      >
+        Our Latest Offers
+      </h2>
 
       {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -42,7 +54,21 @@ export default function LatestArrivalsGridWithModal({ products, theme, sectionIn
           >
             {/* Product Image + Discount Badge */}
             <div className="relative w-full aspect-[4/3] overflow-hidden">
-            
+              <div className="absolute top-2 right-2 z-20">
+                <button
+                  onClick={() => toggleWishlist(product)}
+                  className="p-1.5 bg-white/80 hover:bg-white rounded-full shadow-md transition"
+                  aria-label="Toggle Wishlist"
+                >
+                  <Heart
+                    size={18}
+                    className={`transition-all duration-300 ${
+                      isWishlisted(product.id) ? "scale-110" : "scale-100"
+                    } text-[#BF6E3D]`}
+                    fill={isWishlisted(product.id) ? "#BF6E3D" : "none"}
+                  />
+                </button>
+              </div>
               <img
                 src={product.image}
                 alt={product.name}
@@ -62,15 +88,14 @@ export default function LatestArrivalsGridWithModal({ products, theme, sectionIn
                 </div>
               )}
 
-              {/* Hover Overlay + Quick Preview */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+              <div className="absolute inset-0 bg-black/40" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <button
                   className="px-6 py-2 rounded-md text-sm font-medium text-white tracking-wide uppercase transition"
                   style={{
                     backgroundColor: theme.colors.accent.DEFAULT,
                     fontFamily: theme.fonts.alt,
                   }}
-                  onClick={() => setSelectedProduct(product)}
                 >
                   Quick Preview
                 </button>
@@ -127,7 +152,7 @@ export default function LatestArrivalsGridWithModal({ products, theme, sectionIn
                   color: theme.colors.primary.contrast,
                   fontFamily: theme.fonts.body,
                 }}
-                onClick={() => console.log(`Added ${product.name} to cart`)}
+                onClick={() => handleAddToCart(product)}
               >
                 <ShoppingCart size={16} />
                 Add to Cart
@@ -171,7 +196,9 @@ export default function LatestArrivalsGridWithModal({ products, theme, sectionIn
                 <p className="text-sm text-gray-500">
                   {selectedProduct.category} — {selectedProduct.type}
                 </p>
-                <p className="text-sm text-gray-500">Brand: {selectedProduct.brand}</p>
+                <p className="text-sm text-gray-500">
+                  Brand: {selectedProduct.brand}
+                </p>
                 <div className="flex items-center gap-3 pt-2">
                   {selectedProduct.originalPrice &&
                     selectedProduct.originalPrice > selectedProduct.price && (
@@ -189,13 +216,14 @@ export default function LatestArrivalsGridWithModal({ products, theme, sectionIn
                     ${selectedProduct.price.toFixed(2)}
                   </span>
                 </div>
-               <button
+                <button
                   className="mt-4 w-full py-2 rounded-xl text-sm font-semibold transition duration-300"
                   style={{
                     backgroundColor: theme.colors.accent.DEFAULT,
                     color: theme.colors.primary.contrast,
                     fontFamily: theme.fonts.alt,
                   }}
+                  onClick={() => handleAddToCart(selectedProduct)}
                   onMouseOver={(e) =>
                     (e.currentTarget.style.backgroundColor =
                       theme.colors.accent.hover)
