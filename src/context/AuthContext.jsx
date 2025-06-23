@@ -3,6 +3,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -21,19 +22,24 @@ export const AuthProvider = ({ children }) => {
 
   // Register user using Firebase database
 
-  const register = async (email, password) => {
-    const userCred = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    await setDoc(doc(db, "users", userCred.user.uid), {
-      email,
-      role: "customer",
-      createdAt: new Date(),
-    });
-    return userCred;
-  };
+  const register = async (email, password, role = "customer", name) => {
+  const userCred = await createUserWithEmailAndPassword(auth, email, password);
+
+  // Set displayName in Firebase Auth
+  await updateProfile(userCred.user, {
+    displayName: name,
+  });
+
+  // Save to Firestore
+  await setDoc(doc(db, "users", userCred.user.uid), {
+    name,
+    email,
+    role,
+    createdAt: new Date(),
+  });
+
+  return userCred;
+};
 
   // Login user using Firebase database
 
