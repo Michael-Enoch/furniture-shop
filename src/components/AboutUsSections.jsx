@@ -18,8 +18,15 @@ export const AboutUsSections = ({ valuesData }) => {
 
   return (
     <>
+    <section
+          className="text-[#2D2D2D] w-full max-w-screen-2xl  mx-auto"
+          style={{
+            backgroundColor: theme.colors.background.DEFAULT,
+            fontFamily: theme.fonts.body,
+          }}
+        >
       {/* Hero Section */}
-      <section
+      <div
         className="w-full h-[500px] sm:h-[600px] flex items-center justify-center"
         style={{
           backgroundColor: theme.colors.primary.DEFAULT,
@@ -52,19 +59,21 @@ export const AboutUsSections = ({ valuesData }) => {
               transition={{ delay: 0.3, duration: 0.8 }}
             ></motion.div>
             <motion.p
-              className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto"
+              className="text-xl md:text-2xl text-[#E8DFD1] text-center max-w-2xl mx-auto"
               style={{ fontFamily: theme.fonts.alt }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              Thoughtful design
+              Blending elegance and thoughtful designs that tells a story
             </motion.p>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section className="py-24 px-4 md:px-8 max-w-6xl mx-auto relative">
+      <div className="py-24 px-4 md:px-8 max-w-6xl mx-auto relative"
+      style={{background: theme.colors.background.DEFAULT}}
+      >
         <div className="flex flex-col md:flex-row items-center gap-x-8 gap-y-8 w-full">
           {/* Left Image Box */}
           <motion.div
@@ -72,13 +81,13 @@ export const AboutUsSections = ({ valuesData }) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="w-full md:w-1/2 min-w-0 min-h-[400px] md:min-h-[500px] h-auto relative rounded-2xl shadow-lg overflow-hidden"
+            className="w-full md:w-1/2 min-w-0 min-h-[400px] md:min-h-[500px] h-[500px] relative rounded-2xl shadow-lg overflow-hidden"
           >
             <div
               className="w-full h-full bg-cover bg-center"
               style={{
                 backgroundImage:
-                  "url('https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1000')",
+                  "url('https://images.unsplash.com/photo-1728722740555-9c523d21bccd?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
               }}
               aria-label="Our workshop in Brooklyn"
             />
@@ -95,18 +104,18 @@ export const AboutUsSections = ({ valuesData }) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="w-full md:w-1/2 min-w-0 overflow-x-hidden box-border"
+            className="w-full md:w-1/2 min-w-0"
           >
             <h2
               className="text-[clamp(1.75rem,2.5vw,2.25rem)] font-bold mb-6 max-w-full"
               style={{
-                color: theme.colors.primary.DEFAULT,
+                color: theme.colors.text.primary,
                 fontFamily: theme.fonts.header,
               }}
             >
               Our Heritage & Journey
             </h2>
-            <p className="text-base md:text-lg mb-6 leading-relaxed">
+            <p className="text-base md:text-md mb-6 leading-relaxed">
               Founded in 1995 by master craftsman Thomas Hudson, our Brooklyn
               workshop began as a humble space dedicated to reviving forgotten
               woodworking techniques. Today, we've grown into an internationally
@@ -132,8 +141,8 @@ export const AboutUsSections = ({ valuesData }) => {
                   key={i}
                   className="px-4 py-2 rounded-full text-sm"
                   style={{
-                    backgroundColor: theme.colors.primary.DEFAULT,
-                    color: theme.colors.text.onPrimary,
+                    backgroundColor: theme.colors.background.muted,
+                    color: theme.colors.text.primary,
                   }}
                 >
                   {tag}
@@ -142,13 +151,11 @@ export const AboutUsSections = ({ valuesData }) => {
             </div>
           </motion.div>
         </div>
-      </section>
+      </div>
 
-      <section
-        className="py-24 overflow-x-hidden box-border"
-        style={{ backgroundColor: theme.colors.primary.DEFAULT }}
-      >
-        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="max-w-screen-2xl mx-auto px-4 py-24 md:px-6 lg:px-8"
+         style={{ backgroundColor: theme.colors.background.muted }}
+        >
           {/* Header */}
           <motion.div
             initial="hidden"
@@ -159,14 +166,14 @@ export const AboutUsSections = ({ valuesData }) => {
           >
             <h2
               className="text-4xl font-bold text-white"
-              style={{ fontFamily: theme.fonts.header }}
+              style={{ fontFamily: theme.fonts.header, color: theme.colors.text.primary }}
             >
               Our Guiding Principles
             </h2>
             <p
               className="text-xl max-w-2xl mx-auto mt-4"
               style={{
-                color: theme.colors.text.onPrimary,
+                color: theme.colors.text.primary,
                 fontFamily: theme.fonts.alt,
               }}
             >
@@ -189,14 +196,14 @@ export const AboutUsSections = ({ valuesData }) => {
                 variants={fadeUp}
                 className="p-6 sm:p-8 rounded-2xl shadow-md hover:shadow-lg border transition-shadow duration-300"
                 style={{
-                  backgroundColor: theme.colors.background.alt,
+                  backgroundColor: theme.colors.ui.base,
                   borderColor: theme.colors.ui.border,
                 }}
               >
                 <div
-                  className="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-6"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mb-6"
                   style={{
-                    backgroundColor: theme.colors.primary.DEFAULT,
+                    backgroundColor: theme.colors.accent.DEFAULT,
                     color: theme.colors.text.onPrimary,
                   }}
                 >
@@ -204,7 +211,7 @@ export const AboutUsSections = ({ valuesData }) => {
                 </div>
                 <h3
                   className="text-xl sm:text-2xl font-bold mb-4"
-                  style={{ color: theme.colors.primary.DEFAULT }}
+                  style={{ color: theme.colors.text.primary }}
                 >
                   {value.title}
                 </h3>
