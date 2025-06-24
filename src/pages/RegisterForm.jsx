@@ -39,7 +39,7 @@ const Register = () => {
 
       await signUp(userData.email, userData.password, userData.role || 'customer', userData.name);
       toast.success("Welcome to Hudson's Furniture!");
-      navigate('/'); // Redirect to homepage after successful registration
+      navigate('/');
     } catch (error) {
       console.error("Registration error:", error);
       toast.error(error.message || "Couldn't create your account. Please try again.");
