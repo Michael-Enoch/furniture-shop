@@ -18,6 +18,8 @@ import MiniAboutContact from "../components/MiniAboutContact";
 import Features from "../components/Features";
 import Brands from "../components/Brands";
 import LatestOffersGridWithModal from "../components/LatestOffers";
+import Support from "../components/Support";
+import UserExperience from "../components/UserExperience";
 
 
 const Homepage = () => {
@@ -72,15 +74,15 @@ const Homepage = () => {
     const materials = [...new Set(products.map((p) => p.material).filter(Boolean))];
     const colors = [...new Set(products.map((p) => p.color).filter(Boolean))];
 
-    console.log("🛏️ Bedroom Products:", bedroomProducts);
-    console.log("🛋️ Living Room Products:", livingRoomProducts);
-    console.log("🌿 Outdoor Products:", outdoorProducts);
-    console.log("📦 Brands:", brands);
-    console.log("🪑 Types:", types);
-    console.log("🧱 Materials:", materials);
-    console.log("🎨 Colors:", colors);
+    console.log(" Bedroom Products:", bedroomProducts);
+    console.log("Living Room Products:", livingRoomProducts);
+    console.log("Outdoor Products:", outdoorProducts);
+    console.log("Brands:", brands);
+    console.log("Types:", types);
+    console.log("Materials:", materials);
+    console.log("Colors:", colors);
   } catch (error) {
-    console.error("❌ Error fetching products.json:", error);
+    console.error("Error fetching products.json:", error);
   }
 };
 
@@ -109,6 +111,8 @@ const Homepage = () => {
       <FAQ />
       <Newsletter />
       <InstagramFeed />
+      <Support/>
+      <UserExperience/>
       <CTASection />
     </main>
   );
