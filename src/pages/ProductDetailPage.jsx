@@ -6,24 +6,22 @@ import theme from "../context/Theme";
 import { ShoppingCart, Star } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import ReviewForm from "../components/ReviewForm";
+import useProductReviews from "../hooks/useProductReviews";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [reviews, setReviews] = useState([]);
+  const reviews = useProductReviews(id);
   const [allProducts, setAllProducts] = useState([]);
   const { addToCart, removeFromCart, cart } = useCart();
 
-  const STORAGE_KEY = `reviews-${id}`;
-
-   useEffect(() => {
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -38,28 +36,11 @@ const ProductDetail = () => {
       }
     };
 
-    const fetchReviews = () => {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      try {
-        const parsed = JSON.parse(stored);
-        setReviews(Array.isArray(parsed) ? parsed : []);
-      } catch {
-        setReviews([]);
-      }
-    };
-
     fetchProduct();
-    fetchReviews();
   }, [id]);
 
-   const handleAddToCart = (product, quantity) => {
- addToCart(product, quantity);
-  };
-
-  const handleReviewSubmit = (review) => {
-    const updated = [review, ...reviews];
-    setReviews(updated);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+  const handleAddToCart = (product, quantity) => {
+    addToCart(product, quantity);
   };
 
   const increaseQty = (item) => {
@@ -199,30 +180,24 @@ const ProductDetail = () => {
       <div className="mt-12">
         <h2 className="text-xl font-semibold mb-2">Customer Reviews</h2>
 
-        <ReviewForm onSubmit={handleReviewSubmit} />
+        <ReviewForm productId={product.id} />
 
         {reviews.length === 0 ? (
-          <p className="text-sm text-gray-500 mt-4">No reviews yet.</p>
-        ) : (
-          <div className="mt-4 space-y-4">
-            {reviews.map((r) => (
-              <div key={r.id} className="p-4 bg-white rounded-xl shadow">
-                <div className="flex items-center gap-1 text-yellow-500">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-4 h-4 ${
-                        i < r.rating ? "fill-yellow-500" : "text-gray-300"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <p className="text-sm text-gray-800 mt-1">{r.text}</p>
-                <p className="text-xs text-gray-500 mt-1">— {r.user}</p>
+        <p className="text-sm text-gray-500">No reviews yet.</p>
+      ) : (
+        <ul className="space-y-4">
+          {reviews.map((r) => (
+            <li key={r.id} className="border p-3 rounded-md">
+              <div className="flex items-center gap-2">
+                <strong>{r.userName}</strong>
+                <span className="text-yellow-500">{`★`.repeat(r.rating)}</span>
               </div>
-            ))}
-          </div>
-        )}
+              <p className="text-sm text-gray-700">{r.comment}</p>
+              <p className="text-xs text-gray-400">{new Date(r.createdAt).toLocaleString()}</p>
+            </li>
+          ))}
+        </ul>
+      )}
       </div>
 
       {/* Related Products */}
