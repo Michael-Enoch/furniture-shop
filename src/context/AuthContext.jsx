@@ -17,45 +17,65 @@ export const AuthProvider = ({ children }) => {
   // initialize states
 
   const [currentUser, setCurrentUser] = useState(null);
-  const [role, setRole] = useState(null);
+  const storedRole = localStorage.getItem("userRole");
+  const [role, setRole] = useState(storedRole || null);
   const [loading, setLoading] = useState(true);
 
   // Register user using Firebase database
 
   const register = async (email, password, role = "customer", name) => {
-  const userCred = await createUserWithEmailAndPassword(auth, email, password);
+    try {
+      const userCred = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-  // Set displayName in Firebase Auth
-  await updateProfile(userCred.user, {
-    displayName: name,
-  });
+      // Set displayName in Firebase Auth
+      await updateProfile(userCred.user, {
+        displayName: name,
+      });
 
-  // Save to Firestore
-  await setDoc(doc(db, "users", userCred.user.uid), {
-    name,
-    email,
-    role,
-    createdAt: new Date(),
-  });
+      // Save to Firestore
+      await setDoc(doc(db, "users", userCred.user.uid), {
+        name,
+        email,
+        role,
+        createdAt: new Date(),
+      });
 
-  return userCred;
-};
+      return userCred;
+    } catch (error) {
+      console.error("Registration error:", error.message);
+      throw error;
+    }
+  };
 
   // Login user using Firebase database
 
   const login = async (email, password) => {
-    const userCred = await signInWithEmailAndPassword(auth, email, password);
-    const snap = await getDoc(doc(db, "users", userCred.user.uid));
-    const role = snap.data()?.role || null;
+    try {
+      const userCred = await signInWithEmailAndPassword(auth, email, password);
+      const snap = await getDoc(doc(db, "users", userCred.user.uid));
+      const role = snap.data()?.role || null;
 
-    setRole(role);
-  console.log("Logged in role:", role); 
+      setRole(role);
+      console.log("Logged in role:", role);
 
-  localStorage.setItem("userRole", role);
+      localStorage.setItem("userRole", role);
+      return userCred;
+    } catch (error) {
+      console.error("Login error:", error.message);
+      throw error;
+    }
   };
 
-  const logOut = () => signOut(auth);
-
+  const logOut = async () => {
+  await signOut(auth);
+  localStorage.removeItem("userRole");
+  setRole(null);
+  setCurrentUser(null);
+};
   // Track auth state and retrieve role
 
   useEffect(() => {
