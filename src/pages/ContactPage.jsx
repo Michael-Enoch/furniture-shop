@@ -18,10 +18,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import theme from "../context/Theme";
 
 const ContactPage = () => {
-   useEffect(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
-  
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -144,7 +144,6 @@ const ContactPage = () => {
     { day: "By Appointment", hours: "Available evenings" },
   ];
 
-  
   // Simulate map loading
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -202,14 +201,14 @@ const ContactPage = () => {
       </div>
 
       {/* Tab Navigation */}
-      <div className="max-w-6xl mx-auto px-4 mt-8">
+      <div className="max-w-6xl mx-auto w-full px-4 mt-8">
         <div
-          className="flex border-b"
+          className="flex w-full items-start border-b"
           style={{ borderColor: theme.colors.ui.border }}
         >
           <button
             onClick={() => setActiveTab("contact")}
-            className={`py-4 px-6 text-lg font-medium transition-colors whitespace-nowrap ${
+            className={`py-4 px-6 text-md font-medium transition-colors ${
               activeTab === "contact"
                 ? `text-[${theme.colors.text.primary}] border-b-2`
                 : `opacity-50`
@@ -224,10 +223,10 @@ const ContactPage = () => {
           >
             Contact Us
           </button>
-        
+
           <button
             onClick={() => setActiveTab("appointment")}
-            className={`py-4 px-6 text-lg font-medium transition-colors whitespace-nowrap ${
+            className={`py-4 px-6 text-md font-medium transition-colors${
               activeTab === "appointment"
                 ? `text-[${theme.colors.text.primary}] border-b-2`
                 : `opacity-50`
@@ -245,12 +244,8 @@ const ContactPage = () => {
         </div>
       </div>
 
-      {/* Tab Content */}
-      <div
-        className="py-16 px-4 md:px-8 max-w-6xl  mx-auto"
-      >
+      <div className="py-16 px-4 md:px-8 max-w-6xl  mx-auto">
         <AnimatePresence mode="wait">
-          {/* Contact Tab */}
           {activeTab === "contact" && (
             <motion.div
               key="contact"
@@ -258,12 +253,11 @@ const ContactPage = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col lg:flex-row gap-12"
+              className="flex flex-col lg:flex-row gap-6 w-full max-w-8xl mx-auto"
             >
-              {/* Contact Information */}
-              <div className="lg:w-2/5">
+              <div className="flex flex-col flex-1/2 max-w-8xl w-full gap-6">
                 <motion.h2
-                  className="text-3xl text-left font-bold mb-8"
+                  className="text-3xl text-left font-bold"
                   style={{
                     color: theme.colors.primary.DEFAULT,
                     fontFamily: theme.fonts.header,
@@ -276,7 +270,7 @@ const ContactPage = () => {
                 </motion.h2>
 
                 <motion.div
-                  className="mb-8 flex flex-row items-start"
+                  className="flex flex-row items-start"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 }}
@@ -290,15 +284,16 @@ const ContactPage = () => {
                   >
                     <FaMapMarkerAlt size={18} />
                   </div>
-                   <div className="flex flex-col items-start">
+                  <div className="flex flex-col items-start">
                     <h3
                       className="text-xl font-semibold mb-2"
                       style={{ color: theme.colors.primary.DEFAULT }}
                     >
                       Artisan Workshop
                     </h3>
-                    <div className="flex flex-col items-start space-y-1"
-                    style={{ color: theme.colors.text.primary }}
+                    <div
+                      className="flex flex-col items-start space-y-1"
+                      style={{ color: theme.colors.text.primary }}
                     >
                       <p>123 Design Avenue</p>
                       <p>Lagos, Nigeria</p>
@@ -307,20 +302,20 @@ const ContactPage = () => {
                   </div>
                 </motion.div>
 
-               <motion.div
-                  className="mb-8 flex flex-row items-start"
+                <motion.div
+                  className="flex flex-row items-start"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                   <div
+                  <div
                     className="w-10 h-10 flex items-center justify-center rounded-full mr-4"
                     style={{
                       backgroundColor: theme.colors.primary.DEFAULT,
                       color: theme.colors.accent.DEFAULT,
                     }}
                   >
-                    <FaPhone size={18}  />
+                    <FaPhone size={18} />
                   </div>
                   <div className="flex flex-col items-start">
                     <h3
@@ -329,17 +324,18 @@ const ContactPage = () => {
                     >
                       Phone
                     </h3>
-                    <div className="flex flex-col items-start space-y-1"
-                    style={{ color: theme.colors.text.primary }}
+                    <div
+                      className="flex flex-col items-start space-y-1"
+                      style={{ color: theme.colors.text.primary }}
                     >
-                     <p>+234 (0) 812 345 6789</p> 
+                      <p>+234 (0) 812 345 6789</p>
                       <p>Mon-Fri, 9am-6pm WAT</p>
                     </div>
                   </div>
                 </motion.div>
 
-               <motion.div
-                  className="mb-8 flex flex-row items-start"
+                <motion.div
+                  className="flex flex-row items-start"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
@@ -351,26 +347,27 @@ const ContactPage = () => {
                       color: theme.colors.accent.DEFAULT,
                     }}
                   >
-                    <FaEnvelope size={18}/>
+                    <FaEnvelope size={18} />
                   </div>
-                 <div className="flex flex-col items-start">
+                  <div className="flex flex-col items-start">
                     <h3
                       className="text-xl font-semibold mb-2"
                       style={{ color: theme.colors.primary.DEFAULT }}
                     >
                       Email
                     </h3>
-                    <div className="flex flex-col items-start space-y-1"
-                    style={{ color: theme.colors.text.primary }}
+                    <div
+                      className="flex flex-col items-start space-y-1"
+                      style={{ color: theme.colors.text.primary }}
                     >
-                     <p>husdon@gmail.com</p> 
+                      <p>husdon@gmail.com</p>
                       <p>inquiries_hudson@gmail.com</p>
                     </div>
                   </div>
                 </motion.div>
 
                 <motion.div
-                  className="mb-8 flex flex-col items-start"
+                  className="flex flex-col items-start"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
@@ -431,19 +428,16 @@ const ContactPage = () => {
                 </motion.div>
 
                 <motion.div
-                  className="mt-12 p-6 rounded-xl border"
+                  className="p-6 rounded-xl border"
                   style={{
-                    backgroundColor: theme.colors.background.alt,
                     borderColor: theme.colors.ui.border,
-                    color: theme.colors.text.primary
+                    color: theme.colors.text.primary,
                   }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                 >
-                  <h3
-                    className="text-xl font-semibold mb-3"
-                  >
+                  <h3 className="text-xl font-semibold mb-3">
                     Visit Our Showroom
                   </h3>
                   <p
@@ -457,7 +451,7 @@ const ContactPage = () => {
                     onClick={() => setActiveTab("appointment")}
                     className="py-2 px-6 rounded-full font-medium transition-colors w-full"
                     style={{
-                      backgroundColor: theme.colors.primary.DEFAULT,
+                      backgroundColor: theme.colors.accent.DEFAULT,
                       color: theme.colors.primary.contrast,
                     }}
                   >
@@ -466,10 +460,9 @@ const ContactPage = () => {
                 </motion.div>
               </div>
 
-              {/* Contact Form */}
-              <div className="lg:w-3/5">
+              <div className="flex flex-col max-w-8xl space-y-4 w-full flex-1/2">
                 <motion.h2
-                  className="text-3xl font-bold mb-8"
+                  className="text-center text-2xl w-full max-w-screen md:text-3xl font-bold"
                   style={{
                     color: theme.colors.primary.DEFAULT,
                     fontFamily: theme.fonts.header,
@@ -483,7 +476,7 @@ const ContactPage = () => {
 
                 {submitSuccess ? (
                   <motion.div
-                    className="border px-4 py-3 rounded mb-6 flex items-center"
+                    className="border px-4 py-3 rounded w-full mx-auto flex items-center"
                     style={{
                       backgroundColor: "#F0FDF4",
                       borderColor: "#BBF7D0",
@@ -492,8 +485,8 @@ const ContactPage = () => {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                   >
-                    <FaEnvelopeOpen className="mr-3 text-xl" />
-                    <span>
+                    <FaEnvelopeOpen size={15} />
+                    <span className="text-sm w-full">
                       Thank you for your message! Our design team will contact
                       you within 24 hours.
                     </span>
@@ -502,28 +495,27 @@ const ContactPage = () => {
 
                 <motion.form
                   onSubmit={handleSubmit}
-                  className="rounded-xl shadow-lg p-6 md:p-8"
+                  className="rounded-xl shadow-lg border-1 space-y-6 flex flex-col w-full px-8 py-8"
                   style={{
                     backgroundColor: theme.colors.ui.base,
                     borderColor: theme.colors.ui.border,
-                    borderWidth: "1px",
                   }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="flex w-full text-left flex-col space-y-2">
                       <label
                         htmlFor="name"
-                        className="block mb-2"
+                        className="block w-full"
                         style={{ color: theme.colors.text.primary }}
                       >
                         Your Name *
                       </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <FaUser className="text-gray-400" />
+                      <div className="relative w-full">
+                        <div className="absolute inset-y-0 left-0 ml-3 flex items-center pointer-events-none">
+                          <FaUser size={15} className="text-gray-400 w-full" />
                         </div>
                         <input
                           type="text"
@@ -531,38 +523,53 @@ const ContactPage = () => {
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
-                          className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
-                            formErrors.name
-                              ? "border-red-500"
-                              : "border-gray-300"
-                          }`}
-                          placeholder="John Smith"
+                          className={`w-full pl-9 py-3 rounded-lg text-sm 
+                            bg-[${theme.colors.ui.base}] 
+                            border-[#DAD4CE]
+                            border
+                            focus:ring-2 
+                            focus:ring-[${theme.colors.accent.DEFAULT}] 
+                            focus:outline-none 
+                            placeholder:text-[#2D2D2D]
+                            placeholder:opacity-50
+                            ${
+                              formErrors.name
+                                ? "border-red-500"
+                                : "border-[${theme.colors.ui.border}]"
+                            }
+                          `}
+                          placeholder="Michael Enoch"
                           style={{
-                            focusRingColor: theme.colors.accent.DEFAULT,
+                            fontFamily: theme.fonts.ui,
                             borderColor: formErrors.name
                               ? "#EF4444"
                               : theme.colors.ui.border,
+                            backgroundColor: theme.colors.ui.base,
+                            color: theme.colors.text.primary,
                           }}
                         />
                       </div>
                       {formErrors.name && (
-                        <p className="text-red-500 text-sm mt-1">
+                        <p className="text-red-500 text-left text-sm mt-1">
                           {formErrors.name}
                         </p>
                       )}
                     </div>
 
-                    <div>
+                    <div className="flex w-full text-left flex-col space-y-2">
                       <label
                         htmlFor="email"
-                        className="block mb-2"
+                        className="block w-full"
                         style={{ color: theme.colors.text.primary }}
                       >
                         Email Address *
                       </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <FaEnvelope className="text-gray-400" />
+                      <div className="relative w-full">
+                        <div className="absolute inset-y-0 left-0 ml-3 flex items-center pointer-events-none">
+                          <FaEnvelope
+                            size={15}
+                            className="text-gray-400 w-full"
+                          />
                         </div>
                         <input
                           type="email"
@@ -570,32 +577,44 @@ const ContactPage = () => {
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
-                            formErrors.email
-                              ? "border-red-500"
-                              : "border-gray-300"
-                          }`}
-                          placeholder="john@example.com"
+                          className={`w-full pl-9 py-3 rounded-lg text-sm 
+                            bg-[${theme.colors.ui.base}] 
+                            border-[#DAD4CE]
+                            border
+                            focus:ring-2 
+                            focus:ring-[${theme.colors.accent.DEFAULT}] 
+                            focus:outline-none 
+                            placeholder:text-[#2D2D2D]
+                            placeholder:opacity-50
+                            ${
+                              formErrors.name
+                                ? "border-red-500"
+                                : "border-[${theme.colors.ui.border}]"
+                            }
+                          `}
+                          placeholder="michael08@gmail.com"
                           style={{
-                            focusRingColor: theme.colors.accent.DEFAULT,
-                            borderColor: formErrors.email
+                            fontFamily: theme.fonts.ui,
+                            borderColor: formErrors.name
                               ? "#EF4444"
                               : theme.colors.ui.border,
+                            backgroundColor: theme.colors.ui.base,
+                            color: theme.colors.text.primary,
                           }}
                         />
                       </div>
                       {formErrors.email && (
-                        <p className="text-red-500 text-sm mt-1">
+                        <p className="text-red-500 text-left text-sm mt-1">
                           {formErrors.email}
                         </p>
                       )}
                     </div>
                   </div>
 
-                  <div className="mb-6">
+                  <div className="flex flex-col text-left space-y-2">
                     <label
                       htmlFor="subject"
-                      className="block mb-2"
+                      className="block w-full"
                       style={{ color: theme.colors.text.primary }}
                     >
                       Subject *
@@ -606,30 +625,42 @@ const ContactPage = () => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
-                        formErrors.subject
+                      className={`w-full px-4 py-3 rounded-lg text-sm 
+                      bg-[${theme.colors.ui.base}] 
+                     border-[#DAD4CE]
+                      border
+                      focus:ring-2 
+                      focus:ring-[${theme.colors.accent.DEFAULT}] 
+                      focus:outline-none 
+                      placeholder:text-[#2D2D2D]
+                      placeholder:opacity-50
+                      ${
+                        formErrors.name
                           ? "border-red-500"
-                          : "border-gray-300"
-                      }`}
-                      placeholder="How can we help you?"
+                          : "border-[${theme.colors.ui.border}]"
+                      }
+                    `}
+                      placeholder="Your Subject"
                       style={{
-                        focusRingColor: theme.colors.accent.DEFAULT,
-                        borderColor: formErrors.subject
+                        fontFamily: theme.fonts.ui,
+                        borderColor: formErrors.name
                           ? "#EF4444"
                           : theme.colors.ui.border,
+                        backgroundColor: theme.colors.ui.base,
+                        color: theme.colors.text.primary,
                       }}
                     />
                     {formErrors.subject && (
-                      <p className="text-red-500 text-sm mt-1">
+                      <p className="text-red-500 text-left text-sm mt-1">
                         {formErrors.subject}
                       </p>
                     )}
                   </div>
 
-                  <div className="mb-6">
+                  <div className="flex flex-col text-left space-y-2">
                     <label
                       htmlFor="message"
-                      className="block mb-2"
+                      className="block w-full"
                       style={{ color: theme.colors.text.primary }}
                     >
                       Your Vision *
@@ -640,17 +671,29 @@ const ContactPage = () => {
                       value={formData.message}
                       onChange={handleChange}
                       rows="6"
-                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
-                        formErrors.message
-                          ? "border-red-500"
-                          : "border-gray-300"
-                      }`}
-                      placeholder="Tell us about your project or furniture needs..."
+                      className={`w-full px-4 py-3 rounded-lg text-sm
+                        bg-[${theme.colors.ui.base}] 
+                        border-[#DAD4CE]
+                        border
+                        focus:ring-2 
+                        focus:ring-[${theme.colors.accent.DEFAULT}] 
+                        focus:outline-none 
+                        placeholder:text-[#2D2D2D]
+                        placeholder:opacity-50
+                        ${
+                          formErrors.name
+                            ? "border-red-500"
+                            : "border-[${theme.colors.ui.border}]"
+                        }
+                      `}
+                      placeholder="Your Vision"
                       style={{
-                        focusRingColor: theme.colors.accent.DEFAULT,
-                        borderColor: formErrors.message
+                        fontFamily: theme.fonts.ui,
+                        borderColor: formErrors.name
                           ? "#EF4444"
                           : theme.colors.ui.border,
+                        backgroundColor: theme.colors.ui.base,
+                        color: theme.colors.text.primary,
                       }}
                     ></textarea>
                     {formErrors.message && (
@@ -660,28 +703,12 @@ const ContactPage = () => {
                     )}
                   </div>
 
-                  <div className="flex items-center mb-6">
-                    <input
-                      type="checkbox"
-                      id="brochure"
-                      className="mr-3 w-5 h-5"
-                      style={{ accentColor: theme.colors.primary.DEFAULT }}
-                    />
-                    <label
-                      htmlFor="brochure"
-                      style={{ color: theme.colors.text.primary }}
-                    >
-                      Send me Hudson's furniture catalog
-                    </label>
-                  </div>
-
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
                     className="w-full text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center"
                     style={{
-                      backgroundColor: theme.colors.primary.DEFAULT,
-                      backgroundImage: `linear-gradient(to right, ${theme.colors.primary.DEFAULT}, ${theme.colors.accent.DEFAULT})`,
+                      backgroundColor: theme.colors.accent.DEFAULT,
                     }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -689,7 +716,7 @@ const ContactPage = () => {
                     {isSubmitting ? (
                       <>
                         <svg
-                          className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                          className="animate-spin -ml-1 mr-3 h-4 w-4 text-white"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
@@ -722,7 +749,6 @@ const ContactPage = () => {
             </motion.div>
           )}
 
-          {/* Appointment Tab */}
           {activeTab === "appointment" && (
             <motion.div
               key="appointment"
@@ -730,10 +756,10 @@ const ContactPage = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="max-w-4xl mx-auto"
+              className="max-w-4xl flex flex-col space-y-4 w-full mx-auto"
             >
               <motion.h2
-                className="text-3xl font-bold mb-8 text-center"
+                className="text2xl md:text-3xl font-bold text-center"
                 style={{
                   color: theme.colors.primary.DEFAULT,
                   fontFamily: theme.fonts.header,
@@ -747,7 +773,7 @@ const ContactPage = () => {
 
               {submitSuccess ? (
                 <motion.div
-                  className="border px-4 py-3 rounded mb-6 flex items-center"
+                  className="border px-4 py-3 rounded w-full mx-auto flex items-center"
                   style={{
                     backgroundColor: "#F0FDF4",
                     borderColor: "#BBF7D0",
@@ -756,8 +782,8 @@ const ContactPage = () => {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                 >
-                  <FaCalendarAlt className="mr-3 text-xl" />
-                  <span>
+                  <FaCalendarAlt size={15} />
+                  <span className="text-sm w-full">
                     Your appointment has been scheduled! We'll send confirmation
                     details to your email.
                   </span>
@@ -766,73 +792,100 @@ const ContactPage = () => {
 
               <motion.form
                 onSubmit={handleAppointmentSubmit}
-                className="rounded-xl shadow-lg p-6 md:p-8"
+                className="rounded-xl shadow-lg border-1 space-y-6 flex flex-col w-full px-8 py-8"
                 style={{
                   backgroundColor: theme.colors.ui.base,
                   borderColor: theme.colors.ui.border,
-                  borderWidth: "1px",
                 }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="w-full flex flex-col space-y-2 text-left">
                     <label
                       htmlFor="date"
-                      className="block mb-2"
+                      className="block w-full"
                       style={{ color: theme.colors.text.primary }}
                     >
                       Preferred Date *
                     </label>
-                    <div className="relative">
+                    <div className="relative w-full">
                       <input
                         type="date"
                         id="date"
                         name="date"
                         value={appointmentData.date}
                         onChange={handleAppointmentChange}
-                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
-                          formErrors.date ? "border-red-500" : "border-gray-300"
-                        }`}
+                        className={`w-full px-4 py-3 rounded-lg text-sm 
+                      bg-[${theme.colors.ui.base}] 
+                     border-[#DAD4CE]
+                      border
+                      focus:ring-2 
+                      focus:ring-[${theme.colors.accent.DEFAULT}] 
+                      focus:outline-none 
+                      placeholder:text-[#2D2D2D]
+                      placeholder:opacity-50
+                      ${
+                        formErrors.date
+                          ? "border-red-500"
+                          : "border-[${theme.colors.ui.border}]"
+                      }
+                    `}
                         min={new Date().toISOString().split("T")[0]}
                         style={{
-                          focusRingColor: theme.colors.accent.DEFAULT,
+                          fontFamily: theme.fonts.ui,
                           borderColor: formErrors.date
                             ? "#EF4444"
                             : theme.colors.ui.border,
+                          backgroundColor: theme.colors.ui.base,
+                          color: theme.colors.text.primary,
                         }}
                       />
                     </div>
                     {formErrors.date && (
-                      <p className="text-red-500 text-sm mt-1">
+                      <p className="text-red-500 text-left text-sm mt-1">
                         {formErrors.date}
                       </p>
                     )}
                   </div>
 
-                  <div>
+                  <div className="w-full text-left flex flex-col space-y-2">
                     <label
                       htmlFor="time"
-                      className="block mb-2"
+                      className="block w-full"
                       style={{ color: theme.colors.text.primary }}
                     >
                       Preferred Time *
                     </label>
-                    <div className="relative">
+                    <div className="relative w-full">
                       <select
                         id="time"
                         name="time"
                         value={appointmentData.time}
                         onChange={handleAppointmentChange}
-                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
-                          formErrors.time ? "border-red-500" : "border-gray-300"
-                        }`}
+                        className={`w-full px-4 py-3 rounded-lg text-sm 
+                      bg-[${theme.colors.ui.base}] 
+                     border-[#DAD4CE]
+                      border
+                      focus:ring-2 
+                      focus:ring-[${theme.colors.accent.DEFAULT}] 
+                      focus:outline-none 
+                      placeholder:text-[#2D2D2D]
+                      placeholder:opacity-50
+                      ${
+                        formErrors.time
+                          ? "border-red-500"
+                          : "border-[${theme.colors.ui.border}]"
+                      }
+                    `}
                         style={{
-                          focusRingColor: theme.colors.accent.DEFAULT,
+                          fontFamily: theme.fonts.ui,
                           borderColor: formErrors.time
                             ? "#EF4444"
                             : theme.colors.ui.border,
+                          backgroundColor: theme.colors.ui.base,
+                          color: theme.colors.text.primary,
                         }}
                       >
                         <option value="">Select a time</option>
@@ -846,37 +899,49 @@ const ContactPage = () => {
                       </select>
                     </div>
                     {formErrors.time && (
-                      <p className="text-red-500 text-sm mt-1">
+                      <p className="text-red-500 text-left text-sm mt-1">
                         {formErrors.time}
                       </p>
                     )}
                   </div>
                 </div>
 
-                <div className="mb-6">
+                <div className="w-full flex flex-col space-y-2 text-left">
                   <label
                     htmlFor="service"
-                    className="block mb-2"
+                    className="block w-full"
                     style={{ color: theme.colors.text.primary }}
                   >
                     Service Interest *
                   </label>
-                  <div className="relative">
+                  <div className="relative w-full">
                     <select
                       id="service"
                       name="service"
                       value={appointmentData.service}
                       onChange={handleAppointmentChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
+                      className={`w-full px-4 py-3 rounded-lg text-sm 
+                      bg-[${theme.colors.ui.base}] 
+                     border-[#DAD4CE]
+                      border
+                      focus:ring-2 
+                      focus:ring-[${theme.colors.accent.DEFAULT}] 
+                      focus:outline-none 
+                      placeholder:text-[#2D2D2D]
+                      placeholder:opacity-50
+                      ${
                         formErrors.service
                           ? "border-red-500"
-                          : "border-gray-300"
-                      }`}
+                          : "border-[${theme.colors.ui.border}]"
+                      }
+                    `}
                       style={{
-                        focusRingColor: theme.colors.accent.DEFAULT,
+                        fontFamily: theme.fonts.ui,
                         borderColor: formErrors.service
                           ? "#EF4444"
                           : theme.colors.ui.border,
+                        backgroundColor: theme.colors.ui.base,
+                        color: theme.colors.text.primary,
                       }}
                     >
                       <option value="">Select a service</option>
@@ -890,16 +955,16 @@ const ContactPage = () => {
                     </select>
                   </div>
                   {formErrors.service && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="text-red-500 text-left text-sm mt-1">
                       {formErrors.service}
                     </p>
                   )}
                 </div>
 
-                <div className="mb-6">
+                <div className="w-full flex flex-col space-y-2 text-left">
                   <label
                     htmlFor="notes"
-                    className="block mb-2"
+                    className="block w-full"
                     style={{ color: theme.colors.text.primary }}
                   >
                     Additional Notes
@@ -910,10 +975,18 @@ const ContactPage = () => {
                     value={appointmentData.notes}
                     onChange={handleAppointmentChange}
                     rows="4"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent"
+                    className={`w-full px-4 py-3 rounded-lg text-sm 
+                      bg-[${theme.colors.ui.base}] 
+                     border-[#DAD4CE]
+                      border
+                      focus:ring-2 
+                      focus:ring-[${theme.colors.accent.DEFAULT}] 
+                      focus:outline-none 
+                      placeholder:text-[#2D2D2D]
+                      placeholder:opacity-50
+                    `}
                     placeholder="Tell us about your project or specific interests..."
                     style={{
-                      focusRingColor: theme.colors.accent.DEFAULT,
                       borderColor: theme.colors.ui.border,
                     }}
                   ></textarea>
@@ -924,8 +997,7 @@ const ContactPage = () => {
                   disabled={isSubmitting}
                   className="w-full text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center"
                   style={{
-                    backgroundColor: theme.colors.primary.DEFAULT,
-                    backgroundImage: `linear-gradient(to right, ${theme.colors.primary.DEFAULT}, ${theme.colors.accent.DEFAULT})`,
+                    backgroundColor: theme.colors.accent.DEFAULT,
                   }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -933,7 +1005,7 @@ const ContactPage = () => {
                   {isSubmitting ? (
                     <>
                       <svg
-                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        className="animate-spin -ml-1 mr-3 h-4 w-4 text-white"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -968,204 +1040,205 @@ const ContactPage = () => {
       </div>
 
       {/* Map Section */}
-      <div className="py-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            className="text-3xl font-bold mb-8 text-center"
-            style={{
-              color: theme.colors.primary.DEFAULT,
-              fontFamily: theme.fonts.header,
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Our Workshop Location
-          </motion.h2>
+      <div
+        className="max-w-screen-2xl w-full py-16 px-12 flex flex-col space-y-8 mx-auto"
+        style={{
+          backgroundColor: theme.colors.background.muted,
+        }}
+      >
+        <motion.h2
+          className="text-2xl md:text-3xl font-bold text-center"
+          style={{
+            color: theme.colors.text.primary,
+            fontFamily: theme.fonts.header,
+          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Our Workshop Location
+        </motion.h2>
 
-          <motion.div
-            className="rounded-xl shadow-xl h-96 relative bg-gray-200"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            {!mapLoaded && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-                <div className="text-center">
-                  <FaMap
-                    className="text-5xl mx-auto mb-4"
-                    style={{ color: theme.colors.primary.DEFAULT }}
-                  />
-                  <p className="text-gray-600">Loading map...</p>
-                </div>
+        <motion.div
+          className="rounded-xl shadow-xl h-96 relative w-full"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          {!mapLoaded && (
+            <div className="absolute inset-0 flex items-center text-center w-full justify-center">
+              <div className=" flex flex-row gap-6 items-center justify-center">
+                <FaMap
+                  className="text-5xl mx-auto"
+                  style={{ color: theme.colors.accent.DEFAULT }}
+                />
+                <p className="text-gray-600">Loading map...</p>
               </div>
-            )}
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16254206.05650295!2d5.304653965624988!3d5.951674098355106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0baf7da48d0d%3A0x99a8fe4168c50bc8!2sNigeria!5e0!3m2!1sen!2sng!4v1749997353844!5m2!1sen!2sng"
-              width="100%"
-              height="100%"
-              style={{ border: 0, display: mapLoaded ? "block" : "none" }}
-              allowFullScreen
-              loading="lazy"
-              title="Hudson's Furniture Workshop in Nigeria"
-            ></iframe>
-          </motion.div>
+            </div>
+          )}
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16254206.05650295!2d5.304653965624988!3d5.951674098355106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0baf7da48d0d%3A0x99a8fe4168c50bc8!2sNigeria!5e0!3m2!1sen!2sng!4v1749997353844!5m2!1sen!2sng"
+            width="100%"
+            height="100%"
+            style={{ border: 0, display: mapLoaded ? "block" : "none" }}
+            allowFullScreen
+            loading="lazy"
+            title="Hudson's Furniture Workshop in Nigeria"
+          ></iframe>
+        </motion.div>
 
-          <motion.div
-            className="flex flex-wrap justify-center gap-6 mt-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+        <motion.div
+          className="flex flex-wrap flex-row items-center justify-center gap-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <div
+            className="bg-white px-5 py-5 flex flex-col gap-2 rounded-lg shadow-md text-center min-w-[200px]"
+            style={{ backgroundColor: theme.colors.ui.base }}
           >
             <div
-              className="bg-white p-6 rounded-xl shadow-md text-center min-w-[200px]"
-              style={{ backgroundColor: theme.colors.ui.base }}
+              className="text-3xl font-bold"
+              style={{ color: theme.colors.text.primary }}
             >
-              <div
-                className="text-4xl font-bold"
-                style={{ color: theme.colors.primary.DEFAULT }}
-              >
-                10+
-              </div>
-              <div
-                className="text-lg"
-                style={{ color: theme.colors.text.primary }}
-              >
-                Master Craftsmen
-              </div>
+              10+
             </div>
             <div
-              className="bg-white p-6 rounded-xl shadow-md text-center min-w-[200px]"
-              style={{ backgroundColor: theme.colors.ui.base }}
+              className="text-md"
+              style={{ color: theme.colors.text.primary }}
             >
-              <div
-                className="text-4xl font-bold"
-                style={{ color: theme.colors.primary.DEFAULT }}
-              >
-                25+
-              </div>
-              <div
-                className="text-lg"
-                style={{ color: theme.colors.text.primary }}
-              >
-                Years Experience
-              </div>
+              Master Craftsmen
+            </div>
+          </div>
+          <div
+            className="bg-white px-5 py-5 flex flex-col gap-2 rounded-lg shadow-md text-center min-w-[200px]"
+            style={{ backgroundColor: theme.colors.ui.base }}
+          >
+            <div
+              className="text-3xl font-bold"
+              style={{ color: theme.colors.text.primary }}
+            >
+              25+
             </div>
             <div
-              className="bg-white p-6 rounded-xl shadow-md text-center min-w-[200px]"
-              style={{ backgroundColor: theme.colors.ui.base }}
+              className="text-md"
+              style={{ color: theme.colors.text.primary }}
             >
-              <div
-                className="text-4xl font-bold"
-                style={{ color: theme.colors.primary.DEFAULT }}
-              >
-                100%
-              </div>
-              <div
-                className="text-lg"
-                style={{ color: theme.colors.text.primary }}
-              >
-                Satisfaction Guarantee
-              </div>
+              Years Experience
             </div>
-          </motion.div>
-        </div>
+          </div>
+          <div
+            className="bg-white px-5 py-5 flex flex-col gap-2 rounded-lg shadow-md text-center min-w-[200px]"
+            style={{ backgroundColor: theme.colors.ui.base }}
+          >
+            <div
+              className="text-3xl font-bold"
+              style={{ color: theme.colors.text.primary }}
+            >
+              100%
+            </div>
+            <div
+              className="text-md"
+              style={{ color: theme.colors.text.primary }}
+            >
+              Satisfaction Guaranteed
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Business Hours */}
       <div
-        className="py-16 px-4 w-full max-w-8xl mx-auto"
-        style={{ backgroundColor: theme.colors.primary.DEFAULT }}
+        className="max-w-screen-2xl w-full py-16 px-12 flex flex-col space-y-8 mx-auto"
+        style={{
+          backgroundColor: theme.colors.background.DEFAULT,
+        }}
       >
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            className="text-3xl font-bold text-center mb-12"
-            style={{
-              color: theme.colors.primary.contrast,
-              fontFamily: theme.fonts.header,
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Studio Hours
-          </motion.h2>
+        <motion.h2
+          className="text-2xl md:text-3xl font-bold text-center"
+          style={{
+            color: theme.colors.text.primary,
+            fontFamily: theme.fonts.header,
+          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Studio Hours
+        </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {businessHours.map((item, index) => (
-              <motion.div
-                key={index}
-                className="p-6 rounded-xl text-center border"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {businessHours.map((item, index) => (
+            <motion.div
+              key={index}
+              className="p-6 rounded-xl text-center border"
+              style={{
+                backgroundColor: theme.colors.ui.base,
+                borderColor: theme.colors.ui.border,
+                color: theme.colors.text.primary,
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <div
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mb-4 mx-auto"
                 style={{
-                  backgroundColor: "#2D2420",
-                  borderColor: "#453A35",
+                  backgroundColor: theme.colors.accent.DEFAULT,
                   color: theme.colors.primary.contrast,
                 }}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
               >
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{
-                    backgroundColor: theme.colors.primary.DEFAULT,
-                    color: theme.colors.accent.DEFAULT,
-                  }}
-                >
-                  <FaClock className="text-2xl" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">{item.day}</h3>
-                <p>{item.hours}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            className="mt-12 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <p
-              className="text-lg max-w-2xl mx-auto"
-              style={{ color: theme.colors.primary.contrast }}
-            >
-              For personalized consultations beyond our regular hours, we're
-              happy to accommodate evening appointments to discuss your bespoke
-              furniture needs.
-            </p>
-            <motion.button
-              onClick={() => setActiveTab("appointment")}
-              className="mt-6 border-2 px-8 py-3 rounded-full font-medium text-lg transition-all duration-300"
-              style={{
-                borderColor: theme.colors.primary.contrast,
-                color: theme.colors.primary.contrast,
-              }}
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: theme.colors.accent.DEFAULT,
-                borderColor: theme.colors.accent.DEFAULT,
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Request Evening Appointment
-            </motion.button>
-          </motion.div>
+                <FaClock className="text-2xl" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">{item.day}</h3>
+              <p>{item.hours}</p>
+            </motion.div>
+          ))}
         </div>
+
+        <motion.div
+          className="flex flex-col items-center justify-center space-y-8 text-center w-full"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <p
+            className="w-full text-md max-w-3xl mx-auto"
+          >
+            For personalized consultations beyond our regular hours, we're happy
+            to accommodate evening appointments to discuss your tailored
+            furniture needs.
+          </p>
+          <motion.button
+            onClick={() => setActiveTab("appointment")}
+            className="border-2 px-8 py-3 rounded-full font-medium text-md transition-all duration-300"
+            style={{
+              borderColor: theme.colors.ui.border,
+            }}
+            whileHover={{
+              scale: 1.05,
+              backgroundColor: theme.colors.accent.DEFAULT,
+              borderColor: theme.colors.accent.DEFAULT,
+              color: theme.colors.primary.contrast
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Book an Appointment
+          </motion.button>
+        </motion.div>
       </div>
 
       {/* CTA Section */}
       <div
-        className="py-20 px-4"
+        className="max-w-screen-2xl w-full py-16 px-12 flex flex-col space-y-8 mx-auto"
         style={{
-          backgroundImage: `linear-gradient(to bottom right, ${theme.colors.background.DEFAULT}, ${theme.colors.background.muted})`,
+          backgroundColor: theme.colors.background.muted,
         }}
       >
-        <div className="max-w-4xl mx-auto text-center">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold mb-6"
+            className="text-2xl md:text-3xl font-bold"
             style={{
-              color: theme.colors.primary.DEFAULT,
+              color: theme.colors.text.primary,
               fontFamily: theme.fonts.header,
             }}
             initial={{ opacity: 0, y: 20 }}
@@ -1175,14 +1248,14 @@ const ContactPage = () => {
             Experience Hudson Craftsmanship
           </motion.h2>
           <motion.div
-            className="w-32 h-1 mx-auto my-6"
+            className="w-32 h-1 mx-auto"
             style={{ backgroundColor: theme.colors.accent.DEFAULT }}
             initial={{ width: 0 }}
             animate={{ width: "8rem" }}
             transition={{ delay: 0.3, duration: 0.8 }}
           ></motion.div>
           <motion.p
-            className="text-xl mb-10 max-w-2xl mx-auto"
+            className="w-full text-md md:text-lg max-w-2xl mx-auto"
             style={{ color: theme.colors.text.primary }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -1201,7 +1274,7 @@ const ContactPage = () => {
               onClick={() => setActiveTab("appointment")}
               className="py-3 px-8 rounded-full font-medium transition-colors"
               style={{
-                backgroundColor: theme.colors.primary.DEFAULT,
+                backgroundColor: theme.colors.accent.DEFAULT,
                 color: theme.colors.primary.contrast,
               }}
               whileHover={{
@@ -1212,23 +1285,7 @@ const ContactPage = () => {
             >
               Book a Private Tour
             </motion.button>
-            <motion.button
-              className="border-2 py-3 px-8 rounded-full font-medium transition-colors"
-              style={{
-                borderColor: theme.colors.primary.DEFAULT,
-                color: theme.colors.primary.DEFAULT,
-              }}
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: theme.colors.primary.DEFAULT,
-                color: theme.colors.primary.contrast,
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View Our Portfolio
-            </motion.button>
           </motion.div>
-        </div>
       </div>
     </section>
   );
