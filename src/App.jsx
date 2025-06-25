@@ -41,6 +41,7 @@ function App() {
           <Route path="/contact" element={<ContactPage/>} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/forgot-password" element={<ForgotPassword/>} />
+          <Route path="/checkout" element={<Checkout/>} />
         </Routes>
           {/* <DebugBar /> */}
         <Footer/>

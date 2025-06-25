@@ -5,7 +5,6 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import CategoriesSection from "../components/categoriesSection";
 import BestSelling from "../components/bestSellingProducts";
-import LatestArrivalsGridWithModal from "../components/LatestOffers";
 import theme from "../context/Theme";
 import FAQ from "../components/FAQSnippet";
 import WhyChooseUs from "../components/WhyChooseUs";
