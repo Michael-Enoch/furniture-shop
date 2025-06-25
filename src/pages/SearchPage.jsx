@@ -59,7 +59,15 @@ export default function SearchPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
 
-  // Fetch products once on mount
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
+
+ 
   useEffect(() => {
     fetch("/products.json")
       .then((res) => res.json())
@@ -86,7 +94,7 @@ export default function SearchPage() {
       });
   }, []);
 
-  // Sync query to URL
+ 
   useEffect(() => {
     const currentQ = searchParams.get("q") || "";
     if (query !== currentQ) {
