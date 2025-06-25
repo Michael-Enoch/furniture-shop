@@ -3,8 +3,6 @@ import { useState } from "react"
 import { Lock } from 'lucide-react'
 import toast from "react-hot-toast"
 
-
-
 const CheckOut = () =>{
 
     const {cart} = useCart()
@@ -63,7 +61,7 @@ const CheckOut = () =>{
     }
 
     if (!formData.phone.trim()) {
-      errors.phone = "phone is required";
+      errors.phone = "Phone is required";
     }
 
     if (!formData.city.trim()) {
@@ -236,7 +234,11 @@ const CheckOut = () =>{
                     </div>
                     <div className="flex flex-col gap-2 w-full">
                         <label htmlFor="lastName">Description*</label>
-                        <textarea className='text-sm border rounded-md border-gray-100 px-3 py-2.5 h-40 w-full' name="description"></textarea>
+                        <textarea className='text-sm border rounded-md border-gray-100 px-3 py-2.5 h-40 w-full' 
+                            name="description"
+                            onChange={handleChange}
+                        >
+                        </textarea>
                     </div>
                 </div>
                 <div className="flex flex-col gap-5">
