@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Lock } from 'lucide-react'
 import toast from "react-hot-toast"
 
-const CheckOut = () =>{
+const Checkout = () =>{
 
     const {cart} = useCart()
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
@@ -488,4 +488,4 @@ const CheckOut = () =>{
     )
 }
 
-export default CheckOut
+export default Checkout
