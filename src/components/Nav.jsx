@@ -71,7 +71,7 @@ const Avatar = ({ user }) => {
           className="w-full h-full object-cover rounded-full"
         />
       ) : (
-        <span className="text-sm font-medium">{initials}</span>
+        <span className="text-xs font-medium">{initials}</span>
       )}
     </div>
   );
@@ -162,11 +162,11 @@ const Navbar = () => {
     {
       name: "Dashboard",
       to: "/dashboard",
-      icon: <LayoutDashboard size={18} />,
+      icon: <LayoutDashboard size={14} />,
     },
-    { name: "Orders", to: "/orders", icon: <History size={18} /> },
-    { name: "Settings", to: "/settings", icon: <Settings size={18} /> },
-    { name: "Logout", icon: <LogOut size={18} />, onClick: handleLogout },
+    { name: "Orders", to: "/orders", icon: <History size={14} /> },
+    { name: "Settings", to: "/settings", icon: <Settings size={14} /> },
+    { name: "Logout", icon: <LogOut size={14} />, onClick: handleLogout },
   ];
 
   const utilityLinks = [
@@ -174,18 +174,23 @@ const Navbar = () => {
     { name: "Wishlist", to: "/wishlist", icon: <Heart size={18} /> },
   ];
 
+    const MobileUtilityLinks = [
+    { name: "Cart", to: "/cart", icon: <ShoppingCart size={14} /> },
+    { name: "Wishlist", to: "/wishlist", icon: <Heart size={14} /> },
+  ];
+
   const Navlinks = [
     { name: "Home", to: "/" },
     { name: "Shop", to: "/products" },
-    { name: "About Us", to: "/about" },
-    { name: "Contact Us", to: "/contact" },
+    { name: "About", to: "/about" },
+    { name: "Contact", to: "/contact" },
   ];
 
   const MobileNavLinks = [
-    { name: "Home", to: "/", icon: <Home size={18} /> },
-    { name: "Shop", to: "/products", icon: <Sofa size={18} /> },
-    { name: "About Us", to: "/about", icon: <BookOpenText size={18} /> },
-    { name: "Contact Us", to: "/contact", icon: <Mail size={18} /> },
+    { name: "Home", to: "/", icon: <Home size={14} /> },
+    { name: "Shop", to: "/products", icon: <Sofa size={14} /> },
+    { name: "About", to: "/about", icon: <BookOpenText size={14} /> },
+    { name: "Contact", to: "/contact", icon: <Mail size={14} /> },
   ];
 
   return (
@@ -563,7 +568,7 @@ const Navbar = () => {
               )}
 
               {/* Sidebar Links */}
-              <nav className="flex flex-col px-4 py-6 gap-4 overflow-y-auto">
+              <nav className="flex flex-col px-4 py-6 gap-2 overflow-y-auto">
                 <div className="flex items-center gap-2 border rounded-md px-3 py-2">
                   <Search size={16} />
                   <input
@@ -577,7 +582,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Navigation Links */}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-3 py-2 border-b border-[#DAD4CE]">
                   {MobileNavLinks.map((link) => (
                     <NavLink
                       to={link.to}
@@ -585,7 +590,7 @@ const Navbar = () => {
                       onClick={toggleMobileMenu}
                       style={{ color: theme.colors.primary.contrast }}
                       className={({ isActive }) =>
-                        `text-base transition-colors w-full duration-300 flex items-center gap-2 font-medium ${
+                        `text-sm transition-colors w-full duration-300 flex items-center gap-2 font-medium ${
                           isActive
                             ? "text-[#BF6E3D]"
                             : "text-[#F8F5F2] hover:text-[#BF6E3D]"
@@ -599,12 +604,12 @@ const Navbar = () => {
                 </div>
 
                 {/* Action Links */}
-                <div className="flex flex-col gap-2">
-                  {utilityLinks.map((link) => (
+                <div className="flex flex-col gap-3 py-2 border-b border-[#DAD4CE]">
+                  {MobileUtilityLinks.map((link) => (
                     <NavLink
                       key={link.name}
                       to={link.to}
-                      className="flex items-center gap-2 text-base font-medium"
+                      className="flex items-center gap-2 text-sm font-medium"
                       style={{ color: theme.colors.primary.contrast }}
                       onClick={toggleMobileMenu}
                     >
@@ -629,11 +634,8 @@ const Navbar = () => {
                         link.onClick ? (
                           <button
                             key={link.name}
-                            onClick={() => {
-                              link.onClick;
-                              toggleMobileMenu();
-                            }}
-                            className="flex items-center gap-2 text-base font-medium w-full text-left"
+                            onClick={link.onClick}
+                            className="flex items-center gap-2 text-sm font-medium w-full text-left"
                             style={{ color: theme.colors.primary.contrast }}
                           >
                             {link.icon}
@@ -643,7 +645,7 @@ const Navbar = () => {
                           <NavLink
                             key={link.name}
                             to={link.to}
-                            className="flex items-center gap-2 text-base font-medium"
+                            className="flex items-center gap-2 text-sm font-medium"
                             style={{ color: theme.colors.primary.contrast }}
                             onClick={toggleMobileMenu}
                           >
@@ -657,19 +659,19 @@ const Navbar = () => {
                     <>
                       <NavLink
                         to="/login"
-                        className="flex items-center gap-2 text-base font-medium"
+                        className="flex items-center gap-2 text-sm font-medium"
                         style={{ color: theme.colors.primary.contrast }}
                         onClick={toggleMobileMenu}
                       >
-                        <LogIn size={18} /> Login
+                        <LogIn size={14} /> Login
                       </NavLink>
                       <NavLink
                         to="/register"
-                        className="flex items-center gap-2 text-base font-medium"
+                        className="flex items-center gap-2 text-sm font-medium"
                         style={{ color: theme.colors.primary.contrast }}
                         onClick={toggleMobileMenu}
                       >
-                        <UserPlus size={18} /> Register
+                        <UserPlus size={14} /> Register
                       </NavLink>
                     </>
                   )}

@@ -4,6 +4,9 @@ import { Heart, ShoppingCart, Star } from "lucide-react";
 import theme from "../context/Theme";
 import { useWishlist } from "../context/WishlistContext";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const StarRating = ({ rating = 0, max = 5 }) => (
   <div aria-label={`Rating: ${rating} out of ${max}`} role="img">
@@ -29,7 +32,9 @@ const BestSelling = ({ sectionIndex = 4 }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const BASE_URL = "/products.json";
   const { toggleWishlist, isWishlisted } = useWishlist();
+  const navigate = useNavigate();
   const {addToCart} = useCart()
+  const {currentUser} = useAuth();
   const bgColor =
     sectionIndex % 2 === 0
       ? theme.colors.background.DEFAULT
@@ -46,8 +51,13 @@ const BestSelling = ({ sectionIndex = 4 }) => {
     (product) => product.price > 3000 && product.price < 5000
   );
 
-    const handleAddToCart = (product) => {
+  const handleAddToCart = (product) => {
+    if (!currentUser) {
+      toast.error("Please register or log in to continue")
+      navigate("/register")
+    }
     addToCart(product);
+
   };
 
   return (
@@ -105,6 +115,7 @@ const BestSelling = ({ sectionIndex = 4 }) => {
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <button
                   className="px-6 py-2 rounded-md text-sm font-medium text-white tracking-wide uppercase"
+                  onClick={() => setSelectedProduct(product)}
                   style={{
                     backgroundColor: theme.colors.accent.DEFAULT,
                     fontFamily: theme.fonts.alt,
@@ -192,7 +203,7 @@ const BestSelling = ({ sectionIndex = 4 }) => {
               <img
                 src={selectedProduct.image}
                 alt={selectedProduct.name}
-                className="w-full md:w-1/2 rounded-xl object-cover h-60"
+                className="w-full md:w-1/2 rounded-xl object-cover h-auto"
               />
               <div className="flex-1 space-y-3">
                 <h3

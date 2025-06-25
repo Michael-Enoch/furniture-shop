@@ -155,7 +155,7 @@ const onSubmit = async (data) => {
           <motion.button
             type="submit"
             disabled={loading}
-            className={`w-full py-3 rounded-md flex items-center justify-center space-x-2 transition-all duration-300 ${
+            className={`w-full py-2 rounded-md flex items-center justify-center space-x-2 transition-all duration-300 ${
               loading ? "opacity-70 cursor-not-allowed" : "hover:opacity-90"
             }`}
             style={{ 
@@ -173,7 +173,7 @@ const onSubmit = async (data) => {
               </svg>
             ) : (
               <>
-                <FiLogIn className="h-5 w-5" />
+                <FiLogIn size={15} />
                 <span>Sign In</span>
               </>
             )}
