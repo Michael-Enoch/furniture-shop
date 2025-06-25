@@ -34,18 +34,17 @@ export const CartPage = () => {
   if (!cart.length) {
     return (
       <>
-      <Breadcrumbs/>
-      <div className="min-h-[70vh] w-full max-w-screen-2xl flex items-center justify-center text-center text-[#2D2D2D]">
-      
-        <div className="w-full flex flex-col items-center justify-center gap-3">
-          <h2 className="text-2xl font-bold">
-            Your cart is empty 🛒
-          </h2>
-          <Link to="/products" className="text-[#A65A2E] hover:underline text-lg">
-            Browse Products
-          </Link>
+        <Breadcrumbs />
+        <div className="min-h-[70vh] w-full max-w-screen-2xl flex items-center justify-center text-center text-[#2D2D2D]">
+          <div className="w-full flex flex-col items-center justify-center gap-3">
+            <h2 className="text-2xl font-bold">
+              Your cart is empty 🛒
+            </h2>
+            <Link to="/products" className="text-[#A65A2E] hover:underline text-lg">
+              Browse Products
+            </Link>
+          </div>
         </div>
-      </div>
       </>
     );
   }
@@ -53,63 +52,67 @@ export const CartPage = () => {
   return (
     <div className="py-10 px-4 max-w-6xl mx-auto text-[#2D2D2D]">
       <Breadcrumbs />
-      <h1 className="text-3xl font-bold mb-6 text-primary-dark">
+      <h1 className="text-4xl font-bold mb-6 text-primary-dark">
         Your Shopping Cart
       </h1>
-
-      <div className="grid gap-6">
+      <div className="grid gap-6 pt-2">
         {cart.map((item) => (
           <div
             key={item.id}
-            className="flex flex-col md:flex-row justify-between items-center bg-[#F3EFEB] rounded-lg shadow p-4 border"
+            className="flex flex-col md:flex-row justify-between items-center bg-white pb-4 border-b"
           >
-            {/* Product Info */}
-            <div className="flex items-center gap-4 w-full md:w-1/2">
+            <div className="flex items-center gap-8 w-full md:w-1/2">
               <img
-                src={item.image || "/images/placeholder.jpg"}
-                alt={item.name || "Product"}
+                src={item.image || "https://via.placeholder.com/100"}
+                alt={item.name}
                 className="w-24 h-24 object-cover rounded"
               />
-              <div>
-                <h3 className="font-semibold text-lg text-gray-800">
-                  {item.name || "Unnamed Product"}
+              <div className="flex flex-col gap-1">
+                <h3 className="font-semibold text-lg text-primary-dark">
+                  {item.name}
                 </h3>
-                <p className="text-gray-600">
-                  ${item.price?.toFixed(2) || "0.00"}
+                <p className="font-semibold text-sm text-primary-dark">
+                  Size: {item.size}
+                </p>
+                <p className="font-semibold text-sm text-primary-dark">
+                  Color: {item.color}
                 </p>
               </div>
             </div>
 
-            {/* Quantity + Remove */}
-            <div className="flex items-center gap-4 mt-4 md:mt-0">
-              <button
-                onClick={() => decreaseQty(item.id)}
-                className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-              >
-                -
-              </button>
-              <span className="min-w-[20px] text-center font-medium">
-                {item.quantity}
-              </span>
-              <button
-                onClick={() => increaseQty(item)}
-                className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-              >
-                +
-              </button>
-              <button
-                onClick={() => removeFromCart(item.id)}
-                className="text-red-500 hover:text-red-700"
-              >
-                <Trash2 size={18} />
-              </button>
+            <div className="flex flex-col gap-3 md:gap-6 md:flex-row items-center">
+              <p className="text-2xl font-semibold text-gray-600">
+                ${item.price.toFixed(2)}
+              </p>
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => decreaseQty(item.id)}
+                  className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                >
+                  -
+                </button>
+                <span className="min-w-[20px] text-center font-medium">
+                  {item.quantity}
+                </span>
+                <button
+                  onClick={() => increaseQty(item)}
+                  className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                >
+                  +
+                </button>
+                <button
+                  onClick={() => removeFromCart(item.id)}
+                  className="text-red-500 hover:text-red-700"
+                >
+                  <Trash2 size={18} />
+                </button>
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Total */}
-      <div className="mt-10 text-right">
+      <div className="mt-8 text-right">
         <h2 className="text-2xl font-semibold">
           Total: <span className="text-primary">${total}</span>
         </h2>

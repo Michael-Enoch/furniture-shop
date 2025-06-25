@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
-import { useEffect, useRef, useState } from "react";
 import { getDatabase, onValue, ref, runTransaction } from "firebase/database";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../assets/images/hudson.png";
 import theme from "../context/Theme.jsx";
@@ -28,6 +27,7 @@ import {
 import { useCart } from "../context/CartContext.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useWishlist } from "../context/WishlistContext.jsx";
+import { useEffect, useRef, useState } from "react";
 
 // Get initials from Full name
 const getInitials = (name = "", email = "") => {
@@ -133,12 +133,15 @@ const Navbar = () => {
   useEffect(() => {
     const db = getDatabase(app);
     const countRef = ref(db, "visitorCount");
-    runTransaction(countRef, (current) => (current || 0) + 1).catch((err) =>
-      console.error("Transaction failed:", err)
-    );
+
+    runTransaction(countRef, (current) => (current || 0) + 1)
+      .then(() => console.log("Visitor count incremented"))
+      .catch((err) => console.error("Transaction failed:", err));
+
     const unsubscribe = onValue(countRef, (snapshot) => {
       setVisitorCount(snapshot.val());
     });
+
     return () => unsubscribe();
   }, []);
 
