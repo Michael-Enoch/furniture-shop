@@ -5,7 +5,7 @@ import Aos from "aos";
 import CategoriesSection from "./categoriesSection";
 import BestSelling from "./bestSellingProducts"; 
 import Ticker from "../components/ScrollingTicker";
-import LatestArrivalsGridWithModal from "./LatestArrivals";
+import LatestOffersGridWithModal from "./LatestOffers";
 import theme from "../context/Theme";
 
 const Homepage = () => {
@@ -74,7 +74,7 @@ useEffect(() => {
   <>
     <Hero />
     <CategoriesSection/>
-    <LatestArrivalsGridWithModal products={latestArrivals} theme={theme}/>
+    <LatestOffersGridWithModal products={latestArrivals} theme={theme}/>
     <BestSelling/>
     <Ticker/>
   </>
