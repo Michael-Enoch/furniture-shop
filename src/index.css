@@ -10,6 +10,7 @@ html {
 
 h4,h3,h2,h1 {
   font-family: 'Raleway', sans-serif;
+  color: #3A2F2A;
 }
 
 .scrollbar::-webkit-scrollbar {
@@ -20,6 +21,37 @@ h4,h3,h2,h1 {
 .scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+
+/* Custom slide-in-from-right animation */
+.toast-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.toast-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 300ms ease;
+}
+.toast-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+.toast-exit-active {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 300ms ease;
+}
+
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
 
 
 

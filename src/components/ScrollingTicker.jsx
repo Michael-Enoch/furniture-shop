@@ -61,7 +61,7 @@
         }}
       >
         <Marquee pauseOnHover gradient={false} speed={50}>
-          <p className="py-2">{message}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{message}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{message}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{message}</p>
+          <p className="py-2">{message}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{message}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{message}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{message}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         </Marquee>
       </div>
     );

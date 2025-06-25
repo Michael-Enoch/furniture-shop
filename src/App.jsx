@@ -1,4 +1,4 @@
-import { Toaster } from "react-hot-toast";
+
 import "./App.css";
 import { AuthProvider } from "./context/AuthContext";
 import Register from "./pages/RegisterForm";
@@ -19,6 +19,14 @@ import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetailPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import { WishlistProvider } from "./context/WishlistContext";
+import Checkout from "./pages/checkOut";
+import { Toaster } from "sonner";
+import AdminProtectedRoute from "./components/AdminProtectedRoute";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminHome from "./pages/admin/AdminHome";
+import AdminUsers from "./pages/admin/UsersManagement";
+import AdminProducts from "./pages/admin/ProductsManagement";
+import OrdersManagement from "./pages/admin/OrdersManagement";
 
 
 function App() {
@@ -27,7 +35,12 @@ function App() {
     <CartProvider>
     <WishlistProvider>
       <Router>
-        <Toaster position="top-right" reverseOrder={false} />
+         <Toaster
+        position="bottom-center"
+        richColors
+        closeButton
+        expand={true}
+      />
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -42,6 +55,15 @@ function App() {
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/forgot-password" element={<ForgotPassword/>} />
           <Route path="/checkout" element={<Checkout/>} />
+           {/* Admin */}
+  <Route element={<AdminProtectedRoute />}>
+    <Route path="/admin" element={<AdminDashboard />}>
+      <Route index element={<AdminHome />} />
+      <Route path="users" element={<AdminUsers />} />
+      <Route path="products" element={<AdminProducts />} />
+      <Route path="orders" element={<OrdersManagement />} />
+    </Route>
+  </Route>
         </Routes>
           {/* <DebugBar /> */}
         <Footer/>

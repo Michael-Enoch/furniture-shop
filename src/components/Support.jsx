@@ -15,10 +15,6 @@ const Support = ({ sectionIndex = 12 }) => {
         <div className="bg-[#F3EFEB] p-10 rounded-xl text-center">
           <h2
             className="text-2xl font-bold mb-2"
-            style={{
-              fontFamily: theme.fonts.header,
-              color: theme.colors.primary.DEFAULT,
-            }}
           >
             Need Help?
           </h2>
