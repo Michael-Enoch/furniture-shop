@@ -33,8 +33,11 @@ export const CartPage = () => {
 
   if (!cart.length) {
     return (
-      <div className="min-h-[70vh] flex items-center justify-center text-center text-[#2D2D2D]">
-        <div>
+      <>
+      <Breadcrumbs/>
+      <div className="min-h-[70vh] w-full max-w-screen-2xl flex items-center justify-center text-center text-[#2D2D2D]">
+      
+        <div className="w-full flex flex-col items-center justify-center gap-3">
           <h2 className="text-2xl font-bold">
             Your cart is empty 🛒
           </h2>
@@ -43,6 +46,7 @@ export const CartPage = () => {
           </Link>
         </div>
       </div>
+      </>
     );
   }
 
