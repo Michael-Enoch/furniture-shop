@@ -1,0 +1,77 @@
+{
+    "orders": [
+  {
+    "id": "c1538aa5-cbc2-4661-82f3-00fd520016de",
+    "userId": "aaaf24b1-db18-49fe-b3bd-4f68fb441af2",
+    "products": [
+      {
+        "productId": "cb96bccd-2d1f-45d8-98aa-953a0b0e0826",
+        "quantity": 1,
+        "selectedColor": "6ffc72cc-8e97-4b52-b416-28e4d5a72f16",
+        "selectedSize": "6h0i1j2k-9l2m-4n3o-6j7k-0m1n2o3p4q5r"
+      }
+    ],
+    "status": "processing",
+    "totalAmount": 1199.99,
+    "shippingAddress": {
+      "street": "123 Elm Street",
+      "city": "Lagos",
+      "state": "LA",
+      "zip": "100001",
+      "country": "Nigeria"
+    },
+    "createdAt": "2025-06-03T07:44:43.662168"
+  },
+  {
+    "id": "a2c9b1b8-7f60-42c1-9c0e-5f53c93ef010",
+    "userId": "f379d351-867e-4c1d-9ea7-e2c04d9386a9",
+    "products": [
+      {
+        "productId": "2a0cc6f3-4bfa-4a3e-b71c-1cdb742c98a2",
+        "quantity": 1,
+        "selectedColor": "f1c68cc3-3d87-47e2-9889-7a7f6c7e9c11",
+        "selectedSize": "2e4g6h8i-0j2k-4l6m-8n0p-2r4s6t8u9w0x"
+      },
+      {
+        "productId": "6c9e2da9-4701-4e73-84ce-d9732b17cb99",
+        "quantity": 2,
+        "selectedColor": "color-brown",
+        "selectedSize": "large"
+      }
+    ],
+    "status": "shipped",
+    "totalAmount": 1800.50,
+    "shippingAddress": {
+      "street": "89 Maple Drive",
+      "city": "Abuja",
+      "state": "FCT",
+      "zip": "900001",
+      "country": "Nigeria"
+    },
+    "createdAt": "2025-06-05T15:23:12.991200"
+  },
+  {
+    "id": "7e3a87cc-8e1b-4a4f-9628-3d4462df9389",
+    "userId": "c56133cd-7d12-487f-b2a3-c33907f5878c",
+    "products": [
+      {
+        "productId": "cb96bccd-2d1f-45d8-98aa-953a0b0e0826",
+        "quantity": 1,
+        "selectedColor": "gray",
+        "selectedSize": "medium"
+      }
+    ],
+    "status": "cancelled",
+    "totalAmount": 999.99,
+    "shippingAddress": {
+      "street": "456 Bamboo Street",
+      "city": "Port Harcourt",
+      "state": "Rivers",
+      "zip": "500001",
+      "country": "Nigeria"
+    },
+    "createdAt": "2025-06-07T10:44:33.462560"
+  }
+]
+
+}

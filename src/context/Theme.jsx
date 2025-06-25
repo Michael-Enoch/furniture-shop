@@ -20,7 +20,8 @@ const theme = {
 
     // ✅ Backgrounds — page, sections, cards
     background: {
-      DEFAULT: '#F3EFEB',       // Soft Linen — neutral, calming base
+      DEFAULT: '#F3EFEB',      // Soft Linen — neutral, calming base
+       alt: "#EFEAE5",       
       muted: '#EAE6E1',         // Pale Taupe — alternative section backgrounds
     },
 

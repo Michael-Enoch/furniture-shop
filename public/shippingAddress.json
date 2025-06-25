@@ -1,0 +1,41 @@
+{
+    "shippingAddress": [
+  {
+    "id": "aaaf24b1-db18-49fe-b3bd-4f68fb441af2",
+    "addresses": [
+      {
+        "addressLine": "123 Elm Street",
+        "city": "Lagos",
+        "state": "LA",
+        "zip": "100001",
+        "country": "Nigeria"
+      }
+    ]
+  },
+  {
+    "id": "f379d351-867e-4c1d-9ea7-e2c04d9386a9",
+    "addresses": [
+      {
+        "addressLine": "89 Maple Drive",
+        "city": "Abuja",
+        "state": "FCT",
+        "zip": "900001",
+        "country": "Nigeria"
+      }
+    ]
+  },
+  {
+    "id": "c56133cd-7d12-487f-b2a3-c33907f5878c",
+    "addresses": [
+      {
+        "addressLine": "456 Bamboo Street",
+        "city": "Port Harcourt",
+        "state": "Rivers",
+        "zip": "500001",
+        "country": "Nigeria"
+      }
+    ]
+  }
+]
+
+}
