@@ -18,14 +18,14 @@ import DebugBar from "./components/DebugBar";
 import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetailPage";
 import ForgotPassword from "./pages/ForgotPassword";
-import { WishlistProvider } from "./context/WishlistContext";
+import CheckOut from './pages/Checkout'
+
 
 
 function App() {
   return (
     <AuthProvider>
     <CartProvider>
-    <WishlistProvider>
       <Router>
         <Toaster position="top-right" reverseOrder={false} />
         <Navbar />
@@ -41,12 +41,12 @@ function App() {
           <Route path="/contact" element={<ContactPage/>} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/forgot-password" element={<ForgotPassword/>} />
+          <Route path="/checkout" element={<CheckOut/>} />
         </Routes>
           {/* <DebugBar /> */}
         <Footer/>
         <Ticker />
       </Router>
-      </WishlistProvider>
       </CartProvider>
     </AuthProvider>
   );
