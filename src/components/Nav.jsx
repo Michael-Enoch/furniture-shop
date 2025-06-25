@@ -21,6 +21,7 @@ import {
   Home,
 } from "lucide-react";
 import { useCart } from "../context/CartContext.jsx";
+import { useEffect, useState, useRef } from "react"
 
 const Navbar = () => {
   const [visitorCount, setVisitorCount] = useState(0);

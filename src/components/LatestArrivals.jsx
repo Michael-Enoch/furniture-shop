@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { ShoppingCart } from "lucide-react";
+import {useCart} from '../context/CartContext'
 
 export default function LatestArrivalsGridWithModal({ products, theme, sectionIndex = 3 }) {
+  const {addToCart} = useCart()
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const bgColor =
@@ -127,7 +129,7 @@ export default function LatestArrivalsGridWithModal({ products, theme, sectionIn
                   color: theme.colors.primary.contrast,
                   fontFamily: theme.fonts.body,
                 }}
-                onClick={() => console.log(`Added ${product.name} to cart`)}
+                onClick={() => addToCart(product)}
               >
                 <ShoppingCart size={16} />
                 Add to Cart
