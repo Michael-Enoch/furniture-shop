@@ -261,7 +261,7 @@ const Register = () => {
           <motion.button
             type="submit"
             disabled={loading}
-            className={`w-full py-2.5 text-md rounded-lg flex items-center justify-center space-x-2 transition-all duration-300 ${
+            className={`w-full py-2 text-md rounded-lg flex items-center justify-center space-x-2 transition-all duration-300 ${
               loading ? "opacity-70 cursor-not-allowed" : "hover:opacity-90"
             }`}
             style={{ 
@@ -281,7 +281,6 @@ const Register = () => {
               </svg>
             ) : (
               <>
-                <Home className="h-4 w-4" />
                 <span>Create Account</span>
               </>
             )}
