@@ -15,6 +15,7 @@ import theme from "../context/Theme";
 import Breadcrumbs from "../components/BreadCrumbs";
 import { useCart } from "../context/CartContext";
 import { toast } from "sonner";
+import { useAuth } from "../context/AuthContext";
 
 const PAGE_SIZE = 6;
 
@@ -32,6 +33,7 @@ const ProductPage = () => {
   const [showAllMaterials, setShowAllMaterials] = useState(false);
   const [showAllTypes, setShowAllTypes] = useState(false);
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
 
   const { addToCart } = useCart();
 
@@ -41,8 +43,6 @@ const ProductPage = () => {
   const price = searchParams.get("price") || "";
   const material = searchParams.get("material") || "";
   const page = parseInt(searchParams.get("page") || "1");
-  console.log("📦 Product to add:", products);
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
@@ -163,23 +163,46 @@ const ProductPage = () => {
   const prices = ["Under $500", "$500 - $1000", "Above $1000"];
 
   const handleAddToCart = (product) => {
-  addToCart(product);
+    if (!currentUser) {
+      toast.error("⚠️ You need to sign in to add items to your cart.", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#3A2F2A",
+          color: "#F8F5F2",
+          border: "1px solid #A65A2E",
+          padding: "14px",
+          fontSize: "13px",
+          borderRadius: "8px",
+        },
+      });
+      navigate("/login");
+      return;
+    }
 
- toast.success(`Added to cart!`, {
-  position: "bottom-center",
-  style: {
-    backgroundColor: "#3A2F2A",
-    color: "#F8F5F2", 
-    border: "1px solid #A65A2E",
-  },
-  description: "View your cart to checkout.",
-  action: {
-    label: "View Cart",
-    onClick: () => navigate("/cart"),
-  },
-});
+    addToCart(product);
 
-};
+    toast.success(`✅ Added to cart!`, {
+      position: "bottom-right",
+      style: {
+        backgroundColor: "#3A2F2A",
+        color: "#F8F5F2",
+        border: "1px solid #A65A2E",
+        padding: "14px",
+        fontSize: "13px",
+        borderRadius: "8px",
+      },
+      iconTheme: {
+        primary: "#A65A2E",
+        secondary: "#F8F5F2",
+      },
+      duration: 3000,
+      description: "View your cart to checkout.",
+      action: {
+        label: "View Cart",
+        onClick: () => navigate("/cart"),
+      },
+    });
+  };
 
   return (
     <section
@@ -542,7 +565,7 @@ const ProductPage = () => {
                             color: theme.colors.primary.contrast,
                             fontFamily: theme.fonts.body,
                           }}
-                         onClick={() => handleAddToCart(product)}
+                          onClick={() => handleAddToCart(product)}
                         >
                           <ShoppingCart size={16} />
                           Add to Cart
