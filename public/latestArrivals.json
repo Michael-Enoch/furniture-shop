@@ -14,27 +14,11 @@
     "durability": "7 years",
     "price": 599.99,
     "discount": "10%",
-    "image": "../src/assets/images/platform.jpeg"
+    "originalPrice": 666.66,
+    "image": "/images/platform.jpeg"
   },
   {
     "id": 102,
-    "name": "Luna L-Shaped Sectional",
-    "category": "Living Room",
-    "type": "Sectional Sofa",
-    "brand": "UrbanNest",
-    "material": "Fabric",
-    "materialType": "Linen Blend",
-    "color": "Slate Gray",
-    "colorHex": "#4A4A4A",
-    "size": "Large",
-    "dimensions": "95 x 95 x 35 inches",
-    "durability": "8 years",
-    "price": 1299.00,
-    "discount": "15%",
-    "image": "../src/assets/images/L-sectional.jpg"
-  },
-  {
-    "id": 103,
     "name": "Veranda Teak Bistro Set",
     "category": "Outdoor",
     "type": "Bistro Set",
@@ -48,10 +32,11 @@
     "durability": "10 years",
     "price": 429.00,
     "discount": "20%",
-    "image": "../src/assets/images/teak.jpg"
+    "originalPrice": 536.25,
+    "image": "/images/teak.jpg"
   },
   {
-    "id": 104,
+    "id": 103,
     "name": "Elevate Adjustable Standing Desk",
     "category": "Home Office",
     "type": "Standing Desk",
@@ -65,10 +50,11 @@
     "durability": "5 years",
     "price": 389.00,
     "discount": "5%",
-    "image": "../src/assets/images/desk.jpeg"
+    "originalPrice": 409.47,
+    "image": "/images/desk.jpeg"
   },
   {
-    "id": 105,
+    "id": 104,
     "name": "Arlo Mid-Century Dining Table",
     "category": "Dining Room",
     "type": "Dining Table",
@@ -82,10 +68,11 @@
     "durability": "6 years",
     "price": 649.00,
     "discount": "12%",
-    "image": "../src/assets/images/mid-century.jpeg"
+    "originalPrice": 737.50,
+    "image": "/images/mid-century.jpeg"
   },
   {
-    "id": 106,
+    "id": 105,
     "name": "Nimbus Recliner Chair",
     "category": "Living Room",
     "type": "Recliner",
@@ -99,10 +86,11 @@
     "durability": "10 years",
     "price": 799.00,
     "discount": "18%",
-    "image": "../src/assets/images/recliner.jpeg"
+    "originalPrice": 974.39,
+    "image": "/images/recliner.jpeg"
   },
   {
-    "id": 107,
+    "id": 106,
     "name": "Breeze Outdoor Chaise Lounger",
     "category": "Outdoor",
     "type": "Chaise",
@@ -116,10 +104,11 @@
     "durability": "7 years",
     "price": 349.00,
     "discount": "25%",
-    "image": "../src/assets/images/chaise.jpeg"
+    "originalPrice": 465.33,
+    "image": "/images/chaise.jpeg"
   },
   {
-    "id": 108,
+    "id": 107,
     "name": "Nordic Bookshelf With Cabinet",
     "category": "Home Office",
     "type": "Bookshelf",
@@ -133,10 +122,11 @@
     "durability": "6 years",
     "price": 289.00,
     "discount": "10%",
-    "image": "../src/assets/images/nordic.jpeg"
+    "originalPrice": 321.11,
+    "image": "/images/nordic.jpeg"
   },
   {
-    "id": 109,
+    "id": 108,
     "name": "Ember Velvet Dining Chairs",
     "category": "Dining Room",
     "type": "Dining Chairs",
@@ -150,6 +140,7 @@
     "durability": "4 years",
     "price": 229.00,
     "discount": "15%",
-    "image": "../src/assets/images/ember.jpeg"
+    "originalPrice": 269.41,
+    "image": "/images/ember.jpeg"
   }
 ]
