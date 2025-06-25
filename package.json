@@ -32,6 +32,7 @@
     "react-router-dom": "^7.6.2",
     "react-scrollbars-custom": "^4.1.1",
     "react-toastify": "^11.0.5",
+    "sonner": "^2.0.5",
     "swiper": "^11.2.8",
     "tailwindcss": "^4.1.8",
     "three": "^0.177.0"
