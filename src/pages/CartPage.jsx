@@ -11,54 +11,46 @@ export const CartPage = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  const increaseQty = (item) => {
-    addToCart(item);
-  };
+  const increaseQty = (item) => addToCart(item);
 
   const decreaseQty = (id) => {
     const existingItem = cart.find((item) => item.id === id);
-    if (existingItem.quantity === 1) {
+    if (existingItem?.quantity === 1) {
       removeFromCart(id);
     } else {
-      const updatedCart = cart.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity - 1 } : item
-      );
-
-      updatedCart.forEach((item) => {
-        if (item.id === id) {
-          removeFromCart(item.id);
-          for (let i = 0; i < item.quantity; i++) {
-            addToCart(item);
-          }
-        }
-      });
+      const updatedItem = { ...existingItem, quantity: existingItem.quantity - 1 };
+      removeFromCart(id);
+      for (let i = 0; i < updatedItem.quantity; i++) {
+        addToCart(updatedItem);
+      }
     }
   };
 
-  const total = cart
-    .reduce((sum, item) => sum + item.price * item.quantity, 0)
-    .toFixed(2);
+  const total = cart.reduce(
+    (sum, item) => sum + (item.price || 0) * (item.quantity || 1),
+    0
+  ).toFixed(2);
 
   if (!cart.length) {
     return (
-      <div className="min-h-[70vh] flex items-center justify-center text-center">
-        <div>
-          <h2 className="text-2xl font-bold mb-4 text-gray-700">
-            Your cart is empty 🛒
-          </h2>
-          <Link
-            to="/products"
-            className="text-blue-600 hover:underline text-lg"
-          >
-            Browse Products
-          </Link>
+      <>
+        <Breadcrumbs />
+        <div className="min-h-[70vh] w-full max-w-screen-2xl flex items-center justify-center text-center text-[#2D2D2D]">
+          <div className="w-full flex flex-col items-center justify-center gap-3">
+            <h2 className="text-2xl font-bold">
+              Your cart is empty 🛒
+            </h2>
+            <Link to="/products" className="text-[#A65A2E] hover:underline text-lg">
+              Browse Products
+            </Link>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="py-10 px-4 max-w-6xl mx-auto">
+    <div className="py-10 px-4 max-w-6xl mx-auto text-[#2D2D2D]">
       <Breadcrumbs />
       <h1 className="text-4xl font-bold mb-6 text-primary-dark">
         Your Shopping Cart
@@ -79,7 +71,7 @@ export const CartPage = () => {
                 <h3 className="font-semibold text-lg text-primary-dark">
                   {item.name}
                 </h3>
-                <p className=" font-semibold text-sm text-primary-dark">
+                <p className="font-semibold text-sm text-primary-dark">
                   Size: {item.size}
                 </p>
                 <p className="font-semibold text-sm text-primary-dark">
@@ -87,19 +79,19 @@ export const CartPage = () => {
                 </p>
               </div>
             </div>
-            <p className="pt-5 text-2xl font-semibold text-gray-600">
-              ${item.price.toFixed(2)}
-            </p>
 
-            <div className="flex items-center gap-8 mt-4 md:mt-0">
-              <div className="flex items-center gap-2 ">
+            <div className="flex flex-col gap-3 md:gap-6 md:flex-row items-center">
+              <p className="text-2xl font-semibold text-gray-600">
+                ${item.price.toFixed(2)}
+              </p>
+              <div className="flex items-center gap-4">
                 <button
                   onClick={() => decreaseQty(item.id)}
                   className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
                 >
                   -
                 </button>
-                <span className="min-w-[20px] text-center">
+                <span className="min-w-[20px] text-center font-medium">
                   {item.quantity}
                 </span>
                 <button
@@ -108,13 +100,13 @@ export const CartPage = () => {
                 >
                   +
                 </button>
+                <button
+                  onClick={() => removeFromCart(item.id)}
+                  className="text-red-500 hover:text-red-700"
+                >
+                  <Trash2 size={18} />
+                </button>
               </div>
-              <button
-                onClick={() => removeFromCart(item.id)}
-                className="text-red-500 hover:text-red-700"
-              >
-                <Trash2 size={18} />
-              </button>
             </div>
           </div>
         ))}
@@ -125,7 +117,7 @@ export const CartPage = () => {
           Total: <span className="text-primary">${total}</span>
         </h2>
         <Link to="/checkout">
-          <button className="mt-4 px-6 py-3 bg-blue-600 text-white  rounded hover:bg-blue-700 transition font-medium hover:bg-primary-dark">
+          <button className="mt-4 px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition font-medium">
             Proceed to Checkout
           </button>
         </Link>

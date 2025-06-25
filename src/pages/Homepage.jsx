@@ -5,7 +5,6 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import CategoriesSection from "../components/categoriesSection";
 import BestSelling from "../components/bestSellingProducts";
-import LatestOffersGridWithModal from "../components/LatestOffers";
 import theme from "../context/Theme";
 import FAQ from "../components/FAQSnippet";
 import WhyChooseUs from "../components/WhyChooseUs";
@@ -17,6 +16,9 @@ import Gallery from "../components/Gallery";
 import MiniAboutContact from "../components/MiniAboutContact";
 import Features from "../components/Features";
 import Brands from "../components/Brands";
+import LatestOffersGridWithModal from "../components/LatestOffers";
+import Support from "../components/Support";
+import UserExperience from "../components/UserExperience";
 
 
 const Homepage = () => {
@@ -24,8 +26,8 @@ const Homepage = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
   
-  const BASE_URL = "/furniture_database_50_products.json";
-  const [latestArrivals, setLatestArrivals] = useState([]);
+  const BASE_URL = "/products.json";
+  const [latestOffers, setLatestOffers] = useState([]);
   const [offers, setOffers] = useState([]);
 
   // Fetch offers + data together
@@ -36,7 +38,7 @@ const Homepage = () => {
         setOffers(offerRes.data);
 
         const latestRes = await axios.get("/latestArrivals.json");
-        setLatestArrivals(latestRes.data);
+        setLatestOffers(latestRes.data.offers);
       } catch (err) {
         console.error("Failed to load homepage data:", err);
       } finally {
@@ -53,67 +55,38 @@ const Homepage = () => {
     Aos.refresh();
   }, []);
 
-  const fetchCategoriesAndProducts = async () => {
-    try {
-      const response = await axios.get(BASE_URL);
-      const data = response.data;
+  const fetchFiltersFromProducts = async () => {
+  try {
+    const response = await axios.get(BASE_URL);
+    const { products } = response.data;
 
-      const categories = data.categories;
-      const products = data.products;
-
-      // Get Bedroom category ID
-      const bedroomCategoryId = categories.find(
-        (cat) => cat.name === "Bedroom"
-      )?.id;
-
-      // Filter Bedroom products
-      const bedroomProducts = products.filter(
-        (product) => product.categoryId === bedroomCategoryId
-      );
-
-      console.log("Bedroom Products:", bedroomProducts);
-
-      const LivingRoomCategoryId = categories.find(
-        (cat) => cat.name === "Living Room"
-      )?.id;
-
-      // Filter Bedroom products
-      const LivingRoomProducts = products.filter(
-        (product) => product.categoryId === LivingRoomCategoryId
-      );
-
-      console.log("LivingRoom Products:", LivingRoomProducts);
-
-
-      // Extract unique filters
-      const bedroomBrands = [...new Set(bedroomProducts.map((p) => p.brand))];
-      const bedroomTypes = [...new Set(bedroomProducts.map((p) => p.type))];
-      const bedroomColors = [...new Set(bedroomProducts.map((p) => p.color))];
-      const bedroomSizes = [...new Set(bedroomProducts.map((p) => p.size))];
-      const bedroomMaterials = [
-        ...new Set(bedroomProducts.map((p) => p.material)),
-      ];
-      const bedroomMaterialTypes = [
-        ...new Set(bedroomProducts.map((p) => p.materialType)),
-      ];
-      const livingroomBrands = [...new Set(LivingRoomProducts.map((p) => p.brand))];
-
-      // Log filters
-      console.log("Bedroom Brands:", bedroomBrands);
-      console.log("LivingRoom Brands:", livingroomBrands);
-      console.log("Bedroom Types:", bedroomTypes);
-      console.log("Bedroom Colors:", bedroomColors);
-      console.log("Bedroom Sizes:", bedroomSizes);
-      console.log("Bedroom Materials:", bedroomMaterials);
-      console.log("Bedroom Material Types:", bedroomMaterialTypes);
-      console.log("Categories:", categories);
-    } catch (error) {
-      console.error("Error fetching data:", error);
+    if (!products || !Array.isArray(products)) {
+      console.warn("No products found in response");
+      return;
     }
-  };
+ const bedroomProducts = products.filter((p) => p.category === "Bedroom");
+    const livingRoomProducts = products.filter((p) => p.category === "Living Room");
+    const outdoorProducts = products.filter((p) => p.category === "Outdoor");
+
+    const brands = [...new Set(products.map((p) => p.brand).filter(Boolean))];
+    const types = [...new Set(products.map((p) => p.type).filter(Boolean))];
+    const materials = [...new Set(products.map((p) => p.material).filter(Boolean))];
+    const colors = [...new Set(products.map((p) => p.color).filter(Boolean))];
+
+    console.log(" Bedroom Products:", bedroomProducts);
+    console.log("Living Room Products:", livingRoomProducts);
+    console.log("Outdoor Products:", outdoorProducts);
+    console.log("Brands:", brands);
+    console.log("Types:", types);
+    console.log("Materials:", materials);
+    console.log("Colors:", colors);
+  } catch (error) {
+    console.error("Error fetching products.json:", error);
+  }
+};
 
   useEffect(() => {
-    fetchCategoriesAndProducts();
+    fetchFiltersFromProducts();
   }, []);
 
   return (
@@ -128,7 +101,7 @@ const Homepage = () => {
       <Features/>
       <CategoriesSection />
       <Brands/>
-      <LatestOffersGridWithModal products={latestArrivals} theme={theme} />
+      <LatestOffersGridWithModal products={latestOffers} theme={theme} />
       <BestSelling />
       <WhyChooseUs />
       <Gallery />
@@ -137,6 +110,8 @@ const Homepage = () => {
       <FAQ />
       <Newsletter />
       <InstagramFeed />
+      <Support/>
+      <UserExperience/>
       <CTASection />
     </main>
   );

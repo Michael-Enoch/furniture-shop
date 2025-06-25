@@ -34,60 +34,14 @@ import teamJames from "../assets/images/profile-images/person3.jpg";
 import teamSophia from "../assets/images/profile-images/fem4.jpg";
 import teamBenjamin from "../assets/images/profile-images/person4.jpeg";
 import AboutUsSections from "../components/AboutUsSections";
+import theme from "../context/Theme";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutUs = () => {
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-
-  const theme = {
-    colors: {
-      primary: {
-        DEFAULT: "#3A2F2A",
-        contrast: "#F8F5F2",
-      },
-      accent: {
-        DEFAULT: "#A65A2E",
-        hover: "#BF6E3D",
-      },
-      background: {
-        DEFAULT: "#F3EFEB",
-        alt: "#EFEAE5",
-        muted: "#EAE6E1",
-      },
-      text: {
-        primary: "#2D2D2D",
-        onPrimary: "#F8F5F2",
-      },
-      ui: {
-        base: "#FFFFFF",
-        border: "#DAD4CE",
-      },
-    },
-    fonts: {
-      header: "'Raleway', sans-serif",
-      body: "'Inter', sans-serif",
-      alt: "'Poppins', sans-serif",
-      ui: "'Work Sans', sans-serif",
-    },
-    semanticRoles: {
-      navBackground: "primary.DEFAULT",
-      primaryButtonBackground: "primary.DEFAULT",
-      primaryButtonText: "primary.contrast",
-      sectionBackground: "background.DEFAULT",
-      cardBackground: "background.muted",
-      bodyText: "text.primary",
-      footerBackground: "ui.base",
-      inputBackground: "ui.base",
-      inputBorder: "ui.border",
-      hoverEffect: "accent.hover",
-      ctaButton: "accent.DEFAULT",
-      ctaHover: "accent.hover",
-    },
-  };
 
   // State for modal
   const [selectedArtisan, setSelectedArtisan] = useState(null);
@@ -122,110 +76,54 @@ const AboutUs = () => {
 
   const modalRef = useRef(null);
   const modalContentRef = useRef(null);
-  const heroBackgroundRef = useRef(null);
-
-  // Button hover animations
-  const handleButtonHover = (e) => {
-    gsap.to(e.target, {
-      scale: 1.05,
-      backgroundColor: theme.colors.accent.DEFAULT,
-      color: theme.colors.text.onPrimary,
-      duration: 0.3,
-      ease: "power1.out",
-    });
-  };
-
-  const handleButtonHoverEnd = (e) => {
-    gsap.to(e.target, {
-      scale: 1,
-      backgroundColor: "transparent",
-      color: theme.colors.accent.DEFAULT,
-      duration: 0.3,
-      ease: "power1.out",
-    });
-  };
 
   // Modal functions
   const openArtisanModal = (artisan, type) => {
     setSelectedArtisan(artisan);
     setModalType(type);
     setIsModalVisible(true);
-    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
-    gsap.to(modalContentRef.current, {
-      y: 50,
-      opacity: 0,
-      scale: 0.95,
-      duration: 0.4,
-      ease: "power2.in",
-      onComplete: () => {
-        setIsModalVisible(false);
-        setSelectedArtisan(null);
-        setModalType(null);
-        document.body.style.overflow = "auto";
-      },
-    });
+    setIsModalVisible(false);
+    setSelectedArtisan(null);
+    setModalType(null);
   };
-
-  // Modal animation
-  useEffect(() => {
-    if (isModalVisible && modalRef.current && modalContentRef.current) {
-      gsap.fromTo(
-        modalRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.3 }
-      );
-
-      gsap.fromTo(
-        modalContentRef.current,
-        { y: 100, opacity: 0, scale: 0.9 },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 0.7,
-          ease: "back.out(1.7)",
-        }
-      );
-    }
-  }, [isModalVisible]);
 
   // Data for sections
   const valuesData = [
     {
-      icon: <FaTools className="text-3xl" />,
+      icon: <FaTools size={20} />,
       title: "Craftsmanship",
       description:
         "We blend artisanal skill with modern design to create heirloom-quality furniture.",
     },
     {
-      icon: <FaLeaf className="text-3xl" />,
+      icon: <FaLeaf size={22} />,
       title: "Sustainability",
       description:
         "Responsibly sourced materials and eco-friendly practices in every piece.",
     },
     {
-      icon: <FaLightbulb className="text-3xl" />,
+      icon: <FaLightbulb size={22} />,
       title: "Innovation",
       description:
         "Pushing boundaries in design while respecting traditional techniques.",
     },
     {
-      icon: <FaHeart className="text-3xl" />,
+      icon: <FaHeart size={22} />,
       title: "Customer Focus",
       description:
         "Building relationships through exceptional service and personalized solutions.",
     },
     {
-      icon: <FaMedal className="text-3xl" />,
+      icon: <FaMedal size={22} />,
       title: "Quality",
       description:
         "Uncompromising standards from material selection to final finish.",
     },
     {
-      icon: <FaUsers className="text-3xl" />,
+      icon: <FaUsers size={22} />,
       title: "Community",
       description:
         "Supporting local artisans and investing in our neighborhoods.",
@@ -388,57 +286,6 @@ const AboutUs = () => {
   // Animation setup
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero section animations
-      gsap
-        .timeline()
-        .fromTo(
-          elementRefs.title.current,
-          { opacity: 0, y: 80, rotation: -2 },
-          {
-            opacity: 1,
-            y: 0,
-            rotation: 0,
-            duration: 1.5,
-            ease: "elastic.out(1, 0.3)",
-          }
-        )
-        .fromTo(
-          elementRefs.subtitle.current,
-          { opacity: 0, y: 50, scale: 0.95 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 1.2,
-            ease: "power3.out",
-          },
-          "-=1"
-        )
-        .fromTo(
-          elementRefs.ctaButton.current,
-          { opacity: 0, y: 30, scale: 0.9 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: "back.out(1.7)",
-          },
-          "-=0.8"
-        );
-
-      // Parallax effect for hero background
-      gsap.to(heroBackgroundRef.current, {
-        y: "10%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRefs.hero.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-
       // Section animations with ScrollTrigger
       const sections = Object.values(sectionRefs).filter(Boolean);
       sections.forEach((section) => {
@@ -459,20 +306,6 @@ const AboutUs = () => {
           );
         }
       });
-      // Story section
-      gsap.fromTo(
-        elementRefs.storyImage.current,
-        { opacity: 0, x: -80, clearProps: "all" },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1.2,
-          scrollTrigger: {
-            trigger: elementRefs.storyImage.current,
-            start: "top bottom-=150",
-          },
-        }
-      );
 
       gsap.fromTo(
         elementRefs.storyText.current,
@@ -489,103 +322,6 @@ const AboutUs = () => {
         }
       );
 
-      // Values cards - Enhanced animation
-      elementRefs.valuesCards.current.forEach((el, index) => {
-        if (el) {
-          // Create a staggered entry with spring physics
-          gsap.fromTo(
-            el,
-            {
-              opacity: 0,
-              y: 60,
-              scale: 0.9,
-              rotation: -3,
-            },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              rotation: 0,
-              duration: 0.8,
-              delay: index * 0.15,
-              ease: "elastic.out(1, 0.8)",
-              scrollTrigger: {
-                trigger: el,
-                start: "top bottom-=180",
-              },
-              onComplete: () => {
-                // Add subtle continuous floating effect after entry
-                gsap.to(el, {
-                  y: 3,
-                  duration: 3,
-                  repeat: -1,
-                  yoyo: true,
-                  ease: "sine.inOut",
-                });
-              },
-            }
-          );
-
-          // Hover animation for values cards
-          el.addEventListener("mouseenter", () => {
-            gsap.to(el, {
-              y: -10,
-              scale: 1.03,
-              duration: 0.3,
-              ease: "power2.out",
-            });
-          });
-
-          el.addEventListener("mouseleave", () => {
-            gsap.to(el, {
-              y: 0,
-              scale: 1,
-              duration: 0.3,
-              ease: "power2.out",
-            });
-          });
-        }
-      });
-
-      // Team members
-      elementRefs.teamMembers.current.forEach((el, index) => {
-        if (el) {
-          gsap.fromTo(
-            el,
-            { opacity: 0, scale: 0.85, y: 30 },
-            {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              duration: 0.6,
-              delay: index * 0.1,
-              ease: "back.out(1.7)",
-              scrollTrigger: {
-                trigger: el.parentNode,
-                start: "top bottom-=180",
-              },
-            }
-          );
-
-          // Hover animation for team cards
-          el.addEventListener("mouseenter", () => {
-            gsap.to(el, {
-              y: -5,
-              duration: 0.3,
-              ease: "power1.out",
-            });
-          });
-
-          el.addEventListener("mouseleave", () => {
-            gsap.to(el, {
-              y: 0,
-              duration: 0.3,
-              ease: "power1.out",
-            });
-          });
-        }
-      });
-
       // Process items
       elementRefs.processItems.current.forEach((el, index) => {
         if (el) {
@@ -597,7 +333,7 @@ const AboutUs = () => {
               y: 0,
               scale: 1,
               duration: 0.7,
-              delay: index * 0.2,
+              delay: index * 0.1,
               ease: "back.out(1.7)",
               scrollTrigger: {
                 trigger: el,
@@ -618,9 +354,9 @@ const AboutUs = () => {
       className="bg-[#F3EFEB] text-[#2D2D2D] max-w-screen-2xl w-full"
       style={{ fontFamily: theme.fonts.body }}
     >
-     <AboutUsSections valuesData={valuesData} />
+      <AboutUsSections valuesData={valuesData} />
       {/* Team Section */}
-      <section ref={sectionRefs.team} className="py-24 px-4 max-w-6xl mx-auto">
+      <section className="py-24 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2
             className="text-4xl font-bold mb-6"
@@ -823,23 +559,15 @@ const AboutUs = () => {
                 </p>
                 <div className="flex flex-wrap gap-4 mt-6">
                   <button
-                    onMouseEnter={handleButtonHover}
-                    onMouseLeave={handleButtonHoverEnd}
                     className="border border-white text-white px-6 py-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50"
                     style={{
                       fontFamily: theme.fonts.ui,
-                      "&:hover": {
-                        backgroundColor: theme.colors.accent.DEFAULT,
-                        borderColor: theme.colors.accent.DEFAULT,
-                      },
                     }}
                     aria-label="Schedule a workshop tour"
                   >
                     Schedule a Tour
                   </button>
                   <button
-                    onMouseEnter={handleButtonHover}
-                    onMouseLeave={handleButtonHoverEnd}
                     className="border px-6 py-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50"
                     style={{
                       fontFamily: theme.fonts.ui,
@@ -992,7 +720,7 @@ const AboutUs = () => {
         >
           <div
             ref={modalContentRef}
-            className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] custom-scrollbar overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}

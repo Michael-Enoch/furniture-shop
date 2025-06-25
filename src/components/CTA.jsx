@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import theme from "../context/Theme";
+import { Link } from "react-router-dom";
 
 const CTASection = () => {
   return (
@@ -24,12 +25,12 @@ const CTASection = () => {
         <p className="mb-6 text-base">
           Explore curated collections, handcrafted pieces, and timeless comfort with every order.
         </p>
-        <a
-          href="/shop"
+        <Link
+          to="/products"
           className="inline-block bg-[#A65A2E] hover:bg-[#BF6E3D] text-white py-3 px-6 rounded-lg transition-colors"
         >
           Start Shopping
-        </a>
+        </Link>
       </motion.div>
     </section>
   );

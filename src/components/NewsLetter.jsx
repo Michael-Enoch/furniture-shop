@@ -8,8 +8,8 @@ const Newsletter = ({ sectionIndex = 10 }) => {
         ? theme.colors.background.DEFAULT
         : theme.colors.background.alt;
   return (
-    <section
-      className="w-full max-w-screen-2xl py-20 px-6 text-center"
+      <section
+      className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-12 lg:px-16 py-14 mx-auto text-center"
       style={{ background: bgColor, fontFamily: theme.fonts.body }}
     >
       <motion.div

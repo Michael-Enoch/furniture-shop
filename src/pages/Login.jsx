@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
@@ -15,13 +15,16 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+   useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
 
 const onSubmit = async (data) => {
     setLoading(true);
     try {
       await login(data.email, data.password);
       toast.success("Welcome back to Hudson's Furniture!");
-      navigate('/'); // Redirect to homepage after successful login
+      navigate('/'); 
     } catch (error) {
       console.error("Login error:", error);
       toast.error(error.message || "Couldn't sign you in. Please try again.");
@@ -30,7 +33,6 @@ const onSubmit = async (data) => {
     }
   };
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -42,6 +44,8 @@ const onSubmit = async (data) => {
       }
     }
   };
+
+
 
   return (
     <div 
@@ -151,11 +155,11 @@ const onSubmit = async (data) => {
           <motion.button
             type="submit"
             disabled={loading}
-            className={`w-full py-3 rounded-md flex items-center justify-center space-x-2 transition-all duration-300 ${
+            className={`w-full py-2 rounded-md flex items-center justify-center space-x-2 transition-all duration-300 ${
               loading ? "opacity-70 cursor-not-allowed" : "hover:opacity-90"
             }`}
             style={{ 
-              backgroundColor: loading ? theme.colors.ui.border : theme.colors.primary.DEFAULT,
+              backgroundColor: loading ? theme.colors.ui.border : theme.colors.accent.DEFAULT,
               color: theme.colors.primary.contrast,
               fontFamily: theme.fonts.ui
             }}
@@ -169,7 +173,7 @@ const onSubmit = async (data) => {
               </svg>
             ) : (
               <>
-                <FiLogIn className="h-5 w-5" />
+                <FiLogIn size={15} />
                 <span>Sign In</span>
               </>
             )}

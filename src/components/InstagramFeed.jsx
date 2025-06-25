@@ -17,8 +17,8 @@ const InstagramFeed = ({ sectionIndex = 11 }) => {
         ? theme.colors.background.DEFAULT
         : theme.colors.background.alt;
   return (
-    <section
-      className="py-16 px-4 sm:px-8 md:px-16 w-full max-w-screen-2xl mx-auto text-center"
+     <section
+      className="w-full max-w-screen-2xl px-4 sm:px-6 md:px-12 lg:px-16 py-14 mx-auto text-center"
       style={{ background: bgColor }}
     >
       <h2

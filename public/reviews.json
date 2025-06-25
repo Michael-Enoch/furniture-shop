@@ -1,0 +1,28 @@
+{
+  "reviews": [
+    {
+      "id": "b04e585a-dcd8-4230-9c81-0c3dd90b4bfc",
+      "productId": "6c9e2da9-4701-4e73-84ce-d9732b17cb99",
+      "userId": "aaaf24b1-db18-49fe-b3bd-4f68fb441af2",
+      "rating": 5,
+      "comment": "Absolutely love this leather recliner! Super comfortable and well-made.",
+      "createdAt": "2025-06-03T07:44:43.662053"
+    },
+    {
+      "id": "dc28f9af-e5f2-4d87-90c7-8340e17e7d6d",
+      "productId": "2a0cc6f3-4bfa-4a3e-b71c-1cdb742c98a2",
+      "userId": "f379d351-867e-4c1d-9ea7-e2c04d9386a9",
+      "rating": 4,
+      "comment": "Nice wooden dining table. Slightly darker than expected, but still fits my space.",
+      "createdAt": "2025-06-04T10:15:22.122121"
+    },
+    {
+      "id": "d6a91dc4-d2bb-4fd5-96db-d865b22649d5",
+      "productId": "cb96bccd-2d1f-45d8-98aa-953a0b0e0826",
+      "userId": "c56133cd-7d12-487f-b2a3-c33907f5878c",
+      "rating": 3,
+      "comment": "The chair is fine but smaller than I thought. Build quality is okay.",
+      "createdAt": "2025-06-06T12:01:59.902453"
+    }
+  ]
+}

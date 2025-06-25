@@ -1,7 +1,9 @@
-[
-  {
+{
+  "offers" : [
+    {
     "id": 101,
     "name": "Aurora Queen Platform Bed",
+    "description": "Crafted from durable solid oak, the Aurora Platform Bed combines timeless walnut tones with clean lines and sturdy support. Perfect for minimalist or rustic bedrooms, it offers a seamless blend of comfort and style without the need for a box spring.",
     "category": "Bedroom",
     "type": "Bed Frame",
     "brand": "SleepWell",
@@ -20,6 +22,7 @@
   {
     "id": 102,
     "name": "Veranda Teak Bistro Set",
+    "description": "Made from premium teak wood, the Veranda 3-piece bistro set is ideal for patios and balconies. Its natural finish resists weather while adding a warm, inviting look. Includes a square table and two chairs for cozy outdoor dining.",
     "category": "Outdoor",
     "type": "Bistro Set",
     "brand": "NatureStyle",
@@ -38,6 +41,7 @@
   {
     "id": 103,
     "name": "Elevate Adjustable Standing Desk",
+    "description": "The Elevate desk blends industrial steel with sustainable bamboo to create a functional, modern workstation. Its height-adjustable design promotes ergonomic comfort, making it perfect for home offices or creative spaces.",
     "category": "Home Office",
     "type": "Standing Desk",
     "brand": "WorkFlex",
@@ -56,6 +60,7 @@
   {
     "id": 104,
     "name": "Arlo Mid-Century Dining Table",
+     "description": "A sleek 6-seater dining table inspired by mid-century design. Finished with a rich walnut veneer, the Arlo table features clean lines and tapered legs, ideal for both formal meals and casual gatherings.",
     "category": "Dining Room",
     "type": "Dining Table",
     "brand": "ModHaus",
@@ -74,6 +79,7 @@
   {
     "id": 105,
     "name": "Nimbus Recliner Chair",
+    "description": "Sink into luxury with the Nimbus Recliner, upholstered in genuine ivory leather. Its smooth reclining mechanism and plush cushioning make it a perfect fit for relaxing in any modern living room.",
     "category": "Living Room",
     "type": "Recliner",
     "brand": "ComfyNest",
@@ -93,6 +99,7 @@
     "id": 106,
     "name": "Breeze Outdoor Chaise Lounger",
     "category": "Outdoor",
+    "description": "Designed for all-weather relaxation, the Breeze Chaise features breathable PE rattan in a neutral sand tone. Whether poolside or on your patio, it offers adjustable reclining and ergonomic comfort all year round.",
     "type": "Chaise",
     "brand": "Sunscape",
     "material": "Wicker",
@@ -111,6 +118,7 @@
     "id": 107,
     "name": "Nordic Bookshelf With Cabinet",
     "category": "Home Office",
+    "description": "This tall pine wood bookshelf brings Scandinavian simplicity to your home office or living space. With open shelves and a concealed lower cabinet, it balances display and storage with clean whitewashed aesthetics.",
     "type": "Bookshelf",
     "brand": "ScandiSpace",
     "material": "Solid Wood",
@@ -128,6 +136,7 @@
   {
     "id": 108,
     "name": "Ember Velvet Dining Chairs",
+    "description": "This tall pine wood bookshelf brings Scandinavian simplicity to your home office or living space. With open shelves and a concealed lower cabinet, it balances display and storage with clean whitewashed aesthetics.",
     "category": "Dining Room",
     "type": "Dining Chairs",
     "brand": "HauteHome",
@@ -143,4 +152,5 @@
     "originalPrice": 269.41,
     "image": "/images/ember.jpeg"
   }
-]
+  ]
+}

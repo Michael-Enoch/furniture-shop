@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
@@ -8,101 +8,37 @@ import {
   FiMail, 
   FiLock, 
   FiUser, 
-  FiHome, 
-  FiLogIn,
-  // FiBed,
-  FiCoffee,
-  FiMonitor,
-  FiUmbrella,
-  FiBook
 } from "react-icons/fi";
 import { 
   FaChair,
-  FaBed 
 } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import theme from "../context/Theme";
 
-const theme = {
-  fonts: {
-    header:  "'Raleway', sans-serif",
-    body: "'Inter', sans-serif",
-    alt: "'Poppins', sans-serif",
-    ui: "'Work Sans', sans-serif",
-  },
-  colors: {
-    primary: {
-      DEFAULT: '#3A2F2A',
-      contrast: '#F8F5F2',
-    },
-    accent: {
-      DEFAULT: '#A65A2E',
-      hover: '#BF6E3D',
-    },
-    background: {
-      DEFAULT: '#F3EFEB',
-      alt: "#EFEAE5",       
-      muted: '#EAE6E1',
-    },
-    text: {
-      primary: '#2D2D2D',
-      onPrimary: '#F8F5F2',
-    },
-    ui: {
-      base: '#FFFFFF',
-      border: '#DAD4CE',
-    },
-    category: {
-      bedroom: '#CDB8A0',
-      living: '#A39887',
-      office: '#7F8B91',
-      dining: '#B57C54',
-      outdoor: '#7A8C5D',
-    },
-  },
-  semanticRoles: {
-    navBackground: 'primary.DEFAULT',
-    primaryButtonBackground: 'primary.DEFAULT',
-    primaryButtonText: 'primary.contrast',
-    sectionBackground: 'background.DEFAULT',
-    cardBackground: 'background.muted',
-    bodyText: 'text.primary',
-    footerBackground: 'ui.base',
-    inputBackground: 'ui.base',
-    inputBorder: 'ui.border',
-    hoverEffect: 'accent.hover',
-    ctaButton: 'accent.DEFAULT',
-    ctaHover: 'accent.hover',
-  },
-};
 
 const Register = () => {
   const { register: signUp } = useAuth();
   const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const [loading, setLoading] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(null);
   const password = watch("password", "");
 
-  // Category icons mapping
-  const categoryIcons = {
-    bedroom: <FaBed  className="h-5 w-5" />,
-    living: <FaChair className="h-5 w-5" />,
-    office: <FiMonitor className="h-5 w-5" />,
-    dining: <FiCoffee className="h-5 w-5" />,
-    outdoor: <FiUmbrella className="h-5 w-5" />,
-  };
   const navigate = useNavigate();
+
+   useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
+  
 
  const onSubmit = async (data) => {
     setLoading(true);
     try {
       const userData = {
         ...data,
-        preferences: selectedCategory ? [selectedCategory] : []
       };
 
       await signUp(userData.email, userData.password, userData.role || 'customer', userData.name);
       toast.success("Welcome to Hudson's Furniture!");
-      navigate('/'); // Redirect to homepage after successful registration
+      navigate('/');
     } catch (error) {
       console.error("Registration error:", error);
       toast.error(error.message || "Couldn't create your account. Please try again.");
@@ -133,7 +69,6 @@ const Register = () => {
     }
   };
 
- 
 
   return (
     <div 
@@ -162,7 +97,7 @@ const Register = () => {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <FaChair 
-              className="text-4xl" 
+              size={23} 
               style={{ color: theme.colors.accent.DEFAULT }} 
             />
           </motion.div>
@@ -184,12 +119,11 @@ const Register = () => {
         </motion.div>
 
         <div className="space-y-4">
-          {/* Name Field */}
           <motion.div variants={itemVariants}>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 ml-3 flex items-center pointer-events-none">
                 <FiUser 
-                  className="h-5 w-5" 
+                  className="h-4 w-4" 
                   style={{ color: theme.colors.accent.DEFAULT }} 
                 />
               </div>
@@ -221,9 +155,9 @@ const Register = () => {
           {/* Email Field */}
           <motion.div variants={itemVariants}>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 ml-3 flex items-center pointer-events-none">
                 <FiMail 
-                  className="h-5 w-5" 
+                  className="h-4 w-4" 
                   style={{ color: theme.colors.accent.DEFAULT }} 
                 />
               </div>
@@ -255,9 +189,9 @@ const Register = () => {
           {/* Password Field */}
           <motion.div variants={itemVariants}>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 ml-3 flex items-center pointer-events-none">
                 <FiLock 
-                  className="h-5 w-5" 
+                  className="h-4 w-4" 
                   style={{ color: theme.colors.accent.DEFAULT }} 
                 />
               </div>
@@ -291,7 +225,7 @@ const Register = () => {
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <FiLock 
-                  className="h-5 w-5" 
+                  className="h-4 w-4" 
                   style={{ color: theme.colors.accent.DEFAULT }} 
                 />
               </div>
@@ -317,52 +251,6 @@ const Register = () => {
               </p>
             )}
           </motion.div>
-
-          {/* Furniture Preference with Icons */}
-          <motion.div 
-            variants={itemVariants} 
-            className="pt-1"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            <label 
-              className="block text-sm mb-2"
-              style={{ color: theme.colors.text.primary }}
-            >
-              Your furniture style preference:
-            </label>
-            <div className="grid grid-cols-5 gap-2">
-              {Object.entries(theme.colors.category).map(([category, color]) => (
-                <motion.div 
-                  key={category}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex flex-col items-center cursor-pointer"
-                  onClick={() => setSelectedCategory(category)}
-                >
-                  <div 
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
-                      selectedCategory === category 
-                        ? 'ring-2 ring-offset-2' 
-                        : 'opacity-80 hover:opacity-100'
-                    }`}
-                    style={{ 
-                      backgroundColor: color,
-                      color: theme.colors.primary.DEFAULT,
-                      borderColor: theme.colors.primary.DEFAULT,
-                      ringColor: theme.colors.accent.DEFAULT
-                    }}
-                  >
-                    {categoryIcons[category]}
-                  </div>
-                  <span className="text-xs mt-1 capitalize" style={{ color: theme.colors.text.primary }}>
-                    {category}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </div>
 
         <motion.div 
@@ -372,17 +260,16 @@ const Register = () => {
           <motion.button
             type="submit"
             disabled={loading}
-            className={`w-full py-3 rounded-lg flex items-center justify-center space-x-2 transition-all duration-300 ${
+            className={`w-full py-2 text-md rounded-lg flex items-center justify-center space-x-2 transition-all duration-300 ${
               loading ? "opacity-70 cursor-not-allowed" : "hover:opacity-90"
             }`}
             style={{ 
-              backgroundColor: loading ? theme.colors.ui.border : theme.colors.primary.DEFAULT,
+              backgroundColor: loading ? theme.colors.ui.border : theme.colors.accent.DEFAULT,
               color: theme.colors.primary.contrast,
               fontFamily: theme.fonts.ui
             }}
             whileHover={!loading ? { 
               scale: 1.01,
-              boxShadow: `0 5px 15px ${theme.colors.accent.DEFAULT}33`
             } : {}}
             whileTap={!loading ? { scale: 0.99 } : {}}
           >
@@ -393,7 +280,6 @@ const Register = () => {
               </svg>
             ) : (
               <>
-                <FiHome className="h-5 w-5" />
                 <span>Create Account</span>
               </>
             )}
@@ -406,13 +292,13 @@ const Register = () => {
         >
           <p className="text-sm" style={{ color: theme.colors.text.primary }}>
             Already have an account?{' '}
-            <a 
-              href="/login" 
+            <Link
+              to="/login" 
               className="font-medium hover:underline"
               style={{ color: theme.colors.accent.DEFAULT }}
             >
               Sign in
-            </a>
+            </Link>
           </p>
         </motion.div>
       </motion.form>

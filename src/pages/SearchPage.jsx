@@ -11,6 +11,7 @@ import {
   ShoppingCart,
   Star,
 } from "lucide-react";
+import Breadcrumbs from "../components/BreadCrumbs";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -125,12 +126,13 @@ export default function SearchPage() {
 
   return (
     <section
-      className="py-16 px-4 sm:px-8 md:px-16 w-full max-w-screen-2xl mx-auto"
+      className="py-10 px-4 sm:px-8 md:px-16 w-full max-w-screen-2xl mx-auto"
       style={{
         fontFamily: theme.fonts.body,
         color: theme.colors.text.primary,
       }}
     >
+    <Breadcrumbs/>
       <input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
