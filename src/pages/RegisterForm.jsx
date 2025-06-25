@@ -13,7 +13,6 @@ import {
   FaChair,
 } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
-import { Home } from "lucide-react";
 import theme from "../context/Theme";
 
 
