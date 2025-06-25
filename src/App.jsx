@@ -1,4 +1,4 @@
-import { Toaster } from "react-hot-toast";
+
 import "./App.css";
 import { AuthProvider } from "./context/AuthContext";
 import Register from "./pages/RegisterForm";
@@ -19,6 +19,8 @@ import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetailPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import { WishlistProvider } from "./context/WishlistContext";
+import Checkout from "./pages/checkOut";
+import { Toaster } from "sonner";
 
 
 function App() {
@@ -27,7 +29,12 @@ function App() {
     <CartProvider>
     <WishlistProvider>
       <Router>
-        <Toaster position="top-right" reverseOrder={false} />
+         <Toaster
+        position="bottom-center"
+        richColors
+        closeButton
+        expand={true}
+      />
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
