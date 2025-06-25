@@ -8,49 +8,81 @@ import { FaChair } from "react-icons/fa";
 import theme from "../context/Theme";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../Firebase/firebase";
 
 const Login = () => {
-  const {login } = useAuth();
+  
+  const { login, userData } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
+  // Loading states
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+  // Trigger after login
+  const [loginSuccess, setLoginSuccess] = useState(false);
+
+  // Scroll to tp on page mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-const onSubmit = async (data) => {
-  setLoading(true);
-  try {
-    const userCredential = await login(data.email, data.password);
-    const user = userCredential.user;
 
-    const userDoc = await getDoc(doc(db, "users", user.uid));
-    const name = userDoc.exists() ? userDoc.data().name : "Guest";
+  // Handle Form Submit
+  const onSubmit = async (data) => {
+    setLoading(true);
+    try {
+      await login(data.email, data.password);
+      setLoginSuccess(true); 
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error(
+        "❌ Login Failed. Please check your credentials and try again.",
+        {
+          style: {
+            backgroundColor: "#3A2F2A",
+            color: "#F8F5F2",
+            border: "1px solid #A65A2E",
+            padding: "16px",
+            fontSize: "14px",
+          },
+          iconTheme: {
+            primary: "#A65A2E",
+            secondary: "#F8F5F2",
+          },
+          position: "top-right",
+          duration: 4000,
+        }
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    toast.success(`Welcome back ${name}`, {
-      style: {
-        backgroundColor: "#3A2F2A",
-        color: "#F8F5F2",
-        border: "1px solid #A65A2E",
-      },
-      position: "top-right",
-      duration: 3000,
-    });
+  useEffect(() => {
+    if (userData && loginSuccess) {
+      toast.success(`👋 Welcome back ${userData?.name || "Guest"}`, {
+        style: {
+          backgroundColor: "#7A8C5D",
+          color: "#F8F5F2",
+          border: "1px solid #CDB8A0",
+          padding: "16px",
+          fontSize: "14px",
+        },
+        iconTheme: {
+          primary: "#CDB8A0",
+          secondary: "#F8F5F2",
+        },
+        position: "top-right",
+        duration: 3000,
+      });
 
-    navigate("/");
-  } catch (error) {
-    console.error("Login error:", error);
-    toast.error("Couldn't sign you in. Please try again.");
-  } finally {
-    setLoading(false);
-  }
-};
+      navigate("/");
+      setLoginSuccess(false);
+    }
+  }, [userData, loginSuccess, navigate]);
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
