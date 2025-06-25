@@ -40,7 +40,6 @@ const WhyChooseUs = ({ sectionIndex = 5 }) => {
        data-aos="fade-down"
        data-aos-delay="100"
         className="text-center text-3xl font-bold mb-12"
-        style={{ color: theme.colors.primary.DEFAULT, fontFamily: theme.fonts.header }}
       >
         Why Choose Us
       </h2>
