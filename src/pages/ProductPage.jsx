@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import {
   ChevronLeft,
   ChevronRight,
@@ -14,6 +14,7 @@ import axios from "axios";
 import theme from "../context/Theme";
 import Breadcrumbs from "../components/BreadCrumbs";
 import { useCart } from "../context/CartContext";
+import { toast } from "sonner";
 
 const PAGE_SIZE = 6;
 
@@ -30,6 +31,7 @@ const ProductPage = () => {
   const [showAllBrands, setShowAllBrands] = useState(false);
   const [showAllMaterials, setShowAllMaterials] = useState(false);
   const [showAllTypes, setShowAllTypes] = useState(false);
+  const navigate = useNavigate();
 
   const { addToCart } = useCart();
 
@@ -39,6 +41,7 @@ const ProductPage = () => {
   const price = searchParams.get("price") || "";
   const material = searchParams.get("material") || "";
   const page = parseInt(searchParams.get("page") || "1");
+  console.log("📦 Product to add:", products);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -108,10 +111,6 @@ const ProductPage = () => {
     fetchData();
   }, []);
 
-  const handleAddToCart = (products) => {
-    addToCart(products);
-  };
-
   const filterProducts = () => {
     return products.filter((product) => {
       const inCategory = category ? product.category === category : true;
@@ -162,6 +161,25 @@ const ProductPage = () => {
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   const prices = ["Under $500", "$500 - $1000", "Above $1000"];
+
+  const handleAddToCart = (product) => {
+  addToCart(product);
+
+ toast.success(`Added to cart!`, {
+  position: "bottom-center",
+  style: {
+    backgroundColor: "#3A2F2A",
+    color: "#F8F5F2", 
+    border: "1px solid #A65A2E",
+  },
+  description: "View your cart to checkout.",
+  action: {
+    label: "View Cart",
+    onClick: () => navigate("/cart"),
+  },
+});
+
+};
 
   return (
     <section
@@ -295,7 +313,10 @@ const ProductPage = () => {
                 }`}
               >
                 {types.map((t) => (
-                  <label key={t} className="flex items-center text-[11px] gap-2">
+                  <label
+                    key={t}
+                    className="flex items-center text-[11px] gap-2"
+                  >
                     <input
                       type="checkbox"
                       name="type"
@@ -361,7 +382,10 @@ const ProductPage = () => {
                 }`}
               >
                 {materials.map((mat) => (
-                  <label key={mat} className="flex items-center text-[11px] gap-2">
+                  <label
+                    key={mat}
+                    className="flex items-center text-[11px] gap-2"
+                  >
                     <input
                       type="checkbox"
                       name="material"
@@ -509,6 +533,7 @@ const ProductPage = () => {
                           </span>{" "}
                           ${product.price.toFixed(2)}
                         </p>
+
                         <button
                           type="button"
                           className="mt-4 w-full py-2 rounded-lg font-medium hover:text-[#BF6E3D] flex items-center justify-center gap-2 transition-colors pointer-events-auto"
@@ -517,7 +542,7 @@ const ProductPage = () => {
                             color: theme.colors.primary.contrast,
                             fontFamily: theme.fonts.body,
                           }}
-                          onClick={() => handleAddToCart(products)}
+                         onClick={() => handleAddToCart(product)}
                         >
                           <ShoppingCart size={16} />
                           Add to Cart

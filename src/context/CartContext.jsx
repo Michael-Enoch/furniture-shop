@@ -13,17 +13,23 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
- const addToCart = (product) => {
+const addToCart = (product) => {
+  console.log("🛒 Adding to cart:", product);
+
   setCart((prev) => {
     const exists = prev.find((item) => item.id === product.id);
     if (exists) {
-      return prev.map((item) =>
+      const updatedCart = prev.map((item) =>
         item.id === product.id
           ? { ...item, quantity: item.quantity + 1 }
           : item
       );
+      console.log("🛠️ Updated cart:", updatedCart);
+      return updatedCart;
     }
-    return [...prev, { ...product, quantity: 1 }];
+    const newCart = [...prev, { ...product, quantity: 1 }];
+    console.log("✨ New cart:", newCart);
+    return newCart;
   });
 };
 

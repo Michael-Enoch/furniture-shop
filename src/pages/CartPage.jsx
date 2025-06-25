@@ -6,7 +6,6 @@ import { useEffect } from "react";
 
 export const CartPage = () => {
   const { cart, addToCart, removeFromCart } = useCart();
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -26,10 +25,14 @@ export const CartPage = () => {
     }
   };
 
+
+
   const total = cart.reduce(
     (sum, item) => sum + (item.price || 0) * (item.quantity || 1),
     0
   ).toFixed(2);
+
+  console.log("🛍️ Current cart:", cart);
 
   if (!cart.length) {
     return (
@@ -82,7 +85,7 @@ export const CartPage = () => {
 
             <div className="flex flex-col gap-3 md:gap-6 md:flex-row items-center">
               <p className="text-2xl font-semibold text-gray-600">
-                ${item.price.toFixed(2)}
+                ${item.price ? item.price.toFixed(2) : 'N/A'}
               </p>
               <div className="flex items-center gap-4">
                 <button
@@ -108,6 +111,7 @@ export const CartPage = () => {
                 </button>
               </div>
             </div>
+
           </div>
         ))}
       </div>
