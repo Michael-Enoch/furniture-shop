@@ -28,6 +28,8 @@
     "react-fast-marquee": "^1.6.5",
     "react-hook-form": "^7.57.0",
     "react-hot-toast": "^2.5.2",
+    "react-icon": "^1.0.0",
+    "react-icons": "^5.5.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.6.2",
     "react-scrollbars-custom": "^4.1.1",
