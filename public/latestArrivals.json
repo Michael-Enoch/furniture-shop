@@ -1,7 +1,9 @@
-[
-  {
+{
+  "offers" : [
+    {
     "id": 101,
     "name": "Aurora Queen Platform Bed",
+    "description": "Crafted from durable solid oak, the Aurora Platform Bed combines timeless walnut tones with clean lines and sturdy support. Perfect for minimalist or rustic bedrooms, it offers a seamless blend of comfort and style without the need for a box spring.",
     "category": "Bedroom",
     "type": "Bed Frame",
     "brand": "SleepWell",
@@ -14,28 +16,13 @@
     "durability": "7 years",
     "price": 599.99,
     "discount": "10%",
-    "image": "../src/assets/images/platform.jpeg"
+    "originalPrice": 666.66,
+    "image": "/images/platform.jpeg"
   },
   {
     "id": 102,
-    "name": "Luna L-Shaped Sectional",
-    "category": "Living Room",
-    "type": "Sectional Sofa",
-    "brand": "UrbanNest",
-    "material": "Fabric",
-    "materialType": "Linen Blend",
-    "color": "Slate Gray",
-    "colorHex": "#4A4A4A",
-    "size": "Large",
-    "dimensions": "95 x 95 x 35 inches",
-    "durability": "8 years",
-    "price": 1299.00,
-    "discount": "15%",
-    "image": "../src/assets/images/L-sectional.jpg"
-  },
-  {
-    "id": 103,
     "name": "Veranda Teak Bistro Set",
+    "description": "Made from premium teak wood, the Veranda 3-piece bistro set is ideal for patios and balconies. Its natural finish resists weather while adding a warm, inviting look. Includes a square table and two chairs for cozy outdoor dining.",
     "category": "Outdoor",
     "type": "Bistro Set",
     "brand": "NatureStyle",
@@ -48,11 +35,13 @@
     "durability": "10 years",
     "price": 429.00,
     "discount": "20%",
-    "image": "../src/assets/images/teak.jpg"
+    "originalPrice": 536.25,
+    "image": "/images/teak.jpg"
   },
   {
-    "id": 104,
+    "id": 103,
     "name": "Elevate Adjustable Standing Desk",
+    "description": "The Elevate desk blends industrial steel with sustainable bamboo to create a functional, modern workstation. Its height-adjustable design promotes ergonomic comfort, making it perfect for home offices or creative spaces.",
     "category": "Home Office",
     "type": "Standing Desk",
     "brand": "WorkFlex",
@@ -65,11 +54,13 @@
     "durability": "5 years",
     "price": 389.00,
     "discount": "5%",
-    "image": "../src/assets/images/desk.jpeg"
+    "originalPrice": 409.47,
+    "image": "/images/desk.jpeg"
   },
   {
-    "id": 105,
+    "id": 104,
     "name": "Arlo Mid-Century Dining Table",
+     "description": "A sleek 6-seater dining table inspired by mid-century design. Finished with a rich walnut veneer, the Arlo table features clean lines and tapered legs, ideal for both formal meals and casual gatherings.",
     "category": "Dining Room",
     "type": "Dining Table",
     "brand": "ModHaus",
@@ -82,11 +73,13 @@
     "durability": "6 years",
     "price": 649.00,
     "discount": "12%",
-    "image": "../src/assets/images/mid-century.jpeg"
+    "originalPrice": 737.50,
+    "image": "/images/mid-century.jpeg"
   },
   {
-    "id": 106,
+    "id": 105,
     "name": "Nimbus Recliner Chair",
+    "description": "Sink into luxury with the Nimbus Recliner, upholstered in genuine ivory leather. Its smooth reclining mechanism and plush cushioning make it a perfect fit for relaxing in any modern living room.",
     "category": "Living Room",
     "type": "Recliner",
     "brand": "ComfyNest",
@@ -99,12 +92,14 @@
     "durability": "10 years",
     "price": 799.00,
     "discount": "18%",
-    "image": "../src/assets/images/recliner.jpeg"
+    "originalPrice": 974.39,
+    "image": "/images/recliner.jpeg"
   },
   {
-    "id": 107,
+    "id": 106,
     "name": "Breeze Outdoor Chaise Lounger",
     "category": "Outdoor",
+    "description": "Designed for all-weather relaxation, the Breeze Chaise features breathable PE rattan in a neutral sand tone. Whether poolside or on your patio, it offers adjustable reclining and ergonomic comfort all year round.",
     "type": "Chaise",
     "brand": "Sunscape",
     "material": "Wicker",
@@ -116,12 +111,14 @@
     "durability": "7 years",
     "price": 349.00,
     "discount": "25%",
-    "image": "../src/assets/images/chaise.jpeg"
+    "originalPrice": 465.33,
+    "image": "/images/chaise.jpeg"
   },
   {
-    "id": 108,
+    "id": 107,
     "name": "Nordic Bookshelf With Cabinet",
     "category": "Home Office",
+    "description": "This tall pine wood bookshelf brings Scandinavian simplicity to your home office or living space. With open shelves and a concealed lower cabinet, it balances display and storage with clean whitewashed aesthetics.",
     "type": "Bookshelf",
     "brand": "ScandiSpace",
     "material": "Solid Wood",
@@ -133,11 +130,13 @@
     "durability": "6 years",
     "price": 289.00,
     "discount": "10%",
-    "image": "../src/assets/images/nordic.jpeg"
+    "originalPrice": 321.11,
+    "image": "/images/nordic.jpeg"
   },
   {
-    "id": 109,
+    "id": 108,
     "name": "Ember Velvet Dining Chairs",
+    "description": "This tall pine wood bookshelf brings Scandinavian simplicity to your home office or living space. With open shelves and a concealed lower cabinet, it balances display and storage with clean whitewashed aesthetics.",
     "category": "Dining Room",
     "type": "Dining Chairs",
     "brand": "HauteHome",
@@ -150,6 +149,8 @@
     "durability": "4 years",
     "price": 229.00,
     "discount": "15%",
-    "image": "../src/assets/images/ember.jpeg"
+    "originalPrice": 269.41,
+    "image": "/images/ember.jpeg"
   }
-]
+  ]
+}

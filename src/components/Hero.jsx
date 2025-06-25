@@ -1,79 +1,80 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import theme from "../context/Theme";
 
-const Hero = () => {
-  const [offers, setOffers] = useState([]);
-  const BASE_URL = "/limited_offers.json";
+const Hero = ({ offers }) => {
+  const [current, setCurrent] = useState(0);
+  const timeoutRef = useRef(null);
+  const delay = 5000;
 
   useEffect(() => {
-    const fetchOffers = async () => {
-      try {
-        const response = await axios.get(BASE_URL);
-        const data = response.data;
-        setOffers(data);
-      } catch (error) {
-        console.error("Failed to fetch offers:", error);
-      }
+    const nextSlide = () => {
+      setCurrent((prevIndex) => (prevIndex + 1) % offers.length);
     };
-    fetchOffers();
-  }, []);
+    timeoutRef.current = setTimeout(nextSlide, delay);
+    return () => clearTimeout(timeoutRef.current);
+  }, [current, offers.length]);
 
-  if (offers.length === 0) return null;
+  if (!offers.length) return null;
+
   return (
-    <section className="relative w-full group">
-      <Swiper
-        modules={[Autoplay]}
-        loop
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
-        className="w-full h-[600px]"
-      >
-        {offers.map((offer) => (
-          <SwiperSlide key={offer.id}>
-            <div
-              className="w-full h-full bg-cover bg-center"
-              style={{ backgroundImage: `url(${offer.image})` }}
-            >
-              <div className="bg-black/80 w-full h-full flex flex-col items-center md:items-start justify-center text-white px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
+    <section className="relative w-full max-w-screen-2xl mx-auto overflow-hidden h-[500px] sm:h-[500px] md:h-[600px] lg:h-[700px]">
+      <div className="relative w-full h-full">
+        {offers.map((offer, index) => (
+          <div
+            key={offer.id}
+            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+              index === current ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+            style={{
+              backgroundImage: `url(${offer.image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="w-full h-full bg-gradient-to-b from-black/70 to-black/60 text-white flex items-center justify-center md:justify-start px-4 sm:px-8 md:px-16 py-20">
+              <div className="max-w-5xl text-center md:text-left space-y-6">
                 <h2
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-snug"
-                  style={{ fontFamily: theme.fonts.header }}
+                  className="font-bold leading-tight tracking-tight text-white"
+                  style={{
+                    fontFamily: theme.fonts.header,
+                    fontSize: "clamp(2rem, 6vw, 3.5rem)",
+                  }}
                 >
                   {offer.title}
-                  <span className="text-[#F4A261] font-semibold ml-2">
+                  <span
+                    className="ml-2 text-[#F4A261] font-semibold"
+                    style={{
+                      fontSize: "clamp(1.5rem, 5vw, 2.5rem)",
+                    }}
+                  >
                     {offer.discount}
                   </span>
                 </h2>
 
                 <p
-                  className="text-xs sm:text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed"
+                  className="text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto md:mx-0"
                   style={{ fontFamily: theme.fonts.body }}
                 >
-                  {offer.subtitle} — Discover beautifully crafted furniture that
-                  blends comfort and sophistication in your{" "}
+                  {offer.subtitle} — Discover beautifully crafted furniture that blends comfort and sophistication in your{" "}
                   {offer.category.toLowerCase()} space.
                 </p>
 
-                <Link
-                  to={offer.link}
-                  className="inline-block px-3 py-1 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base md:text-lg font-medium bg-[#A65A2E] hover:bg-[#BF6E3D] transition-all duration-300 shadow-md"
-                  style={{ fontFamily: theme.fonts.alt }}
-                >
-                  {offer.cta}
-                </Link>
+                <div className="flex justify-center md:justify-start">
+                  <Link
+                    to={offer.link}
+                    className="inline-block px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-medium bg-[#A65A2E] hover:bg-[#BF6E3D] transition-all duration-300 shadow-md text-white text-sm sm:text-base md:text-lg"
+                    style={{ fontFamily: theme.fonts.alt }}
+                  >
+                    {offer.cta}
+                  </Link>
+                </div>
               </div>
             </div>
-          </SwiperSlide>
+          </div>
         ))}
-      </Swiper>
+      </div>
     </section>
-    
   );
 };
 
