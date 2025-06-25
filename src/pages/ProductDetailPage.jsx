@@ -187,7 +187,7 @@ const ProductDetail = () => {
       ) : (
         <ul className="space-y-4">
           {reviews.map((r) => (
-            <li key={r.id} className="border p-3 rounded-md">
+            <li key={r.id} className="border mt-6 border-[#DAD4CE] shadow p-3 rounded-md">
               <div className="flex items-center gap-2">
                 <strong>{r.userName}</strong>
                 <span className="text-yellow-500">{`★`.repeat(r.rating)}</span>

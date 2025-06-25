@@ -5,8 +5,9 @@ import theme from "../context/Theme";
 import { useWishlist } from "../context/WishlistContext";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { FaArrowRight } from "react-icons/fa";
 
 const StarRating = ({ rating = 0, max = 5 }) => (
   <div aria-label={`Rating: ${rating} out of ${max}`} role="img">
@@ -33,8 +34,8 @@ const BestSelling = ({ sectionIndex = 4 }) => {
   const BASE_URL = "/products.json";
   const { toggleWishlist, isWishlisted } = useWishlist();
   const navigate = useNavigate();
-  const {addToCart} = useCart()
-  const {currentUser} = useAuth();
+  const { addToCart } = useCart();
+  const { currentUser } = useAuth();
   const bgColor =
     sectionIndex % 2 === 0
       ? theme.colors.background.DEFAULT
@@ -53,11 +54,47 @@ const BestSelling = ({ sectionIndex = 4 }) => {
 
   const handleAddToCart = (product) => {
     if (!currentUser) {
-      toast.error("Please register or log in to continue")
-      navigate("/register")
+      toast.error("⚠️ You need to sign in to add items to your cart.", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#3A2F2A",
+          color: "#F8F5F2",
+          border: "1px solid #A65A2E",
+          padding: "14px",
+          fontSize: "13px",
+          borderRadius: "8px",
+        },
+        duration: 2000,
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+      return;
     }
+
     addToCart(product);
 
+    toast.success(`✅ Added to cart!`, {
+      position: "bottom-center",
+      style: {
+        backgroundColor: "#3A2F2A",
+        color: "#F8F5F2",
+        border: "1px solid #A65A2E",
+        padding: "14px",
+        fontSize: "13px",
+        borderRadius: "8px",
+      },
+      iconTheme: {
+        primary: "#A65A2E",
+        secondary: "#F8F5F2",
+      },
+      duration: 3000,
+      description: "View your cart to checkout.",
+      action: {
+        label: "View Cart",
+        onClick: () => navigate("/cart"),
+      },
+    });
   };
 
   return (
@@ -120,15 +157,14 @@ const BestSelling = ({ sectionIndex = 4 }) => {
                     backgroundColor: theme.colors.accent.DEFAULT,
                     fontFamily: theme.fonts.alt,
                   }}
-                 
                 >
                   Quick Preview
                 </button>
               </div>
             </div>
 
-            <div className="flex flex-col flex-1 justify-between p-6">
-              <div>
+            <div className="flex flex-col flex-1 justify-between p-4">
+              <div className="w-full">
                 <h3
                   className="text-md font-semibold leading-tight line-clamp-2"
                   style={{
@@ -154,7 +190,7 @@ const BestSelling = ({ sectionIndex = 4 }) => {
                 className="mt-1 text-sm space-y-1"
                 style={{ color: theme.colors.text.primary }}
               >
-                <p>
+                <p className="mb-3">
                   <span
                     className="font-semibold"
                     style={{ color: theme.colors.accent.DEFAULT }}
@@ -163,6 +199,18 @@ const BestSelling = ({ sectionIndex = 4 }) => {
                   </span>{" "}
                   ${product.price.toFixed(2)}
                 </p>
+                <div
+                  onClick={() => setSelectedProduct(product)}
+                  className="font-medium cursor-pointer flex items-center flex-row gap-2"
+                >
+                  <p
+                    className="font-medium underline"
+                    style={{ color: theme.colors.accent.DEFAULT }}
+                  >
+                    Learn more
+                  </p>
+                  <FaArrowRight size={10} />
+                </div>
                 <button
                   type="button"
                   className="mt-4 w-full py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
@@ -194,7 +242,7 @@ const BestSelling = ({ sectionIndex = 4 }) => {
           >
             <button
               onClick={() => setSelectedProduct(null)}
-              className="absolute -top-1 right-1 text-3xl text-gray-400 hover:text-red-500 transition"
+              className="absolute -top-1 right-1 text-3xl text-gray-400 hover:text-[#BF6E3D] transition"
             >
               &times;
             </button>
