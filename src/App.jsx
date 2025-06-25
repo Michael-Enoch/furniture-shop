@@ -18,7 +18,8 @@ import DebugBar from "./components/DebugBar";
 import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetailPage";
 import ForgotPassword from "./pages/ForgotPassword";
-import CheckOut from './pages/Checkout'
+import Checkout from "./pages/checkOut";
+
 
 
 
@@ -41,7 +42,7 @@ function App() {
           <Route path="/contact" element={<ContactPage/>} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/forgot-password" element={<ForgotPassword/>} />
-          <Route path="/checkout" element={<CheckOut/>} />
+          <Route path="/checkout" element={<Checkout/>} />
         </Routes>
           {/* <DebugBar /> */}
         <Footer/>
