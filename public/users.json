@@ -1,0 +1,26 @@
+{
+    "users": [
+  {
+    "id": "aaaf24b1-db18-49fe-b3bd-4f68fb441af2",
+    "name": "Mike Otto",
+    "email": "mike@example.com",
+    "role": "admin",
+    "createdAt": "2025-06-01T12:00:00Z"
+  },
+  {
+    "id": "f379d351-867e-4c1d-9ea7-e2c04d9386a9",
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "role": "customer",
+    "createdAt": "2025-06-10T15:20:00Z"
+  },
+  {
+    "id": "c56133cd-7d12-487f-b2a3-c33907f5878c",
+    "name": "John Smith",
+    "email": "johnsmith@example.com",
+    "role": "customer",
+    "createdAt": "2025-06-14T10:35:00Z"
+  }
+]
+
+}

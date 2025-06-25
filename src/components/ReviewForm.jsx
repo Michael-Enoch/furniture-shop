@@ -1,31 +1,46 @@
 import { useState } from "react";
 import { Star } from "lucide-react";
 import theme from "../context/Theme";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../Firebase/firebase";
+import { useAuth } from "../context/AuthContext";
 
-const ReviewForm = ({ onSubmit }) => {
-  const [user, setUser] = useState("");
+const ReviewForm = ({ productId }) => {
+  const [userName, setUserName] = useState("");
   const [text, setText] = useState("");
   const [rating, setRating] = useState(5);
   const [success, setSuccess] = useState(false);
+  const { currentUser } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user.trim() || !text.trim()) return;
+    if (!userName.trim() || !text.trim()) return;
+
+    const reviewId = Date.now().toString(); 
+    const reviewRef = doc(db, "products", productId, "reviews", reviewId);
 
     const newReview = {
-      id: Date.now().toString(),
-      user,
-      text,
+      id: reviewId,
+      productId,
+      userId: currentUser?.uid || "guest",
+      userName,
+      comment: text,
       rating,
+      createdAt: new Date().toISOString(),
     };
 
-    onSubmit(newReview);
-    setUser("");
-    setText("");
-    setRating(5);
-    setSuccess(true);
-    setTimeout(() => setSuccess(false), 3000);
+    try {
+      await setDoc(reviewRef, newReview);
+      setSuccess(true);
+      setUserName("");
+      setText("");
+      setRating(5);
+      setTimeout(() => setSuccess(false), 3000);
+    } catch (err) {
+      console.error("❌ Failed to submit review:", err.message);
+    }
   };
+
 
   return (
     <form
@@ -34,12 +49,12 @@ const ReviewForm = ({ onSubmit }) => {
     >
       <h3 className="text-sm font-semibold">Leave a Review</h3>
       <input
-        type="text"
-        value={user}
-        onChange={(e) => setUser(e.target.value)}
-        placeholder="Your name"
-        className="w-full text-sm border rounded px-3 py-2"
-      />
+  type="text"
+  value={userName}
+  onChange={(e) => setUserName(e.target.value)}
+  placeholder="Your name"
+  className="w-full text-sm border rounded px-3 py-2"
+/>
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}

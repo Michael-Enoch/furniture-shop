@@ -1,96 +1,121 @@
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { useEffect } from "react";
 import theme from "../context/Theme";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
 
 export const AboutUsSections = ({ valuesData }) => {
-  useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
-  }, []);
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const staggerGrid = {
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
 
   return (
     <>
+    <section
+          className="text-[#2D2D2D] w-full max-w-screen-2xl  mx-auto"
+          style={{
+            backgroundColor: theme.colors.background.DEFAULT,
+            fontFamily: theme.fonts.body,
+          }}
+        >
       {/* Hero Section */}
-      <section
-        className="relative h-[90vh] flex items-center justify-center overflow-x-hidden"
-        style={{ backgroundColor: theme.colors.primary.DEFAULT }}
+      <div
+        className="w-full h-[500px] sm:h-[600px] flex items-center justify-center"
+        style={{
+          backgroundColor: theme.colors.primary.DEFAULT,
+          fontFamily: theme.fonts.body,
+        }}
       >
         <div
-          className="absolute inset-0 z-10"
+          className="w-full h-full bg-cover bg-center"
           style={{
-            background: `linear-gradient(to bottom, ${theme.colors.primary.DEFAULT}90, ${theme.colors.primary.DEFAULT}70, ${theme.colors.primary.DEFAULT}90)`
-          }}
-        />
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-80"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=1920')"
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1622653533660-a1538fe8424c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
           }}
           aria-label="Furniture workshop background"
-        />
-        <div className="relative z-20 text-center px-4 max-w-4xl" data-aos="fade-up">
-          <div className="mb-10">
-            <div
-              className="w-20 h-1 mx-auto mb-6"
-              style={{ backgroundColor: theme.colors.accent.DEFAULT }}
-            />
-            <h1
-              className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-wide"
+        >
+          <div className="bg-black/80 w-full h-full flex flex-col items-center  justify-center text-white px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
+            <motion.h4
+              className="text-4xl md:text-6xl font-medium text-white mb-6 tracking-wide"
               style={{ fontFamily: theme.fonts.header }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              Crafting Timeless Spaces
-            </h1>
-            <div
-              className="w-32 h-1 mx-auto mt-6"
+              Where Style Meets Comfort
+            </motion.h4>
+            <motion.div
+              className="w-32 h-1 mx-auto my-6"
               style={{ backgroundColor: theme.colors.accent.DEFAULT }}
-            />
+              initial={{ width: 0 }}
+              animate={{ width: "8rem" }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            ></motion.div>
+            <motion.p
+              className="text-xl md:text-2xl text-[#E8DFD1] text-center max-w-2xl mx-auto"
+              style={{ fontFamily: theme.fonts.alt }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              Blending elegance and thoughtful designs that tells a story
+            </motion.p>
           </div>
-          <p
-            className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto mb-10"
-            style={{ fontFamily: theme.fonts.alt }}
-          >
-            Blending centuries-old craftsmanship with contemporary design to create furniture that tells a story
-          </p>
-          <button
-            className="mt-8 border-2 border-white text-white px-10 py-3 rounded-full font-medium text-lg transition-all duration-300 hover:bg-[#A65A2E] hover:border-[#A65A2E]"
-            style={{ fontFamily: theme.fonts.ui }}
-          >
-            Explore Our Collection
-          </button>
         </div>
-      </section>
+      </div>
 
-      {/* Story Section */}
-      <section className="py-24 px-4 md:px-8 max-w-6xl mx-auto overflow-x-hidden relative">
-        <div className="flex flex-col md:flex-row items-center gap-x-12 gap-y-8">
-          <div
-            className="w-full md:w-1/2 min-h-[400px] md:min-h-[500px] h-auto relative rounded-2xl shadow-lg overflow-hidden aos-init"
-            data-aos="fade-right"
+      <div className="py-24 px-4 md:px-8 max-w-6xl mx-auto relative"
+      style={{background: theme.colors.background.DEFAULT}}
+      >
+        <div className="flex flex-col md:flex-row items-center gap-x-8 gap-y-8 w-full">
+          {/* Left Image Box */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="w-full md:w-1/2 min-w-0 min-h-[400px] md:min-h-[500px] h-[500px] relative rounded-2xl shadow-lg overflow-hidden"
           >
             <div
-              className="w-full h-auto bg-cover bg-center"
+              className="w-full h-full bg-cover bg-center"
               style={{
                 backgroundImage:
-                  "url('https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1000')"
+                  "url('https://images.unsplash.com/photo-1728722740555-9c523d21bccd?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
               }}
               aria-label="Our workshop in Brooklyn"
             />
-            <div className="absolute bottom-0 left-0 right-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6 text-white">
-              <p className="text-sm opacity-80">Our workshop in Brooklyn, NY</p>
+            <div className="absolute bottom-0 left-0 right-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4 sm:p-6 text-white">
+              <p className="text-sm opacity-80 whitespace-nowrap">
+                Our workshop in Brooklyn, NY
+              </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="w-full md:w-1/2 min-w-0 aos-init" data-aos="fade-left">
+          {/* Right Text Content */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="w-full md:w-1/2 min-w-0"
+          >
             <h2
-              className="text-[clamp(1.75rem,2.5vw,2.25rem)] font-bold mb-6"
+              className="text-[clamp(1.75rem,2.5vw,2.25rem)] font-bold mb-6 max-w-full"
               style={{
-                color: theme.colors.primary.DEFAULT,
-                fontFamily: theme.fonts.header
+                color: theme.colors.text.primary,
+                fontFamily: theme.fonts.header,
               }}
             >
               Our Heritage & Journey
             </h2>
-            <p className="text-base md:text-lg mb-6 leading-relaxed">
+            <p className="text-base md:text-md mb-6 leading-relaxed">
               Founded in 1995 by master craftsman Thomas Hudson, our Brooklyn
               workshop began as a humble space dedicated to reviving forgotten
               woodworking techniques. Today, we've grown into an internationally
@@ -103,81 +128,102 @@ export const AboutUsSections = ({ valuesData }) => {
               believe furniture should be both functional art and an heirloom
               for future generations.
             </p>
-            <div className="flex flex-wrap gap-4 mt-8">
-              {["25+ Years Experience", "Family-Owned", "Handcrafted", "Sustainable Materials"].map(
-                (tag, i) => (
-                  <div
-                    key={i}
-                    className="px-4 py-2 rounded-full text-sm"
-                    style={{
-                      backgroundColor: theme.colors.primary.DEFAULT,
-                      color: theme.colors.text.onPrimary
-                    }}
-                  >
-                    {tag}
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Values Section */}
-      <section
-        className="py-24 overflow-x-hidden"
-        style={{ backgroundColor: theme.colors.primary.DEFAULT }}
-      >
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16" data-aos="fade-up">
+            {/* Feature Tags */}
+            <div className="flex flex-wrap gap-3 mt-8">
+              {[
+                "25+ Years Experience",
+                "Family-Owned",
+                "Handcrafted",
+                "Sustainable Materials",
+              ].map((tag, i) => (
+                <div
+                  key={i}
+                  className="px-4 py-2 rounded-full text-sm"
+                  style={{
+                    backgroundColor: theme.colors.background.muted,
+                    color: theme.colors.text.primary,
+                  }}
+                >
+                  {tag}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+        <div className="max-w-screen-2xl mx-auto px-4 py-24 md:px-6 lg:px-8"
+         style={{ backgroundColor: theme.colors.background.muted }}
+        >
+          {/* Header */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-center mb-16"
+          >
             <h2
               className="text-4xl font-bold text-white"
-              style={{ fontFamily: theme.fonts.header }}
+              style={{ fontFamily: theme.fonts.header, color: theme.colors.text.primary }}
             >
               Our Guiding Principles
             </h2>
             <p
               className="text-xl max-w-2xl mx-auto mt-4"
               style={{
-                color: theme.colors.text.onPrimary,
-                fontFamily: theme.fonts.alt
+                color: theme.colors.text.primary,
+                fontFamily: theme.fonts.alt,
               }}
             >
               The values that shape every decision, every design, and every
               piece we create
             </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          </motion.div>
+
+          {/* Grid */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerGrid}
+          >
             {valuesData.map((value, index) => (
-              <div
+              <motion.div
                 key={index}
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
-                className="p-8 rounded-2xl shadow-md hover:shadow-lg border transition-shadow duration-300"
+                variants={fadeUp}
+                className="p-6 sm:p-8 rounded-2xl shadow-md hover:shadow-lg border transition-shadow duration-300"
                 style={{
-                  backgroundColor: theme.colors.background.alt,
-                  borderColor: theme.colors.ui.border
+                  backgroundColor: theme.colors.ui.base,
+                  borderColor: theme.colors.ui.border,
                 }}
               >
                 <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center mb-6"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mb-6"
                   style={{
-                    backgroundColor: theme.colors.primary.DEFAULT,
-                    color: theme.colors.text.onPrimary
+                    backgroundColor: theme.colors.accent.DEFAULT,
+                    color: theme.colors.text.onPrimary,
                   }}
                 >
                   {value.icon}
                 </div>
                 <h3
-                  className="text-2xl font-bold mb-4"
-                  style={{ color: theme.colors.primary.DEFAULT }}
+                  className="text-xl sm:text-2xl font-bold mb-4"
+                  style={{ color: theme.colors.text.primary }}
                 >
                   {value.title}
                 </h3>
-                <p style={{ color: theme.colors.text.primary }}>{value.description}</p>
-              </div>
+                <p
+                  className="text-base leading-relaxed"
+                  style={{ color: theme.colors.text.primary }}
+                >
+                  {value.description}
+                </p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </>
