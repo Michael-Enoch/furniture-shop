@@ -15,7 +15,6 @@ const UserExperience = ({ sectionIndex = 13 }) => {
         <div className="bg-white rounded-xl shadow p-8 text-center">
           <h2
             className="text-2xl font-bold mb-3"
-            style={{ fontFamily: theme.fonts.header, color: theme.colors.primary.DEFAULT }}
           >
             Share Your Experience
           </h2>

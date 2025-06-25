@@ -21,7 +21,6 @@ const Newsletter = ({ sectionIndex = 10 }) => {
       >
         <h2
           className="text-3xl font-bold mb-4"
-          style={{ fontFamily: theme.fonts.header, color: theme.colors.primary.DEFAULT }}
         >
           Join Our Newsletter
         </h2>
