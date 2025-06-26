@@ -66,13 +66,13 @@ const AdminUsers = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {users.map((user) => (
           <div
-            key={user.id}
-            className="border rounded-lg p-4"
-            style={{
-              backgroundColor: theme.colors.ui.base,
-              borderColor: theme.colors.ui.border,
-            }}
-          >
+  key={user.id}
+  className="border rounded-xl p-5 shadow-sm hover:shadow-md transition duration-200"
+  style={{
+    backgroundColor: theme.colors.ui.base,
+    borderColor: theme.colors.ui.border,
+  }}
+>
             <h2 className="text-lg font-semibold">{user.name}</h2>
             <p className="text-sm mb-1">{user.email}</p>
             <p
