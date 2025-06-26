@@ -59,14 +59,6 @@ export default function SearchPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [page]);
-
  
   useEffect(() => {
     fetch("/products.json")

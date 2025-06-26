@@ -14,6 +14,11 @@ import { db } from "../../../Firebase/firebase";
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(9); 
+
+const handleShowMore = () => {
+  setVisibleCount((prev) => prev + 6); // Load 6 more each time
+};
   const [form, setForm] = useState({
     name: "",
     price: "",
@@ -24,6 +29,10 @@ const AdminProducts = () => {
     description: "",
   });
   const [editId, setEditId] = useState(null);
+      useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [editId])
+
 
   const productsRef = collection(db, "products");
 
@@ -75,7 +84,7 @@ const AdminProducts = () => {
       setEditId(null);
       fetchProducts();
     } catch (error) {
-        console.error(error)
+      console.error(error);
       toast.error("Error saving product");
     }
   };
@@ -87,7 +96,7 @@ const AdminProducts = () => {
       toast.success("Product deleted");
       fetchProducts();
     } catch (error) {
-        console.error(error)
+      console.error(error);
       toast.error("Error deleting");
     }
   };
@@ -118,91 +127,106 @@ const AdminProducts = () => {
         Product Management
       </h1>
 
-      {/* Form */}
-      <form
-        onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
-      >
-        {["name", "price", "category", "brand", "stock", "imageUrl"].map(
-          (field) => (
-            <input
-              key={field}
-              name={field}
-              placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-              value={form[field]}
-              onChange={handleChange}
-              required
-              className="border rounded-lg p-3"
-              style={{
-                backgroundColor: theme.colors.ui.base,
-                borderColor: theme.colors.ui.border,
-                fontFamily: theme.fonts.ui,
-              }}
-            />
-          )
-        )}
-
-        <textarea
-          name="description"
-          placeholder="Description"
-          value={form.description}
-          onChange={handleChange}
-          className="border rounded-lg p-3 md:col-span-2"
-          style={{
-            backgroundColor: theme.colors.ui.base,
-            borderColor: theme.colors.ui.border,
-            fontFamily: theme.fonts.ui,
-          }}
-        />
-
-        <button
-          type="submit"
-          className="bg-[#A65A2E] text-white rounded-lg py-2 md:col-span-2"
+      <div className="sticky top-0 z-10 bg-[#EFEAE5] p-4 rounded shadow mb-6">
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
-          {editId ? "Update Product" : "Add Product"}
-        </button>
-      </form>
-
-      {/* Product List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((item) => (
-          <div
-            key={item.id}
-            className="border rounded-lg p-4"
+          {["name", "price", "category", "brand", "stock", "imageUrl"].map(
+            (field) => (
+              <input
+                key={field}
+                name={field}
+                placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                value={form[field]}
+                onChange={handleChange}
+                required
+                className="border rounded-lg p-3"
+                style={{
+                  backgroundColor: theme.colors.ui.base,
+                  borderColor: theme.colors.ui.border,
+                  fontFamily: theme.fonts.ui,
+                }}
+              />
+            )
+          )}
+          <textarea
+            name="description"
+            placeholder="Description"
+            value={form.description}
+            onChange={handleChange}
+            className="border rounded-lg p-3 md:col-span-2"
             style={{
               backgroundColor: theme.colors.ui.base,
               borderColor: theme.colors.ui.border,
+              fontFamily: theme.fonts.ui,
             }}
+          />
+          <button
+            type="submit"
+            className="bg-[#A65A2E] text-white rounded-lg py-2 md:col-span-2"
           >
-            <img
-              src={item.imageUrl}
-              alt={item.name}
-              className="w-full h-40 object-cover rounded mb-3"
-            />
-            <h2 className="text-lg font-semibold">{item.name}</h2>
-            <p className="text-sm mb-1">{item.description}</p>
-            <p className="text-sm">Category: {item.category}</p>
-            <p className="text-sm">Brand: {item.brand}</p>
-            <p className="text-sm">Price: ${item.price}</p>
-            <p className="text-sm">Stock: {item.stock}</p>
-
-            <div className="flex gap-2 mt-3">
-              <button
-                onClick={() => handleEdit(item)}
-                className="bg-blue-500 text-white px-3 py-1 rounded"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(item.id)}
-                className="bg-red-500 text-white px-3 py-1 rounded"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
+            {editId ? "Update Product" : "Add Product"}
+          </button>
+        </form>
       </div>
+      {/* Product List */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {products.slice(0, visibleCount).map((item) => (
+    <div
+      key={item.id}
+      className="border rounded-xl p-5 shadow-sm hover:shadow-md transition duration-200 flex flex-col justify-between"
+      style={{
+        backgroundColor: theme.colors.ui.base,
+        borderColor: theme.colors.ui.border,
+        maxHeight: "450px",
+      }}
+    >
+      <img
+        src={item.imageUrl}
+        alt={item.name}
+        className="w-full h-36 object-cover rounded mb-3"
+      />
+      <h2 className="text-lg font-semibold truncate">{item.name}</h2>
+
+      <p className="text-sm line-clamp-2 text-gray-600 mb-1">
+        {item.description}
+      </p>
+
+      <div className="text-sm text-gray-500 space-y-1">
+        <p>Category: {item.category}</p>
+        <p>Brand: {item.brand}</p>
+        <p>Price: ${item.price}</p>
+        <p>Stock: {item.stock}</p>
+      </div>
+
+      <div className="flex gap-2 mt-4">
+        <button
+          onClick={() => handleEdit(item)}
+          className="bg-blue-500 text-white px-3 py-1 rounded text-sm"
+        >
+          Edit
+        </button>
+        <button
+          onClick={() => handleDelete(item.id)}
+          className="bg-red-500 text-white px-3 py-1 rounded text-sm"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+{visibleCount < products.length && (
+  <div className="mt-6 text-center">
+    <button
+      onClick={handleShowMore}
+      className="px-5 py-2 bg-[#A65A2E] text-white rounded hover:bg-[#BF6E3D] transition"
+    >
+      Load More
+    </button>
+  </div>
+)}
     </div>
   );
 };
