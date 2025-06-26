@@ -9,6 +9,7 @@ import {
   ChevronUp,
   ShoppingCart,
   Star,
+  Heart,
 } from "lucide-react";
 import axios from "axios";
 import theme from "../context/Theme";
@@ -16,6 +17,7 @@ import Breadcrumbs from "../components/BreadCrumbs";
 import { useCart } from "../context/CartContext";
 import { toast } from "sonner";
 import { useAuth } from "../context/AuthContext";
+import { useWishlist } from "../context/WishlistContext";
 
 const PAGE_SIZE = 6;
 
@@ -34,7 +36,7 @@ const ProductPage = () => {
   const [showAllTypes, setShowAllTypes] = useState(false);
   const navigate = useNavigate();
   const { currentUser } = useAuth();
-
+  const { toggleWishlist, isWishlisted } = useWishlist();
   const { addToCart } = useCart();
 
   const category = searchParams.get("category") || "";
@@ -511,6 +513,23 @@ const ProductPage = () => {
                     className="bg-white flex flex-col rounded-xl w-full shadow-md overflow-hidden relative"
                   >
                     <div className="relative aspect-[4/3] w-full overflow-hidden">
+                      <div className="absolute top-2 right-2 z-20">
+                        <button
+                          onClick={() => toggleWishlist(product)}
+                          className="p-1.5 bg-white/80 hover:bg-white rounded-full shadow-md transition"
+                          aria-label="Toggle Wishlist"
+                        >
+                          <Heart
+                            size={18}
+                            className={`transition-all duration-300 ${
+                              isWishlisted(product.id)
+                                ? "scale-110 text-[#BF6E3D]"
+                                : "scale-100 text-[3A2F2A]"
+                            } `}
+                            fill={isWishlisted(product.id) ? "#A65A2E" : "none"}
+                          />
+                        </button>
+                      </div>
                       <img
                         src={product.image || "/placeholder.jpg"}
                         alt={product.name}
@@ -518,8 +537,8 @@ const ProductPage = () => {
                       />
                     </div>
 
-                    <div className="flex flex-col flex-1 justify-between p-6">
-                      <div>
+                    <div className="flex flex-col flex-1 justify-between p-4">
+                      <div className="w-full">
                         <Link
                           key={product.id}
                           to={`/products/${product.id}`}
@@ -544,24 +563,21 @@ const ProductPage = () => {
                       </div>
 
                       <div
-                        className="mt-1 text-sm space-y-1"
+                        className="mt-2 text-sm space-y-1"
                         style={{ color: theme.colors.text.primary }}
                       >
-                        <p>
-                          <span
-                            className="font-semibold"
-                            style={{ color: theme.colors.accent.DEFAULT }}
-                          >
-                            Price:
-                          </span>{" "}
+                        <span
+                          className="text-lg mt-2 mb-2 font-semibold"
+                          style={{ color: theme.colors.accent.DEFAULT }}
+                        >
                           ${product.price.toFixed(2)}
-                        </p>
+                        </span>
 
                         <button
                           type="button"
                           className="mt-4 w-full py-2 rounded-lg font-medium hover:text-[#BF6E3D] flex items-center justify-center gap-2 transition-colors pointer-events-auto"
                           style={{
-                            backgroundColor: theme.colors.accent.DEFAULT,
+                            backgroundColor: theme.colors.primary.DEFAULT,
                             color: theme.colors.primary.contrast,
                             fontFamily: theme.fonts.body,
                           }}

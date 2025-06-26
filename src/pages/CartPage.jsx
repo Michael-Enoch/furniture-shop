@@ -115,7 +115,7 @@ export const CartPage = () => {
       </div>
 
       {/* Cart Total */}
-      <div className="mt-8 flex flex-col items-end">
+      <div className="mt-8 flex flex-col items-start md:items-end">
         <h2 className="text-2xl font-semibold">
           Total: <span className="text-primary">${total}</span>
         </h2>
@@ -123,7 +123,7 @@ export const CartPage = () => {
           <button
             className="mt-4 w-full sm:w-auto px-4 py-2 rounded font-medium hover:opacity-90 transition"
             style={{
-              background: theme.colors.accent.DEFAULT,
+              background: theme.colors.primary.DEFAULT,
               color: theme.colors.primary.contrast,
             }}
           >
