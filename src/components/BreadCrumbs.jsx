@@ -7,6 +7,7 @@ const Breadcrumbs = () => {
   const paths = location.pathname.split("/").filter((path) => path);
   const [productName, setProductName] = useState(null);
 
+
   // Check if string is a UUID (basic pattern match)
   const isUUID = (str) =>
     /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/.test(
@@ -44,7 +45,10 @@ const Breadcrumbs = () => {
 
   const routeNames = {
     cart: "Your Cart",
-    products: "All Products",
+    admin: "Admin",
+    users: "Users",
+    products: "Products",
+    orders: "Orders",
   };
 
   return (
