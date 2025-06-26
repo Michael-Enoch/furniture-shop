@@ -110,9 +110,11 @@ export default function LatestOffersGridWithModal({
                   <Heart
                     size={18}
                     className={`transition-all duration-300 ${
-                      isWishlisted(product.id) ? "scale-110" : "scale-100"
-                    } text-[#BF6E3D]`}
-                    fill={isWishlisted(product.id) ? "#BF6E3D" : "none"}
+                      isWishlisted(product.id)
+                        ? "scale-110 text-[#BF6E3D]"
+                        : "scale-100 text-[3A2F2A]"
+                    } `}
+                    fill={isWishlisted(product.id) ? "#A65A2E" : "none"}
                   />
                 </button>
               </div>
@@ -142,6 +144,7 @@ export default function LatestOffersGridWithModal({
                   onClick={() => setSelectedProduct(product)}
                   style={{
                     backgroundColor: theme.colors.accent.DEFAULT,
+                    color: theme.colors.primary.contrast,
                     fontFamily: theme.fonts.alt,
                   }}
                 >
@@ -193,14 +196,9 @@ export default function LatestOffersGridWithModal({
 
               <div
                 onClick={() => setSelectedProduct(product)}
-                className="font-medium w-full cursor-pointer flex items-center flex-row gap-2"
+                className="font-medium w-full cursor-pointer group flex items-center gap-2 hover:text-[#A65A2E]"
               >
-                <p
-                  className="font-medium underline"
-                  style={{ color: theme.colors.accent.DEFAULT }}
-                >
-                  Learn more
-                </p>
+                <p className="font-medium underline">Learn more</p>
                 <FaArrowRight size={10} />
               </div>
 
@@ -209,7 +207,7 @@ export default function LatestOffersGridWithModal({
                 type="button"
                 className="mt-4 w-full py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
                 style={{
-                  backgroundColor: theme.colors.accent.DEFAULT,
+                  backgroundColor: theme.colors.primary.DEFAULT,
                   color: theme.colors.primary.contrast,
                   fontFamily: theme.fonts.body,
                 }}
@@ -283,19 +281,11 @@ export default function LatestOffersGridWithModal({
                 <button
                   className="mt-4 w-full py-2 rounded text-sm font-semibold transition duration-300"
                   style={{
-                    backgroundColor: theme.colors.accent.DEFAULT,
+                    backgroundColor: theme.colors.primary.DEFAULT,
                     color: theme.colors.primary.contrast,
                     fontFamily: theme.fonts.alt,
                   }}
                   onClick={() => handleAddToCart(selectedProduct)}
-                  onMouseOver={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      theme.colors.accent.hover)
-                  }
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      theme.colors.accent.DEFAULT)
-                  }
                 >
                   Add to Cart
                 </button>

@@ -136,9 +136,11 @@ const BestSelling = ({ sectionIndex = 4 }) => {
                   <Heart
                     size={18}
                     className={`transition-all duration-300 ${
-                      isWishlisted(product.id) ? "scale-110" : "scale-100"
-                    } text-[#BF6E3D]`}
-                    fill={isWishlisted(product.id) ? "#BF6E3D" : "none"}
+                      isWishlisted(product.id)
+                        ? "scale-110 text-[#BF6E3D]"
+                        : "scale-100 text-[3A2F2A]"
+                    } `}
+                    fill={isWishlisted(product.id) ? "#A65A2E" : "none"}
                   />
                 </button>
               </div>
@@ -175,47 +177,39 @@ const BestSelling = ({ sectionIndex = 4 }) => {
                   {product.name}
                 </h3>
                 <p
-                  className="text-base mt-1 mb-1 capitalize"
+                  className="text-sm mt-2 mb-2 capitalize"
                   style={{
                     color: theme.colors.text.primary,
                     fontFamily: theme.fonts.body,
                   }}
                 >
-                  {product.brand || "Unbranded"}
+                  {product.category} — {product.type}
                 </p>
                 <StarRating rating={product.rating || 4} />
               </div>
 
               <div
-                className="mt-1 text-sm space-y-1"
+                className="mt-2 text-sm space-y-1"
                 style={{ color: theme.colors.text.primary }}
               >
-                <p className="mb-3">
-                  <span
-                    className="font-semibold"
-                    style={{ color: theme.colors.accent.DEFAULT }}
-                  >
-                    Price:
-                  </span>{" "}
+                <span
+                  className="text-lg mt-2 mb-2 font-semibold"
+                  style={{ color: theme.colors.accent.DEFAULT }}
+                >
                   ${product.price.toFixed(2)}
-                </p>
+                </span>
                 <div
                   onClick={() => setSelectedProduct(product)}
-                  className="font-medium cursor-pointer flex items-center flex-row gap-2"
+                  className="font-medium w-full cursor-pointer mt-3 group flex items-center gap-2 hover:text-[#A65A2E]"
                 >
-                  <p
-                    className="font-medium underline"
-                    style={{ color: theme.colors.accent.DEFAULT }}
-                  >
-                    Learn more
-                  </p>
+                  <p className="font-medium underline">Learn more</p>
                   <FaArrowRight size={10} />
                 </div>
                 <button
                   type="button"
                   className="mt-4 w-full py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
                   style={{
-                    backgroundColor: theme.colors.accent.DEFAULT,
+                    backgroundColor: theme.colors.primary.DEFAULT,
                     color: theme.colors.primary.contrast,
                     fontFamily: theme.fonts.body,
                   }}
