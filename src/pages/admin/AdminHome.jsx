@@ -89,15 +89,15 @@ useEffect(() => {
 
       {/* Quick Links */}
       <div className="mb-8 flex gap-4">
-        <Link className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        <Link to="/admin/products" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
           Add New Product
         </Link>
-        <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+       <Link to="/admin/users" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
           Manage Users
-        </button>
-        <button className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+        </Link>
+        <Link to="/admin/orders" className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
           Manage Orders
-        </button>
+        </Link>
       </div>
 
       {/* Search Box */}
