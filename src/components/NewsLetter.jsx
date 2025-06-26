@@ -36,7 +36,8 @@ const Newsletter = ({ sectionIndex = 10 }) => {
           />
           <button
             type="submit"
-            className="bg-[#A65A2E] hover:bg-[#BF6E3D] text-white font-medium px-6 py-3 rounded-lg transition-colors"
+            className="text-white font-medium px-6 py-3 rounded-lg transition-colors"
+            style={{background: theme.colors.primary.DEFAULT}}
           >
             Subscribe
           </button>

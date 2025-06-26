@@ -35,10 +35,11 @@ const Hero = ({ offers }) => {
             <div className="w-full h-full bg-gradient-to-b from-black/70 to-black/60 text-white flex items-center justify-center md:justify-start px-4 sm:px-8 md:px-16 py-20">
               <div className="max-w-5xl text-center md:text-left space-y-6">
                 <h2
-                  className="font-bold leading-tight tracking-tight text-white"
+                  className="font-bold leading-tight tracking-tight"
                   style={{
                     fontFamily: theme.fonts.header,
                     fontSize: "clamp(2rem, 6vw, 3.5rem)",
+                    color: theme.colors.primary.contrast
                   }}
                 >
                   {offer.title}

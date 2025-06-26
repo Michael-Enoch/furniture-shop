@@ -53,17 +53,15 @@ export default function CategoriesSection({ sectionIndex = 1 }) {
             <div className="relative rounded-2xl shadow-md overflow-hidden">
               {/* Image */}
               <div
-                className="w-full aspect-[4/3] transition-transform duration-700 group-hover:scale-105"
+                className="w-full aspect-[4/3] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                 style={{
                   backgroundImage: `url(${category.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
                 }}
               />
               {/* Overlay */}
               <div
-                className="absolute inset-0"
-                style={{ backgroundColor: "rgba(58, 47, 42, 0.4)", zIndex: 20 }}
+                className="absolute inset-0 z-20"
+                style={{ backgroundColor: "rgba(58, 47, 42, 0.4)"}}
               />
               {/* Name */}
               <div className="absolute inset-0 flex items-center justify-center z-30">
