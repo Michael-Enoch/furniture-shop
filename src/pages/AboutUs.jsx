@@ -75,7 +75,6 @@ const AboutUs = () => {
   };
 
   const modalRef = useRef(null);
-  const modalContentRef = useRef(null);
 
   // Modal functions
   const openArtisanModal = (artisan, type) => {
@@ -246,7 +245,7 @@ const AboutUs = () => {
 
   const galleryData = [
     {
-      img: "https://images.unsplash.com/photo-1555043720-0b7161d6a49a?auto=format&fit=crop&w=800",
+      img: "https://images.unsplash.com/photo-1729603369774-23019dbf6c9c?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Hudson Dining Table",
       description: "Walnut & Leather",
       creator: "Sarah Johnson",
@@ -258,25 +257,25 @@ const AboutUs = () => {
       creator: "Michael Chen",
     },
     {
-      img: "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800",
+      img: "https://images.unsplash.com/photo-1560976813-060185623241?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Artisan Bookshelf",
       description: "Cherry Wood",
       creator: "Elena Rodriguez",
     },
     {
-      img: "https://images.unsplash.com/photo-1567538096630-e0c55bd6354f?auto=format&fit=crop&w=800",
+      img: "https://images.unsplash.com/photo-1678733405763-ecaf19dbccbe?q=80&w=1140&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Executive Desk",
       description: "Mahogany & Steel",
       creator: "Benjamin Carter",
     },
     {
-      img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800",
+      img: "https://images.unsplash.com/photo-1646061142491-fc141798ba14?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Heritage Bed Frame",
       description: "Reclaimed Oak",
       creator: "James Thompson",
     },
     {
-      img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800",
+      img: "https://images.unsplash.com/photo-1633435597188-27c1e70f329d?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Minimalist Console",
       description: "Maple & Brass",
       creator: "Sophia Miller",
@@ -356,10 +355,12 @@ const AboutUs = () => {
     >
       <AboutUsSections valuesData={valuesData} />
       {/* Team Section */}
-      <section className="py-24 px-4 max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+      <section  className="w-full flex flex-col gap-8 items-center justify-center max-w-screen-2xl px-8 py-16 mx-auto"
+      style={{background: theme.colors.background.DEFAULT}}
+      >
+        <div className="w-full text-center flex flex-col items-center justify-center gap-6 max-w-4xl">
           <h2
-            className="text-4xl font-bold mb-6"
+            className="text-3xl md:text-4xl font-bold"
             style={{
               color: theme.colors.primary.DEFAULT,
               fontFamily: theme.fonts.header,
@@ -368,8 +369,8 @@ const AboutUs = () => {
             Meet Our Artisans
           </h2>
           <p
-            className="text-xl max-w-2xl mx-auto"
-            style={{ color: theme.colors.accent.DEFAULT }}
+            className="text-xl max-w-3xl mx-auto"
+            style={{ color: theme.colors.text.primary}}
           >
             The passionate individuals who transform raw materials into works of
             art
@@ -394,40 +395,36 @@ const AboutUs = () => {
                   className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                <div className="absolute bottom-0 left-0 right-0 p-4">
                   <h3
-                    className="font-bold text-xl group-hover:text-[#A65A2E] transition-colors"
-                    style={{ fontFamily: theme.fonts.ui }}
+                    className="font-bold text-xl transition-colors"
+                    style={{ fontFamily: theme.fonts.header, color: theme.colors.primary.contrast }}
                   >
                     {member.name}
                   </h3>
-                  <p className="text-[#E8DFD1]">{member.position}</p>
+                  <p className="flex items-center" style={{color: theme.colors.text.onPrimary}}>{member.position}</p>
                 </div>
               </div>
               <div className="p-4">
                 <div className="flex justify-between items-center mb-3">
                   <span
                     className="text-xs text-white px-2 py-1 rounded-full"
-                    style={{ backgroundColor: theme.colors.primary.DEFAULT }}
+                    style={{ backgroundColor: theme.colors.accent.DEFAULT }}
                   >
                     {member.experience}
                   </span>
                   <FaQuoteLeft style={{ color: theme.colors.accent.DEFAULT }} />
                 </div>
-                <p className="text-sm text-gray-600 italic">"{member.quote}"</p>
+                <p className="text-sm italic" style={{color: theme.colors.text.primary}}>"{member.quote}"</p>
                 <div className="mt-4 flex gap-2">
                   <button
                     onClick={() => openArtisanModal(member, "work")}
                     className="text-xs px-3 py-1 rounded-full transition-colors focus:outline-none focus:ring-1"
                     style={{
                       backgroundColor: theme.colors.background.muted,
-                      color: theme.colors.primary.DEFAULT,
+                      color: theme.colors.text.primary,
                       fontFamily: theme.fonts.ui,
                       borderColor: theme.colors.ui.border,
-                      "&:hover": {
-                        backgroundColor: theme.colors.accent.DEFAULT,
-                        color: theme.colors.text.onPrimary,
-                      },
                     }}
                     aria-label={`View work by ${member.name}`}
                   >
@@ -440,10 +437,6 @@ const AboutUs = () => {
                       borderColor: theme.colors.primary.DEFAULT,
                       color: theme.colors.primary.DEFAULT,
                       fontFamily: theme.fonts.ui,
-                      "&:hover": {
-                        backgroundColor: theme.colors.primary.DEFAULT,
-                        color: theme.colors.text.onPrimary,
-                      },
                     }}
                     aria-label={`Contact ${member.name}`}
                   >
@@ -458,16 +451,13 @@ const AboutUs = () => {
       {/* Craftsmanship Section */}
       <section
         ref={sectionRefs.craftsmanship}
-        className="py-24"
-        style={{
-          background: `linear-gradient(to bottom, ${theme.colors.background.DEFAULT}, ${theme.colors.background.alt})`,
-        }}
+         className="w-full flex flex-col justify-center items-center gap-8 max-w-screen-2xl px-4 sm:px-6 md:px-12 lg:px-16 py-16 mx-auto"
+      style={{ background: theme.colors.background.muted, fontFamily: theme.fonts.body }}
       >
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="w-full text-center flex flex-col items-center justify-center gap-6 max-w-4xl">
             <h2
               ref={elementRefs.craftsmanshipTitle}
-              className="text-4xl font-bold mb-6"
+              className="text-3xl md:text-4xl font-bold"
               style={{
                 color: theme.colors.primary.DEFAULT,
                 fontFamily: theme.fonts.header,
@@ -477,13 +467,13 @@ const AboutUs = () => {
             </h2>
             <p
               className="text-xl max-w-3xl mx-auto"
-              style={{ color: theme.colors.accent.DEFAULT }}
+              style={{ color: theme.colors.text.primary }}
             >
               Our meticulous process from forest to finished piece
             </p>
           </div>
 
-          <div className="relative">
+          <div className="relative w-full">
             <div
               className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 z-0"
               style={{ backgroundColor: theme.colors.accent.DEFAULT }}
@@ -540,43 +530,40 @@ const AboutUs = () => {
           </div>
 
           <div
-            className="mt-16 rounded-2xl p-8 text-white"
-            style={{ backgroundColor: theme.colors.primary.DEFAULT }}
+            className="mt-20 max-w-8xl rounded-2xl px-6 py-8"
+            style={{ backgroundColor: theme.colors.ui.base, color: theme.colors.text.primary }}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div>
+              <div className="w-full flex flex-col items-center md:items-start">
                 <h3
-                  className="text-2xl font-bold mb-4"
-                  style={{ fontFamily: theme.fonts.header }}
+                  className="text-2xl font-bold mb-4 text-center md:text-left"
+                  style={{ fontFamily: theme.fonts.header, color: theme.colors.primary.DEFAULT }}
                 >
                   Our Workshop Experience
                 </h3>
-                <p className="mb-4">
+                <p className="mb-3 text-center md:text-left">
                   Visit our 15,000 sq ft workshop in Brooklyn where all our
                   pieces come to life. Each month we host open studio days where
                   you can see our craftsmen at work and even participate in
                   woodworking workshops.
                 </p>
-                <div className="flex flex-wrap gap-4 mt-6">
+                <div className="w-full flex flex-col md:flex-row text-center items-center md:items-start gap-4 mt-6">
                   <button
-                    className="border border-white text-white px-6 py-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50"
+                    className="flex-1 px-6 py-3 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50"
                     style={{
                       fontFamily: theme.fonts.ui,
+                      background: theme.colors.primary.DEFAULT,
+                      color:theme.colors.primary.contrast
                     }}
                     aria-label="Schedule a workshop tour"
                   >
                     Schedule a Tour
                   </button>
                   <button
-                    className="border px-6 py-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50"
+                    className="border-1 flex-1 px-6 py-3 text-[#2D2D2D] hover:bg-[#3A2F2A] hover:text-[#F8F5F2] rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50"
                     style={{
                       fontFamily: theme.fonts.ui,
-                      borderColor: theme.colors.accent.DEFAULT,
-                      color: theme.colors.accent.DEFAULT,
-                      "&:hover": {
-                        backgroundColor: theme.colors.accent.DEFAULT,
-                        color: theme.colors.text.onPrimary,
-                      },
+                      borderColor: theme.colors.ui.border,
                     }}
                     aria-label="View workshop calendar"
                   >
@@ -585,46 +572,47 @@ const AboutUs = () => {
                 </div>
               </div>
               <div
-                className="h-64 rounded-xl flex items-center justify-center p-6"
+                className="px-4 py-6 rounded-xl flex items-center justify-center w-full"
                 style={{
-                  background: `linear-gradient(135deg, ${theme.colors.accent.DEFAULT}, ${theme.colors.accent.hover})`,
+                  background: theme.colors.primary.DEFAULT,
+                  color: theme.colors.primary.contrast
                 }}
               >
-                <div className="grid grid-cols-2 gap-4 text-center">
-                  <div>
-                    <div className="text-4xl font-bold mb-2">15K</div>
-                    <div className="text-[#E8DFD1] text-sm">Square Feet</div>
+                <div className="grid grid-cols-2 gap-4 text-center w-full">
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <span className="text-3xl md:text-4xl font-bold">15K</span>
+                    <span className="text-[#F8F5F2] text-sm">Square Feet</span>
                   </div>
-                  <div>
-                    <div className="text-4xl font-bold mb-2">42</div>
-                    <div className="text-[#E8DFD1] text-sm">
+                   <div className="flex flex-col items-center justify-center spa-2">
+                    <span className="text-3xl md:text-4xl font-bold">42</span>
+                    <span className="text-[#F8F5F2] text-sm">
                       Master Craftsmen
-                    </div>
+                    </span>
                   </div>
-                  <div>
-                    <div className="text-4xl font-bold mb-2">25+</div>
-                    <div className="text-[#E8DFD1] text-sm">
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <span className="text-3xl md:text-4xl font-bold">25+</span>
+                    <span className="text-[#F8F5F2] text-sm">
                       Years Experience
-                    </div>
+                    </span>
                   </div>
-                  <div>
-                    <div className="text-4xl font-bold mb-2">4</div>
-                    <div className="text-[#E8DFD1] text-sm">Generations</div>
+                   <div className="flex flex-col items-center justify-center gap-2">
+                    <span className="text-3xl md:text-4xl font-bold">4</span>
+                    <span className="text-[#F8F5F2] text-sm">Generations</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
       </section>
       {/* Gallery Section */}
       <section
         ref={sectionRefs.gallery}
-        className="py-24 px-4 max-w-6xl mx-auto"
+        className="py-16 px-4 max-w-6xl flex flex-col gap-8 items-center justify-center mx-auto"
+        style={{ background: theme.colors.background.DEFAULT, fontFamily: theme.fonts.body }}
       >
-        <div className="text-center mb-16">
+        <div className="w-full text-center flex flex-col items-center justify-center gap-6 max-w-4xl">
           <h2
-            className="text-4xl font-bold mb-6"
+            className="text-3xl md:text-4xl font-bold"
             style={{
               color: theme.colors.primary.DEFAULT,
               fontFamily: theme.fonts.header,
@@ -634,7 +622,7 @@ const AboutUs = () => {
           </h2>
           <p
             className="text-xl max-w-2xl mx-auto"
-            style={{ color: theme.colors.accent.DEFAULT }}
+            style={{ color: theme.colors.text.primary }}
           >
             Timeless designs that define the Hudson aesthetic
           </p>
@@ -646,25 +634,28 @@ const AboutUs = () => {
               key={index}
               className="rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative group"
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden cursor-pointer">
+              <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden cursor-pointer">
                 <img
                   src={item.img}
                   alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full rounded-lg object-cover transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
                 />
-              </div>
+                <div className="absolute inset-0 bg-black/40" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                 <div>
-                  <h3 className="font-bold text-white text-xl">{item.title}</h3>
-                  <p className="text-[#E8DFD1]">{item.description}</p>
+                  <h3 className="font-bold text-xl"
+                  style={{color: theme.colors.primary.contrast}}
+                  >{item.title}</h3>
+                  <p className="text-[#F8F5F2]">{item.description}</p>
                   <p
                     className="text-sm mt-1"
-                    style={{ color: theme.colors.accent.DEFAULT }}
+                    style={{ color: theme.colors.primary.contrast }}
                   >
                     By {item.creator}
                   </p>
                 </div>
+              </div>
               </div>
             </div>
           ))}
@@ -673,34 +664,33 @@ const AboutUs = () => {
       {/* Testimonial Section */}
       <section
         ref={sectionRefs.testimonial}
-        className="py-24"
-        style={{ backgroundColor: theme.colors.primary.DEFAULT }}
+         className="py-16 px-4 max-w-screen-2xl flex flex-col gap-8 items-center justify-center mx-auto border-b"
+        style={{ backgroundColor: theme.colors.primary.DEFAULT, borderColor: theme.colors.ui.border }}
       >
-        <div className="max-w-4xl mx-auto px-4 text-center">
+       <div className="w-full text-center flex flex-col items-center justify-center gap-4 max-w-4xl">
           <div
-            className="text-5xl mb-6"
+            className="text-3xl md:text-4xl font-semibold"
             style={{ color: theme.colors.accent.DEFAULT }}
           >
             "
           </div>
           <p
-            className="text-2xl italic mb-8 text-white"
-            style={{ fontFamily: theme.fonts.alt }}
+            className="text-lg md:text-2xl italic text-[#F8F5F2]" 
           >
             Our Hudson dining table has become the heart of our home. The
             craftsmanship is exceptional - you can feel the love and attention
             in every detail. It's more than furniture; it's a legacy piece.
           </p>
-          <div
-            className="font-bold text-xl text-white"
-            style={{ fontFamily: theme.fonts.header }}
+          <h3
+            className="font-bold text-xl"
+            style={{ color:theme.colors.primary.contrast }}
           >
             Emily Richardson
-          </div>
-          <div className="mt-1" style={{ color: theme.colors.accent.DEFAULT }}>
+          </h3>
+          <div style={{ color: theme.colors.accent.DEFAULT }}>
             Hudson Customer since 2018
           </div>
-          <div className="flex justify-center mt-8 space-x-2">
+          <div className="flex justify-center items-center space-x-2">
             {[...Array(5)].map((_, i) => (
               <FaQuoteLeft
                 key={i}
@@ -719,19 +709,18 @@ const AboutUs = () => {
           onClick={closeModal}
         >
           <div
-            ref={modalContentRef}
-            className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] custom-scrollbar overflow-y-auto"
+            className="bg-white rounded-xl max-w-3xl  w-full max-h-[50vh] custom-scrollbar overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
             <div
-              className="sticky top-0 bg-white z-10 p-6 border-b flex justify-between items-center"
+              className="sticky top-0 bg-white z-10 p-4 border-b flex justify-between"
               style={{
                 borderColor: theme.colors.ui.border,
-                fontFamily: theme.fonts.ui,
+                fontFamily: theme.fonts.body,
               }}
             >
-              <div>
+              <div className="flex flex-col items-start justify-center">
                 <h3
                   className="text-2xl font-bold"
                   style={{ color: theme.colors.primary.DEFAULT }}
@@ -740,16 +729,16 @@ const AboutUs = () => {
                     ? `${selectedArtisan.name}'s Work`
                     : `Contact ${selectedArtisan.name}`}
                 </h3>
-                <p style={{ color: theme.colors.accent.DEFAULT }}>
+                <p style={{ color: theme.colors.text.primary }}>
                   {selectedArtisan.position}
                 </p>
               </div>
               <button
                 onClick={closeModal}
-                className="text-3xl text-gray-500 hover:text-[#A65A2E] transition-colors"
+                className="absolute top-2 right-1  text-gray-400 hover:text-[#A65A2E] transition-colors"
                 aria-label="Close modal"
               >
-                <FaTimes />
+                <FaTimes size={20} />
               </button>
             </div>
 
@@ -760,7 +749,7 @@ const AboutUs = () => {
                 <div className="">
                   <div className="flex flex-col md:flex-row items-start gap-8 mb-8">
                     <div
-                      className="w-32 h-32 rounded-full overflow-hidden border-4 flex-shrink-0"
+                      className="w-24 h-24 rounded-full overflow-hidden border-4 flex-shrink-0"
                       style={{ borderColor: theme.colors.accent.DEFAULT }}
                     >
                       <img
@@ -813,12 +802,12 @@ const AboutUs = () => {
                           </div>
                           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                             <div>
-                              <h5
+                              <h4
                                 className="font-bold text-white"
-                                style={{ fontFamily: theme.fonts.ui }}
+                                style={{ fontFamily: theme.fonts.body, color: theme.colors.primary.contrast }}
                               >
                                 {item.title}
-                              </h5>
+                              </h4>
                               <p
                                 className="text-sm"
                                 style={{ color: theme.colors.background.muted }}
@@ -851,7 +840,7 @@ const AboutUs = () => {
                       {selectedArtisan.name} believes in creating furniture that
                       tells a story. Each piece is designed to evolve with its
                       owner, developing character through years of use while
-                      maintaininzstructural integrity through traditional
+                      maintaining structural integrity through traditional
                       joinery techniques.
                     </p>
                   </div>
@@ -921,10 +910,6 @@ const AboutUs = () => {
                           style={{
                             borderColor: theme.colors.ui.border,
                             fontFamily: theme.fonts.body,
-                            "&:focus": {
-                              ringColor: theme.colors.accent.DEFAULT,
-                              borderColor: theme.colors.accent.DEFAULT,
-                            },
                           }}
                         />
                       </div>
@@ -944,10 +929,6 @@ const AboutUs = () => {
                           style={{
                             borderColor: theme.colors.ui.border,
                             fontFamily: theme.fonts.body,
-                            "&:focus": {
-                              ringColor: theme.colors.accent.DEFAULT,
-                              borderColor: theme.colors.accent.DEFAULT,
-                            },
                           }}
                         />
                       </div>
@@ -970,10 +951,6 @@ const AboutUs = () => {
                         style={{
                           borderColor: theme.colors.ui.border,
                           fontFamily: theme.fonts.body,
-                          "&:focus": {
-                            ringColor: theme.colors.accent.DEFAULT,
-                            borderColor: theme.colors.accent.DEFAULT,
-                          },
                         }}
                       />
                     </div>
@@ -994,10 +971,6 @@ const AboutUs = () => {
                         style={{
                           borderColor: theme.colors.ui.border,
                           fontFamily: theme.fonts.body,
-                          "&:focus": {
-                            ringColor: theme.colors.accent.DEFAULT,
-                            borderColor: theme.colors.accent.DEFAULT,
-                          },
                         }}
                       ></textarea>
                     </div>
@@ -1017,10 +990,6 @@ const AboutUs = () => {
                         style={{
                           backgroundColor: theme.colors.primary.DEFAULT,
                           fontFamily: theme.fonts.ui,
-                          "&:hover": {
-                            backgroundColor: theme.colors.accent.DEFAULT,
-                          },
-                          focusRingColor: theme.colors.accent.DEFAULT,
                         }}
                       >
                         Send Message

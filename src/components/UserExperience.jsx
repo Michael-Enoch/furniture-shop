@@ -21,7 +21,8 @@ const UserExperience = ({ sectionIndex = 13 }) => {
           <p className="text-sm mb-5">We love hearing from our customers! Drop a quick review and let others know what to expect.</p>
           <Link
             to="/submit-review"
-            className="inline-block bg-[#A65A2E] hover:bg-[#BF6E3D] text-white py-3 px-6 rounded-lg transition-colors"
+            className="inline-block text-white py-3 px-6 rounded-lg transition-colors"
+            style={{background: theme.colors.primary.DEFAULT}}
           >
             Submit a Review
           </Link>
