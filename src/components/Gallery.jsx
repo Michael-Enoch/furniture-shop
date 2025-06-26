@@ -5,14 +5,20 @@ import { useRef, useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const images = [
-  "/gallery/Living room_ Devon Grace.webp",
   "/gallery/second.jpg",
   "/gallery/third.jpg",
-  "/gallery/fourth.webp",
   "/gallery/fifth.jpg",
-  "/gallery/second.jpg",
-  "/gallery/second.jpg",
-  "/gallery/second.jpg",
+  "/gallery/sixth.jpg",
+   "/gallery/first.jpeg",
+  "/gallery/fourth.jpg",
+   "/gallery/eleventh.jpg",
+  "/gallery/seventh.jpg",
+  "/gallery/eighth.jpg",  
+  "/gallery/ninth.webp",
+  "/gallery/tenth.png",
+  "/gallery/twelfth.png",
+  "/gallery/thirteenth.jpg",
+  "/gallery/fourteenth.jpeg",
 ];
 
 const Gallery = ({ sectionIndex = 6 }) => {
@@ -132,30 +138,41 @@ const Gallery = ({ sectionIndex = 6 }) => {
       </h2>
 
       {/* Main Grid */}
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        {images.slice(0, 4).map((src, i) => (
-          <motion.img
-            key={i}
-            src={src}
-            data-aos="fade-up"
-            data-aos-delay={i * 100}
-            alt={`Furniture ${i + 1}`}
-            onClick={() => openLightbox(i)}
-            className="rounded-xl object-cover w-full h-60 shadow cursor-pointer"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: i * 0.1 }}
-            viewport={{ once: true }}
-          />
-        ))}
+      <div className="w-full relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+  {images.slice(0, 8).map((src, i) => (
+    <div
+      key={i}
+      className="relative group transition-transform duration-500 hover:scale-100 sm:hover:scale-[1.03] cursor-pointer"
+      data-aos="fade-up"
+      data-aos-delay={i * 100}
+      onClick={() => openLightbox(i)}
+    >
+
+      <div className="relative rounded-2xl shadow-md overflow-hidden">
+        <div
+          style={{
+            backgroundImage: `url(${src})`,
+          }}
+          className="w-full h-60 bg-cover bg-center rounded-2xl shadow-md transition duration-700 group-hover:scale-105 group-hover:brightness-110"
+        />
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/50 transition-opacity rounded-2xl" />
       </div>
+    </div>
+  ))}
+</div>
+
 
       {/* View All Button */}
       <div className="w-full flex justify-center mt-8">
         <button
           onClick={() => openLightbox(0)}
           className="px-6 py-3 rounded-lg border-2 text-sm font-medium transition"
-          style={{ color: theme.colors.primary.DEFAULT, borderColor: theme.colors.ui.border }}
+          style={{
+            color: theme.colors.primary.DEFAULT,
+            borderColor: theme.colors.ui.border,
+          }}
         >
           View All
         </button>
@@ -183,14 +200,14 @@ const Gallery = ({ sectionIndex = 6 }) => {
             className="absolute left-4 top-1/2 px-2 py-2 disabled:opacity-30 rounded-full transform -translate-y-1/2 bg-[#3A2F2A]"
             disabled={activeIndex === 0}
           >
-            <ArrowLeft className="text-white" size={20}/>
+            <ArrowLeft className="text-white" size={20} />
           </button>
           <button
             onClick={scrollRight}
             className="absolute right-4 top-1/2 bg-[#3A2F2A] px-2 py-2 disabled:opacity-30 rounded-full transform -translate-y-1/2"
             disabled={activeIndex === images.length - 1}
           >
-            <ArrowRight className="text-white" size={20}/>
+            <ArrowRight className="text-white" size={20} />
           </button>
 
           {/* Counter */}
