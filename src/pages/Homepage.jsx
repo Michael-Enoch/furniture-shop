@@ -1,24 +1,24 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Hero from "../components/Hero";
+import Hero from "../pages/Hero";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import CategoriesSection from "../components/categoriesSection";
-import BestSelling from "../components/bestSellingProducts";
+import CategoriesSection from "../pages/categoriesSection";
+import BestSelling from "../pages/bestSellingProducts";
 import theme from "../context/Theme";
-import FAQ from "../components/FAQSnippet";
-import WhyChooseUs from "../components/WhyChooseUs";
-import Reviews from "../components/Reviews";
-import Newsletter from "../components/NewsLetter";
-import InstagramFeed from "../components/InstagramFeed";
-import CTASection from "../components/CTA";
-import Gallery from "../components/Gallery";
-import MiniAboutContact from "../components/MiniAboutContact";
-import Features from "../components/Features";
-import Brands from "../components/Brands";
-import LatestOffersGridWithModal from "../components/LatestOffers";
-import Support from "../components/Support";
-import UserExperience from "../components/UserExperience";
+import FAQ from "../pages/FAQSnippet";
+import WhyChooseUs from "../pages/WhyChooseUs";
+import Reviews from "../pages/Reviews";
+import Newsletter from "../pages/NewsLetter";
+import InstagramFeed from "../pages/InstagramFeed";
+import CTASection from "../pages/CTA";
+import Gallery from "../pages/Gallery";
+import MiniAboutContact from "../pages/MiniAboutContact";
+import Features from "../pages/Features";
+import Brands from "../pages/Brands";
+import LatestOffersGridWithModal from "../pages/LatestOffers";
+import Support from "../pages/Support";
+import UserExperience from "../pages/UserExperience";
 
 
 const Homepage = () => {

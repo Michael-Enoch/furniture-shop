@@ -11,7 +11,7 @@ import ContactPage from "./pages/ContactPage";
 import FaqPage from "./pages/FAQPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import Checkout from "./pages/checkOut";
-import RoleProtectedRoute from "./components/RoleProtectedRoute";
+import RoleProtectedRoute from "./routes/RoleProtectedRoute";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminHome from "./pages/admin/AdminHome";
 import AdminUsers from "./pages/admin/UsersManagement";

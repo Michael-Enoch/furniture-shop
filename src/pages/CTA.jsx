@@ -18,7 +18,7 @@ const CTASection = () => {
       >
         <h2
           className="text-3xl font-bold mb-4"
-          style={{ fontFamily: theme.fonts.header }}
+          style={{ fontFamily: theme.fonts.header, color: theme.colors.primary.contrast, }}
         >
           Transform Your Home Today
         </h2>
