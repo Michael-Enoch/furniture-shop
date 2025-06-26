@@ -170,10 +170,10 @@ const ContactPage = () => {
               "url('https://images.unsplash.com/photo-1563512449174-5e39364a2f33?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
           }}
         >
-          <div className="bg-black/80 w-full h-full flex flex-col items-center  justify-center text-white px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
+          <div className="bg-black/80 w-full h-full flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
             <motion.h4
-              className="text-4xl md:text-6xl font-medium text-white mb-6 tracking-wide"
-              style={{ fontFamily: theme.fonts.header }}
+              className="text-4xl md:text-6xl font-medium mb-6 tracking-wide"
+              style={{ fontFamily: theme.fonts.header, color:theme.colors.primary.contrast }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -188,8 +188,8 @@ const ContactPage = () => {
               transition={{ delay: 0.3, duration: 0.8 }}
             ></motion.div>
             <motion.p
-              className="text-xl md:text-2xl text-[#E8DFD1] max-w-2xl mx-auto"
-              style={{ fontFamily: theme.fonts.alt }}
+              className="text-xl md:text-2xl max-w-2xl mx-auto"
+              style={{ color:theme.colors.text.onPrimary}}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
@@ -451,7 +451,7 @@ const ContactPage = () => {
                     onClick={() => setActiveTab("appointment")}
                     className="py-2 px-6 rounded-full font-medium transition-colors w-full"
                     style={{
-                      backgroundColor: theme.colors.accent.DEFAULT,
+                      backgroundColor: theme.colors.primary.DEFAULT,
                       color: theme.colors.primary.contrast,
                     }}
                   >
@@ -706,9 +706,9 @@ const ContactPage = () => {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center"
+                    className="w-full text-[#F8F5F2] py-3 px-6 rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center"
                     style={{
-                      backgroundColor: theme.colors.accent.DEFAULT,
+                      backgroundColor: theme.colors.primary.DEFAULT,
                     }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -997,7 +997,7 @@ const ContactPage = () => {
                   disabled={isSubmitting}
                   className="w-full text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center"
                   style={{
-                    backgroundColor: theme.colors.accent.DEFAULT,
+                    backgroundColor: theme.colors.primary.DEFAULT,
                   }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -1184,8 +1184,8 @@ const ContactPage = () => {
               <div
                 className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mb-4 mx-auto"
                 style={{
-                  backgroundColor: theme.colors.accent.DEFAULT,
-                  color: theme.colors.primary.contrast,
+                  backgroundColor: theme.colors.primary.DEFAULT,
+                  color: theme.colors.accent.DEFAULT,
                 }}
               >
                 <FaClock className="text-2xl" />
@@ -1217,8 +1217,8 @@ const ContactPage = () => {
             }}
             whileHover={{
               scale: 1.05,
-              backgroundColor: theme.colors.accent.DEFAULT,
-              borderColor: theme.colors.accent.DEFAULT,
+              backgroundColor: theme.colors.primary.DEFAULT,
+              borderColor: theme.colors.ui.border,
               color: theme.colors.primary.contrast
             }}
             whileTap={{ scale: 0.95 }}
@@ -1230,15 +1230,16 @@ const ContactPage = () => {
 
       {/* CTA Section */}
       <div
-        className="max-w-screen-2xl w-full py-16 px-12 flex flex-col space-y-8 mx-auto"
+        className="max-w-screen-2xl w-full py-16 px-12 flex flex-col space-y-8 border-b mx-auto"
         style={{
-          backgroundColor: theme.colors.background.muted,
+          backgroundColor: theme.colors.primary.DEFAULT,
+          borderColor: theme.colors.ui.border,
         }}
       >
           <motion.h2
             className="text-2xl md:text-3xl font-bold"
             style={{
-              color: theme.colors.text.primary,
+              color: theme.colors.primary.contrast,
               fontFamily: theme.fonts.header,
             }}
             initial={{ opacity: 0, y: 20 }}
@@ -1256,7 +1257,7 @@ const ContactPage = () => {
           ></motion.div>
           <motion.p
             className="w-full text-md md:text-lg max-w-2xl mx-auto"
-            style={{ color: theme.colors.text.primary }}
+            style={{ color: theme.colors.primary.contrast }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
