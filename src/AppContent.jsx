@@ -23,19 +23,21 @@ import Footer from "./components/Footer";
 import Ticker from "./components/ScrollingTicker";
 import { Toaster } from "sonner";
 import { useEffect } from "react";
+import ThankYou from "./pages/ThankYou";
 
 function AppContent() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
-    useEffect(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, [])
+  const isThankYouRoute = location.pathname.startsWith("/thank-you");
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <>
       <Toaster position="bottom-center" richColors expand={true} />
 
-      {!isAdminRoute && <Navbar />}
+      {!isAdminRoute && !isThankYouRoute && <Navbar />}
 
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -49,6 +51,7 @@ function AppContent() {
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/thank-you" element={<ThankYou />} />
 
         {/* Protected Routes for admin */}
         <Route element={<RoleProtectedRoute allowedRoles={["admin"]} />}>
@@ -61,13 +64,15 @@ function AppContent() {
         </Route>
 
         {/* Protected Routes for customers/admin */}
-        <Route element={<RoleProtectedRoute allowedRoles={["customer", "admin"]} />}>
+        <Route
+          element={<RoleProtectedRoute allowedRoles={["customer", "admin"]} />}
+        >
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wishlist" element={<Wishlist />} />
         </Route>
       </Routes>
 
-      {!isAdminRoute && (
+      {!isAdminRoute && !isThankYouRoute && (
         <>
           <Footer />
           <Ticker />
