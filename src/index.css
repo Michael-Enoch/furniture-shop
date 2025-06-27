@@ -51,6 +51,22 @@ h4,h3,h2,h1 {
   scrollbar-width: none;
 }
 
+@media print {
+  button,
+  a {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+}
+
+.perspective {
+  perspective: 1000px;
+}
+
+
+
 
 
 
