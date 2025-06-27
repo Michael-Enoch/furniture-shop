@@ -18,7 +18,6 @@ const MiniAboutContact =({ sectionIndex = 8 }) => {
       >
         <h3
           className="text-2xl font-bold mb-3"
-          style={{ fontFamily: theme.fonts.header, color: theme.colors.primary.DEFAULT }}
         >
           About Our Craft
         </h3>
@@ -41,7 +40,7 @@ const MiniAboutContact =({ sectionIndex = 8 }) => {
       >
         <h3
           className="text-2xl font-bold mb-3"
-          style={{ fontFamily: theme.fonts.header, color: theme.colors.primary.DEFAULT }}
+
         >
           Get In Touch
         </h3>

@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-
+import { useNavigate, useSearchParams } from "react-router-dom";
 import highlightMatch from "../utils/HighlightMatch";
-
 import theme from "../context/Theme";
 import {
   ChevronLeft,
@@ -12,6 +10,10 @@ import {
   Star,
 } from "lucide-react";
 import Breadcrumbs from "../components/BreadCrumbs";
+import { useWishlist } from "../context/WishlistContext";
+import { toast } from "sonner";
+import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -44,6 +46,10 @@ export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") || "");
   const [page, setPage] = useState(1);
+  const { toggleWishlist, isWishlisted } = useWishlist();
+  const {addToCart} = useCart();
+  const {currentUser} = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -53,7 +59,7 @@ export default function SearchPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
 
-  // Fetch products once on mount
+ 
   useEffect(() => {
     fetch("/products.json")
       .then((res) => res.json())
@@ -80,7 +86,7 @@ export default function SearchPage() {
       });
   }, []);
 
-  // Sync query to URL
+ 
   useEffect(() => {
     const currentQ = searchParams.get("q") || "";
     if (query !== currentQ) {
@@ -120,9 +126,94 @@ export default function SearchPage() {
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
 
-  console.log("Query:", query, "| Debounced:", query);
-  console.log("Products:", products.length);
-  console.log("Filtered:", filtered.length);
+   const handleAddToCart = (p) => {
+    if (!currentUser) {
+      toast.error("⚠️ You need to sign in to add items to your cart.", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#3A2F2A",
+          color: "#F8F5F2",
+          border: "1px solid #A65A2E",
+          padding: "14px",
+          fontSize: "13px",
+          borderRadius: "8px",
+        },
+        duration: 2000,
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+      return;
+    }
+
+    addToCart(p);
+
+    toast.success(`✅ Added to cart!`, {
+      position: "bottom-center",
+      style: {
+        backgroundColor: "#3A2F2A",
+        color: "#F8F5F2",
+        border: "1px solid #A65A2E",
+        padding: "14px",
+        fontSize: "13px",
+        borderRadius: "8px",
+      },
+      iconTheme: {
+        primary: "#A65A2E",
+        secondary: "#F8F5F2",
+      },
+      duration: 3000,
+      description: "View your cart to checkout.",
+      action: {
+        label: "View Cart",
+        onClick: () => navigate("/cart"),
+      },
+    });
+  };
+
+    const handleWishlist = (product) => {
+      if (!currentUser) {
+        toast.error("⚠️ You need to sign in to add items to your wishlist.", {
+          position: "top-right",
+          style: {
+            backgroundColor: "#3A2F2A",
+            color: "#F8F5F2",
+            border: "1px solid #A65A2E",
+            padding: "14px",
+            fontSize: "13px",
+            borderRadius: "8px",
+          },
+          duration: 2000,
+        });
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
+        return;
+      }
+  
+      toggleWishlist(product);
+  
+      toast.success(`✅ Added to Wishlist!`, {
+        position: "bottom-center",
+        style: {
+          backgroundColor: "#3A2F2A",
+          color: "#F8F5F2",
+          border: "1px solid #A65A2E",
+          padding: "14px",
+          fontSize: "13px",
+          borderRadius: "8px",
+        },
+        iconTheme: {
+          primary: "#A65A2E",
+          secondary: "#F8F5F2",
+        },
+        duration: 4000,
+        action: {
+          label: "View Wishlist",
+          onClick: () => navigate("/wishlist"),
+        },
+      });
+    };
 
   return (
     <section
@@ -132,7 +223,7 @@ export default function SearchPage() {
         color: theme.colors.text.primary,
       }}
     >
-    <Breadcrumbs/>
+      <Breadcrumbs />
       <input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
@@ -148,10 +239,6 @@ export default function SearchPage() {
 
       <h1
         className="text-2xl mb-4"
-        style={{
-          fontFamily: theme.fonts.header,
-          color: theme.colors.primary.DEFAULT,
-        }}
       >
         Showing results for: <span className="italic">{`"${query}"`}</span>
       </h1>
@@ -169,35 +256,40 @@ export default function SearchPage() {
                 }}
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden cursor-pointer">
+                  <div className="absolute top-2 right-2 z-20 flex flex-col items-end space-y-4 pointer-events-none">
+                    <button
+                      onClick={() => handleWishlist(p)}
+                      className="p-2 bg-white/80 hover:bg-white rounded-full shadow-md transition pointer-events-auto"
+                      aria-label="Toggle Wishlist"
+                    >
+                      <Heart
+                        size={18}
+                        className={`transition-all duration-300 ${
+                          isWishlisted(p.id) ? "scale-110" : "scale-100"
+                        } text-[#BF6E3D]`}
+                        fill={isWishlisted(p.id) ? "#BF6E3D" : "none"}
+                      />
+                    </button>
+
+                    <button
+                      type="button"
+                      className="p-2 rounded-md bg-white/80 hover:bg-white shadow-md transition pointer-events-auto"
+                      style={{
+                        color: theme.colors.accent.DEFAULT,
+                      }}
+                      aria-label={`Add ${p.name} to cart`}
+                      
+                      onClick={() => handleAddToCart(p)}
+                    >
+                      <ShoppingCart className="w-5 h-5" aria-hidden="true" />
+                    </button>
+                  </div>
                   <img
                     src={p.image || "/placeholder.jpg"}
                     alt={p.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/45 flex flex-col items-end p-3 space-y-4 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button
-                      type="button"
-                      className="p-2 rounded-md shadow-lg pointer-events-auto"
-                      style={{
-                        background: theme.colors.accent.DEFAULT,
-                        color: theme.colors.primary.contrast,
-                      }}
-                      aria-label={`Add ${p.name} to cart`}
-                    >
-                      <ShoppingCart className="w-6 h-6" aria-hidden="true" />
-                    </button>
-                    <button
-                      type="button"
-                      className="p-2 rounded-md shadow-lg pointer-events-auto"
-                      style={{
-                        background: theme.colors.accent.DEFAULT,
-                        color: theme.colors.primary.contrast,
-                      }}
-                      aria-label={`Add ${p.name} to wishlist`}
-                    >
-                      <Heart className="w-6 h-6" aria-hidden="true" />
-                    </button>
-                  </div>
+                  <div className="absolute inset-0 bg-black/45 "></div>
                 </div>
 
                 <div className="flex flex-col flex-1 justify-between p-6">

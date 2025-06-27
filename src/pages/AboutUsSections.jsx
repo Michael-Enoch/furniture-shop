@@ -28,10 +28,6 @@ export const AboutUsSections = ({ valuesData }) => {
       {/* Hero Section */}
       <div
         className="w-full h-[500px] sm:h-[600px] flex items-center justify-center"
-        style={{
-          backgroundColor: theme.colors.primary.DEFAULT,
-          fontFamily: theme.fonts.body,
-        }}
       >
         <div
           className="w-full h-full bg-cover bg-center"
@@ -41,10 +37,10 @@ export const AboutUsSections = ({ valuesData }) => {
           }}
           aria-label="Furniture workshop background"
         >
-          <div className="bg-black/80 w-full h-full flex flex-col items-center  justify-center text-white px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
+          <div className="bg-black/80 w-full h-full flex flex-col items-center justify-center text-white px-4 sm:px-8 md:px-16 lg:px-8 py-10 md:py-16 text-center md:text-left space-y-6">
             <motion.h4
-              className="text-4xl md:text-6xl font-medium text-white mb-6 tracking-wide"
-              style={{ fontFamily: theme.fonts.header }}
+              className="text-4xl md:text-6xl font-medium mb-6 tracking-wide"
+              style={{ fontFamily: theme.fonts.header, color: theme.colors.primary.contrast }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -52,15 +48,15 @@ export const AboutUsSections = ({ valuesData }) => {
               Where Style Meets Comfort
             </motion.h4>
             <motion.div
-              className="w-32 h-1 mx-auto my-6"
+              className="w-32 h-1 mx-auto"
               style={{ backgroundColor: theme.colors.accent.DEFAULT }}
               initial={{ width: 0 }}
               animate={{ width: "8rem" }}
               transition={{ delay: 0.3, duration: 0.8 }}
             ></motion.div>
             <motion.p
-              className="text-xl md:text-2xl text-[#E8DFD1] text-center max-w-2xl mx-auto"
-              style={{ fontFamily: theme.fonts.alt }}
+              className="text-xl md:text-2xl  text-center max-w-2xl mx-auto"
+              style={{color: theme.colors.text.onPrimary }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
@@ -71,7 +67,7 @@ export const AboutUsSections = ({ valuesData }) => {
         </div>
       </div>
 
-      <div className="py-24 px-4 md:px-8 max-w-6xl mx-auto relative"
+      <div className="py-16 px-4 md:px-8 max-w-8xl mx-auto relative"
       style={{background: theme.colors.background.DEFAULT}}
       >
         <div className="flex flex-col md:flex-row items-center gap-x-8 gap-y-8 w-full">
@@ -109,7 +105,7 @@ export const AboutUsSections = ({ valuesData }) => {
             <h2
               className="text-[clamp(1.75rem,2.5vw,2.25rem)] font-bold mb-6 max-w-full"
               style={{
-                color: theme.colors.text.primary,
+                color: theme.colors.primary.DEFAULT,
                 fontFamily: theme.fonts.header,
               }}
             >
@@ -141,8 +137,8 @@ export const AboutUsSections = ({ valuesData }) => {
                   key={i}
                   className="px-4 py-2 rounded-full text-sm"
                   style={{
-                    backgroundColor: theme.colors.background.muted,
-                    color: theme.colors.text.primary,
+                    backgroundColor: theme.colors.accent.DEFAULT,
+                    color: theme.colors.primary.contrast,
                   }}
                 >
                   {tag}
@@ -153,7 +149,7 @@ export const AboutUsSections = ({ valuesData }) => {
         </div>
       </div>
 
-        <div className="max-w-screen-2xl mx-auto px-4 py-24 md:px-6 lg:px-8"
+        <section className="w-full flex flex-col gap-8 items-center justify-center max-w-screen-2xl px-8 py-16 mx-auto"
          style={{ backgroundColor: theme.colors.background.muted }}
         >
           {/* Header */}
@@ -162,19 +158,18 @@ export const AboutUsSections = ({ valuesData }) => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-center mb-16"
+            className="w-full text-center flex flex-col items-center justify-center gap-6 max-w-4xl"
           >
             <h2
-              className="text-4xl font-bold text-white"
-              style={{ fontFamily: theme.fonts.header, color: theme.colors.text.primary }}
+              className="text-3xl md:text-4xl font-bold"
+              style={{ fontFamily: theme.fonts.header, color: theme.colors.primary.DEFAULT }}
             >
               Our Guiding Principles
             </h2>
             <p
-              className="text-xl max-w-2xl mx-auto mt-4"
+              className="text-xl max-w-3xl mx-auto"
               style={{
                 color: theme.colors.text.primary,
-                fontFamily: theme.fonts.alt,
               }}
             >
               The values that shape every decision, every design, and every
@@ -224,7 +219,7 @@ export const AboutUsSections = ({ valuesData }) => {
               </motion.div>
             ))}
           </motion.div>
-        </div>
+        </section>
       </section>
     </>
   );

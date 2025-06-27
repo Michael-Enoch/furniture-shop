@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Breadcrumbs from "../components/BreadCrumbs";
 import theme from "../context/Theme";
@@ -7,6 +7,8 @@ import { ShoppingCart, Star } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import ReviewForm from "../components/ReviewForm";
 import useProductReviews from "../hooks/useProductReviews";
+import { toast } from "sonner";
+import { useAuth } from "../context/AuthContext";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -14,6 +16,8 @@ const ProductDetail = () => {
   const reviews = useProductReviews(id);
   const [allProducts, setAllProducts] = useState([]);
   const { addToCart, removeFromCart, cart } = useCart();
+    const navigate = useNavigate();
+    const { currentUser } = useAuth();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -40,8 +44,47 @@ const ProductDetail = () => {
   }, [id]);
 
   const handleAddToCart = (product, quantity) => {
+    if (!currentUser) {
+      toast.error("⚠️ You need to sign in to add items to your cart.", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#3A2F2A",
+          color: "#F8F5F2",
+          border: "1px solid #A65A2E",
+          padding: "14px",
+          fontSize: "13px",
+          borderRadius: "8px",
+        },
+      });
+      navigate("/login");
+      return;
+    }
+
     addToCart(product, quantity);
+
+    toast.success(`✅ Added to cart!`, {
+      position: "bottom-right",
+      style: {
+        backgroundColor: "#3A2F2A",
+        color: "#F8F5F2",
+        border: "1px solid #A65A2E",
+        padding: "14px",
+        fontSize: "13px",
+        borderRadius: "8px",
+      },
+      iconTheme: {
+        primary: "#A65A2E",
+        secondary: "#F8F5F2",
+      },
+      duration: 3000,
+      description: "View your cart to checkout.",
+      action: {
+        label: "View Cart",
+        onClick: () => navigate("/cart"),
+      },
+    });
   };
+
 
   const increaseQty = (item) => {
     addToCart(item);
@@ -164,7 +207,7 @@ const ProductDetail = () => {
             type="button"
             className="mt-4 w-full py-2 rounded-lg font-medium hover:text-[#BF6E3D] flex items-center justify-center gap-2 transition-colors"
             style={{
-              backgroundColor: theme.colors.accent.DEFAULT,
+              backgroundColor: theme.colors.primary.DEFAULT,
               color: theme.colors.primary.contrast,
               fontFamily: theme.fonts.body,
             }}
@@ -187,7 +230,7 @@ const ProductDetail = () => {
       ) : (
         <ul className="space-y-4">
           {reviews.map((r) => (
-            <li key={r.id} className="border p-3 rounded-md">
+            <li key={r.id} className="border mt-6 border-[#DAD4CE] shadow p-3 rounded-md">
               <div className="flex items-center gap-2">
                 <strong>{r.userName}</strong>
                 <span className="text-yellow-500">{`★`.repeat(r.rating)}</span>

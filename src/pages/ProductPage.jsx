@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import {
   ChevronLeft,
   ChevronRight,
@@ -9,11 +9,15 @@ import {
   ChevronUp,
   ShoppingCart,
   Star,
+  Heart,
 } from "lucide-react";
 import axios from "axios";
 import theme from "../context/Theme";
 import Breadcrumbs from "../components/BreadCrumbs";
 import { useCart } from "../context/CartContext";
+import { toast } from "sonner";
+import { useAuth } from "../context/AuthContext";
+import { useWishlist } from "../context/WishlistContext";
 
 const PAGE_SIZE = 6;
 
@@ -30,7 +34,9 @@ const ProductPage = () => {
   const [showAllBrands, setShowAllBrands] = useState(false);
   const [showAllMaterials, setShowAllMaterials] = useState(false);
   const [showAllTypes, setShowAllTypes] = useState(false);
-
+  const navigate = useNavigate();
+  const { currentUser } = useAuth();
+  const { toggleWishlist, isWishlisted } = useWishlist();
   const { addToCart } = useCart();
 
   const category = searchParams.get("category") || "";
@@ -39,7 +45,6 @@ const ProductPage = () => {
   const price = searchParams.get("price") || "";
   const material = searchParams.get("material") || "";
   const page = parseInt(searchParams.get("page") || "1");
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
@@ -108,10 +113,6 @@ const ProductPage = () => {
     fetchData();
   }, []);
 
-  const handleAddToCart = (products) => {
-    addToCart(products);
-  };
-
   const filterProducts = () => {
     return products.filter((product) => {
       const inCategory = category ? product.category === category : true;
@@ -162,6 +163,92 @@ const ProductPage = () => {
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   const prices = ["Under $500", "$500 - $1000", "Above $1000"];
+
+  const handleAddToCart = (product) => {
+    if (!currentUser) {
+      toast.error("⚠️ You need to sign in to add items to your cart.", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#3A2F2A",
+          color: "#F8F5F2",
+          border: "1px solid #A65A2E",
+          padding: "14px",
+          fontSize: "13px",
+          borderRadius: "8px",
+        },
+      });
+      navigate("/login");
+      return;
+    }
+
+    addToCart(product);
+
+    toast.success(`✅ Added to cart!`, {
+      position: "bottom-right",
+      style: {
+        backgroundColor: "#3A2F2A",
+        color: "#F8F5F2",
+        border: "1px solid #A65A2E",
+        padding: "14px",
+        fontSize: "13px",
+        borderRadius: "8px",
+      },
+      iconTheme: {
+        primary: "#A65A2E",
+        secondary: "#F8F5F2",
+      },
+      duration: 3000,
+      description: "View your cart to checkout.",
+      action: {
+        label: "View Cart",
+        onClick: () => navigate("/cart"),
+      },
+    });
+  };
+
+  const handleWishlist = (product) => {
+    if (!currentUser) {
+      toast.error("⚠️ You need to sign in to add items to your wishlist.", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#3A2F2A",
+          color: "#F8F5F2",
+          border: "1px solid #A65A2E",
+          padding: "14px",
+          fontSize: "13px",
+          borderRadius: "8px",
+        },
+        duration: 2000,
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+      return;
+    }
+
+    toggleWishlist(product);
+
+    toast.success(`✅ Added to Wishlist!`, {
+      position: "bottom-center",
+      style: {
+        backgroundColor: "#3A2F2A",
+        color: "#F8F5F2",
+        border: "1px solid #A65A2E",
+        padding: "14px",
+        fontSize: "13px",
+        borderRadius: "8px",
+      },
+      iconTheme: {
+        primary: "#A65A2E",
+        secondary: "#F8F5F2",
+      },
+      duration: 4000,
+      action: {
+        label: "View Wishlist",
+        onClick: () => navigate("/wishlist"),
+      },
+    });
+  };
 
   return (
     <section
@@ -295,7 +382,10 @@ const ProductPage = () => {
                 }`}
               >
                 {types.map((t) => (
-                  <label key={t} className="flex items-center text-[11px] gap-2">
+                  <label
+                    key={t}
+                    className="flex items-center text-[11px] gap-2"
+                  >
                     <input
                       type="checkbox"
                       name="type"
@@ -361,7 +451,10 @@ const ProductPage = () => {
                 }`}
               >
                 {materials.map((mat) => (
-                  <label key={mat} className="flex items-center text-[11px] gap-2">
+                  <label
+                    key={mat}
+                    className="flex items-center text-[11px] gap-2"
+                  >
                     <input
                       type="checkbox"
                       name="material"
@@ -464,6 +557,23 @@ const ProductPage = () => {
                     className="bg-white flex flex-col rounded-xl w-full shadow-md overflow-hidden relative"
                   >
                     <div className="relative aspect-[4/3] w-full overflow-hidden">
+                      <div className="absolute top-2 right-2 z-20">
+                        <button
+                          onClick={() => handleWishlist(product)}
+                          className="p-1.5 bg-white/80 hover:bg-white rounded-full shadow-md transition"
+                          aria-label="Toggle Wishlist"
+                        >
+                          <Heart
+                            size={18}
+                            className={`transition-all duration-300 ${
+                              isWishlisted(product.id)
+                                ? "scale-110 text-[#BF6E3D]"
+                                : "scale-100 text-[3A2F2A]"
+                            } `}
+                            fill={isWishlisted(product.id) ? "#A65A2E" : "none"}
+                          />
+                        </button>
+                      </div>
                       <img
                         src={product.image || "/placeholder.jpg"}
                         alt={product.name}
@@ -471,8 +581,8 @@ const ProductPage = () => {
                       />
                     </div>
 
-                    <div className="flex flex-col flex-1 justify-between p-6">
-                      <div>
+                    <div className="flex flex-col flex-1 justify-between p-4">
+                      <div className="w-full">
                         <Link
                           key={product.id}
                           to={`/products/${product.id}`}
@@ -497,27 +607,25 @@ const ProductPage = () => {
                       </div>
 
                       <div
-                        className="mt-1 text-sm space-y-1"
+                        className="mt-2 text-sm space-y-1"
                         style={{ color: theme.colors.text.primary }}
                       >
-                        <p>
-                          <span
-                            className="font-semibold"
-                            style={{ color: theme.colors.accent.DEFAULT }}
-                          >
-                            Price:
-                          </span>{" "}
+                        <span
+                          className="text-lg mt-2 mb-2 font-semibold"
+                          style={{ color: theme.colors.accent.DEFAULT }}
+                        >
                           ${product.price.toFixed(2)}
-                        </p>
+                        </span>
+
                         <button
                           type="button"
                           className="mt-4 w-full py-2 rounded-lg font-medium hover:text-[#BF6E3D] flex items-center justify-center gap-2 transition-colors pointer-events-auto"
                           style={{
-                            backgroundColor: theme.colors.accent.DEFAULT,
+                            backgroundColor: theme.colors.primary.DEFAULT,
                             color: theme.colors.primary.contrast,
                             fontFamily: theme.fonts.body,
                           }}
-                          onClick={() => handleAddToCart(products)}
+                          onClick={() => handleAddToCart(product)}
                         >
                           <ShoppingCart size={16} />
                           Add to Cart

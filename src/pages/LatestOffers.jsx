@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Heart, ShoppingCart } from "lucide-react";
 import { useWishlist } from "../context/WishlistContext";
 import { useCart } from "../context/CartContext";
-import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function LatestOffersGridWithModal({
   products,
@@ -14,7 +15,7 @@ export default function LatestOffersGridWithModal({
   const [selectedProduct, setSelectedProduct] = useState(null);
   const { toggleWishlist, isWishlisted } = useWishlist();
   const { addToCart } = useCart();
-  const {currentUser} = useAuth();
+  const { currentUser } = useAuth();
   const navigate = useNavigate();
 
   const bgColor =
@@ -22,15 +23,93 @@ export default function LatestOffersGridWithModal({
       ? theme.colors.background.DEFAULT
       : theme.colors.background.alt;
 
- const handleAddToCart = (product) => {
+  const handleAddToCart = (product) => {
     if (!currentUser) {
-      toast.error("Please register or log in to continue")
-      navigate("/register")
+      toast.error("⚠️ You need to sign in to add items to your cart.", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#3A2F2A",
+          color: "#F8F5F2",
+          border: "1px solid #A65A2E",
+          padding: "14px",
+          fontSize: "13px",
+          borderRadius: "8px",
+        },
+        duration: 2000,
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+      return;
     }
+
     addToCart(product);
 
+    toast.success(`✅ Added to cart!`, {
+      position: "bottom-center",
+      style: {
+        backgroundColor: "#3A2F2A",
+        color: "#F8F5F2",
+        border: "1px solid #A65A2E",
+        padding: "14px",
+        fontSize: "13px",
+        borderRadius: "8px",
+      },
+      iconTheme: {
+        primary: "#A65A2E",
+        secondary: "#F8F5F2",
+      },
+      duration: 3000,
+      description: "View your cart to checkout.",
+      action: {
+        label: "View Cart",
+        onClick: () => navigate("/cart"),
+      },
+    });
   };
+  const handleWishlist = (product) => {
+    if (!currentUser) {
+      toast.error("⚠️ You need to sign in to add items to your wishlist.", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#3A2F2A",
+          color: "#F8F5F2",
+          border: "1px solid #A65A2E",
+          padding: "14px",
+          fontSize: "13px",
+          borderRadius: "8px",
+        },
+        duration: 2000,
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+      return;
+    }
 
+    toggleWishlist(product);
+
+    toast.success(`✅ Added to Wishlist!`, {
+      position: "bottom-center",
+      style: {
+        backgroundColor: "#3A2F2A",
+        color: "#F8F5F2",
+        border: "1px solid #A65A2E",
+        padding: "14px",
+        fontSize: "13px",
+        borderRadius: "8px",
+      },
+      iconTheme: {
+        primary: "#A65A2E",
+        secondary: "#F8F5F2",
+      },
+      duration: 4000,
+      action: {
+        label: "View Wishlist",
+        onClick: () => navigate("/wishlist"),
+      },
+    });
+  };
 
   return (
     <section
@@ -67,16 +146,18 @@ export default function LatestOffersGridWithModal({
             <div className="relative w-full aspect-[4/3] overflow-hidden">
               <div className="absolute top-2 right-2 z-20">
                 <button
-                  onClick={() => toggleWishlist(product)}
+                  onClick={() => handleWishlist(product)}
                   className="p-1.5 bg-white/80 hover:bg-white rounded-full shadow-md transition"
                   aria-label="Toggle Wishlist"
                 >
                   <Heart
                     size={18}
                     className={`transition-all duration-300 ${
-                      isWishlisted(product.id) ? "scale-110" : "scale-100"
-                    } text-[#BF6E3D]`}
-                    fill={isWishlisted(product.id) ? "#BF6E3D" : "none"}
+                      isWishlisted(product.id)
+                        ? "scale-110 text-[#BF6E3D]"
+                        : "scale-100 text-[3A2F2A]"
+                    } `}
+                    fill={isWishlisted(product.id) ? "#A65A2E" : "none"}
                   />
                 </button>
               </div>
@@ -106,6 +187,7 @@ export default function LatestOffersGridWithModal({
                   onClick={() => setSelectedProduct(product)}
                   style={{
                     backgroundColor: theme.colors.accent.DEFAULT,
+                    color: theme.colors.primary.contrast,
                     fontFamily: theme.fonts.alt,
                   }}
                 >
@@ -116,7 +198,7 @@ export default function LatestOffersGridWithModal({
 
             {/* Product Info */}
             <div className="flex flex-col justify-between flex-1 p-4">
-              <div>
+              <div className="w-full">
                 <h3
                   className="text-md font-semibold mb-1 line-clamp-2"
                   style={{
@@ -138,7 +220,7 @@ export default function LatestOffersGridWithModal({
               </div>
 
               {/* Price */}
-              <div className="flex items-center gap-3 mt-2">
+              <div className="flex items-center gap-3 mt-2 mb-3">
                 {product.originalPrice > product.price && (
                   <span
                     className="text-sm line-through"
@@ -155,12 +237,20 @@ export default function LatestOffersGridWithModal({
                 </span>
               </div>
 
+              <div
+                onClick={() => setSelectedProduct(product)}
+                className="font-medium w-full cursor-pointer group flex items-center gap-2 hover:text-[#A65A2E]"
+              >
+                <p className="font-medium underline">Learn more</p>
+                <FaArrowRight size={10} />
+              </div>
+
               {/* Add to Cart */}
               <button
                 type="button"
                 className="mt-4 w-full py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
                 style={{
-                  backgroundColor: theme.colors.accent.DEFAULT,
+                  backgroundColor: theme.colors.primary.DEFAULT,
                   color: theme.colors.primary.contrast,
                   fontFamily: theme.fonts.body,
                 }}
@@ -187,7 +277,7 @@ export default function LatestOffersGridWithModal({
           >
             <button
               onClick={() => setSelectedProduct(null)}
-              className="absolute top-3 right-3 text-2xl text-gray-400 hover:text-red-500 transition"
+              className="absolute -top-1 right-1 text-3xl text-gray-400 hover:text-[#BF6E3D] transition"
             >
               &times;
             </button>
@@ -211,7 +301,7 @@ export default function LatestOffersGridWithModal({
                 <p className="text-sm text-gray-500">
                   Brand: {selectedProduct.brand}
                 </p>
-                 <p className="text-sm text-gray-600 mt-2">
+                <p className="text-sm text-gray-600 mt-2">
                   {selectedProduct.description || "No description available."}
                 </p>
                 <div className="flex items-center gap-3 pt-2">
@@ -232,21 +322,13 @@ export default function LatestOffersGridWithModal({
                   </span>
                 </div>
                 <button
-                  className="mt-4 w-full py-2 rounded-xl text-sm font-semibold transition duration-300"
+                  className="mt-4 w-full py-2 rounded text-sm font-semibold transition duration-300"
                   style={{
-                    backgroundColor: theme.colors.accent.DEFAULT,
+                    backgroundColor: theme.colors.primary.DEFAULT,
                     color: theme.colors.primary.contrast,
                     fontFamily: theme.fonts.alt,
                   }}
                   onClick={() => handleAddToCart(selectedProduct)}
-                  onMouseOver={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      theme.colors.accent.hover)
-                  }
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      theme.colors.accent.DEFAULT)
-                  }
                 >
                   Add to Cart
                 </button>

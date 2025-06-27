@@ -21,7 +21,6 @@ const Newsletter = ({ sectionIndex = 10 }) => {
       >
         <h2
           className="text-3xl font-bold mb-4"
-          style={{ fontFamily: theme.fonts.header, color: theme.colors.primary.DEFAULT }}
         >
           Join Our Newsletter
         </h2>
@@ -37,7 +36,8 @@ const Newsletter = ({ sectionIndex = 10 }) => {
           />
           <button
             type="submit"
-            className="bg-[#A65A2E] hover:bg-[#BF6E3D] text-white font-medium px-6 py-3 rounded-lg transition-colors"
+            className="text-white font-medium px-6 py-3 rounded-lg transition-colors"
+            style={{background: theme.colors.primary.DEFAULT}}
           >
             Subscribe
           </button>

@@ -16,7 +16,7 @@ const ReviewForm = ({ productId }) => {
     e.preventDefault();
     if (!userName.trim() || !text.trim()) return;
 
-    const reviewId = Date.now().toString(); 
+    const reviewId = Date.now().toString();
     const reviewRef = doc(db, "products", productId, "reviews", reviewId);
 
     const newReview = {
@@ -41,7 +41,6 @@ const ReviewForm = ({ productId }) => {
     }
   };
 
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -49,12 +48,12 @@ const ReviewForm = ({ productId }) => {
     >
       <h3 className="text-sm font-semibold">Leave a Review</h3>
       <input
-  type="text"
-  value={userName}
-  onChange={(e) => setUserName(e.target.value)}
-  placeholder="Your name"
-  className="w-full text-sm border rounded px-3 py-2"
-/>
+        type="text"
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
+        placeholder="Your name"
+        className="w-full text-sm border rounded px-3 py-2"
+      />
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}

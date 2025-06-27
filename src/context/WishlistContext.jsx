@@ -1,32 +1,64 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { doc, onSnapshot, setDoc } from "firebase/firestore";
+import { useAuth } from "./AuthContext";
+import { db } from "../../Firebase/firebase";
 
 const WishlistContext = createContext();
 
 export const WishlistProvider = ({ children }) => {
-  const [wishlist, setWishlist] = useState(() => {
-    const stored = localStorage.getItem("wishlist");
-    return stored ? JSON.parse(stored) : [];
-  });
-
-  const [wishlistCount, setWishlistCount] = useState(() => {
-    const stored = localStorage.getItem("wishlist");
-    const parsed = stored ? JSON.parse(stored) : [];
-    return parsed.length;
-  });
+  const { currentUser, loading } = useAuth();
+  const [wishlist, setWishlist] = useState([]);
+  const [wishlistCount, setWishlistCount] = useState(0);
+  const [initialLoadDone, setInitialLoadDone] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
-    setWishlistCount(wishlist.length); // 🔥 Update count every time wishlist changes
-  }, [wishlist]);
+    let unsubscribe;
+    if (loading) return;
+
+    if (currentUser) {
+      const ref = doc(db, "wishlists", currentUser.uid);
+      unsubscribe = onSnapshot(ref, (docSnap) => {
+        if (docSnap.exists()) {
+          setWishlist(docSnap.data().items || []);
+        } else {
+          setWishlist([]);
+        }
+        setInitialLoadDone(true);
+      });
+    } else {
+      const local = localStorage.getItem("wishlist");
+      setWishlist(local ? JSON.parse(local) : []);
+      setInitialLoadDone(true);
+    }
+
+    return () => unsubscribe && unsubscribe();
+  }, [currentUser, loading]);
+
+  useEffect(() => {
+    if (!initialLoadDone) return;
+    if (currentUser) {
+      const ref = doc(db, "wishlists", currentUser.uid);
+      setDoc(ref, { items: wishlist });
+    } else {
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    }
+    setWishlistCount(wishlist.length);
+  }, [wishlist, currentUser, initialLoadDone]);
+
+  // Clear wishlist on logout
+  useEffect(() => {
+    if (!currentUser && initialLoadDone) {
+      setWishlist([]);
+      localStorage.removeItem("wishlist");
+    }
+  }, [currentUser, initialLoadDone]);
 
   const toggleWishlist = (product) => {
     setWishlist((prev) => {
       const exists = prev.find((item) => item.id === product.id);
-      if (exists) {
-        return prev.filter((item) => item.id !== product.id);
-      } else {
-        return [...prev, { ...product }];
-      }
+      return exists
+        ? prev.filter((item) => item.id !== product.id)
+        : [...prev, { ...product }];
     });
   };
 
@@ -42,6 +74,7 @@ export const WishlistProvider = ({ children }) => {
         toggleWishlist,
         isWishlisted,
         wishlistCount,
+        setWishlist,
       }}
     >
       {children}

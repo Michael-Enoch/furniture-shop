@@ -1,24 +1,23 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Hero from "../components/Hero";
+import Hero from "./Hero";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import CategoriesSection from "../components/categoriesSection";
-import BestSelling from "../components/bestSellingProducts";
+import CategoriesSection from "./categoriesSection";
+import BestSelling from "./bestSellingProducts";
 import theme from "../context/Theme";
-import FAQ from "../components/FAQSnippet";
-import WhyChooseUs from "../components/WhyChooseUs";
-import Reviews from "../components/Reviews";
-import Newsletter from "../components/NewsLetter";
-import InstagramFeed from "../components/InstagramFeed";
-import CTASection from "../components/CTA";
-import Gallery from "../components/Gallery";
-import MiniAboutContact from "../components/MiniAboutContact";
-import Features from "../components/Features";
-import Brands from "../components/Brands";
-import LatestOffersGridWithModal from "../components/LatestOffers";
-import Support from "../components/Support";
-import UserExperience from "../components/UserExperience";
+import FAQ from "./FAQSnippet";
+import WhyChooseUs from "./WhyChooseUs";
+import Newsletter from "./NewsLetter";
+import InstagramFeed from "./InstagramFeed";
+import CTASection from "./CTA";
+import Gallery from "./Gallery";
+import MiniAboutContact from "./MiniAboutContact";
+import Features from "./Features";
+import Brands from "./Brands";
+import LatestOffersGridWithModal from "./LatestOffers";
+import Support from "./Support";
+import CustomersReviewsForm from "./CustomersReviewsForm";
 
 
 const Homepage = () => {
@@ -105,13 +104,12 @@ const Homepage = () => {
       <BestSelling />
       <WhyChooseUs />
       <Gallery />
-      <Reviews />
+      <CustomersReviewsForm />
       <MiniAboutContact/>
       <FAQ />
       <Newsletter />
       <InstagramFeed />
       <Support/>
-      <UserExperience/>
       <CTASection />
     </main>
   );
