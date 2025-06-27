@@ -162,7 +162,9 @@ const Footer = () => {
         </div>
 
         <div className="w-full">
-          <h4 className="text-lg font-semibold mb-4 font-header">
+          <h4 className="text-lg font-semibold mb-4"
+          style={{color: theme.colors.primary.contrast}}
+          >
             Subscribe to our newsletter
           </h4>
           <form

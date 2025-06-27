@@ -157,7 +157,7 @@ const Navbar = () => {
     }
   };
   const moreLinks = [
-    { name: "Site map", to: "/" },
+    { name: "Site map", to: "/site-map" },
     { name: "Reviews", to: "/" },
     { name: "Help Center", to: "/" },
     { name: "FAQ", to: "/faq" },
