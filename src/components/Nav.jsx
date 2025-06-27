@@ -32,9 +32,11 @@ import { useEffect, useRef, useState } from "react";
 // Get initials from Full name
 const getInitials = (name = "", email = "") => {
   if (name && name.trim().length > 0) {
-    const nameParts = name.trim().split(" "); 
+    const nameParts = name.trim().split(" ");
     if (nameParts.length > 1) {
-      return `${nameParts[0][0]}${nameParts[nameParts.length - 1][0]}`.toUpperCase();
+      return `${nameParts[0][0]}${
+        nameParts[nameParts.length - 1][0]
+      }`.toUpperCase();
     }
     return nameParts[0][0].toUpperCase();
   }
@@ -48,7 +50,7 @@ const getInitials = (name = "", email = "") => {
     return localPart[0].toUpperCase();
   }
 
-  return "U"; 
+  return "U";
 };
 
 // Avatar Component
@@ -77,11 +79,10 @@ const Avatar = ({ user }) => {
   );
 };
 
-
 const Navbar = () => {
   const { cartCount } = useCart();
   const { wishlistCount } = useWishlist();
-  const { logOut, currentUser } = useAuth();
+  const { logOut, currentUser, role } = useAuth();
   const [visitorCount, setVisitorCount] = useState(0);
   const [moreOpen, setMoreOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -161,14 +162,19 @@ const Navbar = () => {
     { name: "Help Center", to: "/" },
     { name: "FAQ", to: "/faq" },
   ];
+
+  const isAdmin = role === "admin";
+
+  const base = isAdmin ? "/admin" : "";
+
   const profileLinks = [
     {
       name: "Dashboard",
-      to: "/dashboard",
+      to: isAdmin ? "/admin" : "/dashboard",
       icon: <LayoutDashboard size={14} />,
     },
-    { name: "Orders", to: "/orders", icon: <History size={14} /> },
-    { name: "Settings", to: "/settings", icon: <Settings size={14} /> },
+    { name: "Orders", to: `${base}/orders`, icon: <History size={14} /> },
+    { name: "Settings", to: `${base}/settings`, icon: <Settings size={14} /> },
     { name: "Logout", icon: <LogOut size={14} />, onClick: handleLogout },
   ];
 
@@ -177,7 +183,7 @@ const Navbar = () => {
     { name: "Wishlist", to: "/wishlist", icon: <Heart size={18} /> },
   ];
 
-    const MobileUtilityLinks = [
+  const MobileUtilityLinks = [
     { name: "Cart", to: "/cart", icon: <ShoppingCart size={14} /> },
     { name: "Wishlist", to: "/wishlist", icon: <Heart size={14} /> },
   ];
@@ -195,6 +201,9 @@ const Navbar = () => {
     { name: "About", to: "/about", icon: <BookOpenText size={14} /> },
     { name: "Contact", to: "/contact", icon: <Mail size={14} /> },
   ];
+
+  const capitalizeFirstLetter = (string) =>
+    string ? string.charAt(0).toUpperCase() + string.slice(1) : "";
 
   return (
     <>
@@ -371,16 +380,16 @@ const Navbar = () => {
                   className="relative w-5 h-5 cursor-pointer hover:text-[#BF6E3D] transition-colors"
                 >
                   {link.icon}
-                    {link.name === "Cart" && cartCount > 0 && (
-                      <span className="absolute -top-2 -right-2 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center bg-[#D97706] shadow-md">
-                        {cartCount}
-                      </span>
-                    )}
-                    {link.name === "Wishlist" && wishlistCount > 0 && (
-                      <span className="absolute -top-2 -right-2 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center bg-[#D97706] shadow-md">
-                        {wishlistCount}
-                      </span>
-                    )}
+                  {link.name === "Cart" && cartCount > 0 && (
+                    <span className="absolute -top-2 -right-2 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center bg-[#D97706] shadow-md">
+                      {cartCount}
+                    </span>
+                  )}
+                  {link.name === "Wishlist" && wishlistCount > 0 && (
+                    <span className="absolute -top-2 -right-2 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center bg-[#D97706] shadow-md">
+                      {wishlistCount}
+                    </span>
+                  )}
                 </NavLink>
               </motion.div>
             ))}
@@ -424,8 +433,11 @@ const Navbar = () => {
                         <p className="text-sm font-medium text-[#2D2D2D]">
                           {currentUser.displayName || "User"}
                         </p>
-                        <p className="text-xs text-gray-500 truncate">
+                        <p className="text-xs text-gray-500 mb-2 truncate">
                           {currentUser.email}
+                        </p>
+                        <p className="truncate text-sm font-medium text-[#2D2D2D]">
+                          {capitalizeFirstLetter(role)}
                         </p>
                       </div>
                       {profileLinks.map((link) =>
@@ -562,9 +574,14 @@ const Navbar = () => {
                 <div className="px-4 py-3 border-b flex items-center gap-3">
                   <Avatar user={currentUser} size={40} />
                   <div>
-                    <p className="text-sm font-medium">{currentUser.displayName || "User"}</p>
+                    <p className="text-sm font-medium">
+                      {currentUser.displayName || "User"}
+                    </p>
                     <p className="text-xs opacity-75 truncate">
                       {currentUser.email}
+                    </p>
+                    <p className="truncate capitalize opacity-75 text-sm font-medium">
+                      {capitalizeFirstLetter(role)}
                     </p>
                   </div>
                 </div>
