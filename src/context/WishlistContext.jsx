@@ -6,48 +6,52 @@ import { db } from "../../Firebase/firebase";
 const WishlistContext = createContext();
 
 export const WishlistProvider = ({ children }) => {
-  const { currentUser} = useAuth();
-
+  const { currentUser, loading } = useAuth();
   const [wishlist, setWishlist] = useState([]);
   const [wishlistCount, setWishlistCount] = useState(0);
+  const [initialLoadDone, setInitialLoadDone] = useState(false);
 
-  // Realtime listener for logged-in users
   useEffect(() => {
     let unsubscribe;
+    if (loading) return;
 
-    const listenToWishlist = () => {
-      if (currentUser) {
-        const ref = doc(db, "wishlists", currentUser.uid);
+    if (currentUser) {
+      const ref = doc(db, "wishlists", currentUser.uid);
+      unsubscribe = onSnapshot(ref, (docSnap) => {
+        if (docSnap.exists()) {
+          setWishlist(docSnap.data().items || []);
+        } else {
+          setWishlist([]);
+        }
+        setInitialLoadDone(true);
+      });
+    } else {
+      const local = localStorage.getItem("wishlist");
+      setWishlist(local ? JSON.parse(local) : []);
+      setInitialLoadDone(true);
+    }
 
-        unsubscribe = onSnapshot(ref, (docSnap) => {
-          if (docSnap.exists()) {
-            setWishlist(docSnap.data().items || []);
-          } else {
-            setWishlist([]);
-          }
-        });
-      } else {
-        // Load from localStorage if not logged in
-        const local = localStorage.getItem("wishlist");
-        setWishlist(local ? JSON.parse(local) : []);
-      }
-    };
-
-    listenToWishlist();
     return () => unsubscribe && unsubscribe();
-  }, [currentUser]);
+  }, [currentUser, loading]);
 
-  // Sync wishlist to Firestore or localStorage
   useEffect(() => {
+    if (!initialLoadDone) return;
     if (currentUser) {
       const ref = doc(db, "wishlists", currentUser.uid);
       setDoc(ref, { items: wishlist });
     } else {
       localStorage.setItem("wishlist", JSON.stringify(wishlist));
     }
-
     setWishlistCount(wishlist.length);
-  }, [wishlist, currentUser]);
+  }, [wishlist, currentUser, initialLoadDone]);
+
+  // Clear wishlist on logout
+  useEffect(() => {
+    if (!currentUser && initialLoadDone) {
+      setWishlist([]);
+      localStorage.removeItem("wishlist");
+    }
+  }, [currentUser, initialLoadDone]);
 
   const toggleWishlist = (product) => {
     setWishlist((prev) => {
@@ -70,7 +74,7 @@ export const WishlistProvider = ({ children }) => {
         toggleWishlist,
         isWishlisted,
         wishlistCount,
-        setWishlist, 
+        setWishlist,
       }}
     >
       {children}
