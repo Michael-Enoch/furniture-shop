@@ -31,12 +31,10 @@ const AdminUsers = () => {
     try {
       await updateDoc(doc(db, "users", user.id), { role: newRole });
       toast.success(
-        `${user.name} is now ${
-          newRole === "admin" ? "an Admin" : "a Customer"
-        }`
+        `${user.name} is now ${newRole === "admin" ? "an Admin" : "a Customer"}`
       );
     } catch (error) {
-        console.error(error)
+      console.error(error);
       toast.error("Failed to update role");
     }
   };
@@ -46,7 +44,7 @@ const AdminUsers = () => {
       await deleteDoc(doc(db, "users", id));
       toast.success("User deleted");
     } catch (error) {
-         console.error(error)
+      console.error(error);
       toast.error("Error deleting user");
     }
   };
@@ -66,13 +64,13 @@ const AdminUsers = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {users.map((user) => (
           <div
-  key={user.id}
-  className="border rounded-xl p-5 shadow-sm hover:shadow-md transition duration-200"
-  style={{
-    backgroundColor: theme.colors.ui.base,
-    borderColor: theme.colors.ui.border,
-  }}
->
+            key={user.id}
+            className="border rounded-xl p-5 shadow-sm hover:shadow-md transition duration-200"
+            style={{
+              backgroundColor: theme.colors.ui.base,
+              borderColor: theme.colors.ui.border,
+            }}
+          >
             <h2 className="text-lg font-semibold">{user.name}</h2>
             <p className="text-sm mb-1">{user.email}</p>
             <p
