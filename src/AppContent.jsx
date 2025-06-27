@@ -24,6 +24,7 @@ import Ticker from "./components/ScrollingTicker";
 import { Toaster } from "sonner";
 import { useEffect } from "react";
 import ThankYou from "./pages/ThankYou";
+import Sitemap from "./pages/Sitemap";
 
 function AppContent() {
   const location = useLocation();
@@ -49,6 +50,7 @@ function AppContent() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/faq" element={<FaqPage />} />
+        <Route path="/site-map" element={<Sitemap />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/thank-you" element={<ThankYou />} />
