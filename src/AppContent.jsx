@@ -25,6 +25,7 @@ import { Toaster } from "sonner";
 import { useEffect } from "react";
 import ThankYou from "./pages/ThankYou";
 import Sitemap from "./pages/Sitemap";
+import AllReviews from "./pages/AllReviews";
 
 function AppContent() {
   const location = useLocation();
@@ -51,6 +52,7 @@ function AppContent() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/site-map" element={<Sitemap />} />
+         <Route path="/reviews" element={<AllReviews />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/thank-you" element={<ThankYou />} />
