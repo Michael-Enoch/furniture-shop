@@ -97,6 +97,50 @@ const BestSelling = ({ sectionIndex = 4 }) => {
     });
   };
 
+   const handleWishlist = (product) => {
+    if (!currentUser) {
+      toast.error("⚠️ You need to sign in to add items to your wishlist.", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#3A2F2A",
+          color: "#F8F5F2",
+          border: "1px solid #A65A2E",
+          padding: "14px",
+          fontSize: "13px",
+          borderRadius: "8px",
+        },
+        duration: 2000,
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+      return;
+    }
+
+    toggleWishlist(product);
+
+    toast.success(`✅ Added to Wishlist!`, {
+      position: "bottom-center",
+      style: {
+        backgroundColor: "#3A2F2A",
+        color: "#F8F5F2",
+        border: "1px solid #A65A2E",
+        padding: "14px",
+        fontSize: "13px",
+        borderRadius: "8px",
+      },
+      iconTheme: {
+        primary: "#A65A2E",
+        secondary: "#F8F5F2",
+      },
+      duration: 4000,
+      action: {
+        label: "View Wishlist",
+        onClick: () => navigate("/wishlist"),
+      },
+    });
+  };
+
   return (
     <section
       className="py-16 px-4 sm:px-8 md:px-16 w-full max-w-screen-2xl mx-auto"
@@ -129,7 +173,7 @@ const BestSelling = ({ sectionIndex = 4 }) => {
             <div className="relative aspect-[4/3] w-full overflow-hidden">
               <div className="absolute top-2 right-2 z-20">
                 <button
-                  onClick={() => toggleWishlist(product)}
+                  onClick={() => handleWishlist(product)}
                   className="p-1.5 bg-white/80 hover:bg-white rounded-full shadow-md transition"
                   aria-label="Toggle Wishlist"
                 >

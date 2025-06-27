@@ -33,7 +33,7 @@ import teamOlivia from "../assets/images/profile-images/fem3.jpg";
 import teamJames from "../assets/images/profile-images/person3.jpg";
 import teamSophia from "../assets/images/profile-images/fem4.jpg";
 import teamBenjamin from "../assets/images/profile-images/person4.jpeg";
-import AboutUsSections from "../components/AboutUsSections";
+import AboutUsSections from "./AboutUsSections";
 import theme from "../context/Theme";
 
 gsap.registerPlugin(ScrollTrigger);
