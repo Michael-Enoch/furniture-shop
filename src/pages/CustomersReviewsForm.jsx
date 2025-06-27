@@ -1,8 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { Star, X } from "lucide-react";
-import theme from "../context/Theme";
 import { useEffect, useState } from "react";
+import { collection, addDoc, onSnapshot, serverTimestamp } from "firebase/firestore";
+import theme from "../context/Theme";
+import { toast } from "react-hot-toast";
+import { db } from "../../Firebase/firebase";
 
 const CustomersReviewsForm = ({ sectionIndex = 7 }) => {
   const bgColor =
@@ -10,33 +13,7 @@ const CustomersReviewsForm = ({ sectionIndex = 7 }) => {
       ? theme.colors.background.DEFAULT
       : theme.colors.background.alt;
 
-  // Load reviews from localStorage or fallback to default
-  const [reviews, setReviews] = useState(() => {
-    const stored = localStorage.getItem("reviews");
-    return stored
-      ? JSON.parse(stored)
-      : [
-          {
-            name: "Sarah M.",
-            quote:
-              "The quality is unmatched. My custom sofa is stunning and insanely comfortable!",
-            rating: 5,
-          },
-          {
-            name: "Daniel O.",
-            quote:
-              "Fast shipping and beautiful craftsmanship. I'll be ordering again!",
-            rating: 4,
-          },
-          {
-            name: "Amaka E.",
-            quote:
-              "I'm impressed with the eco-conscious materials. Great customer support too.",
-            rating: 5,
-          },
-        ];
-  });
-
+  const [reviews, setReviews] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -44,10 +21,33 @@ const CustomersReviewsForm = ({ sectionIndex = 7 }) => {
     rating: 5,
   });
 
-  // Save to localStorage on reviews update
+  const maxDisplay = 6;
+const displayedReviews = reviews.slice(0, maxDisplay);
+
+  // Real-time fetch reviews from Firestore
   useEffect(() => {
-    localStorage.setItem("reviews", JSON.stringify(reviews));
-  }, [reviews]);
+    const unsubscribe = onSnapshot(
+      collection(db, "reviews"),
+      (snapshot) => {
+        const fetchedReviews = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        // Sort by timestamp  (latest first)
+        const sorted = fetchedReviews.sort(
+          (a, b) => b.createdAt?.toMillis() - a.createdAt?.toMillis()
+        );
+
+        setReviews(sorted);
+      },
+      (error) => {
+        console.error("Error fetching reviews:", error);
+      }
+    );
+
+    return () => unsubscribe(); // cleanup listener on unmount
+  }, []);
 
   // Handle form input
   const handleChange = (e) => {
@@ -58,14 +58,26 @@ const CustomersReviewsForm = ({ sectionIndex = 7 }) => {
     }));
   };
 
-  // Submit handler
-  const handleSubmit = (e) => {
+  //  Submit review to Firestore
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.quote || !formData.rating) return;
 
-    setReviews((prev) => [...prev, formData]);
-    setFormData({ name: "", quote: "", rating: 5 });
-    setIsModalOpen(false);
+    try {
+      await addDoc(collection(db, "reviews"), {
+        name: formData.name,
+        quote: formData.quote,
+        rating: formData.rating,
+        createdAt: serverTimestamp(),
+      });
+
+      setFormData({ name: "", quote: "", rating: 5 });
+      setIsModalOpen(false);
+      toast.success("Review submitted!");
+    } catch (error) {
+      console.error("Error adding review: ", error);
+      toast.error("Failed to submit review");
+    }
   };
 
   return (
@@ -78,9 +90,9 @@ const CustomersReviewsForm = ({ sectionIndex = 7 }) => {
       </h2>
 
       <div className="w-full mb-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-        {reviews.map((r, i) => (
+        {displayedReviews.map((r, i) => (
           <motion.div
-            key={i}
+            key={r.id}
             className="p-6 bg-white rounded-xl shadow text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -107,27 +119,42 @@ const CustomersReviewsForm = ({ sectionIndex = 7 }) => {
         ))}
       </div>
 
-        <div className="bg-white rounded-xl  w-full shadow p-8 text-center"
+      {reviews.length > maxDisplay && (
+  <div data-aos="fade-up my-2">
+    <Link
+      to="/reviews"
+      className="inline-block text-white py-2 px-6 rounded-lg transition-colors"
+      style={{ background: theme.colors.accent.DEFAULT }}
+    >
+      See All Reviews
+    </Link>
+  </div>
+)}
+
+
+      <div
+        className="bg-white rounded-xl w-full shadow p-8 text-center"
         data-aos="fade-up"
+      >
+        <h2 className="text-2xl font-bold mb-3">Share Your Experience</h2>
+        <p className="text-sm mb-5">
+          We love hearing from our customers! Drop a quick review and let others
+          know what to expect.
+        </p>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="inline-block text-white py-3 px-6 rounded-lg transition-colors"
+          style={{ background: theme.colors.primary.DEFAULT }}
         >
-          <h2 className="text-2xl font-bold mb-3">Share Your Experience</h2>
-          <p className="text-sm mb-5">
-            We love hearing from our customers! Drop a quick review and let
-            others know what to expect.
-          </p>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="inline-block text-white py-3 px-6 rounded-lg transition-colors"
-            style={{ background: theme.colors.primary.DEFAULT }}
-          >
-            Submit a Review
-          </button>
-        </div>
+          Submit a Review
+        </button>
+      </div>
 
       {isModalOpen && (
-       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="bg-white rounded-xl shadow p-6 w-full max-w-md relative"
-          data-aos="zoom-in"
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div
+            className="bg-white rounded-xl shadow p-6 w-full max-w-md relative"
+            data-aos="zoom-in"
           >
             <button
               className="absolute top-3 right-3 text-gray-500 hover:text-red-500"
