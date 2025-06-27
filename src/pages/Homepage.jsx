@@ -63,22 +63,22 @@ const Homepage = () => {
       console.warn("No products found in response");
       return;
     }
- const bedroomProducts = products.filter((p) => p.category === "Bedroom");
-    const livingRoomProducts = products.filter((p) => p.category === "Living Room");
-    const outdoorProducts = products.filter((p) => p.category === "Outdoor");
+//  const bedroomProducts = products.filter((p) => p.category === "Bedroom");
+//     const livingRoomProducts = products.filter((p) => p.category === "Living Room");
+//     const outdoorProducts = products.filter((p) => p.category === "Outdoor");
 
-    const brands = [...new Set(products.map((p) => p.brand).filter(Boolean))];
-    const types = [...new Set(products.map((p) => p.type).filter(Boolean))];
-    const materials = [...new Set(products.map((p) => p.material).filter(Boolean))];
-    const colors = [...new Set(products.map((p) => p.color).filter(Boolean))];
+//     const brands = [...new Set(products.map((p) => p.brand).filter(Boolean))];
+//     const types = [...new Set(products.map((p) => p.type).filter(Boolean))];
+//     const materials = [...new Set(products.map((p) => p.material).filter(Boolean))];
+//     const colors = [...new Set(products.map((p) => p.color).filter(Boolean))];
 
-    console.log(" Bedroom Products:", bedroomProducts);
-    console.log("Living Room Products:", livingRoomProducts);
-    console.log("Outdoor Products:", outdoorProducts);
-    console.log("Brands:", brands);
-    console.log("Types:", types);
-    console.log("Materials:", materials);
-    console.log("Colors:", colors);
+    // console.log(" Bedroom Products:", bedroomProducts);
+    // console.log("Living Room Products:", livingRoomProducts);
+    // console.log("Outdoor Products:", outdoorProducts);
+    // console.log("Brands:", brands);
+    // console.log("Types:", types);
+    // console.log("Materials:", materials);
+    // console.log("Colors:", colors);
   } catch (error) {
     console.error("Error fetching products.json:", error);
   }

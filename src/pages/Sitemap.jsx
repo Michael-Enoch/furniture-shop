@@ -14,7 +14,7 @@ const Sitemap = () => {
     <div className="bg-[#F3EFEB] min-h-screen px-4 py-10">
       <div className="max-w-6xl mx-auto">
         {/* Breadcrumb */}
-        <BreadCrumbs/>
+        <Breadcrumbs/>
         <h1
           data-aos="fade-down"
           className="text-4xl font-bold mb-8"
