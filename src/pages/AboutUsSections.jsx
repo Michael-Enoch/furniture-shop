@@ -19,7 +19,7 @@ export const AboutUsSections = ({ valuesData }) => {
   return (
     <>
     <section
-          className="text-[#2D2D2D] w-full max-w-screen-2xl  mx-auto"
+          className="text-[#2D2D2D] w-full max-w-screen-2xl mx-auto"
           style={{
             backgroundColor: theme.colors.background.DEFAULT,
             fontFamily: theme.fonts.body,
@@ -27,7 +27,7 @@ export const AboutUsSections = ({ valuesData }) => {
         >
       {/* Hero Section */}
       <div
-        className="w-full h-[500px] sm:h-[600px] flex items-center justify-center"
+        className="w-full h-[500px] lg:h-[500px] flex items-center justify-center"
       >
         <div
           className="w-full h-full bg-cover bg-center"
