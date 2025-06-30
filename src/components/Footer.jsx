@@ -73,7 +73,7 @@ const Footer = () => {
         <div className="w-full">
           <h4
             className="text-lg font-semibold mb-4 text-[#BF6E3D] flex items-center"
-            style={{ fontFamily: theme.fonts.header }}
+            style={{ fontFamily: theme.fonts.header, color:theme.colors.primary.contrast }}
           >
             Explore <FaChevronRight className="ml-2 text-xs opacity-70" />
           </h4>
@@ -97,7 +97,7 @@ const Footer = () => {
         <div className="w-full">
           <h4
             className="text-lg font-semibold mb-4 text-[#BF6E3D] flex items-center"
-            style={{ fontFamily: theme.fonts.header }}
+            style={{ fontFamily: theme.fonts.header, color:theme.colors.primary.contrast }}
           >
             Company <FaChevronRight className="ml-2 text-xs opacity-70" />
           </h4>
@@ -119,7 +119,7 @@ const Footer = () => {
         <div className="w-full">
           <h4
             className="text-lg font-semibold mb-4 text-[#BF6E3D]"
-            style={{ fontFamily: theme.fonts.header }}
+            style={{ fontFamily: theme.fonts.header, color:theme.colors.primary.contrast }}
           >
             Contact Us
           </h4>
