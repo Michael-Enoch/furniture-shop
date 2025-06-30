@@ -18,7 +18,7 @@ const Hero = ({ offers }) => {
   if (!offers.length) return null;
 
   return (
-    <section className="relative w-full max-w-screen-2xl mx-auto overflow-hidden h-[500px] sm:h-[500px] md:h-[600px] lg:h-[700px]">
+    <section className="relative w-full max-w-screen-2xl mx-auto overflow-hidden h-[500px] lg:h-[500px]">
       <div className="relative w-full h-full">
         {offers.map((offer, index) => (
           <div
